@@ -1,0 +1,157 @@
+/* ===== LOGIN MODERNO – LARANJA & BRANCO ===== */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #fff3e0, #ffffff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.login-wrapper {
+    background: #ffffff;
+    width: 100%;
+    max-width: 950px;
+    border-radius: 20px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    overflow: hidden;
+}
+
+/* ===== LADO INSTITUCIONAL ===== */
+.login-info {
+    background: linear-gradient(160deg, #fb8c00, #f57c00);
+    color: #fff;
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-info h1 {
+    font-size: 36px;
+    margin-bottom: 16px;
+}
+
+.login-info p {
+    font-size: 17px;
+    line-height: 1.6;
+    opacity: 0.95;
+    margin-bottom: 30px;
+}
+
+.login-info ul {
+    list-style: none;
+}
+
+.login-info li {
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.login-info li::before {
+    content: "✓";
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/* ===== FORM ===== */
+.login-form {
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.login-form span {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 30px;
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 16px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #fb8c00;
+}
+
+.btn-login {
+    margin-top: 10px;
+    width: 100%;
+    background: linear-gradient(135deg, #fb8c00, #f57c00);
+    color: #fff;
+    padding: 15px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 12px 25px rgba(245,124,0,0.4);
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(245,124,0,0.5);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: #fafafa;
+    padding: 18px 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #777;
+    border-top: 1px solid #eee;
+}
+
+footer strong {
+    color: #f57c00;
+}
+
+@media (max-width: 900px) {
+    .login-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .login-info {
+        padding: 45px 35px;
+    }
+
+    .login-form {
+        padding: 45px 35px;
+    }
+}

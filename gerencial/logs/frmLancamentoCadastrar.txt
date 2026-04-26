@@ -1,0 +1,8685 @@
+Array
+(
+)
+
+Array
+(
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 35
+            [id] => 0
+            [descricao] => PLACA DE MOTO
+            [qtd] => 1
+            [valor] => 200
+            [total] => 200
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valor] => 800
+            [total] => 800
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valor] => 340
+            [total] => 340
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 35
+            [id] => 0
+            [descricao] => PLACA DE MOTO
+            [qtd] => 1
+            [valor] => 200
+            [total] => 200
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valor] => 340
+            [total] => 340
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 35
+            [id] => 0
+            [descricao] => PLACA DE MOTO
+            [qtd] => 1
+            [valor] => 200
+            [total] => 200
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 40
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO COM NOTA
+            [qtd] => 1
+            [valor] => 690
+            [total] => 690
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valor] => 800
+            [total] => 800
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 35
+            [id] => 0
+            [descricao] => PLACA DE MOTO
+            [qtd] => 1
+            [valor] => 200
+            [total] => 200
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 43
+            [id] => 0
+            [descricao] => ANTT
+            [qtd] => 1
+            [valor] => 750
+            [total] => 750
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valor] => 127.5
+            [total] => 127.5
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valor] => 800
+            [total] => 800
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valor] => 200
+            [total] => 200
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 50
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 50
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valorCusto] => 100
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 10
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+)
+
+Array
+(
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 49
+            [id] => 0
+            [descricao] => VENDA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 1.21
+            [valor] => 2.12
+            [total] => 2.12
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valorCusto] => 150
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 100
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valorCusto] => 150
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 49
+            [id] => 0
+            [descricao] => VENDA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 0.25
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 46
+            [id] => 0
+            [descricao] => CERTIDÃO DETRAN
+            [qtd] => 2
+            [valorCusto] => 25
+            [valor] => 75
+            [total] => 150
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 47
+            [id] => 0
+            [descricao] => CONTRATOS
+            [qtd] => 2
+            [valorCusto] => 25
+            [valor] => 75
+            [total] => 150
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 2
+            [valorCusto] => 50
+            [valor] => 75
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 46
+            [id] => 0
+            [descricao] => CERTIDÃO DETRAN
+            [qtd] => 2
+            [valorCusto] => 25
+            [valor] => 100
+            [total] => 200
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 49
+            [id] => 0
+            [descricao] => VENDA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 0.12
+            [valor] => 22.22
+            [total] => 22.22
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 43
+            [id] => 0
+            [descricao] => ANTT
+            [qtd] => 1
+            [valorCusto] => 250
+            [valor] => 700
+            [total] => 700
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 43
+            [id] => 0
+            [descricao] => ANTT
+            [qtd] => 1
+            [valorCusto] => 10
+            [valor] => 450
+            [total] => 450
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 830
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valorCusto] => 500
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 500
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 40
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 170
+            [total] => 170
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 43
+            [id] => 0
+            [descricao] => ANTT
+            [qtd] => 25
+            [valorCusto] => 0
+            [valor] => 200
+            [total] => 5000
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 43
+            [id] => 0
+            [descricao] => ANTT
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 200
+            [total] => 200
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 54
+            [id] => 0
+            [descricao] => 2° VIA CAMINHÃO
+            [qtd] => 1
+            [valorCusto] => 385.57
+            [valor] => 740
+            [total] => 740
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 40
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO COM NOTA
+            [qtd] => 1
+            [valorCusto] => 413.08
+            [valor] => 690
+            [total] => 690
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 46
+            [id] => 0
+            [descricao] => CERTIDÃO DETRAN
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 850
+            [total] => 850
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 70
+            [id] => 0
+            [descricao] => LICENCIAMENTO
+            [qtd] => 1
+            [valorCusto] => 115
+            [valor] => 0
+            [total] => 0
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 890
+            [total] => 890
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 47
+            [id] => 0
+            [descricao] => CONTRATOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 80
+            [total] => 80
+            [solicitaVeiculo] => 0
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1818
+            [valor] => 1818
+            [total] => 1818
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+)
+
+Array
+(
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 43
+            [id] => 0
+            [descricao] => ANTT
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 200
+            [total] => 200
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 52
+            [id] => 0
+            [descricao] => 2° VIA CARRO
+            [qtd] => 3
+            [valorCusto] => 328.53
+            [valor] => 560
+            [total] => 1680
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 43
+            [id] => 0
+            [descricao] => ANTT
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 200
+            [total] => 200
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 43
+            [id] => 0
+            [descricao] => ANTT
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 200
+            [total] => 200
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 40
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO COM NOTA
+            [qtd] => 1
+            [valorCusto] => 413.08
+            [valor] => 690
+            [total] => 690
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1000
+            [valor] => 0
+            [total] => 0
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 49
+            [id] => 0
+            [descricao] => VENDA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 2
+            [valor] => 2121.21
+            [total] => 2121.21
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 72
+            [id] => 0
+            [descricao] => DPVAT
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 1500
+            [total] => 1500
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 53
+            [id] => 0
+            [descricao] => 2° VIA MOTO
+            [qtd] => 1
+            [valorCusto] => 289.99
+            [valor] => 530
+            [total] => 530
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 0.15
+            [total] => 0.15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 613.01
+            [valor] => 840
+            [total] => 840
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 120
+            [total] => 120
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 2
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 71.82
+            [total] => 71.82
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 61
+            [total] => 61
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 74
+            [id] => 0
+            [descricao] => PAG. DÉBITOS
+            [qtd] => 2
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 74
+            [id] => 0
+            [descricao] => PAG. DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 280
+            [valor] => 340
+            [total] => 340
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 280
+            [valor] => 340
+            [total] => 340
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 160
+            [total] => 160
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 1575.93
+            [valor] => 1835
+            [total] => 1835
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 74
+            [id] => 0
+            [descricao] => PAG. DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 44
+            [total] => 44
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 318.45
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 340
+            [valor] => 340
+            [total] => 340
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 613.01
+            [valor] => 880
+            [total] => 880
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 2
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 80
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 160
+            [total] => 160
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 693
+            [valor] => 0
+            [total] => 0
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 321
+            [total] => 321
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 1077
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 340
+            [valor] => 340
+            [total] => 340
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 52
+            [id] => 0
+            [descricao] => 2° VIA CARRO
+            [qtd] => 1
+            [valorCusto] => 328.53
+            [valor] => 560
+            [total] => 560
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+    [3] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 69
+            [id] => 0
+            [descricao] => MULTAS DE TRÂNSITO
+            [qtd] => 1
+            [valorCusto] => 3650
+            [valor] => 3650
+            [total] => 3650
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 160
+            [total] => 160
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 160
+            [total] => 160
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 720
+            [total] => 720
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 1253
+            [valor] => 1485
+            [total] => 1485
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 1077
+            [total] => 1077
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 340
+            [valor] => 340
+            [total] => 340
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 60
+            [total] => 60
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 74
+            [id] => 0
+            [descricao] => PAG. DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 130
+            [total] => 130
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 25
+            [total] => 25
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 1437.83
+            [valor] => 1666
+            [total] => 1666
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 69
+            [id] => 0
+            [descricao] => MULTAS DE TRÂNSITO
+            [qtd] => 1
+            [valorCusto] => 216
+            [valor] => 216
+            [total] => 216
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 76
+            [id] => 0
+            [descricao] => CORREIO
+            [qtd] => 1
+            [valorCusto] => 20
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 75
+            [id] => 0
+            [descricao] => CARTÓRIO
+            [qtd] => 1
+            [valorCusto] => 45
+            [valor] => 45
+            [total] => 45
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 59
+            [id] => 0
+            [descricao] => SOLICITAÇÃO DE VISTORIA CARRO
+            [qtd] => 1
+            [valorCusto] => 114.11
+            [valor] => 270
+            [total] => 270
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 52
+            [id] => 0
+            [descricao] => 2° VIA CARRO
+            [qtd] => 1
+            [valorCusto] => 328.53
+            [valor] => 560
+            [total] => 560
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 1008
+            [total] => 1008
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 70
+            [id] => 0
+            [descricao] => LICENCIAMENTO
+            [qtd] => 1
+            [valorCusto] => 115
+            [valor] => 115
+            [total] => 115
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 54
+            [id] => 0
+            [descricao] => 2° VIA CAMINHÃO
+            [qtd] => 1
+            [valorCusto] => 385.57
+            [valor] => 740
+            [total] => 740
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 54
+            [id] => 0
+            [descricao] => 2° VIA CAMINHÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 299.1
+            [total] => 299.1
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 780
+            [total] => 780
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 60
+            [total] => 60
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 63
+            [total] => 63
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 77
+            [id] => 0
+            [descricao] => IDENTIFICAÇÃO DE CONDUTOR
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 46
+            [id] => 0
+            [descricao] => CERTIDÃO DETRAN
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 77
+            [id] => 0
+            [descricao] => IDENTIFICAÇÃO DE CONDUTOR
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 62
+            [total] => 62
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valorCusto] => 3277.34
+            [valor] => 3555
+            [total] => 3555
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 613.01
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 35
+            [id] => 0
+            [descricao] => PLACA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 180
+            [valor] => 200
+            [total] => 200
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 46
+            [id] => 0
+            [descricao] => CERTIDÃO DETRAN
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 59
+            [id] => 0
+            [descricao] => SOLICITAÇÃO DE VISTORIA CARRO
+            [qtd] => 1
+            [valorCusto] => 114.11
+            [valor] => 290
+            [total] => 290
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 79
+            [id] => 0
+            [descricao] => TRANSFERENCIA BARCO
+            [qtd] => 1
+            [valorCusto] => 475
+            [valor] => 690
+            [total] => 690
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 46
+            [id] => 0
+            [descricao] => CERTIDÃO DETRAN
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 160
+            [total] => 160
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 160
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 78
+            [id] => 0
+            [descricao] => GRAVAÇÃO VIDRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 61
+            [id] => 0
+            [descricao] => RESERVA DE DOMÍNIO
+            [qtd] => 1
+            [valorCusto] => 228.02
+            [valor] => 330
+            [total] => 330
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 613.01
+            [valor] => 1067
+            [total] => 1067
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 35
+            [id] => 0
+            [descricao] => PLACA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 200
+            [valor] => 200
+            [total] => 200
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 0.3
+            [total] => 0.3
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 613.01
+            [valor] => 800
+            [total] => 800
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 4667.37
+            [valor] => 5523
+            [total] => 5523
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 46
+            [id] => 0
+            [descricao] => CERTIDÃO DETRAN
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 75
+            [id] => 0
+            [descricao] => CARTÓRIO
+            [qtd] => 1
+            [valorCusto] => 45
+            [valor] => 45
+            [total] => 45
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 1670.87
+            [valor] => 1968
+            [total] => 1968
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 42
+            [id] => 0
+            [descricao] => RECURSO DE MULTAS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 330
+            [total] => 330
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 367
+            [valor] => 367
+            [total] => 367
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 675
+            [valor] => 675
+            [total] => 675
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 75
+            [id] => 0
+            [descricao] => CARTÓRIO
+            [qtd] => 1
+            [valorCusto] => 45
+            [valor] => 45
+            [total] => 45
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 38
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO COM NOTA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 620
+            [total] => 620
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 790
+            [total] => 790
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 170
+            [valor] => 170
+            [total] => 170
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 136.39
+            [total] => 136.39
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 74
+            [id] => 0
+            [descricao] => PAG. DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 12
+            [total] => 12
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 790
+            [total] => 790
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 77
+            [id] => 0
+            [descricao] => IDENTIFICAÇÃO DE CONDUTOR
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 74
+            [id] => 0
+            [descricao] => PAG. DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 25
+            [total] => 25
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 918
+            [total] => 918
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 646
+            [valor] => 646
+            [total] => 646
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 75
+            [id] => 0
+            [descricao] => CARTÓRIO
+            [qtd] => 1
+            [valorCusto] => 45
+            [valor] => 45
+            [total] => 45
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 42
+            [id] => 0
+            [descricao] => RECURSO DE MULTAS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 227
+            [total] => 227
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 613.01
+            [valor] => 800
+            [total] => 800
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 35
+            [id] => 0
+            [descricao] => PLACA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 180
+            [valor] => 200
+            [total] => 200
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 280
+            [valor] => 340
+            [total] => 340
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 865.92
+            [total] => 865.92
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 280
+            [valor] => 340
+            [total] => 340
+            [solicitaVeiculo] => 0
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 504.08
+            [total] => 504.08
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 80
+            [id] => 0
+            [descricao] => OUTROS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 76
+            [id] => 0
+            [descricao] => CORREIO
+            [qtd] => 1
+            [valorCusto] => 68
+            [valor] => 68
+            [total] => 68
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 218.6
+            [total] => 218.6
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 76.79
+            [total] => 76.79
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 74
+            [id] => 0
+            [descricao] => PAG. DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 55
+            [total] => 55
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 56
+            [id] => 0
+            [descricao] => TROCA DE PLACA CARRO
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 660
+            [total] => 660
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 42
+            [id] => 0
+            [descricao] => RECURSO DE MULTAS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 250
+            [total] => 250
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 180
+            [total] => 180
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 1088
+            [valor] => 1305
+            [total] => 1305
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 160
+            [total] => 160
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 1175.29
+            [valor] => 1410
+            [total] => 1410
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 75
+            [id] => 0
+            [descricao] => CARTÓRIO
+            [qtd] => 1
+            [valorCusto] => 45
+            [valor] => 45
+            [total] => 45
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 790
+            [total] => 790
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 830
+            [total] => 830
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 280
+            [valor] => 280
+            [total] => 280
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 77
+            [id] => 0
+            [descricao] => IDENTIFICAÇÃO DE CONDUTOR
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 77
+            [id] => 0
+            [descricao] => IDENTIFICAÇÃO DE CONDUTOR
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 81
+            [id] => 0
+            [descricao] => MONITORAMENTO DE MULTAS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 110
+            [total] => 110
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 337.12
+            [total] => 337.12
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 79
+            [id] => 0
+            [descricao] => TRANSFERENCIA BARCO
+            [qtd] => 1
+            [valorCusto] => 450
+            [valor] => 640
+            [total] => 640
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 227.34
+            [total] => 227.34
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 43
+            [id] => 0
+            [descricao] => ANTT
+            [qtd] => 1
+            [valorCusto] => 180
+            [valor] => 440
+            [total] => 440
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 62
+            [total] => 62
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 82
+            [id] => 0
+            [descricao] => CONSULTA COMPLETA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 80
+            [total] => 80
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 49
+            [id] => 0
+            [descricao] => VENDA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 2820
+            [total] => 2820
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 75
+            [id] => 0
+            [descricao] => CARTÓRIO
+            [qtd] => 1
+            [valorCusto] => 45
+            [valor] => 45
+            [total] => 45
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 70
+            [id] => 0
+            [descricao] => LICENCIAMENTO
+            [qtd] => 1
+            [valorCusto] => 115
+            [valor] => 115
+            [total] => 115
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 50
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 15.57
+            [valor] => 1850
+            [total] => 1850
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 3507
+            [valor] => 3735
+            [total] => 3735
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 1221.93
+            [valor] => 1446
+            [total] => 1446
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 62
+            [total] => 62
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 340
+            [valor] => 340
+            [total] => 340
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 340
+            [valor] => 340
+            [total] => 340
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 607
+            [total] => 607
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 82
+            [id] => 0
+            [descricao] => CONSULTA COMPLETA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 80
+            [total] => 80
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 87
+            [total] => 87
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 69
+            [id] => 0
+            [descricao] => MULTAS DE TRÂNSITO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 280
+            [total] => 280
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 70
+            [id] => 0
+            [descricao] => LICENCIAMENTO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 115
+            [total] => 115
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 75
+            [id] => 0
+            [descricao] => CARTÓRIO
+            [qtd] => 1
+            [valorCusto] => 45
+            [valor] => 45
+            [total] => 45
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 613.01
+            [valor] => 831
+            [total] => 831
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 613.01
+            [valor] => 800
+            [total] => 800
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 0
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1000
+            [valor] => 1100
+            [total] => 1100
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 860
+            [total] => 860
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 82
+            [id] => 0
+            [descricao] => CONSULTA COMPLETA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 80
+            [total] => 80
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 99.5
+            [total] => 99.5
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 60
+            [total] => 60
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 111
+            [total] => 111
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 59
+            [id] => 0
+            [descricao] => SOLICITAÇÃO DE VISTORIA CARRO
+            [qtd] => 1
+            [valorCusto] => 114.11
+            [valor] => 290
+            [total] => 290
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 613.01
+            [valor] => 800
+            [total] => 800
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+    [3] => Array
+        (
+            [idProduto] => 74
+            [id] => 0
+            [descricao] => PAG. DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 60
+            [total] => 60
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 90
+            [id] => 0
+            [descricao] => 2 VIA ATPVE
+            [qtd] => 1
+            [valorCusto] => 114.11
+            [valor] => 515
+            [total] => 515
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 97
+            [id] => 0
+            [descricao] => APRESENTAÇÃO DE CONDUTOR
+            [qtd] => 12
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 840
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 0.1
+            [valor] => 0
+            [total] => 855.82
+            [solicitaVeiculo] => 0
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 87
+            [id] => 0
+            [descricao] => TRANSFERENCIA
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 0
+            [total] => 860
+            [solicitaVeiculo] => 0
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 85
+            [id] => 0
+            [descricao] => LICENCIAMENTO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 114.09
+            [total] => 114.09
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 0.1
+            [valor] => 0
+            [total] => 2003.34
+            [solicitaVeiculo] => 0
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 86
+            [id] => 0
+            [descricao] => TRANSFERENCIA NOTA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 860
+            [total] => 860
+            [solicitaVeiculo] => 0
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 85
+            [id] => 0
+            [descricao] => LICENCIAMENTO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 114.09
+            [total] => 114.09
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 36
+            [id] => 0
+            [descricao] => PLACA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 340
+            [valor] => 340
+            [total] => 340
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 443
+            [total] => 443
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 699.59
+            [valor] => 1030
+            [total] => 1030
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 910
+            [total] => 910
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 607
+            [total] => 607
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 75
+            [id] => 0
+            [descricao] => CARTÓRIO
+            [qtd] => 1
+            [valorCusto] => 45
+            [valor] => 45
+            [total] => 45
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 43
+            [id] => 0
+            [descricao] => ANTT
+            [qtd] => 1
+            [valorCusto] => 230
+            [valor] => 690
+            [total] => 690
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 75
+            [id] => 0
+            [descricao] => CARTÓRIO
+            [qtd] => 1
+            [valorCusto] => 45
+            [valor] => 45
+            [total] => 45
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 87
+            [id] => 0
+            [descricao] => TRANSFERENCIA
+            [qtd] => 1
+            [valorCusto] => 613.01
+            [valor] => 0
+            [total] => 0
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 47
+            [id] => 0
+            [descricao] => CONTRATOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 0
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 97
+            [id] => 0
+            [descricao] => APRESENTAÇÃO DE CONDUTOR
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 46
+            [id] => 0
+            [descricao] => CERTIDÃO DETRAN
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 86
+            [id] => 0
+            [descricao] => TRANSFERENCIA NOTA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 860
+            [total] => 860
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1425.19
+            [valor] => 1425.19
+            [total] => 1425.19
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 85
+            [id] => 0
+            [descricao] => LICENCIAMENTO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 114.09
+            [total] => 114.09
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 107
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA LOJA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 108
+            [id] => 0
+            [descricao] => PAGAMENTO DE DÉBITOS
+            [qtd] => 2
+            [valorCusto] => 2554.65
+            [valor] => 2718.7
+            [total] => 5437.4
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 86
+            [id] => 0
+            [descricao] => TRANSFERENCIA NOTA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 806.71
+            [total] => 806.71
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 87
+            [id] => 0
+            [descricao] => TRANSFERENCIA
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 860
+            [total] => 860
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 74
+            [id] => 0
+            [descricao] => PAG. DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 74
+            [id] => 0
+            [descricao] => PAG. DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 967
+            [total] => 967
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 87
+            [id] => 0
+            [descricao] => TRANSFERENCIA
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 0
+            [total] => 860
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 94
+            [id] => 0
+            [descricao] => ANTT
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 650
+            [total] => 650
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 95
+            [id] => 0
+            [descricao] => PLACAS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 350
+            [total] => 350
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 87
+            [id] => 0
+            [descricao] => TRANSFERENCIA
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 0
+            [total] => 860
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 0.1
+            [valor] => 0
+            [total] => 1738.12
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 85
+            [id] => 0
+            [descricao] => LICENCIAMENTO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 114.09
+            [total] => 114.09
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 87
+            [id] => 0
+            [descricao] => TRANSFERENCIA
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 0
+            [total] => 860
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 108
+            [id] => 0
+            [descricao] => PAGAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 0
+            [total] => 934.96
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 85
+            [id] => 0
+            [descricao] => LICENCIAMENTO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 74.09
+            [total] => 74.09
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1889.08
+            [valor] => 1889.08
+            [total] => 1889.08
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 554.09
+            [total] => 554.09
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 562.42
+            [valor] => 562.42
+            [total] => 562.42
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 91
+            [id] => 0
+            [descricao] => RETIRADA DE GNV
+            [qtd] => 1
+            [valorCusto] => 350
+            [valor] => 526
+            [total] => 526
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 90
+            [id] => 0
+            [descricao] => 2 VIA ATPVE
+            [qtd] => 1
+            [valorCusto] => 114.11
+            [valor] => 250
+            [total] => 250
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 784.17
+            [total] => 784.17
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 89
+            [id] => 0
+            [descricao] => 2 VIA DUT
+            [qtd] => 1
+            [valorCusto] => 328.53
+            [valor] => 500
+            [total] => 500
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 96
+            [id] => 0
+            [descricao] => PLACA
+            [qtd] => 1
+            [valorCusto] => 200
+            [valor] => 280
+            [total] => 280
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 2041.94
+            [valor] => 2041.94
+            [total] => 2041.94
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 96
+            [id] => 0
+            [descricao] => PLACA
+            [qtd] => 1
+            [valorCusto] => 200
+            [valor] => 280
+            [total] => 280
+            [solicitaVeiculo] => 0
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 96
+            [id] => 0
+            [descricao] => PLACA
+            [qtd] => 1
+            [valorCusto] => 200
+            [valor] => 280
+            [total] => 280
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 2252.77
+            [valor] => 2252.77
+            [total] => 2252.77
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1740.09
+            [valor] => 1740.09
+            [total] => 1740.09
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1264.75
+            [valor] => 1500.51
+            [total] => 1500.51
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 80
+            [total] => 80
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1886.58
+            [valor] => 2257.36
+            [total] => 2257.36
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1886.58
+            [valor] => 2257.36
+            [total] => 2257.36
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 89
+            [id] => 0
+            [descricao] => 2 VIA DUT
+            [qtd] => 1
+            [valorCusto] => 114.11
+            [valor] => 500
+            [total] => 500
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1501.54
+            [valor] => 1580.55
+            [total] => 1580.55
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1485.33
+            [valor] => 1485.33
+            [total] => 1485.33
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 96
+            [id] => 0
+            [descricao] => PLACA
+            [qtd] => 1
+            [valorCusto] => 200
+            [valor] => 280
+            [total] => 280
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 654.24
+            [total] => 654.24
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 109
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA S/TAXA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 221.62
+            [total] => 221.62
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 109
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA S/TAXA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 221.62
+            [total] => 221.62
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 109
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA S/TAXA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 221.62
+            [total] => 221.62
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 109
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA S/TAXA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 221.62
+            [total] => 221.62
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 109
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA S/TAXA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 221.62
+            [total] => 221.62
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 109
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA S/TAXA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 221.62
+            [total] => 221.62
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 109
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA S/TAXA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 221.62
+            [total] => 221.62
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 109
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA S/TAXA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 221.62
+            [total] => 221.62
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 109
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA S/TAXA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 221.62
+            [total] => 221.62
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 87
+            [id] => 0
+            [descricao] => TRANSFERENCIA
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 0
+            [total] => 860
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1148.92
+            [valor] => 1148.92
+            [total] => 1148.92
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 86
+            [id] => 0
+            [descricao] => TRANSFERENCIA NOTA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 860
+            [total] => 860
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 0.1
+            [valor] => 0
+            [total] => 753
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 95
+            [id] => 0
+            [descricao] => PLACAS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 350
+            [total] => 350
+            [solicitaVeiculo] => 0
+        )
+
+    [3] => Array
+        (
+            [idProduto] => 85
+            [id] => 0
+            [descricao] => LICENCIAMENTO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 114.09
+            [total] => 114.09
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 111
+            [id] => 0
+            [descricao] => EMISSÃO DE ATPV-E
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 350
+            [total] => 350
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 108
+            [id] => 0
+            [descricao] => PAGAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 1203.65
+            [valor] => 1389.09
+            [total] => 1389.09
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 88
+            [id] => 0
+            [descricao] => CONSULTA CAUTELAR
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 60
+            [total] => 60
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 83
+            [id] => 0
+            [descricao] => TRANSFERENCIA LOJA
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 790
+            [total] => 790
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 90
+            [id] => 0
+            [descricao] => 2 VIA ATPVE
+            [qtd] => 1
+            [valorCusto] => 114.11
+            [valor] => 250
+            [total] => 250
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 100
+            [id] => 0
+            [descricao] => RECURSO DE MULTAS ATÉ 293
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 1000
+            [total] => 1000
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 161
+            [total] => 161
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1100
+            [valor] => 1100
+            [total] => 1100
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 87
+            [id] => 0
+            [descricao] => TRANSFERENCIA
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 900
+            [total] => 900
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 86
+            [id] => 0
+            [descricao] => TRANSFERENCIA NOTA
+            [qtd] => 1
+            [valorCusto] => 442.62
+            [valor] => 860
+            [total] => 860
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 84
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 936.55
+            [valor] => 936.55
+            [total] => 936.55
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 85
+            [id] => 0
+            [descricao] => LICENCIAMENTO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 114.09
+            [total] => 114.09
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 75
+            [id] => 0
+            [descricao] => CARTÓRIO
+            [qtd] => 1
+            [valorCusto] => 45
+            [valor] => 45
+            [total] => 45
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 108
+            [id] => 0
+            [descricao] => PAGAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 426.14
+            [valor] => 487
+            [total] => 487
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 50
+            [id] => 0
+            [descricao] => EMPRÉSTIMO DE DINHEIRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 1600
+            [total] => 1600
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 69
+            [id] => 0
+            [descricao] => MULTAS DE TRÂNSITO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 0
+            [total] => 855
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 55
+            [id] => 0
+            [descricao] => TROCA DE PLACA MOTO
+            [qtd] => 1
+            [valorCusto] => 413.08
+            [valor] => 630
+            [total] => 560
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 35
+            [id] => 0
+            [descricao] => PLACA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 200
+            [valor] => 180
+            [total] => 180
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 46
+            [id] => 0
+            [descricao] => CERTIDÃO DETRAN
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 78
+            [id] => 0
+            [descricao] => GRAVAÇÃO VIDRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 39
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE MOTO
+            [qtd] => 1
+            [valorCusto] => 613.01
+            [valor] => 800
+            [total] => 800
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 40
+            [total] => 40
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+    [3] => Array
+        (
+            [idProduto] => 74
+            [id] => 0
+            [descricao] => PAG. DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 250
+            [total] => 250
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 10
+            [total] => 10
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 15
+            [total] => 15
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 111
+            [id] => 0
+            [descricao] => EMISSÃO DE ATPV-E
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 160
+            [total] => 160
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 89
+            [id] => 0
+            [descricao] => 2 VIA DUT
+            [qtd] => 1
+            [valorCusto] => 494.62
+            [valor] => 524.22
+            [total] => 524.22
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 87
+            [id] => 0
+            [descricao] => TRANSFERENCIA
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 860
+            [total] => 860
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 108
+            [id] => 0
+            [descricao] => PAGAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 364.09
+            [valor] => 364.09
+            [total] => 364.09
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 89
+            [id] => 0
+            [descricao] => 2 VIA DUT
+            [qtd] => 1
+            [valorCusto] => 1024.99
+            [valor] => 1303.45
+            [total] => 1303.45
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 87
+            [id] => 0
+            [descricao] => TRANSFERENCIA
+            [qtd] => 1
+            [valorCusto] => 1445.99
+            [valor] => 1817.52
+            [total] => 1817.52
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 52
+            [id] => 0
+            [descricao] => 2° VIA CARRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 260
+            [total] => 260
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 73
+            [id] => 0
+            [descricao] => CRLV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 50
+            [total] => 50
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 160
+            [total] => 160
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 34
+            [id] => 0
+            [descricao] => PROCURAÇÃO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 71
+            [id] => 0
+            [descricao] => ATPV
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 30
+            [total] => 30
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 79
+            [id] => 0
+            [descricao] => TRANSFERENCIA BARCO
+            [qtd] => 1
+            [valorCusto] => 450
+            [valor] => 690
+            [total] => 690
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 2067
+            [total] => 2067
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 2121
+            [total] => 2121
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 69
+            [id] => 0
+            [descricao] => MULTAS DE TRÂNSITO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 198
+            [total] => 198
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 37
+            [id] => 0
+            [descricao] => TRANSFERÊNCIA DE CARRO
+            [qtd] => 1
+            [valorCusto] => 642.55
+            [valor] => 870
+            [total] => 870
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 68
+            [id] => 0
+            [descricao] => IPVA
+            [qtd] => 1
+            [valorCusto] => 1004.9
+            [valor] => 1020
+            [total] => 1020
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 75
+            [id] => 0
+            [descricao] => CARTÓRIO
+            [qtd] => 1
+            [valorCusto] => 45
+            [valor] => 45
+            [total] => 45
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 2118.18
+            [valor] => 2549
+            [total] => 2549
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 44
+            [id] => 0
+            [descricao] => PARCELAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 208
+            [total] => 208
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 74
+            [id] => 0
+            [descricao] => PAG. DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 0
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 97
+            [id] => 0
+            [descricao] => APRESENTAÇÃO DE CONDUTOR
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 70
+            [total] => 70
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 99
+            [id] => 0
+            [descricao] => RECURSO DE MULTAS ATÉ 190
+            [qtd] => 2
+            [valorCusto] => 0
+            [valor] => 90
+            [total] => 180
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 108
+            [id] => 0
+            [descricao] => PAGAMENTO DE DÉBITOS
+            [qtd] => 1
+            [valorCusto] => 2554.65
+            [valor] => 2718.7
+            [total] => 2718.7
+            [solicitaVeiculo] => 1
+        )
+
+)
+
