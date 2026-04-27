@@ -259,26 +259,57 @@ if ($tipoRelatorio == 'metas') {
         $paramsLucro[] = $grupoId;
     }
     
+    // $lucroProdutos = ExSqlNET("
+    //     SELECT 
+    //         sp.Nome,
+    //         SUM(mi.Qtd) AS quantidade,
+    //         SUM(mi.TotalItem) AS faturamento,
+    //         SUM(IFNULL(mi.ValorCusto,0) * mi.Qtd) AS custoTotal,
+    //         SUM(mi.TotalItem - (IFNULL(mi.ValorCusto,0) * mi.Qtd)) AS lucro
+    //     FROM movimentoitem mi
+    //     LEFT JOIN movimento m 
+    //         ON m.id = mi.ControleMovimento
+    //     LEFT JOIN servprod sp 
+    //         ON sp.id = mi.ServProd
+    //     WHERE m.idEmpresa = ?
+    //     AND sp.idEmpresa = ?
+    //     AND DATE(m.Data) BETWEEN ? AND ?
+    //     $whereFiltro
+    //     GROUP BY sp.id
+    //     ORDER BY sp.Nome ASC
+    // ", null, $paramsLucro);
+    
     $lucroProdutos = ExSqlNET("
         SELECT 
-            sp.Nome,
+            COALESCE(sp.Nome, 'Produto não cadastrado') AS Nome,
+
             SUM(mi.Qtd) AS quantidade,
+
             SUM(mi.TotalItem) AS faturamento,
-            SUM(IFNULL(mi.ValorCusto,0) * mi.Qtd) AS custoTotal,
-            SUM(mi.TotalItem - (IFNULL(mi.ValorCusto,0) * mi.Qtd)) AS lucro
+
+            SUM(mi.Qtd * mi.ValorCusto) AS custoTotal,
+
+            SUM(mi.TotalItem - (mi.Qtd * mi.ValorCusto)) AS lucro
+
         FROM movimentoitem mi
-        LEFT JOIN movimento m 
+
+        INNER JOIN movimento m 
             ON m.id = mi.ControleMovimento
+
         LEFT JOIN servprod sp 
             ON sp.id = mi.ServProd
+
         WHERE m.idEmpresa = ?
-        AND sp.idEmpresa = ?
+        AND mi.idEmpresa = ?
         AND DATE(m.Data) BETWEEN ? AND ?
+        AND m.Status NOT IN (3,4)
+
         $whereFiltro
-        GROUP BY sp.id
-        ORDER BY sp.Nome ASC
+
+        GROUP BY mi.ServProd, sp.Nome
+        ORDER BY lucro DESC
     ", null, $paramsLucro);
-    
+
     foreach ($lucroProdutos as $l) {
         $totalFaturamento += $l['faturamento'] ?? 0;
         $totalCusto += $l['custoTotal'] ?? 0;
@@ -477,7 +508,6 @@ if ($tipoRelatorio == 'servicosForcli') {
     $whereServicosForcli = "";
     $paramsServicosForcli = [
         $idEmpresa,
-        $idEmpresa,
         $dataInicial,
         $dataFinal,
     ];
@@ -491,20 +521,41 @@ if ($tipoRelatorio == 'servicosForcli') {
     $servicosForcli = ExSqlNET("
         SELECT 
             f.Nome,
-            SUM(mi.Qtd) AS TotalServicos,
-            SUM(mi.TotalItem) AS Faturamento,
-            SUM(mc.Valor) AS Lucro
+            SUM(
+                (
+                    SELECT COALESCE(SUM(mi2.Qtd), 0)
+                    FROM movimentoitem mi2
+                    WHERE mi2.ControleMovimento = m.id
+                    AND mi2.idEmpresa = m.idEmpresa
+                )
+            ) AS TotalServicos,
+
+            SUM(
+                COALESCE(
+                    (
+                        SELECT SUM(mi.TotalItem)
+                        FROM movimentoitem mi
+                        WHERE mi.ControleMovimento = m.id
+                    ),
+                    0
+                )
+            ) AS Faturamento,
+
+            SUM(
+                (
+                    SELECT COALESCE(SUM(mc2.Valor), 0)
+                    FROM movimentocc mc2
+                    WHERE mc2.ControleOrigem = m.id
+                    AND mc2.idEmpresa = m.idEmpresa
+                )
+            ) AS Lucro
         FROM movimento m
-        LEFT JOIN movimentoitem mi 
-            ON mi.ControleMovimento = m.id
-        LEFT JOIN movimentocc mc 
-            ON mc.ControleOrigem = m.id
         LEFT JOIN forcli f 
             ON f.id = m.Forcli
         WHERE m.idEmpresa = ?
-            AND mi.idEmpresa = ?
-            AND DATE(m.Data) BETWEEN ? AND ?
-            $whereServicosForcli
+        AND DATE(m.Data) BETWEEN ? AND ?
+        $whereServicosForcli
+
         GROUP BY f.Nome
         ORDER BY TotalServicos DESC
     ", null, $paramsServicosForcli);
