@@ -30,10 +30,17 @@ $totalPedidos = 0;
 $produtoFiltro = $_GET['produto'] ?? '';
 $produtoId   = $_GET['produtoId'] ?? 0;
 $produtoNome = $_GET['produtoNome'] ?? '';
+$grupoForcli = "";
 
-$grupoId = $_GET['grupoId'] ?? 0;
+// ================= FILTROS =================
 
-$grupoForcli = $_GET['grupoIdForcli'] ?? 0;
+// PRODUTOS
+$grupoId = (int)($_GET['grupoId'] ?? 0);
+$nomeGrupoProduto = $_GET['grupo_nome'] ?? '';
+
+// CLIENTES
+$grupoForcliId = (int)($_GET['grupoIdForcli'] ?? 0);
+$nomeGrupoForcli = $_GET['grupo_nome_forcli'] ?? '';
 
 $produtos = ExSqlNET("
     SELECT id, Nome
@@ -41,7 +48,6 @@ $produtos = ExSqlNET("
     WHERE idEmpresa = ?
     ORDER BY Nome
 ", null, [$idEmpresa]);
-
 
 
 //====== FILTRO PRODUTO / GRUPO (PADRÃO GLOBAL) ======
@@ -288,17 +294,20 @@ foreach ($despesas as $d) {
 
 
 
-// ================= SERVIÇOS - > FORCLI =================
+// ================= SERVIÇOS -> FORCLI =================
 
 $whereServicosForcli = "";
-$paramsDesp = [];
-
 $paramsServicosForcli = [
     $idEmpresa,
     $idEmpresa,
     $dataInicial,
     $dataFinal,
 ];
+
+if ($grupoForcliId > 0) {
+    $whereServicosForcli .= " AND f.Grupo = ? ";
+    $paramsServicosForcli[] = $grupoForcliId;
+}
 
 $servicosForcli = ExSqlNET("
     SELECT 
@@ -307,19 +316,18 @@ $servicosForcli = ExSqlNET("
         SUM(mi.TotalItem) AS Faturamento,
         SUM(mc.Valor) AS Lucro
     FROM movimento m
-    LEFT JOIN movimentoitem mi ON mi.ControleMovimento = m.id
-    LEFT JOIN movimentocc mc ON mc.ControleOrigem = m.id
-    LEFT JOIN forcli f ON f.id = m.Forcli
+    LEFT JOIN movimentoitem mi 
+        ON mi.ControleMovimento = m.id
+    LEFT JOIN movimentocc mc 
+        ON mc.ControleOrigem = m.id
+    LEFT JOIN forcli f 
+        ON f.id = m.Forcli
     WHERE m.idEmpresa = ?
-    AND mi.idEmpresa = ?
-    AND DATE(m.Data) BETWEEN ? AND ?
-    $whereProd
-    
+        AND mi.idEmpresa = ?
+        AND DATE(m.Data) BETWEEN ? AND ?
+        $whereServicosForcli
     GROUP BY f.Nome
-    ORDER BY TotalServicos DESC
-        
-", null, $paramsServicosForcli);
-
+    ORDER BY TotalServicos DESC", null, $paramsServicosForcli);
 
 $totalServicosForcli = 0;
 
@@ -624,11 +632,12 @@ foreach ($servicosForcli as $sf) {
                 
                     <input type="hidden" name="grupoId" id="grupoId" value="<?= $grupoId ?>">
                                     
+                    <!-- // ================= INPUT GRUPO PRODUTO ================= -->
                     <input 
                         type="text"
                         id="grupo_nome"
                         name="grupo_nome"
-                        value="<?= htmlspecialchars($nomeGrupo ?? '') ?>"
+                        value="<?= htmlspecialchars($nomeGrupoProduto ?? '') ?>"
                         placeholder="Clique para buscar..."
                         onclick="abrirModal('grupo')"
                         readonly
@@ -638,15 +647,17 @@ foreach ($servicosForcli as $sf) {
 
                 <div id="grupoForcliContainer">
                     
-                    <label for="grupo_nome">Grupo Clientes</label>
+                    <label for="grupo_nome_forcli">Grupo Clientes</label>
                 
-                    <input type="hidden" name="grupoIdForcli" id="grupoIdForcli" value="<?= $grupoForcli ?>">
-                                    
+                   <!-- // ================= HIDDEN CLIENTE ================= -->
+                    <input type="hidden" name="grupoIdForcli" id="grupoIdForcli" value="<?= $grupoForcliId ?>">
+                    
+                    <!-- // ================= INPUT GRUPO CLIENTE ================= -->
                     <input 
                         type="text"
                         id="grupo_nome_forcli"
                         name="grupo_nome_forcli"
-                        value="<?= htmlspecialchars($nomeGrupo ?? '') ?>"
+                        value="<?= htmlspecialchars($nomeGrupoForcli ?? '') ?>"
                         placeholder="Clique para buscar..."
                         onclick="abrirModal('grupoForcli')"
                         readonly
@@ -1109,26 +1120,26 @@ function limparGrupo() {
     document.getElementById('grupo_nome').value = '';
 }
 
+function limparGrupoForcli() {
+    document.getElementById('grupoIdForcli').value = 0;
+    document.getElementById('grupo_nome_forcli').value = '';
+}
+
 function limparProduto() {
     document.getElementById('produtoId').value = '';
     document.getElementById('produtoNome').value = '';
 }
 
+// FECHAMENTO MODAL
 document.getElementById('modalBg').addEventListener('click', function(e) {
-
     if (e.target === this) {
 
-        if (tipoModal === 'grupo') {
-            limparGrupo();
-        }
-        
-        if (tipoModal === 'produto') {
-            limparProduto();
-        }
+        if (tipoModal === 'grupo') limparGrupo();
+        if (tipoModal === 'produto') limparProduto();
+        if (tipoModal === 'grupoForcli') limparGrupoForcli();
 
         fecharModal();
     }
-
 });
 
 
@@ -1273,7 +1284,13 @@ document.getElementById('btnPdf').addEventListener('click', function(e) {
 
     }
     
- 
+    if (tipoSelect.value === 'servicosForcli') {
+
+        const grupoIdForcli = document.getElementById('grupoIdForcli').value;
+        addCampo('grupoIdForcli', grupoIdForcli);
+        
+    }
+    
     if (tipoSelect.value === 'faturamento' && graficoFaturamento) {
 
         setTimeout(() => {
@@ -1304,60 +1321,76 @@ document.getElementById('btnPdf').addEventListener('click', function(e) {
     const grupoContainer = document.getElementById('grupoContainer');
     const grupoForcliContainer = document.getElementById('grupoForcliContainer');
     
+    // ================= ATUALIZAÇÃO DE CAMPOS =================
     function atualizarCampos() {
-    
+
+        // Reset geral
+        produtoContainer.style.display = 'none';
+        grupoContainer.style.display = 'none';
+        grupoForcliContainer.style.display = 'none';
+
+        produtoContainer.style.pointerEvents = 'none';
+        grupoContainer.style.pointerEvents = 'none';
+        grupoForcliContainer.style.pointerEvents = 'none';
+
         if (tipoSelect.value === 'metas') {
-    
+
             datasContainer.style.display = 'none';
             mesContainer.style.display = 'block';
+
             produtoContainer.style.display = 'block';
             grupoContainer.style.display = 'block';
-            grupoForcliContainer.style.display = 'none';
-            
+
+            produtoContainer.style.pointerEvents = 'auto';
+            grupoContainer.style.pointerEvents = 'auto';
+
         } 
         else if (tipoSelect.value === 'lucro') {
-    
+
             datasContainer.style.display = 'grid';
             mesContainer.style.display = 'none';
+
             produtoContainer.style.display = 'block';
             grupoContainer.style.display = 'block';
-            grupoForcliContainer.style.display = 'none';
+
+            produtoContainer.style.pointerEvents = 'auto';
+            grupoContainer.style.pointerEvents = 'auto';
+
         } 
         else if (tipoSelect.value === 'despesas') {
-    
+
             datasContainer.style.display = 'grid';
             mesContainer.style.display = 'none';
-            produtoContainer.style.display = 'none';
-            grupoContainer.style.display = 'none';
-            grupoForcliContainer.style.display = 'none';
+
         }     
         else if (tipoSelect.value === 'servicosForcli') {
+
             datasContainer.style.display = 'grid';
             mesContainer.style.display = 'none';
-            produtoContainer.style.display = 'none';
-            grupoContainer.style.display = 'none';
+
             grupoForcliContainer.style.display = 'block';
-            
+            grupoForcliContainer.style.pointerEvents = 'auto';
+
         }    
         else {
+
             datasContainer.style.display = 'grid';
             mesContainer.style.display = 'none';
-            produtoContainer.style.display = 'none';
-            grupoContainer.style.display = 'block';
-            grupoForcliContainer.style.display = 'none';
-        }
-    
-    }
 
+            grupoContainer.style.display = 'block';
+            grupoContainer.style.pointerEvents = 'auto';
+        }
+    }
 
     // Atualiza ao carregar a página
     atualizarCampos();
 
+    // ================= TROCA DE RELATÓRIO =================
     tipoSelect.addEventListener('change', function() {
-    
+
         atualizarCampos();
         document.getElementById('formRelatorio').submit();
-    
+
     });
     
     
@@ -1399,20 +1432,16 @@ document.getElementById('btnPdf').addEventListener('click', function(e) {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             const modal = document.getElementById('modalBg');
+
             if (modal && modal.style.display === 'flex') {
-    
-                if (tipoModal === 'grupo') {
-                    limparGrupo();
-                }
-    
-                if (tipoModal === 'produto') {
-                    limparProduto();
-                }
-    
+
+                if (tipoModal === 'grupo') limparGrupo();
+                if (tipoModal === 'produto') limparProduto();
+                if (tipoModal === 'grupoForcli') limparGrupoForcli();
+
                 fecharModal();
             }
         }
-    
     });
 </script>
 

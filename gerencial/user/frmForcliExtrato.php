@@ -377,7 +377,7 @@ foreach ($lista as $item) {
             background: #fff7ed;
         }
 
-        /* Botão fechar */
+        /* Botï¿½o fechar */
         .modal-box .btn-secondary {
             margin-top: 18px;
             align-self: flex-end;
@@ -525,10 +525,10 @@ foreach ($lista as $item) {
                         
                         <td>
                             <?php if ($item['Status'] == 3): ?>
-                                <span class="status pendente"><?= mb_convert_encoding('Débito em aberto', 'UTF-8', 'ISO-8859-1') ?></span>
+                                <span class="status pendente"><?= mb_convert_encoding('Dï¿½bito em aberto', 'UTF-8', 'ISO-8859-1') ?></span>
                         
                             <?php elseif ($item['Status'] == 4): ?>
-                                <span class="status pago"><?= mb_convert_encoding('Débito Pago', 'UTF-8', 'ISO-8859-1') ?></span>
+                                <span class="status pago"><?= mb_convert_encoding('Dï¿½bito Pago', 'UTF-8', 'ISO-8859-1') ?></span>
                         
                             <?php elseif ($item['DataPgto']): ?>
                                 <span class="status pago">Pago</span>
@@ -582,9 +582,19 @@ foreach ($lista as $item) {
         </div>
     </div>
 
-    <script>
+<script>
+
     function abrirModalCliente() {
-        document.getElementById('modalCliente').style.display = 'flex';
+        const modal = document.getElementById('modalCliente');
+        const campoBusca = document.getElementById('buscaCliente');
+
+        modal.style.display = 'flex';
+        // delay antes do focus
+        setTimeout(() => {
+            campoBusca.focus();
+            campoBusca.select();
+        }, 100);
+        
     }
 
     function fecharModalCliente() {
