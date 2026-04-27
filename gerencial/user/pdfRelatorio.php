@@ -39,7 +39,9 @@ $anoSelecionado = date('Y');
 
 $produtoId = $_POST['produtoId'] ?? 0;
 
-$grupoId = $_POST['grupoId'] ?? 0;
+$grupoId = $_POST['grupoId'] ?? 0; //Grupo de Produto
+
+$grupoIdForcli = $_POST['grupoIdForcli'] ?? 0; //Grupo de Clientes
 
 
 $dadosEmpresa = ExSqlNET(
@@ -468,6 +470,139 @@ if ($graficoBase64) {
       
     $pdf->Image('grafico.png', 10, $pdf->GetY(), 180);
 }
+
+/* ================= SERVIÇOS POR CLIENTE ================= */
+if ($tipoRelatorio == 'servicosForcli') {
+
+    $whereServicosForcli = "";
+    $paramsServicosForcli = [
+        $idEmpresa,
+        $idEmpresa,
+        $dataInicial,
+        $dataFinal,
+    ];
+
+    // FILTRO POR GRUPO DE CLIENTES
+    if ($grupoIdForcli > 0) {
+        $whereServicosForcli .= " AND f.Grupo = ? ";
+        $paramsServicosForcli[] = $grupoIdForcli;
+    }
+
+    $servicosForcli = ExSqlNET("
+        SELECT 
+            f.Nome,
+            SUM(mi.Qtd) AS TotalServicos,
+            SUM(mi.TotalItem) AS Faturamento,
+            SUM(mc.Valor) AS Lucro
+        FROM movimento m
+        LEFT JOIN movimentoitem mi 
+            ON mi.ControleMovimento = m.id
+        LEFT JOIN movimentocc mc 
+            ON mc.ControleOrigem = m.id
+        LEFT JOIN forcli f 
+            ON f.id = m.Forcli
+        WHERE m.idEmpresa = ?
+            AND mi.idEmpresa = ?
+            AND DATE(m.Data) BETWEEN ? AND ?
+            $whereServicosForcli
+        GROUP BY f.Nome
+        ORDER BY TotalServicos DESC
+    ", null, $paramsServicosForcli);
+
+    $totalFaturamento = 0;
+    $totalLucro = 0;
+    $totalServicos = 0;
+
+    // ===== CABEÇALHO =====
+    $pdf->SetFont('Arial','B',8);
+    $pdf->SetFillColor(249,115,22);
+    $pdf->SetTextColor(255,255,255);
+
+    $pdf->Cell(70,8,texto('Cliente'),1,0,'L',true);
+    $pdf->Cell(30,8,texto('Qtd Serviços'),1,0,'C',true);
+
+    if ($mostrarValores) {
+        $pdf->Cell(40,8,texto('Faturamento'),1,0,'R',true);
+        $pdf->Cell(40,8,texto('Lucro'),1,0,'R',true);
+    }
+
+    $pdf->Ln();
+    $pdf->SetTextColor(0,0,0);
+    $pdf->SetFont('Arial','',8);
+
+    // ===== DADOS =====
+    foreach ($servicosForcli as $s) {
+
+        $cliente = $s['Nome'] ?? '';
+        $qtd = $s['TotalServicos'] ?? 0;
+        $fat = $s['Faturamento'] ?? 0;
+        $lucro = $s['Lucro'] ?? 0;
+
+        $totalServicos += $qtd;
+        $totalFaturamento += $fat;
+        $totalLucro += $lucro;
+
+        $yAntes = $pdf->GetY();
+        $xAntes = $pdf->GetX();
+
+        $pdf->MultiCell(70,6,texto($cliente),1);
+
+        $altura = $pdf->GetY() - $yAntes;
+
+        $pdf->SetXY($xAntes + 70, $yAntes);
+
+        $pdf->Cell(30,$altura,number_format($qtd,0,',','.'),1,0,'C');
+
+        if ($mostrarValores) {
+            $pdf->Cell(40,$altura,'R$ '.number_format($fat,2,',','.'),1,0,'R');
+            $pdf->Cell(40,$altura,'R$ '.number_format($lucro,2,',','.'),1,0,'R');
+        }
+
+        $pdf->Ln();
+    }
+
+    // ===== RESUMO =====
+    $pdf->Ln(5);
+
+    $pdf->SetFont('Arial','B',11);
+    $pdf->SetFillColor(240,240,240);
+
+    $pdf->Cell(0,10,texto('RESUMO GERAL'),0,1,'L');
+
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(
+        0,
+        10,
+        texto('Total Serviços / Produtos: '.number_format($totalServicos,0,',','.')),
+        1,
+        1,
+        'L',
+        true
+    );
+
+    if ($mostrarValores) {
+        $pdf->Cell(
+            0,
+            10,
+            texto('Faturamento Total: R$ '.number_format($totalFaturamento,2,',','.')),
+            1,
+            1,
+            'L',
+            true
+        );
+
+        $pdf->Cell(
+            0,
+            10,
+            texto('Lucro Total: R$ '.number_format($totalLucro,2,',','.')),
+            1,
+            1,
+            'L',
+            true
+        );
+    }
+}
+
 
 ob_end_clean();
 $pdf->Output('I');
