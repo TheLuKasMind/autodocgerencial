@@ -175,9 +175,10 @@ function Forcli($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
 
     $sql = "INSERT INTO forcli 
     (idEmpresa, Codigo, Nome, Documento, RazaoSocial, Tipo, TipoDocumento ,Inativo, Email,
-    Telefone, DataCadastro, CEP, UF, Bairro, Cidade, Rua, NumeroEndereco, Obs, DataAlt, Grupo)
+    Telefone, DataCadastro, CEP, UF, Bairro, Cidade, Rua, NumeroEndereco, Obs, DataAlt, Grupo,
+    EstadoCivil, Profissao)
     VALUES 
-    (:idEmpresa, :Codigo, :Nome, :Documento, :RazaoSocial, :Tipo, :TipoDocumento, :Inativo, :Email, :Telefone, :DataCadastro, :CEP, :UF, :Bairro, :Cidade, :Rua, :NumeroEndereco, :Obs, :DataAlt, :Grupo)";
+    (:idEmpresa, :Codigo, :Nome, :Documento, :RazaoSocial, :Tipo, :TipoDocumento, :Inativo, :Email, :Telefone, :DataCadastro, :CEP, :UF, :Bairro, :Cidade, :Rua, :NumeroEndereco, :Obs, :DataAlt, :Grupo, :EstadoCivil, :Profissao)";
 
         try {
 
@@ -202,6 +203,8 @@ function Forcli($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
                 ':NumeroEndereco' => $dados['NumeroEndereco'],
                 ':Obs' => $dados['Obs'],
                 ':Grupo' => $dados['Grupo'],
+                ':EstadoCivil' => $dados['EstadoCivil'],
+                ':Profissao' => $dados['Profissao'],
                 ':DataAlt' => $dataAlt,
                 ]
             );
@@ -231,6 +234,8 @@ function Forcli($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
             NumeroEndereco = :NumeroEndereco ,
             Obs = :Obs ,
             Grupo = :Grupo ,
+            EstadoCivil = :EstadoCivil,
+            Profissao = :Profissao,
             DataAlt = :DataAlt
             WHERE id = :Id AND idEmpresa = :idEmpresa"; 
 
@@ -257,6 +262,8 @@ function Forcli($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
                 ':Id'  => $dados['id'],
                 ':idEmpresa' => $dados['idEmpresa'],
                 ':Grupo' => $dados['Grupo'],
+                ':EstadoCivil' => $dados['EstadoCivil'],
+                ':Profissao' => $dados['Profissao'],
                 ':DataAlt' => $dataAlt,
             ]);
             return ""; 
@@ -275,7 +282,7 @@ function Forcli($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
             ]);
 
             //echo $stmt->rowCount();
-                return ""; 
+            return ""; 
         } catch (PDOException $e) {
             return $e; 
         }
@@ -1064,6 +1071,84 @@ function enviarRecuperacaoSenha($email)
     }
 
     return true;
+}
+
+// ==========================================================================================
+function Arquivo($dados, $acao){ // CADASTRAR | ATUALIZAR | EXCLUIR
+
+    global $dbGeralNET;
+    $dataAlt = date('Y-m-d H:i:s');
+
+    if($acao === "CADASTRAR"){
+
+        $sql = "INSERT INTO arquivos 
+        (idEmpresa, idForcli, Tipo, Descricao, NomeArquivo, ArquivoBase64, DataCadastro)
+        VALUES 
+        (:idEmpresa, :idForcli, :Tipo, :Descricao, :NomeArquivo, :ArquivoBase64, :DataCadastro)";
+
+        try {
+            $stmt = $dbGeralNET->prepare($sql);
+            $stmt->execute([
+                ':idEmpresa' => $dados['idEmpresa'],
+                ':idForcli' => $dados['idForcli'],
+                ':Tipo' => $dados['Tipo'],
+                ':Descricao' => $dados['Descricao'],
+                ':NomeArquivo' => $dados['NomeArquivo'],
+                ':ArquivoBase64' => $dados['ArquivoBase64'],
+                ':DataCadastro' => $dataAlt
+            ]);
+
+            $idGerado = $dbGeralNET->lastInsertId();
+            $_SESSION['idArquivo'] = $idGerado;
+
+            return "";
+
+        } catch (PDOException $e) {
+            return $e;
+        }
+    }
+
+    else if($acao === "ATUALIZAR"){
+
+        $sql = "UPDATE arquivos SET
+            Tipo = :Tipo,
+            Descricao = :Descricao,
+            NomeArquivo = :NomeArquivo,
+            ArquivoBase64 = :ArquivoBase64
+        WHERE id = :id AND idEmpresa = :idEmpresa";
+
+        try {
+            $stmt = $dbGeralNET->prepare($sql);
+            $stmt->execute([
+                ':id' => $dados['id'],
+                ':idEmpresa' => $dados['idEmpresa'],
+                ':Tipo' => $dados['Tipo'],
+                ':Descricao' => $dados['Descricao'],
+                ':NomeArquivo' => $dados['NomeArquivo'],
+                ':ArquivoBase64' => $dados['ArquivoBase64']
+            ]);
+
+            return "";
+
+        } catch (PDOException $e) {
+            return $e;
+        }
+    }
+    else if($acao === "EXCLUIR"){
+
+        try {
+            $sql = "DELETE FROM arquivos WHERE idForcli = :id AND idEmpresa = :idEmpresa";
+            $stmt = $dbGeralNET->prepare($sql);
+            $stmt->execute([
+                ':id' => $dados['idForcli'],
+                ':idEmpresa' => $dados['idEmpresa']
+            ]);
+            return "";
+
+        } catch (PDOException $e) {
+            return $e;
+        }
+    }
 }
 
 ?>

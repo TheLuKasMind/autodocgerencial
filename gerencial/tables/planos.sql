@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 02/03/2026 às 20:58
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Host: localhost:3306
+-- Tempo de geração: 28/04/2026 às 09:12
+-- Versão do servidor: 8.0.45-36
+-- Versão do PHP: 8.3.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `geral2`
+-- Banco de dados: `luca5858_geral2`
 --
 
 -- --------------------------------------------------------
@@ -28,13 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `planos` (
-  `id` int(11) NOT NULL,
-  `Nome` varchar(100) DEFAULT NULL,
+  `id` int NOT NULL,
+  `Nome` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Valor` decimal(10,2) DEFAULT NULL,
-  `Periodo` varchar(20) DEFAULT NULL,
-  `Descricao` text DEFAULT NULL,
-  `Status` tinyint(4) DEFAULT 1,
-  `DataCadastro` datetime DEFAULT current_timestamp()
+  `Periodo` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Descricao` text COLLATE utf8mb4_general_ci,
+  `Status` tinyint DEFAULT '1',
+  `DataCadastro` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -64,7 +64,7 @@ ALTER TABLE `planos`
 -- AUTO_INCREMENT de tabela `planos`
 --
 ALTER TABLE `planos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

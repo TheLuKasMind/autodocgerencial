@@ -61,6 +61,64 @@ if (isset($_GET['consultarCnpjAjax'])) {
 
 $id = $_GET['id'] ?? null;
 
+// ABRINDO ARQUIVO 
+if (isset($_GET['abrirArquivo'])) {
+
+    header('Content-Type: application/json; charset=utf-8');
+
+    $idArquivo = $_GET['id'] ?? 0;
+    $idEmpresa = $_SESSION['idEmpresa'] ?? 0;
+
+    $arquivo = ExSqlNET("
+        SELECT id, NomeArquivo, ArquivoBase64
+        FROM arquivos
+        WHERE id = ? AND idEmpresa = ?
+    ", null, [$idArquivo, $idEmpresa]);
+
+    echo json_encode([
+        "debug_id" => $idArquivo,
+        "debug_empresa" => $idEmpresa,
+        "rows" => $arquivo
+    ]);
+    exit;
+}
+
+if (isset($_GET['excluirArquivo'])) {
+
+    header('Content-Type: application/json; charset=utf-8');
+
+    try {
+
+        $idArquivo = (int)($_GET['id'] ?? 0);
+        $idEmpresa = (int)($_SESSION['idEmpresa'] ?? 0);
+
+        if (!$idArquivo || !$idEmpresa) {
+            throw new Exception("Parâmetros inválidos");
+        }
+
+        $stmt = $dbGeralNET->prepare("
+            DELETE FROM arquivos 
+            WHERE id = ? AND idEmpresa = ?
+        ");
+
+        $stmt->execute([$idArquivo, $idEmpresa]);
+
+        echo json_encode([
+            "success" => true,
+            "deletedRows" => $stmt->rowCount()
+        ]);
+        exit;
+
+    } catch (Throwable $e) {
+
+        echo json_encode([
+            "success" => false,
+            "error" => $e->getMessage()
+        ]);
+        exit;
+    }
+}
+
 if ($id) {
     $dados = ExSqlNET(
         "SELECT *,
@@ -86,6 +144,19 @@ if ($id) {
 
 } else {
     $Alterando = false;
+}
+
+
+$arquivos = [];
+
+if ($id) {
+
+    $arquivos = ExSqlNET("
+        SELECT id, Tipo, Descricao, NomeArquivo
+        FROM arquivos
+        WHERE idEmpresa = ? AND idForcli = ?
+        ORDER BY id DESC
+    ", null, [$_SESSION['idEmpresa'], $id]);
 }
 
 $msgRetorno =  '';
@@ -132,8 +203,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
     $dados['NumeroEndereco'] = $_POST['NumeroEndereco'] ?? "";
     $dados['Obs'] = $_POST['Obs'] ?? "";
     
-    $dados['Grupo'] = !empty($_POST['grupo']) ? (int)$_POST['grupo'] : 0;
-        
+    $dados['Grupo'] = !empty($_POST['grupo']) ? (int)$_POST['grupo'] : 0;    
+    $dados['Profissao'] = $_POST['Profissao'] ?? "";
+
+    $dados['EstadoCivil'] = $_POST['EstadoCivil'] ?? 0;
+
+
     if($Alterando == False){
         $dados['TotalDevedor'] = 0;
     }else{
@@ -156,7 +231,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         $dados['Codigo'] = retornaProximoCod("forcli");
         $retorno = Forcli($dados, "CADASTRAR");
         if ($retorno === "") {
-            $msgRetorno = "Cliente / Fornecedor cadastrado com sucesso!";
+
+            $documentos = json_decode($_POST['documentos_json'] ?? '[]', true);
+            
+            // PEGANDO O ID DO FORCLI CADASTRADO AQUI NA HORA
+            $result = ExSqlNET("SELECT id FROM forcli WHERE idEmpresa = ? AND Codigo = ? LIMIT 1
+            ", null, [$_SESSION['idEmpresa'], $dados['Codigo']]);
+            $dados['idForcli'] = $result[0]['id'] ?? null;
+
+            // foreach ($documentos as $d) {
+
+            //     $dadosArquivo = [
+            //         'idEmpresa' => $_SESSION['idEmpresa'],
+            //         'idForcli' => $dados['idForcli'],
+            //         'Tipo' => $d['tipo'],
+            //         'Descricao' => $d['descricao'],
+            //         'NomeArquivo' => $d['nome'],
+            //         'ArquivoBase64' => $d['base64']
+            //     ];
+                
+            //     //Arquivo($dadosArquivo, "EXCLUIR");
+            //     $retornoCadArquivo = Arquivo($dadosArquivo, "CADASTRAR");
+            // }
+
+            foreach ($documentos as $d) {
+
+                if (!is_array($d) || empty($d['novo'])) {
+                    continue; // ignora arquivos antigos
+                }
+
+                $tipo = $d['tipo'] ?? null;
+                $descricao = $d['descricao'] ?? '';
+                $nome = $d['nome'] ?? '';
+                $base64 = $d['base64'] ?? null;
+
+                if (!$tipo || !$nome || !$base64) {
+                    continue;
+                }
+
+                $dadosArquivo = [
+                    'idEmpresa' => $_SESSION['idEmpresa'],
+                    'idForcli' => $dados['id'],
+                    'Tipo' => $tipo,
+                    'Descricao' => $descricao,
+                    'NomeArquivo' => $nome,
+                    'ArquivoBase64' => $base64
+                ];
+
+                Arquivo($dadosArquivo, "CADASTRAR");
+            }
+
+            $msgRetorno = "Cliente / Fornecedor cadastrado com sucesso!". $retornoCadArquivo;
             $tipoMsg = "success";
             $_SESSION['mensagem_sucesso'] = $msgRetorno;
             header('Location: frmForcliLista.php');
@@ -167,7 +292,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
             $tipoMsg = "error";
         }
     }else if ($Alterando === true && isset($_POST['salvar'])){
+
         $retorno = Forcli($dados, "ATUALIZAR");
+        $documentos = json_decode($_POST['documentos_json'] ?? '[]', true);
+
+        // foreach ($documentos as $d) {
+
+        //     $dadosArquivo = [
+        //         'idEmpresa' => $_SESSION['idEmpresa'],
+        //         'idForcli' => $dados['id'],
+        //         'Tipo' => $d['tipo'],
+        //         'Descricao' => $d['descricao'],
+        //         'NomeArquivo' => $d['nome'],
+        //         'ArquivoBase64' => $d['base64']
+        //     ];
+        //     //Arquivo($dadosArquivo, "EXCLUIR");
+        //     $retornoCadArquivo = Arquivo($dadosArquivo, "CADASTRAR");
+        // }
+
+        foreach ($documentos as $d) {
+
+            if (!is_array($d) || empty($d['novo'])) {
+                continue; // ignora arquivos antigos
+            }
+
+            $tipo = $d['tipo'] ?? null;
+            $descricao = $d['descricao'] ?? '';
+            $nome = $d['nome'] ?? '';
+            $base64 = $d['base64'] ?? null;
+
+            if (!$tipo || !$nome || !$base64) {
+                continue;
+            }
+
+            $dadosArquivo = [
+                'idEmpresa' => $_SESSION['idEmpresa'],
+                'idForcli' => $dados['id'],
+                'Tipo' => $tipo,
+                'Descricao' => $descricao,
+                'NomeArquivo' => $nome,
+                'ArquivoBase64' => $base64
+            ];
+
+            Arquivo($dadosArquivo, "CADASTRAR");
+        }
+
         if ($retorno === "") {
             $msgRetorno = "Cliente / Fornecedor atualizado com sucesso!";
             $tipoMsg = "success";
@@ -175,7 +344,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
             $msgRetorno = "Erro ao atualizar o Cliente / Fornecedor. Erro -> ". $retorno;
             $tipoMsg = "error";
         }
+
     }else if(isset($_POST['excluir'])){
+        $dadosArquivo = [
+            'idEmpresa' => $_SESSION['idEmpresa'],
+            'idForcli' => $dados['id'],
+            'Tipo' => $d['tipo'],
+            'Descricao' => $d['descricao'],
+            'NomeArquivo' => $d['nome'],
+            'ArquivoBase64' => $d['base64']
+        ];
+        Arquivo($dadosArquivo, "EXCLUIR");
         $retorno = Forcli($dados, "EXCLUIR");
         if ($retorno === "") {
             $msgRetorno = "Cliente / Fornecedor excluído com sucesso!";
@@ -226,148 +405,172 @@ if (!empty($dados['Grupo'])) {
     <link rel="stylesheet" href="../css/base.css">
     
     <style>
-     /* ===== MODAL PADRÃO DO SISTEMA ===== */
-    
-    .modal-bg {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.45);
-        backdrop-filter: blur(3px);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-        animation: fadeIn 0.15s ease;
-    }
-    
-    .modal {
-        background: #ffffff;
-        width: 650px;
-        max-width: 95%;
-        border-radius: 14px;
-        padding: 22px;
-        box-shadow: 0 12px 35px rgba(0,0,0,0.18);
-        max-height: 80vh;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        animation: modalUp 0.18s ease;
-    }
-    
-    .modal h3 {
-        margin: 0 0 12px 0;
-        font-size: 18px;
-        color: #333;
-    }
-    
-    .modal-search {
-        width: 100%;
-        padding: 10px 12px;
-        border-radius: 8px;
-        border: 1px solid #dcdcdc;
-        font-size: 14px;
-        outline: none;
-        transition: border 0.2s, box-shadow 0.2s;
-    }
-    
-    .modal-search:focus {
-        border-color: #ea580c;
-        box-shadow: 0 0 0 2px rgba(234,88,12,0.15);
-    }
-    
-    .modal table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 12px;
-        font-size: 14px;
-    }
-    
-    .modal thead {
-        background: #fff7ed;
-    }
-    
-    .modal th {
-        text-align: left;
-        padding: 10px;
-        font-weight: 600;
-        color: #9a3412;
-    }
-    
-    .modal td {
-        padding: 9px 10px;
-        border-bottom: 1px solid #eee;
-        cursor: pointer;
-    }
-    
-    .modal tbody {
-        overflow-y: auto;
-    }
-    
-    .modal tbody tr {
-        transition: background 0.15s;
-    }
-    
-    .modal tbody tr:hover {
-        background: #fff7ed;
-    }
-    
-    
-    .modal button {
-        margin-top: 15px;
-        align-self: flex-end;
-    }
-    
-    
-    @keyframes modalUp {
-        from {
-            transform: translateY(15px);
-            opacity: 0;
+        /* ===== MODAL PADRÃO DO SISTEMA ===== */
+        
+        .btn-icon {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px 6px;
+            transition: 0.2s;
         }
-        to {
-            transform: translateY(0);
-            opacity: 1;
+
+        .btn-icon:hover {
+            transform: scale(1.2);
         }
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
 
+        .btn-danger {
+            color: #dc2626;
+        }
 
+        .obrigatorio {
+            color: red;
+            font-weight: bold;
+            margin-left: 3px; 
+            content: " *";
+            color: red;
+            font-weight: bold;
+        }
 
-    .modal-table-wrapper{
-        max-height: 380px;
-        overflow-y: auto;
-        margin-top: 10px;
-        border: 1px solid #eee;
-        border-radius: 8px;
-    }
-    
-    .modal-table-wrapper thead th{
-        position: sticky;
-        top: 0;
-        background: #fff7ed;
-        z-index: 2;
-    }
-    
-    .modal-table-wrapper::-webkit-scrollbar{
-        width: 8px;
-    }
-    
-    .modal-table-wrapper::-webkit-scrollbar-track{
-        background: #f1f1f1;
-        border-radius: 10px;
-    }
-    
-    .modal-table-wrapper::-webkit-scrollbar-thumb{
-        background: #d6d6d6;
-        border-radius: 10px;
-    }
-    
-    .modal-table-wrapper::-webkit-scrollbar-thumb:hover{
-        background: #bdbdbd;
-    }
+        .modal-bg {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(3px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 0.15s ease;
+        }
+        
+        .modal {
+            background: #ffffff;
+            width: 650px;
+            max-width: 95%;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+            max-height: 80vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: modalUp 0.18s ease;
+        }
+        
+        .modal h3 {
+            margin: 0 0 12px 0;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .modal-search {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #dcdcdc;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        
+        .modal-search:focus {
+            border-color: #ea580c;
+            box-shadow: 0 0 0 2px rgba(234,88,12,0.15);
+        }
+        
+        .modal table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+        
+        .modal thead {
+            background: #fff7ed;
+        }
+        
+        .modal th {
+            text-align: left;
+            padding: 10px;
+            font-weight: 600;
+            color: #9a3412;
+        }
+        
+        .modal td {
+            padding: 9px 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        
+        .modal tbody {
+            overflow-y: auto;
+        }
+        
+        .modal tbody tr {
+            transition: background 0.15s;
+        }
+        
+        .modal tbody tr:hover {
+            background: #fff7ed;
+        }
+        
+        
+        .modal button {
+            margin-top: 15px;
+            align-self: flex-end;
+        }
+        
+        
+        @keyframes modalUp {
+            from {
+                transform: translateY(15px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-table-wrapper{
+            max-height: 380px;
+            overflow-y: auto;
+            margin-top: 10px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        
+        .modal-table-wrapper thead th{
+            position: sticky;
+            top: 0;
+            background: #fff7ed;
+            z-index: 2;
+        }
+        
+        .modal-table-wrapper::-webkit-scrollbar{
+            width: 8px;
+        }
+        
+        .modal-table-wrapper::-webkit-scrollbar-track{
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .modal-table-wrapper::-webkit-scrollbar-thumb{
+            background: #d6d6d6;
+            border-radius: 10px;
+        }
+        
+        .modal-table-wrapper::-webkit-scrollbar-thumb:hover{
+            background: #bdbdbd;
+        }
     </style>
 
 </head>
@@ -450,12 +653,12 @@ if (!empty($dados['Grupo'])) {
             <div class="form-grid">
 
                 <div>
-                    <label>Documento - CPF/CNPJ</label>
+                    <label>Documento - CPF/CNPJ<span class="obrigatorio">*</span></label>
                     <input type="text" id = "Documento" name ="Documento" value="<?= $Alterando ? htmlspecialchars($dados['Documento']) : '' ?>" oninput="mascararDocumento(this)">
                 </div>
 
                 <div>
-                    <label>Nome</label>
+                    <label>Nome<span class="obrigatorio">*</span></label>
                     <input type="text" id= "Nome" name ="Nome" value="<?= $Alterando ? htmlspecialchars($dados['Nome']) : '' ?>">
                 </div>
 
@@ -482,6 +685,40 @@ if (!empty($dados['Grupo'])) {
                     <label>Descrição / Observações</label>
                     <textarea id ="Obs" name ="Obs"><?= htmlspecialchars($dados['Obs'] ?? '') ?></textarea>
                 </div>
+
+                <div>
+                    <label>Estado Civil<span class="obrigatorio">*</span></label>
+                    <select name="EstadoCivil" id="EstadoCivil">
+                        <option value="0">Selecione</option>
+
+                        <option value="1" <?= ($Alterando && ($dados['EstadoCivil'] ?? '') == 1) ? 'selected' : '' ?>>
+                            Solteiro(a)
+                        </option>
+
+                        <option value="2" <?= ($Alterando && ($dados['EstadoCivil'] ?? '') == 2) ? 'selected' : '' ?>>
+                            Casado(a)
+                        </option>
+
+                        <option value="3" <?= ($Alterando && ($dados['EstadoCivil'] ?? '') == 3) ? 'selected' : '' ?>>
+                            Divorciado(a)
+                        </option>
+
+                        <option value="4" <?= ($Alterando && ($dados['EstadoCivil'] ?? '') == 4) ? 'selected' : '' ?>>
+                            Viúvo(a)
+                        </option>
+
+                        <option value="5" <?= ($Alterando && ($dados['EstadoCivil'] ?? '') == 5) ? 'selected' : '' ?>>
+                            União estável
+                        </option>
+
+                    </select>
+                </div>
+                
+                <div>
+                    <label>Profissão<span class="obrigatorio">*</span></label>
+                    <input type="text" id = "Profissao" name ="Profissao" value="<?= $Alterando ? htmlspecialchars($dados['Profissao']) : '' ?>">
+                </div>
+
             </div>
         </div>
 
@@ -490,23 +727,23 @@ if (!empty($dados['Grupo'])) {
             <h3 style="margin-bottom:10px; color:#334155;">Endereço</h3>
             <div class="form-grid">
                 <div>
-                    <label>CEP</label>
+                    <label>CEP<span class="obrigatorio">*</span></label>
                     <input type="text" id ="CEP" name ="CEP" value="<?= $Alterando ? htmlspecialchars($dados['CEP']) : '' ?>">
                 </div>
                 <div>
-                    <label>Rua</label>
+                    <label>Rua<span class="obrigatorio">*</span></label>
                     <input type="text" id ="Rua" name ="Rua" value="<?= $Alterando ? htmlspecialchars($dados['Rua']) : '' ?>">
                 </div>
                 <div>
-                    <label>Número</label>
+                    <label>Número<span class="obrigatorio">*</span></label>
                     <input type="text" id ="NumeroEndereco" name ="NumeroEndereco" value="<?= $Alterando ? htmlspecialchars($dados['NumeroEndereco']) : '' ?>">
                 </div>
                 <div>
-                    <label>Bairro</label>
+                    <label>Bairro<span class="obrigatorio">*</span></label>
                     <input type="text" id ="Bairro" name ="Bairro" value="<?= $Alterando ? htmlspecialchars($dados['Bairro']) : '' ?>">
                 </div>
                 <div>
-                    <label>Cidade</label>
+                    <label>Cidade<span class="obrigatorio">*</span></label>
                     <input type="text" id ="Cidade" name ="Cidade" value="<?= $Alterando ? htmlspecialchars($dados['Cidade']) : '' ?>">
                 </div>
                 <div>
@@ -514,7 +751,63 @@ if (!empty($dados['Grupo'])) {
                     <input type="text" id ="UF" name ="UF" value="<?= $Alterando ? htmlspecialchars($dados['UF']) : '' ?>">
                 </div>
             </div>
+
         </div>
+
+                    <div class="card">
+                <h3 style="margin-bottom:10px; color:#334155;">Documentos do Cliente</h3>
+
+                <div class="form-grid">
+
+                    <div>
+                        <label>Tipo de Documento</label>
+                        <select id="docTipo">
+                            <option value="">Selecione</option>
+                            <option value="CNH">CNH</option>
+                            <option value="CPF">CPF</option>
+                            <option value="RG">RG</option>
+                            <option value="Comprovante">Comprovante</option>
+                            <option value="Contrato">Contrato</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Descrição</label>
+                        <input type="text" id="docDescricao">
+                    </div>
+
+                    <div>
+                        <label>Arquivo</label>
+                        <input type="file" id="docArquivo">
+                    </div>
+
+                    <div style="display:flex; align-items:end;">
+                        <button type="button" class="btn" onclick="adicionarDocumento()">
+                            Adicionar
+                        </button>
+                    </div>
+
+                </div>
+
+                <hr style="margin:15px 0;">
+
+                <table style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Descrição</th>
+                            <th>Arquivo</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="gridDocumentos"></tbody>
+                </table>
+            </div>
+
+
+            <input type="hidden" name="documentos_json" id="documentos_json">
 
         <!-- FINANCEIRO -->
         <div class="card">
@@ -589,7 +882,9 @@ if (!empty($dados['Grupo'])) {
 
     let grupos = <?= json_encode($grupos ?? []) ?>;
     let tipoModal = '';
-     
+    let arquivos = <?= json_encode($arquivos ?? []) ?>;
+    let documentos = <?= json_encode($arquivos ?? []) ?>;
+
  function limparGrupo() {
     document.getElementById('grupo_id').value = 0;
     document.getElementById('grupo_nome').value = '';
@@ -845,4 +1140,204 @@ function fecharModal() {
             }
         }
     });
+
+
+
+
+//==================== PARTE DE DOCUMENTOS ====================
+
+    function adicionarDocumento() {
+
+        let tipo = document.getElementById('docTipo').value;
+        let descricao = document.getElementById('docDescricao').value;
+        let fileInput = document.getElementById('docArquivo');
+
+        if (!fileInput.files[0]) {
+            alert('Selecione um arquivo');
+            return;
+        }
+
+        let file = fileInput.files[0];
+        let reader = new FileReader();
+
+        reader.onload = function(e) {
+
+            documentos.push({
+                tipo: tipo,
+                descricao: descricao,
+                nome: file.name,
+                base64: e.target.result,
+                novo: true   // 👈 AQUI
+            });
+
+            renderDocumentos();
+
+            document.getElementById('docTipo').value = '';
+            document.getElementById('docDescricao').value = '';
+            document.getElementById('docArquivo').value = '';
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    function renderDocumentos() {
+
+        let html = '';
+
+        documentos.forEach((d, index) => {
+
+            html += `
+                <tr>
+                    <td>${d.tipo || d.Tipo}</td>
+                    <td>${d.descricao || d.Descricao}</td>
+                    <td>${d.nome || d.NomeArquivo}</td>
+                    <td>
+                        <button type="button" onclick="removerDoc(${index})">❌</button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        document.getElementById('gridDocumentos').innerHTML = html;
+    }
+
+    // function removerDoc(i) {
+    //     documentos.splice(i, 1);
+    //     renderDocumentos();
+    // }
+
+
+    function removerDoc(i) {
+        let doc = documentos[i];
+        if (doc.id) {
+            arquivos = arquivos.filter(a => a.id != doc.id);
+        }
+        documentos.splice(i, 1);
+        renderDocumentos();
+    }
+
+    document.querySelector('form').addEventListener('submit', function () {
+        let documentosFinal = documentos.map(d => ({
+            id: d.id || null,
+            tipo: d.tipo || d.Tipo,
+            descricao: d.descricao || d.Descricao,
+            nome: d.nome || d.NomeArquivo,
+            base64: d.base64 || null,
+            novo: d.novo || false
+        }));
+        document.getElementById('documentos_json').value = JSON.stringify(documentosFinal);
+    });
+    // document.querySelector('form').addEventListener('submit', function () {
+    //     document.getElementById('documentos_json').value = JSON.stringify(documentos);
+    // });
+
+
+
+    //let arquivos = <?= json_encode($arquivos ?? []) ?>;
+
+    function renderArquivos() {
+
+        let html = '';
+
+        arquivos.forEach(a => {
+
+            html += `
+                <tr>
+                    <td>${a.Tipo || ''}</td>
+                    <td>${a.Descricao || ''}</td>
+                    <td>${a.NomeArquivo || ''}</td>
+                    <td style="white-space:nowrap;"> 
+                        <button type="button" class="btn-icon" onclick="abrirArquivo(${a.id})" title="Abrir">
+                            📄
+                        </button>
+
+                        <button type="button" class="btn-icon btn-danger" onclick="excluirArquivo(${a.id})" title="Excluir">
+                            ❌
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        document.getElementById('gridDocumentos').innerHTML = html;
+    }
+
+    function abrirArquivo(id) {
+
+        fetch(`?abrirArquivo=1&id=${id}`)
+            .then(res => res.json())
+            .then(data => {
+
+                let arquivo = data.rows?.[0];
+
+                if (!arquivo || !arquivo.ArquivoBase64) {
+                    alert('Arquivo não encontrado');
+                    console.log(data);
+                    return;
+                }
+
+                let base64 = arquivo.ArquivoBase64;
+                let mime = 'application/pdf';
+                
+                if (base64.includes('data:')) {
+                    mime = base64.split(';')[0].replace('data:', '');
+                    base64 = base64.split(',')[1];
+                }
+
+                const byteCharacters = atob(base64);
+                const byteNumbers = new Array(byteCharacters.length);
+
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+
+                const byteArray = new Uint8Array(byteNumbers);
+                const blob = new Blob([byteArray], { type: mime });
+
+                const url = URL.createObjectURL(blob);
+                window.open(url, '_blank');
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Erro ao abrir arquivo');
+            });
+    }
+
+    renderArquivos();
+
+    function excluirArquivo(id) {
+
+        if (!confirm('Tem certeza que deseja excluir este arquivo?')) {
+            return;
+        }
+
+        fetch(`?excluirArquivo=1&id=${id}`)
+            .then(res => res.text())
+            .then(text => {
+
+                console.log("RAW:", text);
+
+                let data;
+                try {
+                    data = JSON.parse(text);
+                } catch (e) {
+                    console.error("Resposta inválida:", text);
+                    alert("Erro no servidor (JSON inválido)");
+                    return;
+                }
+
+                if (data.success) {
+                    arquivos = arquivos.filter(a => a.id != id);
+                    renderArquivos();
+                } else {
+                    alert(data.error || 'Erro ao excluir arquivo');
+                }
+            })
+        .catch(err => {
+            console.error(err);
+            alert('Erro ao excluir arquivo');
+        });
+    }
+
+// ==============================================
 </script>
