@@ -203,7 +203,7 @@ $lucroProdutos = ExSqlNET("
     $whereProd
 
     GROUP BY mi.ServProd, sp.Nome
-    ORDER BY lucro DESC
+    ORDER BY nome ASC
 ", null, array_merge([
     $idEmpresa,
     $idEmpresa,

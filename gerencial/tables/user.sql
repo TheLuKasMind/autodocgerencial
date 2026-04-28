@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 02/03/2026 às 20:58
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Host: localhost:3306
+-- Tempo de geração: 28/04/2026 às 09:11
+-- Versão do servidor: 8.0.45-36
+-- Versão do PHP: 8.3.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `geral2`
+-- Banco de dados: `luca5858_geral2`
 --
 
 -- --------------------------------------------------------
@@ -28,34 +28,32 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `Nome` varchar(100) DEFAULT NULL,
-  `Cargo` varchar(70) DEFAULT NULL,
-  `Email` varchar(60) DEFAULT NULL,
-  `Senha` varchar(700) NOT NULL,
-  `Inativo` tinyint(1) DEFAULT 0,
+  `id` int NOT NULL,
+  `Nome` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Cargo` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT ' ',
+  `Email` varchar(60) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Senha` varchar(700) COLLATE utf8mb4_general_ci NOT NULL,
+  `Inativo` tinyint(1) DEFAULT '0',
   `DataUtimoAcesso` datetime DEFAULT NULL,
-  `IPUltimoAcesso` varchar(500) DEFAULT NULL,
-  `Tipo` int(11) NOT NULL,
-  `idEmpresa` int(11) NOT NULL,
-  `AdminGeral` int(11) NOT NULL
+  `IPUltimoAcesso` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Tipo` int NOT NULL DEFAULT '0',
+  `idEmpresa` int NOT NULL,
+  `AdminGeral` int NOT NULL DEFAULT '0',
+  `tokenRecuperar` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT ' ',
+  `tokenExpira` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `user`
 --
 
-INSERT INTO `user` (`id`, `Nome`, `Cargo`, `Email`, `Senha`, `Inativo`, `DataUtimoAcesso`, `IPUltimoAcesso`, `Tipo`, `idEmpresa`, `AdminGeral`) VALUES
-(3, 'Lucas', '', 'lucas@email.com', '$2y$10$UckZQ/C6uZNDZ2EUxbfDS.zOsLV/sZwF4cJFILdWKkvaJHpy3m4pG', 0, NULL, NULL, 2, 1, 0),
-(11, 'Lukinhas', 'Cargo', 'lukinhas@gmail.com', '$2y$10$vo.arJXTAtEtgoNX.fxqGeb29laoT.YqsfHz49dIqDphBTklxALJK', 0, NULL, NULL, 1, 1, 0),
-(12, 'JET PRINCIPAL', NULL, 'jetee@gmail.com', '$2y$10$KBec8kkidQgdBY17N2L1teav3InQj7CjkIKOG2L9AfJ9nFoy.bCCK', 0, NULL, NULL, 2, 2, 1),
-(13, 'Thiago Allgayer', NULL, 'thiagoallgayer@gmail.com', '$2y$10$Dz/N6GPdY.PasR0VlQt.3OTjkbqy9Vn6NNjOG2xGS0vY9kFQV.CJy', 0, NULL, NULL, 1, 3, 0),
-(14, 'Thiago Allgayer2', NULL, 'thiagoallgayer2@gmail.com', '$2y$10$YcNeXBMSWn5P/HDGPdn8NOmmw2M78oo.dPFE4aevHvaRXAYeQ/J0W', 0, NULL, NULL, 1, 4, 0),
-(15, 'Thiago Allgayer2', NULL, 'thiagoallgayer2@gmail.com', '$2y$10$4TJosF.ORRJksW16EAXzVe3Szs25gGzaLD4aST2ocoiiFm8f8U1l6', 0, NULL, NULL, 1, 5, 0),
-(16, 'CERTIFICADO', NULL, 'asdada@gmail.com', '$2y$10$uuhiUQYzl8IVCrkA9n1bt.R5N3Cqhg5nYNVjx8E2zW.yjD2SXzSai', 1, NULL, NULL, 1, 6, 0),
-(17, 'CERTIFICADO', NULL, 'asdada@gmail.com', '$2y$10$O8OeF.YvCYARsI7qeA9Ed.gnD8BKcNNsmAYHpL1l6.TRabYT5NZJy', 1, NULL, NULL, 1, 7, 0),
-(18, 'CERTIFICADO', NULL, 'asdada@gmail.com', '$2y$10$l.KsKmQsO1EbQvntjYj5Pejt7ZDUCPJeGHJ3JP5sHG7OWKRBE/N8.', 0, NULL, NULL, 1, 8, 0),
-(21, 'joaozinho', 'Dono', 'joao@gmail.com', '$2y$10$Ot/.Lf56Ki8LXHPZChOiDezLqI3J0p45j37n96WthNQiJpgelD2ry', 0, NULL, NULL, 0, 2, 0);
+INSERT INTO `user` (`id`, `Nome`, `Cargo`, `Email`, `Senha`, `Inativo`, `DataUtimoAcesso`, `IPUltimoAcesso`, `Tipo`, `idEmpresa`, `AdminGeral`, `tokenRecuperar`, `tokenExpira`) VALUES
+(23, 'Thiago Allgayer Ebertz', ' Dono', 'despachanteallgayer@gmail.com', '$2y$10$Vi38obXy71Znmj17CdS62urDphTF0H8Youyt1ZVAUsVInEma6YnTK', 0, NULL, NULL, 2, 11, 1, NULL, NULL),
+(26, 'Matheus Portaluppi', ' ', 'matheusportaluppi09@gmail.com', '$2y$10$fJIK7GZGGblI.PR7dOZzoOR3PSsqSXYTTuomwFrRITYETokZqDgRK', 1, NULL, NULL, 2, 14, 0, ' ', '2026-03-18 10:31:43'),
+(29, 'Wellington Allgayer', 'Proprietário', 'w.allgayer@hotmail.com', '$2y$10$taxaZFrxQ19MboGxnFRObenKKOO79zBwpakfxY3dTU599pUNxq8B6', 0, NULL, NULL, 0, 11, 0, ' ', '2026-03-23 22:57:19'),
+(30, 'YAN BORBA SCHEFFER', ' ', 'YANSCHEFFER@GMAIL.COM', '$2y$10$WdE7N0PKvZx4ijgTrmh6MeDJwLvwD77cPzdIUvsvv3rSPRZg9zULK', 0, NULL, NULL, 2, 16, 0, ' ', '2026-04-20 12:34:15'),
+(31, 'USUÁRIO TESTE', 'Teste', 'teste@gmail.com', '$2y$10$g93hHESGIjwePt9uXy9v8e7eGDPLtUVHgeBs4mucZBBWdOE1vBZOy', 0, NULL, NULL, 0, 16, 0, ' ', '2026-04-20 15:13:56'),
+(32, 'Lucas Teste', '', 'lucasbugatib0@gmail.com', '$2y$10$etUNILqi.UXRUy.oJmffgOwVpH20hK59engJN1kquGbXuU8I3pHKW', 0, NULL, NULL, 1, 11, 1, ' ', '2026-04-22 17:18:08');
 
 --
 -- Índices para tabelas despejadas
@@ -75,7 +73,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de tabela `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

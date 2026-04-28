@@ -307,7 +307,7 @@ if ($tipoRelatorio == 'metas') {
         $whereFiltro
 
         GROUP BY mi.ServProd, sp.Nome
-        ORDER BY lucro DESC
+        ORDER BY nome ASC
     ", null, $paramsLucro);
 
     foreach ($lucroProdutos as $l) {
