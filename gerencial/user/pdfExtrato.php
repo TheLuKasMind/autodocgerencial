@@ -16,57 +16,307 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
+$idEmpresa = $_SESSION['idEmpresa'];
+$clienteFiltro = $_GET['cliente'] ?? '';
+$dataHoje = date('Y-m-d');
+$dataInicial = $_GET['dataInicial'] ?? $dataHoje;
+$dataFinal   = $_GET['dataFinal'] ?? $dataHoje;
+
+$statusFiltro = $_GET['status'] ?? '';
+$tipoPesquisa = $_GET['tipo'] ?? 0;
+
 /* ===========================
-   FILTROS
+   MOVIMENTO (PEDIDOS/VENDAS)
 =========================== */
-
-$cliente     = $_GET['cliente'] ?? null;
-$dataInicial = $_GET['dataInicial'] ?? date('Y-m-d');
-$dataFinal   = $_GET['dataFinal'] ?? date('Y-m-d');
-
-$where  = " WHERE 1=1 ";
+$where = " WHERE m.idEmpresa = $idEmpresa ";
 $params = [];
 
-$statusFiltro  = $_GET['status'] ?? '';
-
-if (!empty($cliente)) {
+if ($clienteFiltro != '') {
     $where .= " AND m.Forcli = ? ";
-    $params[] = $cliente;
+    $params[] = $clienteFiltro;
 }
 
-$where .= " AND m.Data BETWEEN ? AND ? ";
-$params[] = $dataInicial;
-$params[] = $dataFinal;
+if ($dataInicial != '') {
+    $where .= " AND DATE(m.Data) >= ? ";
+    $params[] = $dataInicial;
+}
+
+if ($dataFinal != '') {
+    $where .= " AND DATE(m.Data) <= ? ";
+    $params[] = $dataFinal;
+}
 
 if ($statusFiltro !== '' && $statusFiltro !== null) {
-    if ($statusFiltro ==  0){
-        $where .= " AND m.Status in ( 0, 3) ";
-    }else{
-        $where .= " AND m.Status = '$statusFiltro'";    
+    if ($statusFiltro == 0) {
+        $where .= " AND m.Status IN (0,3) ";
+    } else {
+        $where .= " AND m.Status = ? ";
+        $params[] = $statusFiltro;
     }
 }
 
 /* ===========================
-   CONSULTA
+   MOVIMENTOCC (CAIXA)
+=========================== */
+$whereMovCC = " WHERE movimentocc.idEmpresa = $idEmpresa ";
+$paramsMovCC = [];
+
+if ($clienteFiltro != '') {
+    $whereMovCC .= " AND movimentocc.idForcli = ? ";
+    $paramsMovCC[] = $clienteFiltro;
+}
+
+if ($dataInicial != '') {
+    $whereMovCC .= " AND DATE(movimentocc.Data) >= ? ";
+    $paramsMovCC[] = $dataInicial;
+}
+
+if ($dataFinal != '') {
+    $whereMovCC .= " AND DATE(movimentocc.Data) <= ? ";
+    $paramsMovCC[] = $dataFinal;
+}
+
+/* ===========================
+   CONSULTA FINAL POR TIPO
 =========================== */
 
-$lista = ExSqlNET("
-    SELECT 
-        m.id,
-        m.Data,
-        f.Nome,
-        movimentocc.Descricao,
-        (
-            SELECT SUM(TotalItem)
-            FROM movimentoitem
-            WHERE ControleMovimento = m.id
-        ) AS ValorTotal
-    FROM movimento m
-    LEFT JOIN movimentocc ON movimentocc.ControleOrigem = m.id
-    LEFT JOIN forcli f ON f.id = m.Forcli
-    $where
-    ORDER BY m.Data ASC
-", null, $params);
+if ($tipoPesquisa == 1) {
+
+    /* ===========================
+       SOMENTE PEDIDOS / VENDAS
+    ============================ */
+    $sqlFinal = "
+        SELECT 
+            m.id,
+            m.Data,
+            f.Nome,
+            m.Obs,
+            CASE
+                WHEN movimentocc.Descricao IS NOT NULL
+                    AND movimentocc.Descricao <> ''
+                THEN movimentocc.Descricao
+
+                WHEN m.Status = 3
+                THEN CONCAT(
+                    'Débito em Aberto - ',
+                    COALESCE(
+                        (
+                            SELECT MovimentoItem.Descricao
+                            FROM movimentoitem MovimentoItem
+                            WHERE MovimentoItem.ControleMovimento = m.id
+                            ORDER BY MovimentoItem.id ASC
+                            LIMIT 1
+                        ),
+                        'Sem itens'
+                    )
+                )
+
+                WHEN m.Status = 4
+                THEN CONCAT(
+                    'Débito Pago - ',
+                    COALESCE(
+                        (
+                            SELECT MovimentoItem.Descricao
+                            FROM movimentoitem MovimentoItem
+                            WHERE MovimentoItem.ControleMovimento = m.id
+                            ORDER BY MovimentoItem.id ASC
+                            LIMIT 1
+                        ),
+                        'Sem itens'
+                    )
+                )
+
+                ELSE CONCAT(
+                    CASE m.Status
+                        WHEN 0 THEN 'Pedido em Aberto - '
+                        WHEN 1 THEN 'Pedido Pago - '
+                        WHEN 2 THEN 'Orçamento - '
+                        ELSE 'Pedido - '
+                    END,
+                    COALESCE(
+                        (
+                            SELECT MovimentoItem.Descricao
+                            FROM movimentoitem MovimentoItem
+                            WHERE MovimentoItem.ControleMovimento = m.id
+                            ORDER BY MovimentoItem.id ASC
+                            LIMIT 1
+                        ),
+                        'Sem itens'
+                    )
+                )
+            END AS Descricao,
+            (
+                SELECT SUM(mi.TotalItem)
+                FROM movimentoitem mi
+                WHERE mi.ControleMovimento = m.id
+            ) AS Valor,
+            (
+                SELECT MovimentoItem.Descricao 
+                FROM movimentoitem MovimentoItem
+                WHERE ControleMovimento = m.id
+                LIMIT 1
+            ) AS Itens,
+            movimentocc.Valor AS Lucro,
+            m.Status,
+            m.DataPgto
+        FROM movimento m
+        LEFT JOIN movimentocc 
+            ON movimentocc.ControleOrigem = m.id
+        LEFT JOIN forcli f 
+            ON f.id = m.Forcli
+        $where
+        ORDER BY m.Data DESC
+    ";
+
+    $lista = ExSqlNET($sqlFinal, null, $params);
+
+} elseif ($tipoPesquisa == 2) {
+
+    /* ===========================
+       SOMENTE LANCAMENTOS DE CAIXA
+    ============================ */
+    $sqlFinal = "
+        SELECT 
+            movimentocc.Controle,
+            movimentocc.Data,
+            f.Nome,
+            '' AS Obs,
+            movimentocc.Descricao,
+            movimentocc.Valor AS Valor,
+            movimentocc.Descricao AS Itens,
+            movimentocc.Valor AS Lucro,
+            1 AS Status,
+            movimentocc.DataPgto
+        FROM movimentocc
+        LEFT JOIN forcli f 
+            ON f.id = movimentocc.idForcli
+        $whereMovCC
+        AND (
+            movimentocc.ControleOrigem IS NULL
+            OR movimentocc.ControleOrigem = 0
+        )
+        ORDER BY movimentocc.Data DESC
+    ";
+
+    $lista = ExSqlNET($sqlFinal, null, $paramsMovCC);
+
+} else {
+
+    /* ===========================
+       TODOS
+       PEDIDOS + CAIXA AVULSO
+    ============================ */
+    $sqlFinal = "
+    
+        SELECT 
+            m.id,
+            m.Data,
+            f.Nome,
+            m.Obs,
+            CASE
+                WHEN movimentocc.Descricao IS NOT NULL
+                    AND movimentocc.Descricao <> ''
+                THEN movimentocc.Descricao
+
+                WHEN m.Status = 3
+                THEN CONCAT(
+                    'Débito em Aberto - ',
+                    COALESCE(
+                        (
+                            SELECT MovimentoItem.Descricao
+                            FROM movimentoitem MovimentoItem
+                            WHERE MovimentoItem.ControleMovimento = m.id
+                            ORDER BY MovimentoItem.id ASC
+                            LIMIT 1
+                        ),
+                        'Sem itens'
+                    )
+                )
+
+                WHEN m.Status = 4
+                THEN CONCAT(
+                    'Débito Pago - ',
+                    COALESCE(
+                        (
+                            SELECT MovimentoItem.Descricao
+                            FROM movimentoitem MovimentoItem
+                            WHERE MovimentoItem.ControleMovimento = m.id
+                            ORDER BY MovimentoItem.id ASC
+                            LIMIT 1
+                        ),
+                        'Sem itens'
+                    )
+                )
+
+                ELSE CONCAT(
+                    CASE m.Status
+                        WHEN 0 THEN 'Pedido em Aberto - '
+                        WHEN 1 THEN 'Pedido Pago - '
+                        WHEN 2 THEN 'Orçamento - '
+                        ELSE 'Pedido - '
+                    END,
+                    COALESCE(
+                        (
+                            SELECT MovimentoItem.Descricao
+                            FROM movimentoitem MovimentoItem
+                            WHERE MovimentoItem.ControleMovimento = m.id
+                            ORDER BY MovimentoItem.id ASC
+                            LIMIT 1
+                        ),
+                        'Sem itens'
+                    )
+                )
+            END AS Descricao,
+            (
+                SELECT SUM(mi.TotalItem)
+                FROM movimentoitem mi
+                WHERE mi.ControleMovimento = m.id
+            ) AS Valor,
+            (
+                SELECT MovimentoItem.Descricao 
+                FROM movimentoitem MovimentoItem
+                WHERE ControleMovimento = m.id
+                LIMIT 1
+            ) AS Itens,
+            movimentocc.Valor AS Lucro,
+            m.Status,
+            m.DataPgto,
+            m.id as ControleMovimento
+        FROM movimento m
+        LEFT JOIN movimentocc 
+            ON movimentocc.ControleOrigem = m.id
+        LEFT JOIN forcli f 
+            ON f.id = m.Forcli
+        $where
+
+        UNION ALL
+
+        SELECT 
+            movimentocc.Controle,
+            movimentocc.Data,
+            f.Nome,
+            '' AS Obs,
+            movimentocc.Descricao,
+            movimentocc.Valor AS Valor,
+            movimentocc.Descricao AS Itens,
+            movimentocc.Valor AS Lucro,
+            1 AS Status,
+            movimentocc.DataPgto,
+            0 As ControleMovimento
+        FROM movimentocc
+        LEFT JOIN forcli f 
+            ON f.id = movimentocc.idForcli
+        $whereMovCC
+        AND (
+            movimentocc.ControleOrigem IS NULL
+            OR movimentocc.ControleOrigem = 0
+        )
+
+        ORDER BY Data DESC
+    ";
+
+    $lista = ExSqlNET($sqlFinal, null, array_merge($params, $paramsMovCC));
+}
 
 /* ===========================
    PDF CUSTOM
@@ -76,18 +326,6 @@ class PDF extends FPDF
 {
     function Header()
     {
-        // // Barra superior laranja
-        // $this->SetFillColor(243,122,32);
-        // $this->Rect(0,0,210,25,'F');
-
-        // $this->SetTextColor(255,255,255);
-        // $this->SetFont('Arial','B',16);
-        // $this->SetY(8);
-        // $this->Cell(0,10,'EXTRATO FINANCEIRO',0,1,'C');
-
-        // $this->Ln(12);
-        // $this->SetTextColor(0,0,0);
-        
         // Barra superior laranja
         $this->SetFillColor(243,122,32);
         $this->Rect(0,0,210,25,'F');
@@ -185,7 +423,8 @@ $pdf->SetTextColor(255,255,255);
 
 $pdf->Cell(30,8,'Data',1,0,'C',true);
 //$pdf->Cell(40,8,'Movimento',1,0,'C',true);
-$pdf->Cell(80,8,'Descricao',1,0,'C',true);
+$pdf->Cell(50,8,'Cliente',1,0,'C',true);
+$pdf->Cell(60,8,'Descricao',1,0,'C',true);
 $pdf->Cell(40,8,'Valor (R$)',1,1,'C',true);
 
 $pdf->SetFont('Arial','',9);
@@ -200,7 +439,12 @@ $fill = false;
 
 foreach ($lista as $item) {
 
-    $valor = $item['ValorTotal'] ?? 0;
+    /* CORREÇÃO:
+       sua query retorna campo como Valor,
+       não ValorTotal
+    */
+    $valor = (float)($item['Valor'] ?? 0);
+
     $totalGeral += $valor;
 
     $pdf->SetFillColor(248,248,248);
@@ -208,29 +452,42 @@ foreach ($lista as $item) {
     $pdf->Cell(
         30,
         7,
-        date('d/m/Y',strtotime($item['Data'])),
+        date('d/m/Y', strtotime($item['Data'])),
         1,
         0,
         'C',
         $fill
     );
 
-    // $pdf->Cell(
-    //     40,
-    //     7,
-    //     $item['id'],
-    //     1,
-    //     0,
-    //     'C',
-    //     $fill
-    // );
-
-    $descricao = mb_convert_encoding($item['Descricao'] ?? '', 'ISO-8859-1','UTF-8');
+    $nomeCliente = mb_convert_encoding(
+        $item['Nome'] ?? '',
+        'ISO-8859-1',
+        'UTF-8'
+    );
 
     $pdf->Cell(
-        80,
+        50,
         7,
-        substr($descricao,0,45),
+        substr($nomeCliente, 0, 45),
+        1,
+        0,
+        'L',
+        $fill
+    );
+
+    $descricao = mb_strtoupper(
+        mb_convert_encoding(
+            $item['Descricao'] ?? '',
+            'ISO-8859-1',
+            'UTF-8'
+        ),
+        'ISO-8859-1'
+    );
+
+    $pdf->Cell(
+        60,
+        7,
+        substr($descricao, 0, 45),
         1,
         0,
         'L',
@@ -240,7 +497,7 @@ foreach ($lista as $item) {
     $pdf->Cell(
         40,
         7,
-        number_format($valor,2,',','.'),
+        'R$ ' . number_format($valor, 2, ',', '.'),
         1,
         1,
         'R',
@@ -253,6 +510,13 @@ foreach ($lista as $item) {
 /* ===========================
    TOTAL
 =========================== */
+
+$totalGeral = 0;
+
+foreach ($lista as $item) {
+    $valor = (float)($item['Valor'] ?? 0);
+    $totalGeral += (float) str_replace(',', '.', $valor ?? 0);
+}
 
 $pdf->Ln(6);
 

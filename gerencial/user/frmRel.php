@@ -177,23 +177,39 @@ $paramsLucro = array_merge([$idEmpresa, $idEmpresa, $dataInicial, $dataFinal], $
 
 $lucroProdutos = ExSqlNET("
     SELECT 
-        sp.Nome,
+        COALESCE(sp.Nome, 'Produto não cadastrado') AS Nome,
+
         SUM(mi.Qtd) AS quantidade,
+
         SUM(mi.TotalItem) AS faturamento,
-        SUM(mi.ValorCusto * mi.Qtd) AS custoTotal,
-        SUM(mi.TotalItem - (mi.ValorCusto * mi.Qtd)) AS lucro
+
+        SUM(mi.Qtd * mi.ValorCusto) AS custoTotal,
+
+        SUM(mi.TotalItem - (mi.Qtd * mi.ValorCusto)) AS lucro
+
     FROM movimentoitem mi
-    LEFT JOIN movimento m 
+
+    INNER JOIN movimento m 
         ON m.id = mi.ControleMovimento
+
     LEFT JOIN servprod sp 
         ON sp.id = mi.ServProd
+
     WHERE m.idEmpresa = ?
-    AND sp.idEmpresa = ?
-    AND DATE(m.Data) BETWEEN ? AND ?
+      AND mi.idEmpresa = ?
+      AND DATE(m.Data) BETWEEN ? AND ?
+      AND m.Status NOT IN (3,4)
+
     $whereProd
-    GROUP BY sp.id
-    ORDER BY sp.Nome ASC
-", null, $paramsLucro);
+
+    GROUP BY mi.ServProd, sp.Nome
+    ORDER BY lucro DESC
+", null, array_merge([
+    $idEmpresa,
+    $idEmpresa,
+    $dataInicial,
+    $dataFinal
+], $paramsProd));
 
 $nomeGrupo = '';
 
@@ -292,13 +308,10 @@ foreach ($despesas as $d) {
     $totalDespesas += $d['totalGasto'] ?? 0;
 }
 
-
-
 // ================= SERVIÇOS -> FORCLI =================
 
 $whereServicosForcli = "";
 $paramsServicosForcli = [
-    $idEmpresa,
     $idEmpresa,
     $dataInicial,
     $dataFinal,
@@ -312,22 +325,44 @@ if ($grupoForcliId > 0) {
 $servicosForcli = ExSqlNET("
     SELECT 
         f.Nome,
-        SUM(mi.Qtd) AS TotalServicos,
-        SUM(mi.TotalItem) AS Faturamento,
-        SUM(mc.Valor) AS Lucro
+        SUM(
+            (
+                SELECT COALESCE(SUM(mi2.Qtd), 0)
+                FROM movimentoitem mi2
+                WHERE mi2.ControleMovimento = m.id
+                  AND mi2.idEmpresa = m.idEmpresa
+            )
+        ) AS TotalServicos,
+
+        SUM(
+            COALESCE(
+                (
+                    SELECT SUM(mi.TotalItem)
+                    FROM movimentoitem mi
+                    WHERE mi.ControleMovimento = m.id
+                ),
+                0
+            )
+        ) AS Faturamento,
+
+        SUM(
+            (
+                SELECT COALESCE(SUM(mc2.Valor), 0)
+                FROM movimentocc mc2
+                WHERE mc2.ControleOrigem = m.id
+                  AND mc2.idEmpresa = m.idEmpresa
+            )
+        ) AS Lucro
     FROM movimento m
-    LEFT JOIN movimentoitem mi 
-        ON mi.ControleMovimento = m.id
-    LEFT JOIN movimentocc mc 
-        ON mc.ControleOrigem = m.id
     LEFT JOIN forcli f 
         ON f.id = m.Forcli
     WHERE m.idEmpresa = ?
-        AND mi.idEmpresa = ?
-        AND DATE(m.Data) BETWEEN ? AND ?
-        $whereServicosForcli
+      AND DATE(m.Data) BETWEEN ? AND ?
+      $whereServicosForcli
+
     GROUP BY f.Nome
-    ORDER BY TotalServicos DESC", null, $paramsServicosForcli);
+    ORDER BY TotalServicos DESC
+", null, $paramsServicosForcli);
 
 $totalServicosForcli = 0;
 
@@ -335,7 +370,11 @@ foreach ($servicosForcli as $sf) {
     $totalServicosForcli += $sf['Faturamento'] ?? 0;
 }
 
+$totalLucroForcli = 0;
 
+foreach ($servicosForcli as $item) {
+    $totalLucroForcli += (float)($item['Lucro'] ?? 0);
+}
 
 ?>
 
@@ -579,10 +618,6 @@ foreach ($servicosForcli as $sf) {
                                 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'
                             ];
 
-                        //  for ($i = 1; $i <= 12; $i++) {
-                        //     $selected = ($i == date('m')) ? 'selected' : '';
-                        //     echo "<option value='$i' $selected>".$meses[$i]."</option>";
-                        // }
                         for ($i = 1; $i <= 12; $i++) {
                         
                             $selected = ($i == $mesSelecionado) ? 'selected' : '';
@@ -978,14 +1013,18 @@ foreach ($servicosForcli as $sf) {
         
         
         <div class="cards">
-        
             <div class="card-box">
                 <h4>Total de Faturamento</h4>
                 <span style="color:#dc2626">
                     R$ <?= number_format($totalServicosForcli,2,',','.') ?>
                 </span>
             </div>
-        
+            <div class="card-box">
+                <h4>Total de Lucro</h4>
+                <span style="color:#16a34a">
+                    R$ <?= number_format($totalLucroForcli, 2, ',', '.') ?>
+                </span>
+            </div>
         </div>
         
         <?php endif; ?>
