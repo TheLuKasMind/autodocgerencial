@@ -716,7 +716,7 @@ if (!empty($dados['Grupo'])) {
                 
                 <div>
                     <label>Profissão<span class="obrigatorio">*</span></label>
-                    <input type="text" id = "Profissao" name ="Profissao" value="<?= $Alterando ? htmlspecialchars($dados['Profissao']) : '' ?>">
+                    <input type="text" id = "Profissao" name ="Profissao" value="<?= $Alterando ? htmlspecialchars($dados['Profissao'] ?? '') : '' ?>">
                 </div>
 
             </div>

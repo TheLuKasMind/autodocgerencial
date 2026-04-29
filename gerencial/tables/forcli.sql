@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 28/04/2026 às 09:12
+-- Tempo de geração: 29/04/2026 às 00:26
 -- Versão do servidor: 8.0.45-36
 -- Versão do PHP: 8.3.26
 
@@ -160,7 +160,9 @@ INSERT INTO `forcli` (`id`, `Nome`, `RazaoSocial`, `Tipo`, `TipoDocumento`, `Doc
 (150, 'FERNANDA LORENA PINHEIRO SENA', '', 4, 0, '073.115.232-81', '(51) 99380-3839', '', '', '', '', '', '', '', '', 0, '2026-04-27 19:30:32', 16, 74, '2026-04-27 19:30:32', 15, NULL, NULL),
 (151, 'CHRISTHOFER DA SILVA E SILVA', '', 4, 0, '032.006.340-22', '(51) 99127-8148', '', '', '94035-130', 'Travessa Lindóia', '139', 'Passo das Pedras', 'Gravataí', 'RS', 0, '2026-04-27 19:31:57', 16, 75, '2026-04-27 19:31:57', 15, NULL, NULL),
 (161, 'Compumate Softwares Corporativos', 'COMPUMATE SOFTWARES CORPORATIVOS LTDA', 4, 0, '92.343.375/0001-72', '5137415144', 'asconass@viavale.com.br', 'TESTE DO LUCAS', '', 'Rua Emilio Selbach', '825', 'Centro', 'Venâncio Aires', 'RS', 0, '2026-04-28 08:39:19', 11, 32, '2026-04-28 08:39:19', 0, 4, 'Presidente do Brasil'),
-(162, 'ANDRESSA SANTOS DA SILVA', '', 1, 0, '026.394.170-10', '', '', '', '', '', '', '', '', '', 0, '2026-04-28 08:57:35', 16, 76, '2026-04-28 08:57:35', 0, NULL, NULL);
+(162, 'ANDRESSA SANTOS DA SILVA', '', 1, 0, '026.394.170-10', '', '', '', '', '', '', '', '', '', 0, '2026-04-28 08:57:35', 16, 76, '2026-04-28 08:57:35', 0, NULL, NULL),
+(164, 'DAVID DA SILVA DUARTE', '', 4, 0, '038.410.400-20', '(51) 99736-8527', '', '', '94090-050', 'Rua Elvis Presley', '214', 'Vera Cruz', 'Gravataí', 'RS', 0, '2026-04-28 19:00:02', 16, 78, '2026-04-28 19:00:02', 0, 0, ''),
+(166, 'RODRIGO LUIZ DUARTE DOS SANTOS', '', 4, 0, '958.403.200-30', '', '', '', '', '', '', '', '', '', 0, '2026-04-28 19:29:18', 16, 80, '2026-04-28 19:29:18', 0, 0, '');
 
 --
 -- Índices para tabelas despejadas
@@ -180,7 +182,7 @@ ALTER TABLE `forcli`
 -- AUTO_INCREMENT de tabela `forcli`
 --
 ALTER TABLE `forcli`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

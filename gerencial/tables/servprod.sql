@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 28/04/2026 às 09:12
+-- Tempo de geração: 29/04/2026 às 00:26
 -- Versão do servidor: 8.0.45-36
 -- Versão do PHP: 8.3.26
 
@@ -97,7 +97,7 @@ INSERT INTO `servprod` (`id`, `Nome`, `Tipo`, `Inativo`, `Descricao`, `Unidade`,
 (84, 'IPVA', 1, 0, '', '1', 0.10, 0.00, 16, 2, '2026-04-22 14:08:14', 1, 0, 0),
 (85, 'LICENCIAMENTO', 1, 0, '', '1', 0.00, 114.09, 16, 3, '2026-04-22 14:08:18', 1, 0, 0),
 (86, 'TRANSFERENCIA NOTA', 1, 0, '', '1', 442.62, 860.00, 16, 4, '2026-04-22 08:37:01', 1, 0, 0),
-(87, 'TRANSFERENCIA', 1, 0, '', '1', 642.55, 0.00, 16, 5, '2026-04-22 08:36:52', 1, 0, 0),
+(87, 'TRANSFERENCIA', 1, 0, '', '1', 642.55, 0.00, 16, 5, '2026-04-28 19:03:21', 1, 0, 0),
 (88, 'CONSULTA CAUTELAR', 1, 0, '', '1', 0.00, 50.00, 16, 6, '2026-04-22 13:43:14', 1, 0, 0),
 (89, '2 VIA DUT', 1, 0, '', '1', 0.00, 500.00, 16, 7, '2026-04-22 13:42:51', 1, 0, 0),
 (90, '2 VIA ATPVE', 1, 0, '', '1', 0.00, 250.00, 16, 8, '2026-04-22 13:42:48', 1, 0, 0),
@@ -129,7 +129,11 @@ INSERT INTO `servprod` (`id`, `Nome`, `Tipo`, `Inativo`, `Descricao`, `Unidade`,
 (117, 'PGMT DE PEDÁGIO', 1, 0, '', '1', 0.00, 0.00, 16, 35, '2026-04-27 20:18:33', 1, 0, 0),
 (118, 'CONTRATO', 1, 0, '', '1', 0.00, 60.00, 16, 36, '2026-04-27 20:26:31', 1, 0, 0),
 (119, 'RETIRADA DE GNV INMETRO LOJA', 1, 0, '', '1', 350.00, 480.00, 16, 37, '2026-04-28 07:56:21', 1, 0, 0),
-(120, 'SIS LOJA', 1, 0, '', '1', 0.00, 46.00, 16, 38, '2026-04-28 07:57:10', 1, 0, 0);
+(120, 'SIS LOJA', 1, 0, '', '1', 0.00, 46.00, 16, 38, '2026-04-28 07:57:10', 1, 0, 0),
+(121, 'SERVIÇO', 1, 0, '', '1', 0.00, 0.00, 16, 39, '2026-04-28 11:24:08', 1, 0, 0),
+(122, 'INMETRO RETIRADA DE GNV', 1, 0, '', '1', 350.00, 620.00, 16, 40, '2026-04-28 19:02:09', 0, 0, 0),
+(123, 'GASOLINA LOJA', 1, 0, '', '1', 0.00, 0.00, 16, 41, '2026-04-28 19:09:39', 1, 0, 0),
+(124, 'CARTÓRIO LOJA', 1, 0, '', '1', 0.00, 0.00, 16, 42, '2026-04-28 19:12:08', 0, 0, 0);
 
 --
 -- Índices para tabelas despejadas
@@ -149,7 +153,7 @@ ALTER TABLE `servprod`
 -- AUTO_INCREMENT de tabela `servprod`
 --
 ALTER TABLE `servprod`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
