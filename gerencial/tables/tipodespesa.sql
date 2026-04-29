@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 28/04/2026 às 09:11
+-- Tempo de geração: 29/04/2026 às 00:26
 -- Versão do servidor: 8.0.45-36
 -- Versão do PHP: 8.3.26
 
@@ -90,7 +90,9 @@ INSERT INTO `tipodespesa` (`idEmpresa`, `Categoria`, `Acao`, `Inativo`, `id`, `D
 (16, 2, '-1', 0, 63, 'SALARIO MAURO', 0.00, 19, 'SALARIO MAURO', '2026-04-21 15:05:01'),
 (16, 2, '-1', 0, 64, 'PRÓ-LABORE ', 0.00, 20, 'PRÓ-LABORE ', '2026-04-21 15:05:29'),
 (16, 2, '-1', 0, 65, 'CRDD', 0.00, 21, 'CRDD', '2026-04-21 15:49:30'),
-(11, 1, '-1', 0, 66, 'Manutenção Motos', 0.00, 25, 'Manutenção Motos', '2026-04-23 08:51:40');
+(11, 1, '-1', 0, 66, 'Manutenção Motos', 0.00, 25, 'Manutenção Motos', '2026-04-23 08:51:40'),
+(16, 2, '-1', 0, 68, 'GASOLINA', 0.00, 22, 'GASOLINA', '2026-04-28 15:00:22'),
+(16, 2, '-1', 0, 69, 'DIGITAL', 50.00, 23, 'DIGITAL', '2026-04-28 19:05:42');
 
 --
 -- Índices para tabelas despejadas
@@ -110,7 +112,7 @@ ALTER TABLE `tipodespesa`
 -- AUTO_INCREMENT de tabela `tipodespesa`
 --
 ALTER TABLE `tipodespesa`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1151,4 +1151,56 @@ function Arquivo($dados, $acao){ // CADASTRAR | ATUALIZAR | EXCLUIR
     }
 }
 
+// ==========================================================================================
+// USER CADASTRO | ATUALIZAR
+function MeuCadastro($dados, $acao){ // ATUALIZAR
+
+    global $dbGeralNET;
+
+    if($acao === "ATUALIZAR"){
+
+        $sql = "UPDATE user SET
+            EstadoCivil = :EstadoCivil,
+            NumOab = :NumOab,
+            Rua = :Rua,
+            NumeroEndereco = :NumeroEndereco,
+            Cidade = :Cidade,
+            UF = :UF,
+            CEP = :CEP,
+            LogoBase64 = :LogoBase64,
+            Contato = :Contato,
+            Documento = :Documento,
+            Bairro = :Bairro
+        WHERE id = :id";
+
+        try {
+
+            $stmt = $dbGeralNET->prepare($sql);
+
+            $stmt->execute([
+                ':id' => $dados['id'],
+                ':EstadoCivil' => $dados['EstadoCivil'],
+                ':NumOab' => $dados['NumOab'],
+                ':Rua' => $dados['Rua'],
+                ':NumeroEndereco' => $dados['NumeroEndereco'],
+                ':Cidade' => $dados['Cidade'],
+                ':UF' => $dados['UF'],
+                ':CEP' => $dados['CEP'],
+                ':LogoBase64' => $dados['LogoBase64'],
+                ':Contato' => $dados['Contato'],
+                ':Documento' => $dados['Documento'],
+                ':Bairro' => $dados['Bairro']
+            ]);
+
+            return "";
+
+        } catch (PDOException $e) {
+
+            return $e;
+        }
+    }
+
+    return "Ação inválida.";
+}
+
 ?>

@@ -401,6 +401,13 @@ if (!isset($_SESSION['usuario_id'])) {
             </a>
         </li>
         
+        <li>
+            <a href="../user/frmDocumentos.php"
+            class="<?= in_array($currentPage, ['frmDocumentos.php']) ? 'active' : '' ?>">
+            Geração de Documentos
+            </a>
+        </li>
+
         <?php if (isset($_SESSION['usuario_tipo']) && $_SESSION['usuario_tipo'] == 2): ?>
             <li>
                 <a href="../user/frmUser.php"
@@ -434,6 +441,13 @@ if (!isset($_SESSION['usuario_id'])) {
                 </a>
             </li>
         <?php endif; ?>
+
+        <li>
+            <a href="../user/frmMeuCadastro.php"
+            class="<?= in_array($currentPage, ['frmMeuCadastro.php']) ? 'active' : '' ?>">
+            Meu Cadastro
+            </a>
+        </li>
 
         <li>
             <a href="../user/frmConfig.php"

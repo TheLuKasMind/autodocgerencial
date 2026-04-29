@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 28/04/2026 às 09:11
+-- Tempo de geração: 29/04/2026 às 00:26
 -- Versão do servidor: 8.0.45-36
 -- Versão do PHP: 8.3.26
 
@@ -195,7 +195,12 @@ INSERT INTO `servprodcusto` (`Controle`, `idEmpresa`, `ValorCusto`, `Data`, `Uni
 (208, 16, 0.00, '2026-04-28', '1', 109, 211.62, '2026-04-28 07:56:03'),
 (209, 16, 350.00, '2026-04-28', '1', 119, 480.00, '2026-04-28 07:56:21'),
 (210, 16, 150.00, '2026-04-28', '1', 116, 290.00, '2026-04-28 07:56:46'),
-(211, 16, 0.00, '2026-04-28', '1', 120, 46.00, '2026-04-28 07:57:10');
+(211, 16, 0.00, '2026-04-28', '1', 120, 46.00, '2026-04-28 07:57:10'),
+(212, 16, 0.00, '2026-04-28', '1', 121, 0.00, '2026-04-28 11:24:08'),
+(213, 16, 350.00, '2026-04-28', '1', 122, 620.00, '2026-04-28 19:02:09'),
+(214, 16, 642.55, '2026-04-28', '1', 87, 0.00, '2026-04-28 19:03:21'),
+(215, 16, 0.00, '2026-04-28', '1', 123, 0.00, '2026-04-28 19:09:39'),
+(216, 16, 0.00, '2026-04-28', '1', 124, 0.00, '2026-04-28 19:12:08');
 
 --
 -- Índices para tabelas despejadas
@@ -215,7 +220,7 @@ ALTER TABLE `servprodcusto`
 -- AUTO_INCREMENT de tabela `servprodcusto`
 --
 ALTER TABLE `servprodcusto`
-  MODIFY `Controle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
+  MODIFY `Controle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
