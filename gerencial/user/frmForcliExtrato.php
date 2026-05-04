@@ -435,8 +435,7 @@ foreach ($lista as $item) {
     <?php include '../base/navbarUser.php'; ?>
 
     <div class="content">
-
-        <h2>Extrato do Cliente</h2>
+        <div class="page-title">Extrato do Cliente</div>
 
         <form method="GET" id = "formFiltro" class="filters">
 

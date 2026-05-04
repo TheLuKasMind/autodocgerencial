@@ -8683,3 +8683,83 @@ Array
 
 )
 
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 3
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 300
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+

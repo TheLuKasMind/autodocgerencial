@@ -3648,3 +3648,21 @@ Array
     [ControleOrigem] => 621
 )
 
+Array
+(
+    [Data] => 2026-05-02
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 855
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-02
+    [Obs] => 
+    [idUser] => 32
+    [ControleOrigem] => 855
+)
+

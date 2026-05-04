@@ -337,10 +337,16 @@ if (!isset($_SESSION['usuario_id'])) {
             </a>
         </li>
 
+        <li>
+            <a href="../user/frmMultaLista.php"
+            class="<?= in_array($currentPage, ['frmMultaLista.php','frmMulta.php']) ? 'active' : '' ?>">
+            Multas
+            </a>
+        </li>
 
         <div class="menu-group">Financeiro</div>
 
-        <li>
+        <li> 
             <a href="../user/frmBoletimCaixa.php"
             class="<?= in_array($currentPage, ['frmBoletimCaixa.php','frmBoletimCaixaLcto.php']) ? 'active' : '' ?>">
             Boletim de Caixa

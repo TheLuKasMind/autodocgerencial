@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         case 3:
             $dados['Tipo'] = 3; //Fornecedor
             break;
-        case 3:
+        case 4:
             $dados['Tipo'] = 4; //Consumidor Final
             break;
     }
@@ -156,6 +156,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         $dados['Codigo'] = retornaProximoCod("forcli");
         $retorno = Forcli($dados, "CADASTRAR");
         if ($retorno === "") {
+<<<<<<< Updated upstream
+=======
+
+            $documentos = json_decode($_POST['documentos_json'] ?? '[]', true);
+            
+            // PEGANDO O ID DO FORCLI CADASTRADO AQUI NA HORA
+            $result = ExSqlNET("SELECT id FROM forcli WHERE idEmpresa = ? AND Codigo = ? LIMIT 1
+            ", null, [$_SESSION['idEmpresa'], $dados['Codigo']]);
+            $dados['idForcli'] = $result[0]['id'] ?? null;
+
+
+            foreach ($documentos as $d) {
+
+                if (!is_array($d) || empty($d['novo'])) {
+                    continue; // ignora arquivos antigos
+                }
+
+                $tipo = $d['tipo'] ?? null;
+                $descricao = $d['descricao'] ?? '';
+                $nome = $d['nome'] ?? '';
+                $base64 = $d['base64'] ?? null;
+
+                if (!$tipo || !$nome || !$base64) {
+                    continue;
+                }
+
+                $dadosArquivo = [
+                    'idEmpresa' => $_SESSION['idEmpresa'],
+                    'idForcli' => $dados['id'],
+                    'Tipo' => $tipo,
+                    'Descricao' => $descricao,
+                    'NomeArquivo' => $nome,
+                    'ArquivoBase64' => $base64
+                ];
+
+                Arquivo($dadosArquivo, "CADASTRAR");
+            }
+
+>>>>>>> Stashed changes
             $msgRetorno = "Cliente / Fornecedor cadastrado com sucesso!";
             $tipoMsg = "success";
             $_SESSION['mensagem_sucesso'] = $msgRetorno;
@@ -168,6 +207,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         }
     }else if ($Alterando === true && isset($_POST['salvar'])){
         $retorno = Forcli($dados, "ATUALIZAR");
+<<<<<<< Updated upstream
+=======
+        $documentos = json_decode($_POST['documentos_json'] ?? '[]', true);
+
+        foreach ($documentos as $d) {
+
+            if (!is_array($d) || empty($d['novo'])) {
+                continue; // ignora arquivos antigos
+            }
+
+            $tipo = $d['tipo'] ?? null;
+            $descricao = $d['descricao'] ?? '';
+            $nome = $d['nome'] ?? '';
+            $base64 = $d['base64'] ?? null;
+
+            if (!$tipo || !$nome || !$base64) {
+                continue;
+            }
+
+            $dadosArquivo = [
+                'idEmpresa' => $_SESSION['idEmpresa'],
+                'idForcli' => $dados['id'],
+                'Tipo' => $tipo,
+                'Descricao' => $descricao,
+                'NomeArquivo' => $nome,
+                'ArquivoBase64' => $base64
+            ];
+
+            Arquivo($dadosArquivo, "CADASTRAR");
+        }
+
+>>>>>>> Stashed changes
         if ($retorno === "") {
             $msgRetorno = "Cliente / Fornecedor atualizado com sucesso!";
             $tipoMsg = "success";

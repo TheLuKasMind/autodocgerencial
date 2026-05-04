@@ -552,7 +552,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
                    <table id="tabelaDespesas">
                         <thead>
                             <tr>
-                                <th>Código</th>
+                                <!-- <th>Código</th> -->
                                 <th>Despesa</th>
                                 <th>Valor</th>
                             </tr>
@@ -561,7 +561,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
                         <!--<tbody>-->
                         <!--<?php foreach ($despesas as $d): ?>-->
                         <!--    <tr onclick="selecionarDespesa(-->
-                        <!--        '<?= $d['id'] ?>',-->
+                        <!--         '<?= $d['id'] ?>',-->
                         <!--        '<?= htmlspecialchars($d['Descricao'], ENT_QUOTES) ?>',-->
                         <!--        '<?= $d['ValorBase'] ?>',-->
                         <!--        '<?= $d['id'] ?>'-->
@@ -791,14 +791,14 @@ function carregarDespesas(filtro = "") {
         .forEach(d => {
 
             let valor = parseFloat(d.ValorBase ?? 0).toFixed(2);
-
+            
             body.innerHTML += `
                 <tr onclick="selecionarDespesa(
                     ${d.id},
                     '${d.Descricao.replace(/'/g,"\\'")}',
                     ${d.ValorBase ?? 0}
                 )">
-                    <td>${d.id}</td>
+            
                     <td>${d.Descricao}</td>
                     <td>R$ ${valor}</td>
                 </tr>
@@ -830,28 +830,63 @@ function selecionarDespesa(codigo, descricao, valor) {
     fecharModalDespesas();
 }
 
-//FECHANDO MODAL NO ESC
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
+// ========================= FECHAR AO CLICAR FORA + LIMPAR =========================
 
-        let modalDespesas = document.getElementById('modalDespesas');
-        let modalForcli = document.getElementById('modalForcli');
+document.getElementById('modalDespesas').addEventListener('click', function(e) {
+    if (e.target === this) {
+        
+        // fecha
+        this.style.display = 'none';
 
-        if (modalDespesas.style.display !== 'none') {
-            fecharModalDespesas();
-        }
+        // limpa busca
+        document.getElementById('modalBuscaDespesa').value = '';
 
-        if (modalForcli.style.display !== 'none') {
-            fecharModalForcli();
-        }
+        // limpa tabela renderizada
+        document.getElementById('modalBodyDespesa').innerHTML = '';
+
+        // recarrega lista completa
+        carregarDespesas('');
     }
 });
 
-document.getElementById('modalCliente').addEventListener('click', function(e) {
+document.getElementById('modalForcli').addEventListener('click', function(e) {
     if (e.target === this) {
-        fecharModalClienteComReset();
-    }
 
+        // fecha
+        this.style.display = 'none';
+
+        // limpa busca
+        document.getElementById('modalBuscaForcli').value = '';
+
+        // limpa tabela renderizada
+        document.getElementById('modalBodyForcli').innerHTML = '';
+
+        // recarrega lista completa
+        carregarClientes('');
+    }
+});
+
+// ========================= ESC =========================
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+
+        const modalDespesas = document.getElementById('modalDespesas');
+        const modalForcli = document.getElementById('modalForcli');
+
+        if (modalDespesas.style.display === 'flex') {
+            modalDespesas.style.display = 'none';
+            document.getElementById('modalBuscaDespesa').value = '';
+            document.getElementById('modalBodyDespesa').innerHTML = '';
+            carregarDespesas('');
+        }
+
+        if (modalForcli.style.display === 'flex') {
+            modalForcli.style.display = 'none';
+            document.getElementById('modalBuscaForcli').value = '';
+            document.getElementById('modalBodyForcli').innerHTML = '';
+            carregarClientes('');
+        }
+    }
 });
 
 

@@ -69,7 +69,6 @@ $dadosCadastro['Status'] = $_POST['statusPedido'] ?? null;;
 $dadosCadastro['CondPgto'] = $_POST['CondPgto'] ?? null;; 
 $dadosCadastro['Forcli'] = $_POST['clienteId'] ?? null;; 
 
-// $dadosCadastro['ForcliRepasse'] = $_POST['pagadorId'] ?? 0;; 
 $dadosCadastro['ForcliRepasse'] = !empty($_POST['pagadorId']) 
     ? (int) $_POST['pagadorId'] 
     : 0;
@@ -81,10 +80,6 @@ $dadosCadastro['CorVeiculo'] = $_POST['veiculo_cor'] ?? null;;
 $dadosCadastro['id'] = $id;
 $dadosCadastro['idEmpresa'] = $_SESSION['idEmpresa']  ?? null;
 
-// $dadosCadastro['DataPgto'] = $_POST['dataPgto'] ?? null;
-// $dadosCadastro['DataPgto'] = (!empty($_POST['dataPgto']) && $_POST['statusPedido'] == 1)
-//     ? $_POST['dataPgto']
-//     : null;
 
 if ($dadosCadastro['Status'] == 1) {
 
@@ -103,16 +98,6 @@ $dadosCadastro['Obs'] = $_POST['obs'] ?? " ";
 
 $dadosCadastro['idUser'] = $_SESSION['usuario_id']  ?? 0;
     
-// if (!empty($dadosCadastro['DataPgto'])) {
-
-//     if (strlen($dadosCadastro['DataPgto']) == 10) {
-//         $dadosCadastro['DataPgto'] .= ' ' . date('H:i:s');
-//     }
-
-// } else {
-//     $dadosCadastro['DataPgto'] = date('Y-m-d H:i:s');
-// }
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_POST['excluir'])) {
  
     try {
@@ -188,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
               //  if($dadosCadastro['Status'] == 1 ){  // SE JÁ FOI PAGO
               
                     $dadosCadastro['Valor'] = $SomaItens['Total'] ?? 0;
-                     $dadosCadastro['Valor'] =  $dadosCadastro['Valor'] - $SomaCusto['Total'] ?? 0;
+                    $dadosCadastro['Valor'] =  $dadosCadastro['Valor'] - $SomaCusto['Total'] ?? 0;
                      
                     $dadosCadastro['ValorPgto'] = $SomaItens['Total'] ?? 0;
                     $dadosCadastro['ValorPgto'] =  $dadosCadastro['ValorPgto'] - $SomaCusto['Total'] ?? 0;
@@ -208,19 +193,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                     $dadosCadastro['idServProd'] = 0;
 
                     $dadosCadastro['idUser'] = $_SESSION['usuario_id']  ?? 0;
-
-                    // if ($_POST['statusPedido'] != 3 && $_POST['statusPedido'] != 2 &&
-                    //     $_POST['statusPedido'] != 4){
                             
-                        if ($_POST['statusPedido'] != 3 && 
-                        $_POST['statusPedido'] != 4){
+                    if ($_POST['statusPedido'] != 3 && 
+                    $_POST['statusPedido'] != 4
+                     && 
+                    $_POST['statusPedido'] != 2){
                             
-                        
+                    if ($dadosCadastro['Valor'] > 0){
                         $retornoCC = MovimentoCC($dadosCadastro, "CADASTRAR");
+                    }     
+                    
                     }//DÉBITO E ORÇAMENTO E DÉBITO PAGO
                     
-                    
-               // }
+                
             }
 
             if ($retornoCC === "") {
@@ -234,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                 exit;
             }
 
-            // Se chegou aqui → sucesso
+            // Se chegou aqui, sucesso
             if ($retorno === "") {
 
                 $_SESSION['mensagem_sucesso'] = "Movimento cadastrado com sucesso!";
@@ -349,12 +334,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                     $dadosCadastro['idForcli'] = 0;
                     $dadosCadastro['idServProd'] = 0;
                     
-                    // if ($_POST['statusPedido'] != 3 && $_POST['statusPedido'] != 2 &&
-                    //     $_POST['statusPedido'] != 4){
-                        if ($_POST['statusPedido'] != 3 &&
-                        $_POST['statusPedido'] != 4){
+                    if ($_POST['statusPedido'] != 3 &&
+                    $_POST['statusPedido'] != 4
+                     && 
+                    $_POST['statusPedido'] != 2){
                             
+                    if ($dadosCadastro['Valor'] > 0){
                         $retornoCC = MovimentoCC($dadosCadastro, "CADASTRAR");
+                    }
+                        
                     }//DÉBITO E ORÇAMENTO
                     
                 // }
@@ -680,7 +668,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
     <?php include '../base/navbarUser.php'; ?>
 
     <div class="content">
-         <h1>Lançamento de Venda / Prestação de Serviço</h1> 
+         <div class="page-title">Lançamento de Venda / Prestação de Serviço</div>
 
         <?php
             if ($msgRetorno): ?>
@@ -887,9 +875,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
 
             <button class="btn-imprimir"
                     onclick="window.open('frmLancamentoImprimir.php?id=<?= $id ?>', '_blank')">
-
                 🖨 Gerar PDF
-
             </button>
 
             <?php endif; ?>

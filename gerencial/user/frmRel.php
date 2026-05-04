@@ -549,9 +549,7 @@ foreach ($servicosForcli as $sf) {
     <?php include '../base/navbarUser.php'; ?>
 
     <div class="content">
-
-        <h2>Relatórios e Dashboards</h2>
-
+        <div class="page-title">Relatórios e Dashboard</div>
 
         <div class="card">
             <form method="get" class="form-grid" id="formRelatorio">
@@ -990,9 +988,6 @@ foreach ($servicosForcli as $sf) {
         
         <?php endif; ?>
 
-
-
-
     </div>
 
     
@@ -1177,8 +1172,6 @@ function selecionarGrupoForcli(id, nome) {
 function fecharModal() {
     document.getElementById('modalBg').style.display = 'none';
 }
-
-
 
     <?php if ($tipoRelatorio == 'faturamento'): ?>
     if (document.getElementById('grafFaturamento')) {

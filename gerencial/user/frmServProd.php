@@ -703,9 +703,6 @@ function selecionarGrupo(id, nome) {
 function fecharModal() {
     document.getElementById('modalBg').style.display = 'none';
 }
-
-        
- 
  
 function abrirListaProdutos() {
     window.location.href = 'servprodLista.php';

@@ -196,8 +196,7 @@ if(isset($_POST['excluir']) && !empty($_POST['lancamentos'])){
     <div class="content">
 
         <h2 style="display:flex; justify-content:space-between; align-items:center;">
-            Caixa do Dia
-
+            <div class="page-title">Caixa do Dia</div>
             <a href="frmBoletimCaixaLcto.php" class="btn-lancamento">
                 + Lançamento
             </a>
