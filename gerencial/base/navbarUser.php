@@ -442,6 +442,13 @@ if (!isset($_SESSION['usuario_id'])) {
         <?php endif; ?>
 
         <li>
+            <a href="../user/frmMeuCadastro.php"
+            class="<?= in_array($currentPage, ['frmMeuCadastro.php']) ? 'active' : '' ?>">
+            Meu Cadastro
+            </a>
+        </li>
+
+        <li>
             <a href="../user/frmConfig.php"
             class="<?= $currentPage == 'frmConfig.php' ? 'active' : '' ?>">
             Configurações

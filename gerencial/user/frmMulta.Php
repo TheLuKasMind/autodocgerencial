@@ -54,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
 
     $dadosCadastro = [
         'id' => $id,
+        'DataCadastro' => !empty($_POST['data']) ? $_POST['data'] : null,
         'idEmpresa' => $idEmpresa,
         'Forcli' => $_POST['clienteId'] ?? 0,
         'SerieMulta' => trim($_POST['serieMulta'] ?? ''),
@@ -150,6 +151,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
     <link rel="stylesheet" href="../css/home.css">
 
     <style>
+
+        .btn-cliente-lateral {
+            min-width: 160px;
+        }
+
+        .cliente-linha {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .cliente-linha input[type="text"] {
+            flex: 1;
+            height: 56px;
+            border-radius: 10px;
+            padding: 0 15px;
+            font-size: 14px;
+            background: #f3f4f6;
+            border: 1px solid #ddd;
+        }
+
+        .btn-cliente-lateral {
+            height: 56px;
+            padding: 0 20px;
+            background: #ea580c;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-cliente-lateral:hover {
+            background: #c2410c;
+        }
+
+        .btn-cliente {
+            background: #ea580c;
+            color: #fff;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-cliente:hover {
+            background: #c2410c;
+        }
+
+
+
         .multa-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -302,18 +358,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
 
         <div class="card">
             <label>Cliente</label>
-            <div style="display:flex; gap:10px;">
+
+            <div class="cliente-linha">
                 <input type="text"
-                       id="clienteNome"
-                       readonly
-                       value="<?= $Alterando ? htmlspecialchars($dados['ClienteNome'] ?? '') : '' ?>">
+                    id="clienteNome"
+                    readonly
+                    placeholder="Selecione um cliente..."
+                    value="<?= $Alterando ? htmlspecialchars($dados['ClienteNome'] ?? '') : '' ?>">
 
                 <input type="hidden"
-                       name="clienteId"
-                       id="clienteId"
-                       value="<?= $Alterando ? $dados['Forcli'] ?? '' : '' ?>">
+                    name="clienteId"
+                    id="clienteId"
+                    value="<?= $Alterando ? $dados['Forcli'] ?? '' : '' ?>">
 
-                <button type="button" class="btn" onclick="abrirModalCliente()">
+                <button type="button" class="btn-cliente-lateral" onclick="abrirModal()">
                     Selecionar Cliente
                 </button>
             </div>
@@ -321,6 +379,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
 
         <div class="card">
             <div class="multa-grid">
+
+                <div>
+                    <label>Data</label>
+                    <input type="date" name="data"
+                        value="<?= 
+                            $Alterando && !empty($dados['DataCadastro']) 
+                                ? date('Y-m-d', strtotime($dados['DataCadastro'])) 
+                                : date('Y-m-d') 
+                        ?>">
+                </div>
 
                 <div>
                     <label>Série da Multa</label>
@@ -439,7 +507,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
         <?php endif; ?>
 
         <button class="btn-imprimir"
-            onclick="window.open('frmLancamentoImprimir.php?id=<?= $id ?>', '_blank')">
+            onclick="window.open('frmMultaImprimir.php?id=<?= $id ?>', '_blank')">
             🖨 Gerar PDF
         </button>
 
@@ -450,74 +518,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
     </form>
 </div>
 
-<div class="modal-bg" id="modalCliente">
+<!-- MODAL PADRÃO -->
+<div class="modal-bg" id="modalBg">
     <div class="modal">
         <h3 id="modalTitulo"></h3>
-
-        <input type="text"
-               id="buscaCliente"
-               class="modal-search"
-               placeholder="Buscar cliente...">
+        <input type="text" id="modalBusca" class="modal-search" placeholder="Digite para buscar...">
 
         <div class="modal-table-wrapper">
             <table>
                 <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Documento</th>
-                    </tr>
+                    <tr id="modalHead"></tr>
                 </thead>
-                <tbody id="listaClientes"></tbody>
+                <tbody id="modalBody"></tbody>
             </table>
         </div>
 
-        <button type="button" class="btn" onclick="fecharModalCliente()">
-            Fechar
-        </button>
+        <button class="btn" onclick="fecharModal()">Fechar</button>
     </div>
 </div>
 
 <script>
 const clientes = <?= json_encode($listaForcli) ?>;
 
-function abrirModalCliente() {
+function abrirModal() {
     document.getElementById('modalTitulo').innerText = 'Selecionar Cliente';
-    document.getElementById('modalCliente').style.display = 'flex';
+    document.getElementById('modalBg').style.display = 'flex';
+
+    document.getElementById('modalHead').innerHTML = `
+        <th>Nome</th>
+        <th>Documento</th>
+    `;
+
     carregarClientes('');
-    document.getElementById('buscaCliente').focus();
+    document.getElementById('modalBusca').value = '';
+
+    setTimeout(() => {
+        document.getElementById('modalBusca').focus();
+    }, 50);
 }
 
-function fecharModalCliente() {
-    document.getElementById('modalCliente').style.display = 'none';
+function fecharModal() {
+    document.getElementById('modalBg').style.display = 'none';
 }
 
-function carregarClientes(filtro) {
-    const tbody = document.getElementById('listaClientes');
-    tbody.innerHTML = '';
-
+function carregarClientes(filtro = '') {
+    filtro = filtro.toLowerCase();
+    let html = '';
     clientes
         .filter(c =>
-            c.Nome.toLowerCase().includes(filtro.toLowerCase()) ||
-            (c.Documento && c.Documento.includes(filtro))
+            (c.Nome || '').toLowerCase().includes(filtro) ||
+            (c.Documento || '').includes(filtro)
         )
         .forEach(c => {
-            tbody.innerHTML += `
-                <tr onclick="selecionarCliente(${c.Id}, '${c.Nome.replace(/'/g,"\\'")}')">
+            let nomeSeguro = (c.Nome || '').replace(/'/g, "\\'");
+            html += `
+                <tr onclick="selecionarCliente(${c.Id}, '${nomeSeguro}')">
                     <td>${c.Nome}</td>
                     <td>${c.Documento || ''}</td>
-                </tr>`;
+                </tr>
+            `;
         });
+
+    document.getElementById('modalBody').innerHTML = html;
 }
 
 function selecionarCliente(id, nome) {
     document.getElementById('clienteId').value = id;
     document.getElementById('clienteNome').value = nome;
-    fecharModalCliente();
+    fecharModal();
 }
-
-document.getElementById('buscaCliente').addEventListener('input', function() {
-    carregarClientes(this.value);
-});
 
 document.getElementById('autoSuspensiva').addEventListener('change', function() {
     document.getElementById('alertaAuto').style.display = this.checked ? 'block' : 'none';
@@ -529,12 +598,16 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-document.getElementById('modalCliente').addEventListener('click', function(e) {
-    if (e.target === this) fecharModalCliente();
-});
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') fecharModalCliente();
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('modalBusca').addEventListener('input', function () {
+        carregarClientes(this.value);
+    });
+    document.getElementById('modalBg').addEventListener('click', function (e) {
+        if (e.target === this) fecharModal();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') fecharModal();
+    });
 });
 </script>
 

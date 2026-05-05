@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 29/04/2026 às 00:26
+-- Tempo de geração: 05/05/2026 às 00:32
 -- Versão do servidor: 8.0.45-36
 -- Versão do PHP: 8.3.26
 
@@ -47,7 +47,7 @@ CREATE TABLE `empresa` (
 
 INSERT INTO `empresa` (`id`, `Nome`, `Documento`, `Telefone`, `Email`, `Plano`, `Status`, `DataCadastro`, `ValidadePlano`, `MetaMensal`, `MetaDiaria`) VALUES
 (10, 'AUTODOC BRASIL LTDA', '62.424.394/0001-62', '', 'autodocva@gmail.com', 3, 'ATIVA', '2026-03-03 16:54:45', '2026-04-02', 0.00, 0.00),
-(11, 'Escritório e Despachante de Trânsito Allgayer', '019.850.840-90', '', 'despachanteallgayer@gmail.com', 3, 'ATIVA', '2026-03-03 22:37:55', '2100-01-01', 45000.00, 2142.86),
+(11, 'Escritório e Despachante de Trânsito Allgayer', '019.850.840-90', '', 'despachanteallgayer@gmail.com', 3, 'ATIVA', '2026-03-03 22:37:55', '2100-01-01', 48000.00, 2400.00),
 (14, 'Matheus Portaluppi', '043.093.000-30', '(51) 99543-2617', 'matheusportaluppi09@gmail.com', 1, 'PENDENTE', '2026-03-18 10:31:43', NULL, 0.00, 0.00),
 (16, 'JET DESPACHANTE', '41.444.657/0001-25', '(51) 98636-4373', 'jetdespachanters@gmail.com', 2, 'ATIVA', '2026-04-20 12:34:15', '2026-05-20', 0.00, 0.00);
 

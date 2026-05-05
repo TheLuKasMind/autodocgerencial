@@ -35,6 +35,13 @@ $autoFiltro     = $_GET['auto'] ?? '';
 $dataInicial    = $_GET['dataInicial'] ?? '';
 $dataFinal      = $_GET['dataFinal'] ?? '';
 
+// SE NÃO VEIO FILTRO, USA DATA DE HOJE
+if ($dataInicial == '' && $dataFinal == '') {
+    $dataHoje = date('Y-m-d');
+    $dataInicial = $dataHoje;
+    $dataFinal = $dataHoje;
+}
+
 $where = " WHERE m.idEmpresa = $idEmpresa ";
 
 if ($statusFiltro !== '') {
@@ -573,14 +580,21 @@ foreach ($listaMultas as $multa) {
 </div>
 
 <script>
+// let clientes = <?= json_encode($clientes ?? []) ?>;
 let clientes = <?= json_encode($clientes ?? []) ?>;
 
 function abrirModal() {
     document.getElementById('modalTitulo').innerText = 'Selecionar Cliente';
     document.getElementById('modalBg').style.display = 'flex';
+
+    document.getElementById('modalHead').innerHTML = `
+        <th>Nome</th>
+        <th>Documento</th>
+    `;
+
     carregarClientes('');
     document.getElementById('modalBusca').value = '';
-    
+
     setTimeout(() => {
         document.getElementById('modalBusca').focus();
     }, 50);

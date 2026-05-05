@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 29/04/2026 às 00:26
+-- Tempo de geração: 05/05/2026 às 00:32
 -- Versão do servidor: 8.0.45-36
 -- Versão do PHP: 8.3.26
 
@@ -58,15 +58,15 @@ CREATE TABLE `forcli` (
 --
 
 INSERT INTO `forcli` (`id`, `Nome`, `RazaoSocial`, `Tipo`, `TipoDocumento`, `Documento`, `Telefone`, `Email`, `Obs`, `CEP`, `Rua`, `NumeroEndereco`, `Bairro`, `Cidade`, `UF`, `Inativo`, `DataCadastro`, `idEmpresa`, `Codigo`, `DataAlt`, `Grupo`, `EstadoCivil`, `Profissao`) VALUES
-(36, 'AIRTON L. FERREIRA & CIA LTDA', 'AIRTON L. FERREIRA & CIA LTDA', 2, 0, '17.476.008/0001-21', '5137411727', 'paulomorsch@viavale.com.br', '', '', 'Rua General Osorio', '955', 'Centro', 'Venâncio Aires', 'RS', 0, '2026-03-19 22:57:37', 11, 1, '2026-03-19 22:57:37', 12, NULL, NULL),
+(36, 'AIRTON L. FERREIRA & CIA LTDA', 'AIRTON L. FERREIRA & CIA LTDA', 2, 0, '17.476.008/0001-21', '5137411727', 'paulomorsch@viavale.com.br', '', '', 'Rua General Osorio', '955', 'Centro', 'Venâncio Aires', 'RS', 0, '2026-05-04 21:40:39', 11, 1, '2026-05-04 21:40:39', 12, 0, ''),
 (37, 'LEHMEN VEICULOS', 'MAICON ALEX LEHMEN & CIA LTDA', 2, 0, '33.657.794/0001-10', '5183243550', 'lehmenmaicon@gmail.com', '', '', 'Rua 15 de Novembro', '1635', 'Centro', 'Venâncio Aires', 'RS', 0, '2026-03-19 22:59:13', 11, 2, '2026-03-19 22:59:13', 12, NULL, NULL),
 (38, 'FINAL', '', 4, 0, '', '', '', '', '', '', '', '', '', '', 0, '2026-04-27 17:55:52', 11, 3, '2026-04-27 17:55:52', 16, NULL, NULL),
 (39, 'LW VEICULOS', 'LW VEICULOS LTDA', 2, 0, '44.013.193/0001-90', '5196118804', 'wagferrei@yahoo.com', '', '', 'Rua Dr Armando Ruschel', '1701', 'Bela Vista', 'Venâncio Aires', 'RS', 0, '2026-03-19 22:59:23', 11, 4, '2026-03-19 22:59:23', 12, NULL, NULL),
 (40, 'WEHNER MOTORS', 'WEHNER MOTORS COMERCIO DE VEICULOS LTDA', 2, 0, '60.747.047/0001-45', '5139190919', 'societario@escritorioatena.com.br', '', '', 'Rua Aurino Guterres de Carvalho', '1920', 'Bela Vista', 'Venâncio Aires', 'RS', 0, '2026-03-19 23:00:51', 11, 5, '2026-03-19 23:00:51', 12, NULL, NULL),
 (41, 'GUILHERME MENZEL', '', 2, 0, '012.439.240-71', '(51) 99842-0713', '', '', '95800-000', '', '', '', '', '', 0, '2026-03-19 22:59:03', 11, 6, '2026-03-19 22:59:03', 12, NULL, NULL),
 (42, 'AR MULTIMARCAS', '', 2, 0, '45.510.139/0001-13', '5139190919', 'societario@escritorioatena.com.br', '', '', 'Rua General Osorio', '765', 'Aviacao', 'Venâncio Aires', 'RS', 0, '2026-03-19 22:57:46', 11, 7, '2026-03-19 22:57:46', 12, NULL, NULL),
-(43, 'ARTHUR HENRIQUE WENZEL', '', 2, 0, '016.989.010-46', '', '', '', '', '', '', '', '', '', 0, '2026-03-19 22:57:53', 11, 8, '2026-03-19 22:57:53', 12, NULL, NULL),
-(44, 'ASTERIO LUIS KIST', '', 2, 0, '713.998.870-68', '', '', '', '', '', '', '', '', '', 0, '2026-03-19 22:58:01', 11, 9, '2026-03-19 22:58:01', 12, NULL, NULL),
+(43, 'ARTHUR HENRIQUE WENZEL', '', 2, 0, '016.989.010-46', '', '', '', '', '', '', '', '', '', 0, '2026-05-04 13:29:08', 11, 8, '2026-05-04 13:29:08', 12, 0, ''),
+(44, 'ASTERIO LUIS KIST', '', 2, 0, '713.998.870-68', '', '', '', '', '', '', '', '', '', 0, '2026-05-01 17:50:17', 11, 9, '2026-05-01 17:50:17', 12, 0, ''),
 (45, 'ERLI SOARES DE OLIVEIRA', '', 2, 0, '463.484.840-68', '', '', '', '', '', '', '', '', '', 0, '2026-03-19 22:58:40', 11, 10, '2026-03-19 22:58:40', 12, NULL, NULL),
 (46, 'DANIEL GOMES', '', 2, 0, '011.413.810-95', '', '', '', '', '', '', '', '', '', 0, '2026-03-19 22:58:14', 11, 11, '2026-03-19 22:58:14', 12, NULL, NULL),
 (47, 'DINAMICA CAR', 'DINAMICA CAR COMERCIO DE VEICULOS LTDA', 2, 0, '07.669.240/0001-22', '5137415368', 'dinamicacarrs@gmail.com', '', '', 'Rua General Osorio', '648', 'Aviacao', 'Venâncio Aires', 'RS', 0, '2026-03-09 15:49:30', 11, 12, '2026-03-09 15:49:30', NULL, NULL, NULL),
@@ -159,10 +159,29 @@ INSERT INTO `forcli` (`id`, `Nome`, `RazaoSocial`, `Tipo`, `TipoDocumento`, `Doc
 (149, 'LUIZA WARTTMANN BAPTISTA WACHTEL', '', 4, 0, '062.504.940-30', '(51) 99331-8605', '', '', '92480-000', 'VENEZE', '1184', 'BERTO CIRIO', 'Nova Santa Rita', 'RS', 0, '2026-04-27 17:56:16', 16, 73, '2026-04-27 17:56:16', 15, NULL, NULL),
 (150, 'FERNANDA LORENA PINHEIRO SENA', '', 4, 0, '073.115.232-81', '(51) 99380-3839', '', '', '', '', '', '', '', '', 0, '2026-04-27 19:30:32', 16, 74, '2026-04-27 19:30:32', 15, NULL, NULL),
 (151, 'CHRISTHOFER DA SILVA E SILVA', '', 4, 0, '032.006.340-22', '(51) 99127-8148', '', '', '94035-130', 'Travessa Lindóia', '139', 'Passo das Pedras', 'Gravataí', 'RS', 0, '2026-04-27 19:31:57', 16, 75, '2026-04-27 19:31:57', 15, NULL, NULL),
-(161, 'Compumate Softwares Corporativos', 'COMPUMATE SOFTWARES CORPORATIVOS LTDA', 4, 0, '92.343.375/0001-72', '5137415144', 'asconass@viavale.com.br', 'TESTE DO LUCAS', '', 'Rua Emilio Selbach', '825', 'Centro', 'Venâncio Aires', 'RS', 0, '2026-04-28 08:39:19', 11, 32, '2026-04-28 08:39:19', 0, 4, 'Presidente do Brasil'),
+(161, 'Compumate Softwares Corporativos', 'COMPUMATE SOFTWARES CORPORATIVOS LTDA', 4, 0, '92.343.375/0001-72', '5137415144', 'asconass@viavale.com.br', 'TESTE DO LUCAS', '', 'Rua Emilio Selbach', '825', 'Centro', 'Venâncio Aires', 'RS', 0, '2026-05-05 00:25:54', 11, 32, '2026-05-05 00:25:54', 0, 4, 'Presidente do Brasil'),
 (162, 'ANDRESSA SANTOS DA SILVA', '', 1, 0, '026.394.170-10', '', '', '', '', '', '', '', '', '', 0, '2026-04-28 08:57:35', 16, 76, '2026-04-28 08:57:35', 0, NULL, NULL),
 (164, 'DAVID DA SILVA DUARTE', '', 4, 0, '038.410.400-20', '(51) 99736-8527', '', '', '94090-050', 'Rua Elvis Presley', '214', 'Vera Cruz', 'Gravataí', 'RS', 0, '2026-04-28 19:00:02', 16, 78, '2026-04-28 19:00:02', 0, 0, ''),
-(166, 'RODRIGO LUIZ DUARTE DOS SANTOS', '', 4, 0, '958.403.200-30', '', '', '', '', '', '', '', '', '', 0, '2026-04-28 19:29:18', 16, 80, '2026-04-28 19:29:18', 0, 0, '');
+(166, 'RODRIGO LUIZ DUARTE DOS SANTOS', '', 4, 0, '958.403.200-30', '', '', '', '', '', '', '', '', '', 0, '2026-04-28 19:29:18', 16, 80, '2026-04-28 19:29:18', 0, 0, ''),
+(167, 'ANDRE OLIVEIRA SEVERO', '', 4, 0, '026.061.160-38', '(51) 98137-2907', '', '', '94035-210', 'Travessa Herbert', '26 TORRE 3 AP 306', 'Passo das Pedras', 'Gravataí', 'RS', 0, '2026-04-29 19:08:23', 16, 81, '2026-04-29 19:08:23', 0, 0, ''),
+(168, 'GABRIEL ROSA DOS SANTOS', '', 1, 0, '047.311.030-02', '', '', '', '', '', '', '', '', '', 0, '2026-04-29 21:23:07', 16, 82, '2026-04-29 21:23:07', 0, 0, ''),
+(169, 'SILVANA ALVES MAIER', '', 4, 0, '962.818.630-20', '(51) 99784-1706', '', '', '94080-180', 'Rua Alcides Maia', '295', 'Morada do Vale III', 'Gravataí', 'RS', 0, '2026-04-29 21:45:28', 16, 83, '2026-04-29 21:45:28', 0, 0, ''),
+(170, 'ANDERSON DOS SANTOS SELVA', '', 4, 0, '042.112.390-74', '(51) 99708-8196', '', '', '94070-300', 'Rua Lagoa dos Patos', '160', 'Loteamento Vila Rica', 'Gravataí', 'RS', 0, '2026-04-29 21:51:21', 16, 84, '2026-04-29 21:51:21', 15, 0, ''),
+(174, 'DIOGENES DIAS MARCON', '', 4, 0, '031.733.890-00', '', '', '', '', '', '', '', '', '', 0, '2026-04-30 18:27:17', 16, 85, '2026-04-30 18:27:17', 0, 0, ''),
+(175, 'ALEXANDRE HENRIQUE NASCIMENTO', '', 4, 0, '918.136.467-91', '', '', '', '', '', '', '', '', '', 0, '2026-04-30 18:34:24', 16, 86, '2026-04-30 18:34:24', 0, 0, ''),
+(176, 'LUIS HENRIQUE DIEDRICH', '', 4, 0, '517.349.580-49', '(51) 99503-9117', '', '', '', '', '', '', '', '', 0, '2026-04-30 19:31:54', 16, 87, '2026-04-30 19:31:54', 0, 0, ''),
+(177, 'NYKOLLAS CARDOSO DA SILVA', '', 1, 0, '', '(51) 98107-9310', '', '', '', '', '', '', '', '', 0, '2026-04-30 19:39:17', 16, 88, '2026-04-30 19:39:17', 0, 0, ''),
+(178, 'ANGELA DESP TOYOTA SC', '', 1, 0, '', '', '', '', '', '', '', '', '', '', 0, '2026-04-30 20:01:06', 16, 89, '2026-04-30 20:01:06', 0, 0, ''),
+(179, 'CLEBER CELTA', '', 1, 0, '', '', '', '', '', '', '', '', '', '', 0, '2026-05-04 11:02:55', 16, 90, '2026-05-04 11:02:55', 0, 0, ''),
+(180, 'CLEBER CELTA', '', 4, 0, '', '', '', '', '', '', '', '', '', '', 0, '2026-05-04 11:03:23', 16, 91, '2026-05-04 11:03:23', 0, 0, ''),
+(181, 'CLEBER CELTA', '', 4, 0, '', '', '', '', '', '', '', '', '', '', 0, '2026-05-04 11:03:47', 16, 92, '2026-05-04 11:03:47', 0, 0, ''),
+(182, 'CLEBER CELTA', '', 4, 0, '023.772.590-81', '', '', '', '', '', '', '', '', '', 0, '2026-05-04 11:04:04', 16, 93, '2026-05-04 11:04:04', 0, 0, ''),
+(183, 'CLEBER CELTA', '', 4, 0, '023.772.590-81', '', '', '', '94480-620', 'Rua Recreio', '56', 'Santa Isabel', 'Viamão', 'RS', 0, '2026-05-04 11:04:45', 16, 94, '2026-05-04 11:04:45', 0, 1, 'AUTONOMO'),
+(184, 'CLEBER CELTA', '', 4, 0, '', '', '', '', '', '', '', '', '', '', 0, '2026-05-04 11:05:16', 16, 95, '2026-05-04 11:05:16', 0, 0, ''),
+(185, 'CLEBER CELTA', '', 4, 0, '023.772.590-81', '', '', '', '94480-620', 'Rua Recreio', '56', 'Santa Isabel', 'Viamão', 'RS', 0, '2026-05-04 11:05:24', 16, 96, '2026-05-04 11:05:24', 0, 1, 'AUTONOMO'),
+(186, 'CLEBER CELTA', '', 4, 0, '', '', '', '', '', '', '', '', '', '', 0, '2026-05-04 11:07:23', 16, 97, '2026-05-04 11:07:23', 0, 0, ''),
+(187, 'CLEBER LEAL', '', 1, 0, '011.898.410-10', '(51) 99632-7804', '', '', '', '', '', '', '', '', 0, '2026-05-04 12:26:07', 16, 98, '2026-05-04 12:26:07', 0, 0, ''),
+(188, 'CLEBER LEAL', '', 1, 0, '011.898.410-10', '', '', '', '', '', '', '', '', '', 0, '2026-05-04 18:32:49', 16, 99, '2026-05-04 18:32:49', 0, 0, '');
 
 --
 -- Índices para tabelas despejadas
@@ -182,7 +201,7 @@ ALTER TABLE `forcli`
 -- AUTO_INCREMENT de tabela `forcli`
 --
 ALTER TABLE `forcli`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

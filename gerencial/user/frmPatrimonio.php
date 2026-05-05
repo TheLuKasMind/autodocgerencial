@@ -68,18 +68,13 @@ $total = 0;
 
     <link rel="stylesheet" href="../css/base.css">
 
-    <style>
-  
-
-    /* TÍTULO */
+<style>
 
     .tituloPagina {
         font-size: 28px;
         font-weight: 700;
         margin-bottom: 25px;
     }
-
-    /* CARD FORM */
 
     .cardForm {
 
@@ -92,33 +87,26 @@ $total = 0;
     }
 
     .formLinha {
-
         display: flex;
         gap: 15px;
         flex-wrap: wrap;
-
     }
 
     .formLinha input {
-
         flex: 1;
         min-width: 180px;
         padding: 12px;
         border: 1px solid #ddd;
         border-radius: 6px;
         font-size: 15px;
-
     }
 
     .formLinha input:focus {
-
         border-color: #ff6b00;
         outline: none;
-
     }
 
     .btnAdicionar {
-
         background: #ff6b00;
         border: none;
         color: white;
@@ -127,78 +115,54 @@ $total = 0;
         font-weight: 600;
         cursor: pointer;
         transition: 0.2s;
-
     }
 
     .btnAdicionar:hover {
-
         background: #e25f00;
-
     }
 
-    /* TABELA */
-
     .tabelaPatrimonio {
-
         width: 100%;
         border-collapse: collapse;
         background: white;
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-
     }
 
     .tabelaPatrimonio thead {
-
         background: #f5f5f5;
-
     }
 
     .tabelaPatrimonio th {
-
         text-align: left;
         padding: 14px;
         font-weight: 600;
         font-size: 14px;
         color: #555;
-
     }
 
     .tabelaPatrimonio td {
-
         padding: 14px;
         border-top: 1px solid #eee;
         font-size: 14px;
-
     }
 
     .tabelaPatrimonio tr:hover {
-
         background: #fafafa;
-
     }
 
-    /* BOTÃO EXCLUIR */
-
     .btnExcluir {
-
         color: #e53935;
         text-decoration: none;
         font-weight: 600;
-
     }
 
     .btnExcluir:hover {
-
         text-decoration: underline;
-
     }
 
-    /* TOTAL */
-
     .totalBox {
-
         margin-top: 30px;
         background: linear-gradient(90deg, #ff6b00, #ff8c3a);
         color: white;
@@ -206,22 +170,17 @@ $total = 0;
         text-align: center;
         border-radius: 10px;
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-
     }
 
     .totalTitulo {
-
         font-size: 18px;
         opacity: 0.9;
-
     }
 
     .totalValor {
-
         font-size: 36px;
         font-weight: 700;
         margin-top: 10px;
-
     }
 
     .navbar {
@@ -240,15 +199,11 @@ $total = 0;
     @media(max-width:700px) {
 
         .formLinha {
-
             flex-direction: column;
-
         }
 
         .btnAdicionar {
-
             width: 100%;
-
         }
 
     }
@@ -262,9 +217,7 @@ $total = 0;
      <?php include '../base/navbarUser.php'; ?>
     <div class="content">
  
-        <div class="tituloPagina">
-            Patrimônio / Compras
-        </div>
+        <div class="page-title">Patrimônio / Compras</div>
 
         <div class="cardForm">
 

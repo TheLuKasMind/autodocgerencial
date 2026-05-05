@@ -432,8 +432,6 @@ foreach ($servicosForcli as $item) {
             height: 18px;
             margin: 0;
         }
-        
-
 
         /* ===== MODAL PADRÃO DO SISTEMA ===== */
         
@@ -589,8 +587,7 @@ foreach ($servicosForcli as $item) {
 
     <div class="content">
 
-        <h2>Relatórios e Dashboards</h2>
-
+        <div class="page-title">Relatórios e Dashboards</div>
 
         <div class="card">
             <form method="get" class="form-grid" id="formRelatorio">

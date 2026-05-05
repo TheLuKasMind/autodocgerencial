@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 29/04/2026 às 00:26
+-- Tempo de geração: 05/05/2026 às 00:33
 -- Versão do servidor: 8.0.45-36
 -- Versão do PHP: 8.3.26
 
@@ -83,16 +83,22 @@ INSERT INTO `tipodespesa` (`idEmpresa`, `Categoria`, `Acao`, `Inativo`, `id`, `D
 (16, 1, '-1', 0, 56, 'LUZ', 0.00, 12, 'LUZ', '2026-04-20 17:23:03'),
 (16, 2, '-1', 0, 57, 'VISTORIAS', 0.00, 13, 'VISTORIAS', '2026-04-20 17:35:40'),
 (16, 2, '-1', 0, 58, 'SIAC', 0.00, 14, 'SIAC', '2026-04-21 14:58:20'),
-(16, 2, '-1', 0, 59, 'DIGITAL', 0.00, 15, 'DIGITAL', '2026-04-21 15:01:44'),
 (16, 2, '-1', 0, 60, 'GRT', 0.00, 16, 'GRT', '2026-04-21 15:02:23'),
-(16, 2, '-1', 0, 61, 'SALARIO ANDRIA', 0.00, 17, 'SALARIO ANDRIA', '2026-04-21 15:04:38'),
-(16, 2, '-1', 0, 62, 'SALARIO MICHEL', 0.00, 18, 'SALARIO MICHEL', '2026-04-21 15:04:50'),
-(16, 2, '-1', 0, 63, 'SALARIO MAURO', 0.00, 19, 'SALARIO MAURO', '2026-04-21 15:05:01'),
+(16, 2, '-1', 0, 61, 'Fixo Andria', 0.00, 17, 'Fixo Andria', '2026-05-01 13:27:03'),
+(16, 2, '-1', 0, 62, 'Salário Michel', 0.00, 18, 'Salário Michel', '2026-05-01 13:47:47'),
+(16, 2, '-1', 0, 63, 'Salário Mauro', 0.00, 19, 'Salário Mauro', '2026-05-01 13:37:00'),
 (16, 2, '-1', 0, 64, 'PRÓ-LABORE ', 0.00, 20, 'PRÓ-LABORE ', '2026-04-21 15:05:29'),
 (16, 2, '-1', 0, 65, 'CRDD', 0.00, 21, 'CRDD', '2026-04-21 15:49:30'),
 (11, 1, '-1', 0, 66, 'Manutenção Motos', 0.00, 25, 'Manutenção Motos', '2026-04-23 08:51:40'),
 (16, 2, '-1', 0, 68, 'GASOLINA', 0.00, 22, 'GASOLINA', '2026-04-28 15:00:22'),
-(16, 2, '-1', 0, 69, 'DIGITAL', 50.00, 23, 'DIGITAL', '2026-04-28 19:05:42');
+(16, 2, '-1', 0, 69, 'Digital', 50.00, 23, 'Digital', '2026-05-04 15:45:31'),
+(16, 2, '-1', 0, 70, 'FATURA CARTÃO PJ', 0.00, 24, 'FATURA CARTÃO PJ', '2026-04-29 07:30:31'),
+(16, 2, '-1', 0, 71, 'AGUA CORSAN', 0.00, 25, 'AGUA CORSAN', '2026-04-29 07:38:47'),
+(16, 2, '-1', 0, 72, 'UBER', 0.00, 26, 'UBER', '2026-04-29 07:46:25'),
+(16, 2, '-1', 0, 73, 'INTERNET ESCRITÓRIO', 0.00, 27, 'INTERNET ESCRITÓRIO', '2026-04-29 07:47:14'),
+(11, 1, '-1', 0, 74, 'IPVA', 0.00, 26, 'IPVA', '2026-04-30 13:40:53'),
+(16, 2, '-1', 0, 75, 'Comissões Andria', 0.00, 28, 'Comissões Andria', '2026-05-01 13:27:37'),
+(16, 1, '-1', 0, 76, 'Aluguel', 0.00, 29, 'Aluguel', '2026-05-04 18:31:02');
 
 --
 -- Índices para tabelas despejadas
@@ -112,7 +118,7 @@ ALTER TABLE `tipodespesa`
 -- AUTO_INCREMENT de tabela `tipodespesa`
 --
 ALTER TABLE `tipodespesa`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
