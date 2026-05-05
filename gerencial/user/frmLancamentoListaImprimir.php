@@ -44,7 +44,10 @@ if ($statusFiltro !== '' && $statusFiltro !== null) {
 }
 
 if ($clienteFiltro != '') {
-    $where .= " AND p.Forcli = '$clienteFiltro'";
+    // $where .= " AND p.Forcli = '$clienteFiltro'";
+    if ($clienteFiltro > 0 ){
+        $where .= " AND ( p.Forcli = '$clienteFiltro' OR p.ForcliRepasse = '$clienteFiltro' )";
+    }
 }
 
 if ($dataInicial != '') {
@@ -60,10 +63,12 @@ if ($condicaoFiltro != '') {
 }
 
 if ($repasseFiltro !== '') {
-    if ($repasseFiltro == 0) {
-        $where .= " AND (p.ForcliRepasse = 0 OR p.ForcliRepasse IS NULL)";
-    } else {
-        $where .= " AND p.ForcliRepasse = '$repasseFiltro'";
+    if ($repasseFiltro > 0){
+        if ($repasseFiltro == 0) {
+            $where .= " AND (p.ForcliRepasse = 0 OR p.ForcliRepasse IS NULL)";
+        } else {
+            $where .= " AND p.ForcliRepasse = '$repasseFiltro'";
+        }
     }
 }
 
