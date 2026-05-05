@@ -269,7 +269,7 @@ $planos = ExSqlNET($sql);
 <body>
 
     <div class="content">
-        <h2>Cadastro de Planos</h2>
+        <div class="page-title">Cadastro de Planos</div>
 
         <div class="card">
 

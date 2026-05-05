@@ -19,29 +19,46 @@ $idEmpresa = $_SESSION['idEmpresa'];
 
 $buscaModal = $_GET['buscaModal'] ?? null;
 
-if ($buscaModal !== null) {
+$clientes = ExSqlNET("
+    SELECT id, Nome, Documento
+    FROM forcli
+    WHERE idEmpresa = ?
+    AND Inativo = 0
+    ORDER BY Nome
+", null, [$_SESSION['idEmpresa']]);
 
-    $whereBusca = "";
+// if ($buscaModal !== null) {
 
-    if ($buscaModal !== "") {
-        $whereBusca = "AND Nome LIKE '%$buscaModal%'";
-    }
+//     $whereBusca = "";
 
-    $listaBusca = ExSqlNET("
-        SELECT Id, Nome
-        FROM forcli
-        WHERE idEmpresa = $idEmpresa
-        $whereBusca
-        ORDER BY Nome
-        LIMIT 20
-    ");
+//     if ($buscaModal !== "") {
+//         $whereBusca = "AND Nome LIKE '%$buscaModal%'";
+//     }
 
-    foreach ($listaBusca as $c) {
-        echo "<div class='result-item' onclick=\"selecionarCliente('{$c['Id']}','{$c['Nome']}')\">{$c['Nome']}</div>";
-    }
+//     $listaBusca = ExSqlNET("
+//         SELECT Id, Nome
+//         FROM forcli
+//         WHERE idEmpresa = $idEmpresa
+//         $whereBusca
+//         ORDER BY Nome ASC
+//     ");
+    
 
-    exit;
-}
+//     foreach ($listaBusca as $c) {
+//         // echo "<div class='result-item' onclick=\"selecionarCliente('{$c['Id']}','{$c['Nome']}')\">{$c['Nome']}</div>";
+//         echo "
+        
+//         <div class='result-item'
+//             <tr onclick=\"selecionarCliente('{$c['Id']}','{$c['Nome']}')\" style='cursor:pointer;'>
+//                 <td>{$c['Id']}</td>
+//                 <td>{$c['Nome']}</td>
+//             </tr>
+//         </div>
+//         ";
+//         }
+
+//     exit;
+// }
 
 $statusFiltro  = $_GET['status'] ?? '';
 $clienteFiltro = $_GET['cliente'] ?? '';
@@ -68,7 +85,10 @@ if ($statusFiltro !== '' && $statusFiltro !== null) {
 
 
 if ($clienteFiltro != '') {
-    $where .= " AND p.Forcli = '$clienteFiltro'";
+    // $where .= " AND p.Forcli = '$clienteFiltro'";
+    if ($clienteFiltro > 0 ){
+        $where .= " AND ( p.Forcli = '$clienteFiltro' OR p.ForcliRepasse = '$clienteFiltro' )";
+    }
 }
 
 if ($dataInicial != '') {
@@ -83,11 +103,12 @@ if ($condicaoFiltro != '') {
 }
 
 if ($repasseFiltro !== '') {
-
-    if ($repasseFiltro == 0) {
-        $where .= " AND (p.ForcliRepasse = 0 OR p.ForcliRepasse IS NULL)";
-    } else {
-        $where .= " AND p.ForcliRepasse = '$repasseFiltro'";
+    if ($repasseFiltro > 0){
+        if ($repasseFiltro == 0) {
+            $where .= " AND (p.ForcliRepasse = 0 OR p.ForcliRepasse IS NULL)";
+        } else {
+            $where .= " AND p.ForcliRepasse = '$repasseFiltro'";
+        }
     }
 }
 
@@ -97,12 +118,6 @@ if ($pedidoFiltro != '') {
     $pedidoFiltro = intval($pedidoFiltro);
     $where .= " AND p.id = $pedidoFiltro";
 }
-
-
-// (SELECT MovimentoItem.Descricao 
-//  FROM movimentoitem MovimentoItem
-//  WHERE ControleMovimento = p.id
-//  LIMIT 1) AS Itens
 
 $listaPedidos = ExSqlNET("SELECT 
     p.*,
@@ -207,29 +222,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-    .modal-bg {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        justify-content: center;
-        align-items: center;
-    }
-
-    .modal {
-        width: 600px;
-    }
-
-    .result-item {
-        padding: 10px;
-        cursor: pointer;
-        border-bottom: 1px solid #eee;
-    }
-
-    .result-item:hover {
-        background: #fff7ed;
-    }
-
+  
     .lista-clientes {
         max-height: 300px;
         overflow-y: auto;
@@ -248,89 +241,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
         background: #fff7ed;
     }
     
-    .modal-bg{
-        display:none;
-        position:fixed;
-        inset:0;
-        background:rgba(0,0,0,.5);
-        justify-content:center;
-        align-items:center;
-        z-index:9999;
-    }
 
-    .modal-bg{
-        display:none;
-        position:fixed;
-        inset:0;
-        background:rgba(0,0,0,0.45);
-        justify-content:center;
-        align-items:center;
-        z-index:9999;
-    }
-    
-    .modal{
-        width:600px;
-        max-width:90%;
-        padding:25px;
-        border-radius:12px;
-        background:#fff;
-        box-shadow:0 10px 30px rgba(0,0,0,0.15);
-        animation:modalFade .15s ease;
-    }
-    
-    .modal h3{
-        margin-top:0;
-        margin-bottom:15px;
-        font-size:20px;
-    }
-    
-    .modal input{
-        width:100%;
-        padding:10px 12px;
-        border:1px solid #ddd;
-        border-radius:8px;
-        font-size:14px;
-        outline:none;
-        transition:.15s;
-    }
-    
-    .modal input:focus{
-        border-color:#f97316;
-        box-shadow:0 0 0 2px rgba(249,115,22,0.15);
-    }
-    
-    #resultadoBusca{
-        max-height:300px;
-        overflow-y:auto;
-        margin-top:15px;
-        border:1px solid #eee;
-        border-radius:8px;
-    }
-    
-    .result-item{
-        padding:10px 12px;
-        cursor:pointer;
-        border-bottom:1px solid #f3f3f3;
-        transition:.12s;
-        font-size:14px;
-    }
-    
-    .result-item:last-child{
-        border-bottom:none;
-    }
-    
-    .result-item:hover{
-        background:#fff7ed;
-    }
-    
-    #resultadoBusca::-webkit-scrollbar{
-        width:6px;
-    }
-    
-    #resultadoBusca::-webkit-scrollbar-thumb{
-        background:#ddd;
-        border-radius:4px;
-    }
     
     @keyframes modalFade{
         from{
@@ -343,42 +254,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
         }
     }
     
-            
-        .modal-table-wrapper{
-            max-height: 380px;
-            overflow-y: auto;
-            margin-top: 10px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-        }
-        
-        /* deixa o cabeçalho fixo */
-        .modal-table-wrapper thead th{
-            position: sticky;
-            top: 0;
-            background: #fff7ed;
-            z-index: 2;
-        }
-        
-        /* scroll bonito */
-        .modal-table-wrapper::-webkit-scrollbar{
-            width: 8px;
-        }
-        
-        .modal-table-wrapper::-webkit-scrollbar-track{
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        
-        .modal-table-wrapper::-webkit-scrollbar-thumb{
-            background: #d6d6d6;
-            border-radius: 10px;
-        }
-        
-        .modal-table-wrapper::-webkit-scrollbar-thumb:hover{
-            background: #bdbdbd;
-        }
-
+     
         .totais-card{
             width: 320px;
             text-align: right;
@@ -447,6 +323,151 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
                 grid-template-columns: 1fr;
             }
         }
+
+
+        /* ===== MODAL PADRÃO DO SISTEMA ===== */
+        
+        .modal-bg {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(3px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 0.15s ease;
+        }
+        
+        .modal {
+            background: #ffffff;
+            width: 650px;
+            max-width: 95%;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+            max-height: 80vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: modalUp 0.18s ease;
+        }
+        
+        .modal h3 {
+            margin: 0 0 12px 0;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .modal-search {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #dcdcdc;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        
+        .modal-search:focus {
+            border-color: #ea580c;
+            box-shadow: 0 0 0 2px rgba(234,88,12,0.15);
+        }
+        
+        .modal table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+        
+        .modal thead {
+            background: #fff7ed;
+        }
+        
+        .modal th {
+            text-align: left;
+            padding: 10px;
+            font-weight: 600;
+            color: #9a3412;
+        }
+        
+        .modal td {
+            padding: 9px 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        
+        .modal tbody {
+            overflow-y: auto;
+        }
+        
+        .modal tbody tr {
+            transition: background 0.15s;
+        }
+        
+        .modal tbody tr:hover {
+            background: #fff7ed;
+        }
+        
+        
+        .modal button {
+            margin-top: 15px;
+            align-self: flex-end;
+        }
+        
+        
+        @keyframes modalUp {
+            from {
+                transform: translateY(15px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    
+    
+    
+        .modal-table-wrapper{
+            max-height: 380px;
+            overflow-y: auto;
+            margin-top: 10px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        
+        .modal-table-wrapper thead th{
+            position: sticky;
+            top: 0;
+            background: #fff7ed;
+            z-index: 2;
+        }
+        
+        .modal-table-wrapper::-webkit-scrollbar{
+            width: 8px;
+        }
+        
+        .modal-table-wrapper::-webkit-scrollbar-track{
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .modal-table-wrapper::-webkit-scrollbar-thumb{
+            background: #d6d6d6;
+            border-radius: 10px;
+        }
+        
+        .modal-table-wrapper::-webkit-scrollbar-thumb:hover{
+            background: #bdbdbd;
+        }
+
 
     </style>
 </head>
@@ -687,65 +708,98 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
 
     </div>
 
-    <!-- ================= MODAL BUSCA ================= -->
-    <div class="modal-bg" id="modalBusca">
-        <div class="card modal">
+    <!-- MODAL PADRÃO -->
+    <div class="modal-bg" id="modalBg">
+        <div class="modal">
+            <h3 id="modalTitulo"></h3>
+            <input type="text" id="modalBusca" class="modal-search" placeholder="Digite para buscar...">
 
-            <h3>Buscar Cliente</h3>
+            <div class="modal-table-wrapper">
+                <table>
+                    <thead>
+                        <tr id="modalHead"></tr>
+                    </thead>
+                    <tbody id="modalBody"></tbody>
+                </table>
+            </div>
 
-            <!--<input type="text" id="inputBusca" placeholder="Digite o nome..." onkeyup="buscarCliente(this.value)">-->
-
-            <input type="text" id="inputBusca" placeholder="Digite o nome..." oninput="buscarCliente(this.value)">
-            
-            <div id="resultadoBusca" style="max-height:300px;overflow:auto;margin-top:15px;"></div>
-
-            <br>
-            <button class="btn btn-secondary" onclick="fecharModal()">Fechar</button>
-
+            <button class="btn" onclick="fecharModal()">Fechar</button>
         </div>
     </div>
 
     <script>
     let tipoSelecionando = '';
+    let clientes = <?= json_encode($clientes ?? []) ?>;
+    
+    function carregarModal(filtro = '') {
+        let head = document.getElementById('modalHead');
+        let body = document.getElementById('modalBody');
 
-    // function abrirModal(tipo) {
-    //     tipoSelecionando = tipo;
-    //     buscarCliente("");
-    //     document.getElementById("modalBusca").style.display = "flex";
-    // }
+        head.innerHTML = '';
+        body.innerHTML = '';
+
+        filtro = filtro.toLowerCase();
+        let html = '';
+
+        if (tipoModal === 'cliente') {
+            tipoSelecionando = 'cliente';
+            document.getElementById('modalTitulo').innerText = 'Selecionar Cliente';
+            head.innerHTML = '<th>Nome</th><th>Documento</th>';
+
+            (clientes || [])
+                .filter(c => (c.Nome || '').toLowerCase().includes(filtro))
+                .forEach(c => {
+                    let nomeSeguro = (c.Nome || '').replace(/'/g, "\'");
+                    html += `
+                        <tr onclick="selecionarCliente(${c.id}, '${nomeSeguro}')">
+                            <td>${c.Nome}</td>
+                            <td>${c.Documento || ''}</td>
+                        </tr>`;
+                });
+        }
+
+        if (tipoModal === 'repasse') {
+            tipoSelecionando = 'repasse';
+            document.getElementById('modalTitulo').innerText = 'Selecionar Pagador';
+            head.innerHTML = '<th>Nome</th><th>Documento</th>';
+
+            (clientes || [])
+                .filter(c => (c.Nome || '').toLowerCase().includes(filtro))
+                .forEach(c => {
+                    let nomeSeguro = (c.Nome || '').replace(/'/g, "\'");
+                    html += `
+                        <tr onclick="selecionarCliente(${c.id}, '${nomeSeguro}')">
+                            <td>${c.Nome}</td>
+                            <td>${c.Documento || ''}</td>
+                        </tr>`;
+                });
+        }
+
+        body.innerHTML = html;
+    }
 
     function abrirModal(tipo) {
-    
-        tipoSelecionando = tipo;
-    
-        document.getElementById("modalBusca").style.display = "flex";
-    
-        document.getElementById("inputBusca").value = '';
-    
-        buscarCliente("");
-    
+        tipoModal = tipo;
+        document.getElementById('modalBg').style.display = 'flex';
+        document.getElementById('modalBusca').value = '';
+        carregarModal('');
         setTimeout(() => {
-            document.getElementById("inputBusca").focus();
+            document.getElementById('modalBusca').focus();
         }, 50);
-    
     }
 
     function fecharModal() {
-        document.getElementById("modalBusca").style.display = "none";
-        document.getElementById("inputBusca").value = '';
-        document.getElementById("resultadoBusca").innerHTML = '';
+        document.getElementById('modalBg').style.display = 'none';
     }
 
-   function buscarCliente(valor){
+    function cancelarModal() {
+        if(tipoSelecionando === 'cliente'){
+            limparInput('cliente');
+        } else if(tipoSelecionando === 'repasse'){
+            limparInput('repasse');
+        }
 
-        fetch("frmLancamentoLista.php?buscaModal=" + encodeURIComponent(valor))
-        .then(res => res.text())
-        .then(html => {
-    
-            document.getElementById("resultadoBusca").innerHTML = html;
-    
-        });
-
+        fecharModal();
     }
 
     function selecionarCliente(id, nome) {
@@ -757,6 +811,16 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
             document.getElementById("repasse_nome").value = nome;
         }
         fecharModal();
+    }
+
+    function limparInput(tipo) {
+        if(tipo === 'cliente'){
+            document.getElementById('cliente_id').value = 0;
+            document.getElementById('cliente_nome').value = '';
+        }else if(tipo === 'repasse'){
+            document.getElementById('repasse_id').value = 0;
+            document.getElementById('repasse_nome').value = '';
+        }
     }
 
     function abrirLancamento(id) {
@@ -796,7 +860,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
     //FECHANDO QUALQUER MODAL
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            fecharModal();
+            cancelarModal();
         }
     });
     
@@ -826,6 +890,22 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
     
     }
     
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('modalBusca').addEventListener('input', function() {
+                carregarModal(this.value);
+            });
+
+            document.getElementById('modalBg').addEventListener('click', function(e) {
+                if (e.target === this) cancelarModal();
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') cancelarModal();
+
+                
+            });
+        });
 
     </script>
 

@@ -910,11 +910,11 @@ function consultarCep($cep) {
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
-    if ($ambiente == 1) {
-        curl_setopt($ch, CURLOPT_SSLCERT, $pfxPath);
-        curl_setopt($ch, CURLOPT_SSLCERTTYPE, "P12"); 
-        curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $certificadoSenhaAPI);
-    }
+    // if ($ambiente == 1) {
+    //     curl_setopt($ch, CURLOPT_SSLCERT, $pfxPath);
+    //     curl_setopt($ch, CURLOPT_SSLCERTTYPE, "P12"); 
+    //     curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $certificadoSenhaAPI);
+    // }
 
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -1197,6 +1197,116 @@ function MeuCadastro($dados, $acao){ // ATUALIZAR
         } catch (PDOException $e) {
 
             return $e;
+        }
+    }
+
+    return "Ação inválida.";
+}
+
+// ==================================MULTA===================================================
+function Multa($dados, $acao){
+
+    global $dbGeralNET;
+
+    if($acao === "CADASTRAR"){
+        $sql = "INSERT INTO multa (idEmpresa, Forcli, SerieMulta, CodigoProcesso, OrgaoFiscalizador,
+            PlacaVeiculo, PlacasAdicionais, RegistroCNH, PrazoDefesa, AutoSuspensiva, RecursoMulta,
+            StatusMulta, Observacao, EnviarLembrete, idUser, UserAlt, DataCadastro, DataAlt
+        ) VALUES (
+            :idEmpresa, :Forcli, :SerieMulta, :CodigoProcesso, :OrgaoFiscalizador,
+            :PlacaVeiculo, :PlacasAdicionais, :RegistroCNH, :PrazoDefesa, :AutoSuspensiva,
+            :RecursoMulta, :StatusMulta, :Observacao, :EnviarLembrete, :idUser,
+            :UserAlt, :DataCadastro, NOW()
+        )";
+
+        try {
+            $stmt = $dbGeralNET->prepare($sql);
+            $stmt->execute([
+                ':idEmpresa'         => $dados['idEmpresa'],
+                ':Forcli'            => $dados['Forcli'],
+                ':SerieMulta'        => $dados['SerieMulta'],
+                ':CodigoProcesso'    => $dados['CodigoProcesso'],
+                ':OrgaoFiscalizador' => $dados['OrgaoFiscalizador'],
+                ':PlacaVeiculo'      => $dados['PlacaVeiculo'],
+                ':PlacasAdicionais'  => $dados['PlacasAdicionais'],
+                ':RegistroCNH'       => $dados['RegistroCNH'],
+                ':PrazoDefesa'       => $dados['PrazoDefesa'],
+                ':AutoSuspensiva'    => $dados['AutoSuspensiva'],
+                ':RecursoMulta'      => $dados['RecursoMulta'],
+                ':StatusMulta'       => $dados['StatusMulta'],
+                ':Observacao'        => $dados['Observacao'],
+                ':EnviarLembrete'   => $dados['EnviarLembrete'],
+                ':idUser'            => $dados['idUser'],
+                ':UserAlt'           => $dados['UserAlt'],
+                ':DataCadastro'       => $dados['DataCadastro'],
+            ]);
+            // return $dbGeralNET->lastInsertId();
+            return "";
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    if($acao === "ATUALIZAR"){
+
+        $sql = "UPDATE multa SET
+            Forcli = :Forcli,
+            SerieMulta = :SerieMulta,
+            CodigoProcesso = :CodigoProcesso,
+            OrgaoFiscalizador = :OrgaoFiscalizador,
+            PlacaVeiculo = :PlacaVeiculo,
+            PlacasAdicionais = :PlacasAdicionais,
+            RegistroCNH = :RegistroCNH,
+            PrazoDefesa = :PrazoDefesa,
+            AutoSuspensiva = :AutoSuspensiva,
+            RecursoMulta = :RecursoMulta,
+            StatusMulta = :StatusMulta,
+            Observacao = :Observacao,
+            EnviarLembrete = :EnviarLembrete,
+            UserAlt = :UserAlt,
+            DataCadastro = :DataCadastro,
+            DataAlt = NOW()
+        WHERE id = :id
+        AND idEmpresa = :idEmpresa";
+
+        try {
+            $stmt = $dbGeralNET->prepare($sql);
+            $stmt->execute([
+                ':id'                => $dados['id'],
+                ':idEmpresa'         => $dados['idEmpresa'],
+                ':Forcli'            => $dados['Forcli'],
+                ':SerieMulta'        => $dados['SerieMulta'],
+                ':CodigoProcesso'    => $dados['CodigoProcesso'],
+                ':OrgaoFiscalizador' => $dados['OrgaoFiscalizador'],
+                ':PlacaVeiculo'      => $dados['PlacaVeiculo'],
+                ':PlacasAdicionais'  => $dados['PlacasAdicionais'],
+                ':RegistroCNH'       => $dados['RegistroCNH'],
+                ':PrazoDefesa'       => $dados['PrazoDefesa'],
+                ':AutoSuspensiva'    => $dados['AutoSuspensiva'],
+                ':RecursoMulta'      => $dados['RecursoMulta'],
+                ':StatusMulta'       => $dados['StatusMulta'],
+                ':Observacao'        => $dados['Observacao'],
+                ':EnviarLembrete'   => $dados['EnviarLembrete'],
+                ':UserAlt'           => $dados['UserAlt'],
+                ':DataCadastro'       => $dados['DataCadastro'],
+            ]);
+            return "";
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+       
+    if($acao === "EXCLUIR"){
+        $sql = "DELETE FROM multa WHERE id = :id AND idEmpresa = :idEmpresa";
+        try {
+            $stmt = $dbGeralNET->prepare($sql);
+            $stmt->execute([
+                ':id'        => $dados['id'],
+                ':idEmpresa' => $dados['idEmpresa']
+            ]);
+            return "";
+        } catch (PDOException $e) {
+            return $e->getMessage();
         }
     }
 

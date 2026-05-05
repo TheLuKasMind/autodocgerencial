@@ -428,7 +428,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
     <link rel="stylesheet" href="../css/home.css">
 
 <style>
-        /* ===== COMPLEMENTO APENAS PARA ESSA TELA ===== */
 
     .modal-bg {
         position: fixed;
@@ -508,18 +507,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
     }
     
     
-    
-
-
-
-
-
-
-
-
-
-    
-    
     /* ===== MODAL PADRÃO DO SISTEMA ===== */
     
     .modal-bg {
@@ -554,8 +541,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         color: #333;
     }
     
-    /* campo busca */
-    
     .modal-search {
         width: 100%;
         padding: 10px 12px;
@@ -570,8 +555,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         border-color: #ea580c;
         box-shadow: 0 0 0 2px rgba(234,88,12,0.15);
     }
-    
-    /* tabela */
     
     .modal table {
         width: 100%;
@@ -609,14 +592,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         background: #fff7ed;
     }
     
-    /* botão fechar */
-    
     .modal button {
         margin-top: 15px;
         align-self: flex-end;
     }
-    
-    /* animações */
     
     @keyframes modalUp {
         from {
@@ -1050,8 +1029,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
 
             document.getElementById('modalTitulo').innerText = 'Selecionar Produto';
 
-            head.innerHTML = '<th>Código</th><th>Nome</th><th>Valor</th>';
-
+            // head.innerHTML = '<th>Código</th><th>Nome</th><th>Valor</th>';
+            head.innerHTML = '<th>Nome</th><th>Valor</th>';
+            //   <td>${p.Codigo}</td>
             produtos
                 .filter(p => p.Nome.toLowerCase().includes(filtro))
                 .forEach(p => {
@@ -1065,7 +1045,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                         ${p.ValorVenda ?? 0},
                         ${p.SolicitaVeiculo ?? 0}
                     )">
-                        <td>${p.Codigo}</td>
+                      
                         <td>${p.Nome}</td>
                         <td>R$ ${parseFloat(p.ValorVenda ?? 0).toFixed(2)}</td>
                     </tr>`;

@@ -337,10 +337,16 @@ if (!isset($_SESSION['usuario_id'])) {
             </a>
         </li>
 
+        <li>
+            <a href="../user/frmMultaLista.php"
+            class="<?= in_array($currentPage, ['frmMultaLista.php','frmMulta.php']) ? 'active' : '' ?>">
+            Multas
+            </a>
+        </li>
 
         <div class="menu-group">Financeiro</div>
 
-        <li>
+        <li> 
             <a href="../user/frmBoletimCaixa.php"
             class="<?= in_array($currentPage, ['frmBoletimCaixa.php','frmBoletimCaixaLcto.php']) ? 'active' : '' ?>">
             Boletim de Caixa
@@ -401,13 +407,6 @@ if (!isset($_SESSION['usuario_id'])) {
             </a>
         </li>
         
-        <li>
-            <a href="../user/frmDocumentos.php"
-            class="<?= in_array($currentPage, ['frmDocumentos.php']) ? 'active' : '' ?>">
-            Geração de Documentos
-            </a>
-        </li>
-
         <?php if (isset($_SESSION['usuario_tipo']) && $_SESSION['usuario_tipo'] == 2): ?>
             <li>
                 <a href="../user/frmUser.php"
