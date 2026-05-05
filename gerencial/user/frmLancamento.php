@@ -659,7 +659,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
     <?php include '../base/navbarUser.php'; ?>
 
     <div class="content">
-         <h1>Lançamento de Venda / Prestação de Serviço</h1> 
+          <div class="page-title">Lançamento de Venda / Prestação de Serviço</div>
 
         <?php
             if ($msgRetorno): ?>

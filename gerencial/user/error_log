@@ -4936,3 +4936,8 @@ Stack trace:
 [23-Apr-2026 17:53:52 America/Sao_Paulo] PHP Warning:  Array to string conversion in /home1/luca5858/public_html/gerencial/user/frmRel.php on line 643
 [23-Apr-2026 17:53:55 America/Sao_Paulo] PHP Warning:  Array to string conversion in /home1/luca5858/public_html/gerencial/user/frmRel.php on line 643
 [23-Apr-2026 17:54:03 America/Sao_Paulo] PHP Warning:  Array to string conversion in /home1/luca5858/public_html/gerencial/user/frmRel.php on line 643
+[05-May-2026 01:06:03 America/Sao_Paulo] PHP Deprecated:  Creation of dynamic property PDF::$empresa is deprecated in /home1/luca5858/public_html/gerencial/user/frmLancamentoImprimir.php on line 132
+[05-May-2026 01:06:53 America/Sao_Paulo] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php on line 16
+[05-May-2026 01:06:53 America/Sao_Paulo] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/luca5858/public_html/gerencial/base/verificaPlano.php on line 3
+[05-May-2026 01:06:53 America/Sao_Paulo] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home1/luca5858/public_html/gerencial/user/frmMeuCadastro.php on line 8
+[05-May-2026 01:06:53 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/luca5858/public_html/gerencial/user/frmMeuCadastro.php:1) in /home1/luca5858/public_html/gerencial/user/frmMeuCadastro.php on line 12
