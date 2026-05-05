@@ -1,0 +1,58 @@
+[08-Mar-2026 11:53:59 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function enviarEmailRecuperaSenha() in /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php:20
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php on line 20
+[08-Mar-2026 11:58:23 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function enviarEmailRecuperaSenha() in /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php:20
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php on line 20
+[08-Mar-2026 11:58:26 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function enviarEmailRecuperaSenha() in /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php:20
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php on line 20
+[08-Mar-2026 12:00:02 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function enviarEmailRecuperaSenha() in /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php:20
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php on line 20
+[08-Mar-2026 12:04:38 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function enviarEmailRecuperaSenha() in /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php:20
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php on line 20
+[08-Mar-2026 12:06:33 America/Sao_Paulo] PHP Warning:  require_once(/home1/luca5858/public_html/gerencial/baseglobals.php): Failed to open stream: No such file or directory in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php on line 903
+[08-Mar-2026 12:06:33 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Failed opening required '/home1/luca5858/public_html/gerencial/baseglobals.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php:903
+Stack trace:
+#0 /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php(19): enviarRecuperacaoSenha('lucasbugatib0@g...')
+#1 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php on line 903
+[08-Mar-2026 12:08:04 America/Sao_Paulo] PHP Warning:  require_once(/home1/luca5858/public_html/gerencial/base/phpmailer/src/PHPMailer.php): Failed to open stream: No such file or directory in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php on line 954
+[08-Mar-2026 12:08:04 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Failed opening required '/home1/luca5858/public_html/gerencial/base/phpmailer/src/PHPMailer.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php:954
+Stack trace:
+#0 /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php(19): enviarRecuperacaoSenha('lucasbugatib0@g...')
+#1 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php on line 954
+[08-Mar-2026 12:08:57 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class "PHPMailer\PHPMailer\PHPMailer\PHPMailer\PHPMailer" not found in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php:955
+Stack trace:
+#0 /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php(19): enviarRecuperacaoSenha('lucasbugatib0@g...')
+#1 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php on line 955
+[08-Mar-2026 12:10:10 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class "PHPMailer\PHPMailer\PHPMailer\PHPMailer\PHPMailer" not found in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php:958
+Stack trace:
+#0 /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php(19): enviarRecuperacaoSenha('lucasbugatib0@g...')
+#1 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php on line 958
+[08-Mar-2026 12:12:40 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class "PHPMailer\PHPMailer\PHPMailer\PHPMailer\PHPMailer" not found in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php:962
+Stack trace:
+#0 /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php(19): enviarRecuperacaoSenha('lucasbugatib0@g...')
+#1 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php on line 962
+[08-Mar-2026 12:13:39 America/Sao_Paulo] PHP Warning:  require_once(/home1/luca5858/public_html/gerencial/base/libs/mail/Exception.php): Failed to open stream: No such file or directory in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php on line 905
+[08-Mar-2026 12:13:39 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Failed opening required '/home1/luca5858/public_html/gerencial/base/libs/mail/Exception.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php:905
+Stack trace:
+#0 /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php(19): enviarRecuperacaoSenha('lucasbugatib0@g...')
+#1 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php on line 905
+[08-Mar-2026 12:14:47 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class "PHPMailer\PHPMailer\PHPMailer\PHPMailer\PHPMailer" not found in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php:956
+Stack trace:
+#0 /home1/luca5858/public_html/gerencial/ajax/recuperarSenha.php(19): enviarRecuperacaoSenha('lucasbugatib0@g...')
+#1 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/baseFuncoes.php on line 956

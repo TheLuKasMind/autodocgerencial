@@ -1,0 +1,5023 @@
+Array
+(
+    [Data] => 2026-03-04
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 36
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 167
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-04 17:19:34
+    [ControleOrigem] => 167
+)
+
+Array
+(
+    [Data] => 2026-03-04
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 36
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 167
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-04 17:38:50 17:38:50
+    [ControleOrigem] => 167
+)
+
+Array
+(
+    [Data] => 2026-03-04
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 36
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 167
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-04 17:44:13
+    [ControleOrigem] => 167
+)
+
+Array
+(
+    [Data] => 2026-03-04
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => AUG0F52
+    [ModeloVeiculo] => Cruze
+    [CorVeiculo] => Verde
+    [id] => 170
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-04 17:55:23
+    [ControleOrigem] => 170
+)
+
+Array
+(
+    [Data] => 2026-03-05
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => AUG0F52
+    [ModeloVeiculo] => HB20
+    [CorVeiculo] => Verde
+    [id] => 185
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-05 14:19:11
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 185
+)
+
+Array
+(
+    [Data] => 2026-03-05
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => AUG0F52
+    [ModeloVeiculo] => HB20
+    [CorVeiculo] => Verde
+    [id] => 185
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-05 14:21:33
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 185
+)
+
+Array
+(
+    [Data] => 2026-03-05
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => AUG0F52
+    [ModeloVeiculo] => HB20
+    [CorVeiculo] => Verde
+    [id] => 185
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-08 14:31:22
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 185
+)
+
+Array
+(
+    [Data] => 2026-03-09
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => ISH5D55
+    [ModeloVeiculo] => FIESTA
+    [CorVeiculo] => Cinza
+    [id] => 200
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-09 08:49:02
+    [Obs] => FIESTA DO LUIZ
+    [ControleOrigem] => 200
+)
+
+Array
+(
+    [Data] => 2026-03-09
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => ISH5D55
+    [ModeloVeiculo] => FIESTA
+    [CorVeiculo] => Cinza
+    [id] => 200
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-09 08:50:05
+    [Obs] => FIESTA DO LUIZ
+    [ControleOrigem] => 200
+)
+
+Array
+(
+    [Data] => 2026-03-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 207
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-10 11:31:24
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 207
+)
+
+Array
+(
+    [Data] => 2026-03-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 207
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-10 11:35:28
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 207
+)
+
+Array
+(
+    [Data] => 2026-03-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 208
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-10 11:36:56
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 208
+)
+
+Array
+(
+    [Data] => 2026-03-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 209
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-10 11:38:29
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 209
+)
+
+Array
+(
+    [Data] => 2026-03-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 209
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-10 11:39:29
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 209
+)
+
+Array
+(
+    [Data] => 2026-03-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 209
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-10 11:39:47
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 209
+)
+
+Array
+(
+    [Data] => 2026-03-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 209
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-10 11:39:59
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 209
+)
+
+Array
+(
+    [Data] => 2026-03-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 214
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-10 13:40:06
+    [Obs] => TESTE
+    [idUser] => 24
+    [ControleOrigem] => 214
+)
+
+Array
+(
+    [Data] => 2026-03-16
+    [Status] => 2
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => AUG0F52
+    [ModeloVeiculo] => Cruze
+    [CorVeiculo] => Cinza
+    [id] => 221
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-16 17:52:19
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 221
+)
+
+Array
+(
+    [Data] => 2026-03-16
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => AUG0F52
+    [ModeloVeiculo] => HB20
+    [CorVeiculo] => Vermelho
+    [id] => 222
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-16
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 222
+)
+
+Array
+(
+    [Data] => 2026-03-16
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => AUG0F52
+    [ModeloVeiculo] => HB20
+    [CorVeiculo] => Vermelho
+    [id] => 222
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-17
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 222
+)
+
+Array
+(
+    [Data] => 2026-03-16
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => AUG0F52
+    [ModeloVeiculo] => HB20
+    [CorVeiculo] => Vermelho
+    [id] => 222
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 222
+)
+
+Array
+(
+    [Data] => 2026-03-16
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => AUG0F52
+    [ModeloVeiculo] => HB20
+    [CorVeiculo] => Vermelho
+    [id] => 222
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-17
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 222
+)
+
+Array
+(
+    [Data] => 2026-03-16
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => AUG0F52
+    [ModeloVeiculo] => HB20
+    [CorVeiculo] => Vermelho
+    [id] => 222
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 222
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-17
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 38
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 38
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 38
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-17 15:42:06
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 2
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-17 15:42:31
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-17 15:44:15
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 4
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 38
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 4
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 4
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 4
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 4
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 38
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 2
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-17 16:07:21
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 4
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-17
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 38
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 225
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 225
+)
+
+Array
+(
+    [Data] => 2026-03-20
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 232
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-20
+    [Obs] => 
+    [idUser] => 23
+    [ControleOrigem] => 232
+)
+
+Array
+(
+    [Data] => 2026-03-20
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 38
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 236
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 23
+    [ControleOrigem] => 236
+)
+
+Array
+(
+    [Data] => 2026-03-20
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 36
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 236
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 23
+    [ControleOrigem] => 236
+)
+
+Array
+(
+    [Data] => 2026-03-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 42
+    [ForcliRepasse] => 42
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 239
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-24
+    [Obs] => asdad
+    [idUser] => 24
+    [ControleOrigem] => 239
+)
+
+Array
+(
+    [Data] => 2026-03-22
+    [Status] => 4
+    [CondPgto] => 1
+    [Forcli] => 47
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 242
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => teste lucas
+    [idUser] => 24
+    [ControleOrigem] => 242
+)
+
+Array
+(
+    [Data] => 2026-03-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 47
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 242
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-22
+    [Obs] => teste lucas
+    [idUser] => 24
+    [ControleOrigem] => 242
+)
+
+Array
+(
+    [Data] => 2026-03-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 243
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-22
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 243
+)
+
+Array
+(
+    [Data] => 2026-03-22
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 243
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 243
+)
+
+Array
+(
+    [Data] => 2026-03-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 243
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-22
+    [Obs] => TESTE LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 243
+)
+
+Array
+(
+    [Data] => 2026-03-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 244
+    [idEmpresa] => 11
+    [DataPgto] => 2026-03-22
+    [Obs] => teste do lucas
+    [idUser] => 24
+    [ControleOrigem] => 244
+)
+
+Array
+(
+    [Data] => 2026-03-23
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 36
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ISM5D04
+    [ModeloVeiculo] => FIESTA
+    [CorVeiculo] => Azul
+    [id] => 247
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 23
+    [ControleOrigem] => 247
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 69
+    [ForcliRepasse] => 69
+    [PlacaVeiculo] => INF6J40
+    [ModeloVeiculo] => CORSA
+    [CorVeiculo] => Vermelho
+    [id] => 255
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 23
+    [ControleOrigem] => 255
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 54
+    [ForcliRepasse] => 54
+    [PlacaVeiculo] => IXZ7D95
+    [ModeloVeiculo] => AUDI
+    [CorVeiculo] => Branco
+    [id] => 257
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 23
+    [ControleOrigem] => 257
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IDK1H89
+    [ModeloVeiculo] => OPALA
+    [CorVeiculo] => Preto
+    [id] => 260
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 260
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 263
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 263
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 45
+    [ForcliRepasse] => 45
+    [PlacaVeiculo] => IJK9J08
+    [ModeloVeiculo] => TITAN
+    [CorVeiculo] => Prata
+    [id] => 254
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 254
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IZU0G99
+    [ModeloVeiculo] => COBALT
+    [CorVeiculo] => Preto
+    [id] => 259
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 259
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IZU0G99
+    [ModeloVeiculo] => COBALT
+    [CorVeiculo] => Preto
+    [id] => 259
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 259
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IZU0G99
+    [ModeloVeiculo] => COBALT
+    [CorVeiculo] => Preto
+    [id] => 259
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 259
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 45
+    [ForcliRepasse] => 45
+    [PlacaVeiculo] => IJK9J08
+    [ModeloVeiculo] => TITAN
+    [CorVeiculo] => Prata
+    [id] => 254
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 254
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 69
+    [ForcliRepasse] => 69
+    [PlacaVeiculo] => INF6J40
+    [ModeloVeiculo] => CORSA
+    [CorVeiculo] => Vermelho
+    [id] => 255
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 255
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 256
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 256
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 54
+    [ForcliRepasse] => 54
+    [PlacaVeiculo] => IXZ7D95
+    [ModeloVeiculo] => AUDI
+    [CorVeiculo] => Branco
+    [id] => 257
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 257
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IPJ7B24
+    [ModeloVeiculo] => BIZ
+    [CorVeiculo] => Cinza
+    [id] => 258
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 258
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IZU0G99
+    [ModeloVeiculo] => COBALT
+    [CorVeiculo] => Preto
+    [id] => 259
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 259
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IDK1H89
+    [ModeloVeiculo] => OPALA
+    [CorVeiculo] => Preto
+    [id] => 260
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 260
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 261
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 261
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 262
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 262
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 263
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 263
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 264
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 264
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 265
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 265
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IYV5A07
+    [ModeloVeiculo] => SENTRA
+    [CorVeiculo] => Branco
+    [id] => 266
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 266
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 267
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 267
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 268
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 268
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IZU0G99
+    [ModeloVeiculo] => COBALT
+    [CorVeiculo] => Preto
+    [id] => 259
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 259
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 45
+    [ForcliRepasse] => 45
+    [PlacaVeiculo] => IJK9J08
+    [ModeloVeiculo] => TITAN
+    [CorVeiculo] => Prata
+    [id] => 254
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 254
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 69
+    [ForcliRepasse] => 69
+    [PlacaVeiculo] => INF6J40
+    [ModeloVeiculo] => CORSA
+    [CorVeiculo] => Vermelho
+    [id] => 255
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 255
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 54
+    [ForcliRepasse] => 54
+    [PlacaVeiculo] => IXZ7D95
+    [ModeloVeiculo] => AUDI
+    [CorVeiculo] => Branco
+    [id] => 257
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 257
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IZU0G99
+    [ModeloVeiculo] => COBALT
+    [CorVeiculo] => Preto
+    [id] => 259
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 259
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IYV5A07
+    [ModeloVeiculo] => SENTRA
+    [CorVeiculo] => Branco
+    [id] => 266
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 266
+)
+
+Array
+(
+    [Data] => 2026-04-02
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 56
+    [ForcliRepasse] => 56
+    [PlacaVeiculo] => ITP7883
+    [ModeloVeiculo] => AGILE
+    [CorVeiculo] => Prata
+    [id] => 276
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 276
+)
+
+Array
+(
+    [Data] => 2026-04-02
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IFC9242
+    [ModeloVeiculo] => GOL
+    [CorVeiculo] => Branco
+    [id] => 272
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-02
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 272
+)
+
+Array
+(
+    [Data] => 2026-04-02
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 38
+    [PlacaVeiculo] => OQN7A74
+    [ModeloVeiculo] => SANDERO
+    [CorVeiculo] => Cinza
+    [id] => 281
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 281
+)
+
+Array
+(
+    [Data] => 2026-04-02
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 38
+    [PlacaVeiculo] => ITP7883
+    [ModeloVeiculo] => AGILE
+    [CorVeiculo] => Prata
+    [id] => 276
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 276
+)
+
+Array
+(
+    [Data] => 2026-04-02
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 56
+    [PlacaVeiculo] => ITP7883
+    [ModeloVeiculo] => AGILE
+    [CorVeiculo] => Prata
+    [id] => 276
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 276
+)
+
+Array
+(
+    [Data] => 2026-04-02
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 71
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IRE4436
+    [ModeloVeiculo] => PRISMA
+    [CorVeiculo] => Prata
+    [id] => 288
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 288
+)
+
+Array
+(
+    [Data] => 2026-04-02
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IRE4436
+    [ModeloVeiculo] => PRISMA
+    [CorVeiculo] => Prata
+    [id] => 284
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-02
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 284
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IZU0G99
+    [ModeloVeiculo] => COBALT
+    [CorVeiculo] => Preto
+    [id] => 259
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 259
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 40
+    [ForcliRepasse] => 40
+    [PlacaVeiculo] => ITF6I45
+    [ModeloVeiculo] => POLO
+    [CorVeiculo] => Vermelho
+    [id] => 292
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 292
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 36
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => EII1G76
+    [ModeloVeiculo] => KICKS
+    [CorVeiculo] => Prata
+    [id] => 296
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 296
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 39
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => INF9D67
+    [ModeloVeiculo] => CELTA
+    [CorVeiculo] => Branco
+    [id] => 295
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 295
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 39
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INF9D67
+    [ModeloVeiculo] => CELTA
+    [CorVeiculo] => Branco
+    [id] => 295
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 295
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 40
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => POLO
+    [CorVeiculo] => 
+    [id] => 319
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 319
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 56
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => POLO
+    [CorVeiculo] => 
+    [id] => 318
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 318
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IQJ3J55
+    [ModeloVeiculo] => ZAFIRA
+    [CorVeiculo] => Bege
+    [id] => 297
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 297
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 39
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INF9D67
+    [ModeloVeiculo] => CELTA
+    [CorVeiculo] => Branco
+    [id] => 294
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => DESCONTOU DO CLIENTE
+    [idUser] => 29
+    [ControleOrigem] => 294
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 39
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INF9D67
+    [ModeloVeiculo] => CELTA
+    [CorVeiculo] => Branco
+    [id] => 295
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => DESCONTOU DO CLIENTE
+    [idUser] => 29
+    [ControleOrigem] => 295
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 39
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INQ7227
+    [ModeloVeiculo] => GOL
+    [CorVeiculo] => Prata
+    [id] => 323
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => CLIENTE PAGOU WAGNER
+    [idUser] => 29
+    [ControleOrigem] => 323
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 36
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 327
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE DO LUCAS -> VOU EXCLUIR
+    [idUser] => 24
+    [ControleOrigem] => 327
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 36
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 327
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE DO LUCAS -> VOU EXCLUIR
+    [idUser] => 24
+    [ControleOrigem] => 327
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 36
+    [ForcliRepasse] => 36
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 327
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE DO LUCAS -> VOU EXCLUIR
+    [idUser] => 24
+    [ControleOrigem] => 327
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 74
+    [ForcliRepasse] => 74
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 328
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 328
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 74
+    [ForcliRepasse] => 74
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 328
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 328
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 74
+    [ForcliRepasse] => 74
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 328
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 24
+    [ControleOrigem] => 328
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 39
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INF9D67
+    [ModeloVeiculo] => CELTA
+    [CorVeiculo] => Branco
+    [id] => 294
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => DESCONTOU DO CLIENTE
+    [idUser] => 29
+    [ControleOrigem] => 294
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IQJ3J55
+    [ModeloVeiculo] => ZAFIRA
+    [CorVeiculo] => Bege
+    [id] => 297
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 297
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 39
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INF9D67
+    [ModeloVeiculo] => CELTA
+    [CorVeiculo] => Branco
+    [id] => 295
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => DESCONTOU DO CLIENTE
+    [idUser] => 29
+    [ControleOrigem] => 295
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INF9D67
+    [ModeloVeiculo] => CELTA
+    [CorVeiculo] => Branco
+    [id] => 294
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => DESCONTOU DO CLIENTE
+    [idUser] => 29
+    [ControleOrigem] => 294
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INQ7227
+    [ModeloVeiculo] => GOL
+    [CorVeiculo] => Prata
+    [id] => 323
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => CLIENTE PAGOU WAGNER
+    [idUser] => 29
+    [ControleOrigem] => 323
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INF9D67
+    [ModeloVeiculo] => CELTA
+    [CorVeiculo] => Branco
+    [id] => 295
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => DESCONTOU DO CLIENTE
+    [idUser] => 29
+    [ControleOrigem] => 295
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INQ7227
+    [ModeloVeiculo] => GOL
+    [CorVeiculo] => Prata
+    [id] => 323
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => CLIENTE PAGOU WAGNER
+    [idUser] => 29
+    [ControleOrigem] => 323
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 56
+    [ForcliRepasse] => 56
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => Prata
+    [id] => 346
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 346
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 56
+    [ForcliRepasse] => 56
+    [PlacaVeiculo] => INQ3I72
+    [ModeloVeiculo] => CELTA
+    [CorVeiculo] => Branco
+    [id] => 346
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 346
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 56
+    [ForcliRepasse] => 56
+    [PlacaVeiculo] => INQ3I72
+    [ModeloVeiculo] => CELTA
+    [CorVeiculo] => Branco
+    [id] => 346
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 346
+)
+
+Array
+(
+    [Data] => 2026-04-09
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 356
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-09
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 356
+)
+
+Array
+(
+    [Data] => 2026-04-09
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 358
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-09
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 358
+)
+
+Array
+(
+    [Data] => 2026-04-09
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IZU8C25
+    [ModeloVeiculo] => SIENA
+    [CorVeiculo] => Vermelho
+    [id] => 352
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 352
+)
+
+Array
+(
+    [Data] => 2026-04-09
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 39
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INQ7C27
+    [ModeloVeiculo] => GOL
+    [CorVeiculo] => Prata
+    [id] => 353
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 353
+)
+
+Array
+(
+    [Data] => 2026-04-10
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 69
+    [ForcliRepasse] => 69
+    [PlacaVeiculo] => IMI0821
+    [ModeloVeiculo] => CELTA
+    [CorVeiculo] => Prata
+    [id] => 375
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 375
+)
+
+Array
+(
+    [Data] => 2026-04-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ILW2236
+    [ModeloVeiculo] => GOL
+    [CorVeiculo] => Cinza
+    [id] => 376
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-10
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 376
+)
+
+Array
+(
+    [Data] => 2026-04-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 70
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 379
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-10
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 379
+)
+
+Array
+(
+    [Data] => 2026-04-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 380
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-10
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 380
+)
+
+Array
+(
+    [Data] => 2026-04-10
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 42
+    [ForcliRepasse] => 42
+    [PlacaVeiculo] => IZE8D09
+    [ModeloVeiculo] => CRONOS
+    [CorVeiculo] => Branco
+    [id] => 369
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 369
+)
+
+Array
+(
+    [Data] => 2026-04-10
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 41
+    [ForcliRepasse] => 41
+    [PlacaVeiculo] => IRQ5683
+    [ModeloVeiculo] => BIZ
+    [CorVeiculo] => Vermelho
+    [id] => 368
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 368
+)
+
+Array
+(
+    [Data] => 2026-04-13
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IZA3E98
+    [ModeloVeiculo] => TUCSON
+    [CorVeiculo] => Cinza
+    [id] => 392
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 392
+)
+
+Array
+(
+    [Data] => 2026-04-13
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 397
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-13
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 397
+)
+
+Array
+(
+    [Data] => 2026-04-13
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 397
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-13
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 397
+)
+
+Array
+(
+    [Data] => 2026-04-13
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 397
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-13
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 397
+)
+
+Array
+(
+    [Data] => 2026-04-13
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IPV3627
+    [ModeloVeiculo] => GOL
+    [CorVeiculo] => Preto
+    [id] => 407
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-13
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 407
+)
+
+Array
+(
+    [Data] => 2026-04-13
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IPV3627
+    [ModeloVeiculo] => GOL
+    [CorVeiculo] => Preto
+    [id] => 407
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-13
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 407
+)
+
+Array
+(
+    [Data] => 2026-04-13
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IBO5005
+    [ModeloVeiculo] => UNO
+    [CorVeiculo] => Vermelho
+    [id] => 404
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-13
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 404
+)
+
+Array
+(
+    [Data] => 2026-04-13
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IKQ8906
+    [ModeloVeiculo] => BIZ
+    [CorVeiculo] => Prata
+    [id] => 403
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-13
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 403
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INF9D67
+    [ModeloVeiculo] => CELTA
+    [CorVeiculo] => Branco
+    [id] => 294
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => DESCONTOU DO CLIENTE
+    [idUser] => 29
+    [ControleOrigem] => 294
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 39
+    [PlacaVeiculo] => INQ7227
+    [ModeloVeiculo] => GOL
+    [CorVeiculo] => Prata
+    [id] => 323
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => CLIENTE PAGOU WAGNER
+    [idUser] => 29
+    [ControleOrigem] => 323
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IKL5J50
+    [ModeloVeiculo] => BIZ
+    [CorVeiculo] => Preto
+    [id] => 343
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-08
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 343
+)
+
+Array
+(
+    [Data] => 2026-04-15
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 38
+    [PlacaVeiculo] => IZT3B11
+    [ModeloVeiculo] => REBOQUE
+    [CorVeiculo] => Branco
+    [id] => 429
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => RICARDO LENHARDT
+    [idUser] => 29
+    [ControleOrigem] => 429
+)
+
+Array
+(
+    [Data] => 2026-04-15
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 52
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => JRI0J92
+    [ModeloVeiculo] => FIESTA
+    [CorVeiculo] => Preto
+    [id] => 431
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-14
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 431
+)
+
+Array
+(
+    [Data] => 2026-04-17
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IRK4E61
+    [ModeloVeiculo] => AGILE
+    [CorVeiculo] => Vermelho
+    [id] => 451
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-17
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 451
+)
+
+Array
+(
+    [Data] => 2026-04-17
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 56
+    [ForcliRepasse] => 56
+    [PlacaVeiculo] => IOK0D59
+    [ModeloVeiculo] => FOX
+    [CorVeiculo] => Vermelho
+    [id] => 474
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 23
+    [ControleOrigem] => 474
+)
+
+Array
+(
+    [Data] => 2026-04-20
+    [Status] => 4
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 482
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 482
+)
+
+Array
+(
+    [Data] => 2026-04-20
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 482
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-20
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 482
+)
+
+Array
+(
+    [Data] => 2026-04-20
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => AAA0100
+    [ModeloVeiculo] => KIA BONGO
+    [CorVeiculo] => Preto
+    [id] => 482
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-20
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 482
+)
+
+Array
+(
+    [Data] => 2026-04-20
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 77
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => JAI3A09
+    [ModeloVeiculo] => I30 WAGON
+    [CorVeiculo] => Preto
+    [id] => 485
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-20
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 485
+)
+
+Array
+(
+    [Data] => 2026-04-20
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 77
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => JAI3A09
+    [ModeloVeiculo] => I30 WAGON
+    [CorVeiculo] => Preto
+    [id] => 485
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-20
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 485
+)
+
+Array
+(
+    [Data] => 2026-04-20
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IZS3E21
+    [ModeloVeiculo] => CG 160
+    [CorVeiculo] => Preto
+    [id] => 495
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-20
+    [Obs] => 
+    [idUser] => 23
+    [ControleOrigem] => 495
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 79
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 498
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-01
+    [Obs] => IIM9F85
+    [idUser] => 30
+    [ControleOrigem] => 498
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 9 - APRESENTAÇÃO DE CONDUTOR RAYZA-THAIS: E032768220 - E032782300 - E032783941 - E032944678 - E032944720 - E033018825 - E033018839 - E033100274 - E033102356
+
+2 - RECURSO RAYZA - EL00084704 + A MULTA QUE VAI GERAR DA MESMA
+
+9 - RECURSOS THAIS: E032768220 - E032782300 - E032783941 - E032944678 - E032944720 - E033018825 - E033018839 - E033100274 - E033102356
+
+2 - APRESENTAÇÃO DE CONDUTOR SABRINA-GABRIELA: E032892733 - E032892746
+
+ACOMPANHAMENTO POR UM ANO CNH - GABRIELA, THAIS E RAYZA.
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => QHN5A57
+    [ModeloVeiculo] => PRISMA
+    [CorVeiculo] => Branco
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => RUJ6RTUIJRT
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 2 - APRESENTAÇÃO DE CONDUTOR - SABRINA-GABRIELA - E032892733 - E032892746
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 2 - APRESENTAÇÃO DE CONDUTOR - SABRINA-GABRIELA - E032892733 - E032892746
+2 - RECURSO CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 2 - APRESENTAÇÃO DE CONDUTOR - SABRINA-GABRIELA - E032892733 - E032892746
+2 - RECURSO CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+9 - APRESENTAÇÃO CONDUTOR RAYZA-THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 2 - APRESENTAÇÃO DE CONDUTOR - SABRINA-GABRIELA - E032892733 - E032892746
+2 - RECURSO CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+9 - APRESENTAÇÃO CONDUTOR RAYZA-THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+9 - RECURSO CNH THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+ACOMPANHAMENTO POR UM ANO CNH GABRIELA, THAIS E RAYZA.
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 2 - APRESENTAÇÃO DE CONDUTOR - SABRINA-GABRIELA - E032892733 - E032892746
+2 - RECURSO CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+9 - APRESENTAÇÃO CONDUTOR RAYZA-THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+9 - RECURSO CNH THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 2 - APRESENTAÇÃO DE CONDUTOR - SABRINA-GABRIELA - E032892733 - E032892746 / 2 - RECURSO CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+9 - APRESENTAÇÃO CONDUTOR RAYZA-THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+9 - RECURSO CNH THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 2 - A/C - SABRINA-GABRIELA - E032892733, E032892746
+2 - R CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+9 - A/C RAYZA-THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+9 - R CNH THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 2 - A/C - SABRINA-GABRIELA - E032892733, E032892746 / 2 - R CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+9 - A/C RAYZA-THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+9 - R CNH THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 2 - A/C - SABRINA-GABRIELA - E032892733, E032892746
+2 - R CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+9 - A/C RAYZA-THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+9 - R CNH THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 2 - A/C - SABRINA-GABRIELA - E032892733, E032892746
+2 - R CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+9 - A/C RAYZA-THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+9 - R CNH THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 2 - A/C - SABRINA-GABRIELA - E032892733, E032892746 - PRISMA QHN5A57
+2 - R CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+9 - A/C RAYZA-THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+9 - R CNH THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 81
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ITI8F01
+    [ModeloVeiculo] => VW SAVEIRO
+    [CorVeiculo] => Cinza
+    [id] => 501
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-22
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 501
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 82
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => RVM1I87
+    [ModeloVeiculo] => CHEV/ ONIX
+    [CorVeiculo] => Azul
+    [id] => 502
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-22
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 502
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 2 - A/C - SABRINA-GABRIELA - E032892733, E032892746 - PRISMA QHN5A57
+2 - R CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+9 - A/C RAYZA-THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+9 - R CNH THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-20
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 45
+    [ForcliRepasse] => 45
+    [PlacaVeiculo] => ITM4A72
+    [ModeloVeiculo] => BIZ
+    [CorVeiculo] => Vermelho
+    [id] => 493
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 493
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-22
+    [Obs] => 2 - A/C - SABRINA-GABRIELA - E032892733, E032892746 - PRISMA QHN5A57
+2 - R CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+9 - A/C RAYZA-THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+9 - R CNH THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 82
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => RVM1I87
+    [ModeloVeiculo] => CHEV/ ONIX
+    [CorVeiculo] => Azul
+    [id] => 502
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-22
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 502
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 84
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 516
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-22
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 516
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 79
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IIM9F85
+    [ModeloVeiculo] => CORSA
+    [CorVeiculo] => Branco
+    [id] => 498
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-01
+    [Obs] => CANCELAMENTO DE COMUNICAÇÃO DE VENDA
+    [idUser] => 30
+    [ControleOrigem] => 498
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 85
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => JAV4I69
+    [ModeloVeiculo] => CG 160 FAN
+    [CorVeiculo] => Preto
+    [id] => 519
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-22
+    [Obs] => E032701705
+    [idUser] => 30
+    [ControleOrigem] => 519
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 503
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-22
+    [Obs] => 
+    [idUser] => 24
+    [ControleOrigem] => 503
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 86
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 521
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 521
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 86
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IVJ3F76
+    [ModeloVeiculo] => HB20
+    [CorVeiculo] => Branco
+    [id] => 521
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 521
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 86
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IVJ3F76
+    [ModeloVeiculo] => HB20
+    [CorVeiculo] => Branco
+    [id] => 521
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-01
+    [Obs] => CLIENTE LOJA
+    [idUser] => 30
+    [ControleOrigem] => 521
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 523
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-01
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 523
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 1
+    [CondPgto] => 3
+    [Forcli] => 89
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ERG6J03
+    [ModeloVeiculo] => VW SPACEFOX
+    [CorVeiculo] => Cinza
+    [id] => 527
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-22
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 527
+)
+
+Array
+(
+    [Data] => 2026-04-16
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 38
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 437
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-18
+    [Obs] => RICARDO LENHARDT
+    [idUser] => 29
+    [ControleOrigem] => 437
+)
+
+Array
+(
+    [Data] => 2026-04-13
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 40
+    [ForcliRepasse] => 40
+    [PlacaVeiculo] => INP8E76
+    [ModeloVeiculo] => TITAN
+    [CorVeiculo] => Preto
+    [id] => 388
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 388
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 76
+    [PlacaVeiculo] => IVT2E75
+    [ModeloVeiculo] => CHEV/COBALT
+    [CorVeiculo] => 
+    [id] => 576
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 576
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 94
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IMC5486
+    [ModeloVeiculo] => FOX
+    [CorVeiculo] => Vermelho
+    [id] => 582
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 582
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 96
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IQU8A80
+    [ModeloVeiculo] => CR-V 
+    [CorVeiculo] => Prata
+    [id] => 587
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-07
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 587
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 45
+    [ForcliRepasse] => 45
+    [PlacaVeiculo] => IKJ1664
+    [ModeloVeiculo] => YBR
+    [CorVeiculo] => Verde
+    [id] => 595
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 595
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 45
+    [ForcliRepasse] => 45
+    [PlacaVeiculo] => IKJ1664
+    [ModeloVeiculo] => YBR
+    [CorVeiculo] => Verde
+    [id] => 595
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 595
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 76
+    [PlacaVeiculo] => IVT2E75
+    [ModeloVeiculo] => CHEV/COBALT
+    [CorVeiculo] => 
+    [id] => 576
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 576
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 76
+    [PlacaVeiculo] => ITW5505
+    [ModeloVeiculo] => RENAULT SYMBOL
+    [CorVeiculo] => 
+    [id] => 577
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 577
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 95
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => JXU6B76
+    [ModeloVeiculo] => CR-V 
+    [CorVeiculo] => Preto
+    [id] => 584
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => TRANSFERENCIA DE PONTUAÇÃO PARA O VICTOR CANCELADA  (J007045396 - E032632367) POIS O MESMO NÃO POSSUIA O CONTRATO DA LOJA QUE ESTA O NOME A CRV, FOI DECIDIDO RECCORER TODAS AS MULTAS NO NOME DA STEFANI
+ 
+RECURSOS NO NOME DA STEFANI - D008895142 - E031985492 - E031985762 - D008930561 - D008930563 - J007045396 - E032632367 - D008760014 - D008775289 - D009013525 - E032263950
+    [idUser] => 30
+    [ControleOrigem] => 584
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 101
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IPE4159
+    [ModeloVeiculo] => CG150
+    [CorVeiculo] => 
+    [id] => 607
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 607
+)
+
+Array
+(
+    [Data] => 2026-04-24
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IRS8I63
+    [ModeloVeiculo] => FUSION
+    [CorVeiculo] => Branco
+    [id] => 612
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 612
+)
+
+Array
+(
+    [Data] => 2026-04-24
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => FVL8C48
+    [ModeloVeiculo] => GOLF
+    [CorVeiculo] => Branco
+    [id] => 614
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 614
+)
+
+Array
+(
+    [Data] => 2026-04-24
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 616
+    [idEmpresa] => 11
+    [DataPgto] => 2026-04-24
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 616
+)
+
+Array
+(
+    [Data] => 2026-04-24
+    [Status] => 3
+    [CondPgto] => 1
+    [Forcli] => 40
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => MIF7999
+    [ModeloVeiculo] => PUNTO
+    [CorVeiculo] => Amarelo
+    [id] => 621
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 23
+    [ControleOrigem] => 621
+)
+
+Array
+(
+    [Data] => 2026-04-27
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 141
+    [ForcliRepasse] => 76
+    [PlacaVeiculo] => IXW2B89
+    [ModeloVeiculo] => PEUGEOT 2008
+    [CorVeiculo] => Branco
+    [id] => 674
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-30
+    [Obs] => CONCLUIDO
+    [idUser] => 30
+    [ControleOrigem] => 674
+)
+
+Array
+(
+    [Data] => 2026-04-17
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 81
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ITI8F01
+    [ModeloVeiculo] => VW SAVEIRO
+    [CorVeiculo] => Cinza
+    [id] => 501
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-22
+    [Obs] => CONCLUIDO
+    [idUser] => 30
+    [ControleOrigem] => 501
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 82
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => RVM1I87
+    [ModeloVeiculo] => CHEV/ ONIX
+    [CorVeiculo] => Azul
+    [id] => 502
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-22
+    [Obs] => CONCLUIDO
+    [idUser] => 30
+    [ControleOrigem] => 502
+)
+
+Array
+(
+    [Data] => 2026-04-17
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 81
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ITI8F01
+    [ModeloVeiculo] => VW SAVEIRO
+    [CorVeiculo] => Cinza
+    [id] => 501
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-22
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 501
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 79
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IIM9F85
+    [ModeloVeiculo] => CORSA
+    [CorVeiculo] => Branco
+    [id] => 498
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-01
+    [Obs] => CANCELAMENTO DE COMUNICAÇÃO DE VENDA - ✅
+    [idUser] => 30
+    [ControleOrigem] => 498
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 80
+    [PlacaVeiculo] => ITG3B17
+    [ModeloVeiculo] => XRE
+    [CorVeiculo] => Vermelho
+    [id] => 500
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-22
+    [Obs] => 2 - A/C - SABRINA-GABRIELA - E032892733, E032892746 - PRISMA QHN5A57
+2 - R CNH RAYZA - EL00084704 + A MULTA QUE A MESMA GERAR
+9 - A/C RAYZA-THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356
+9 - R CNH THAIS - E032768220, E032782300, E032783941, E032944678, E032944720, E033018825,E033018839, E033100274, E033102356 ✅
+    [idUser] => 30
+    [ControleOrigem] => 500
+)
+
+Array
+(
+    [Data] => 2026-04-22
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 82
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => RVM1I87
+    [ModeloVeiculo] => CHEV/ ONIX
+    [CorVeiculo] => Azul
+    [id] => 502
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-22
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 502
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 86
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IVJ3F76
+    [ModeloVeiculo] => HB20
+    [CorVeiculo] => Branco
+    [id] => 521
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-01
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 521
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 87
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => DOO6I19
+    [ModeloVeiculo] => 206
+    [CorVeiculo] => Preto
+    [id] => 522
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-01
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 522
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => PWO8H21
+    [ModeloVeiculo] => KA
+    [CorVeiculo] => Branco
+    [id] => 524
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 524
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 88
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => RVY8G99
+    [ModeloVeiculo] => HB20
+    [CorVeiculo] => Branco
+    [id] => 525
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 525
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 90
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => HWX0A13
+    [ModeloVeiculo] => KIA BONGO
+    [CorVeiculo] => Branco
+    [id] => 535
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 535
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 136
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ITF5C43
+    [ModeloVeiculo] => HYUNDAI ELANTRA
+    [CorVeiculo] => 
+    [id] => 537
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 537
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 136
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => JDL3H20
+    [ModeloVeiculo] => HONDA XRE
+    [CorVeiculo] => Vermelho
+    [id] => 538
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 538
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => QQD6B07
+    [ModeloVeiculo] => CHEV/PRISMA
+    [CorVeiculo] => Prata
+    [id] => 539
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 539
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => INO8I14
+    [ModeloVeiculo] => VW FOX
+    [CorVeiculo] => 
+    [id] => 540
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 540
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => FVS0E27
+    [ModeloVeiculo] => CHEV/PRISMA
+    [CorVeiculo] => 
+    [id] => 541
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 541
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => NSF0C64
+    [ModeloVeiculo] => GM/ CLASSIC 
+    [CorVeiculo] => 
+    [id] => 542
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 542
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ASS5E16
+    [ModeloVeiculo] => FIAT SIENA
+    [CorVeiculo] => 
+    [id] => 543
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 543
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => FIAT SIENA
+    [CorVeiculo] => 
+    [id] => 543
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 543
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IQJ2D91
+    [ModeloVeiculo] => FIAT SIENA
+    [CorVeiculo] => 
+    [id] => 543
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 543
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ISI9682
+    [ModeloVeiculo] => FORD FOCUS
+    [CorVeiculo] => 
+    [id] => 544
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 544
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => JAU5H80
+    [ModeloVeiculo] => VW VIRTUS
+    [CorVeiculo] => 
+    [id] => 545
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 545
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => HCG1487
+    [ModeloVeiculo] => FIAT PALIO
+    [CorVeiculo] => 
+    [id] => 546
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 546
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => HCG1487
+    [ModeloVeiculo] => FIAT PALIO
+    [CorVeiculo] => 
+    [id] => 546
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 546
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IPT3511
+    [ModeloVeiculo] => NISSAN LIVINA
+    [CorVeiculo] => 
+    [id] => 547
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 547
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => PAI6A24
+    [ModeloVeiculo] => EVOQUE
+    [CorVeiculo] => 
+    [id] => 548
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 548
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => QJP3J18
+    [ModeloVeiculo] => KIA BONGO
+    [CorVeiculo] => 
+    [id] => 549
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 549
+)
+
+Array
+(
+    [Data] => 2026-04-09
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => MHQ4J99
+    [ModeloVeiculo] => VW AMAROK
+    [CorVeiculo] => 
+    [id] => 550
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-09
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 550
+)
+
+Array
+(
+    [Data] => 2026-04-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => AXE7F72
+    [ModeloVeiculo] => VW JETTA
+    [CorVeiculo] => 
+    [id] => 553
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-10
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 553
+)
+
+Array
+(
+    [Data] => 2026-04-13
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IOI0F58
+    [ModeloVeiculo] => FIAT PALIO
+    [CorVeiculo] => 
+    [id] => 554
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-13
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 554
+)
+
+Array
+(
+    [Data] => 2026-04-14
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => OWJ0H11
+    [ModeloVeiculo] => RENAULT/SANDERO
+    [CorVeiculo] => 
+    [id] => 555
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-14
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 555
+)
+
+Array
+(
+    [Data] => 2026-04-14
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => RVJ4D02
+    [ModeloVeiculo] => FIAT MOBI
+    [CorVeiculo] => 
+    [id] => 556
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-14
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 556
+)
+
+Array
+(
+    [Data] => 2026-04-14
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => RVM1I87
+    [ModeloVeiculo] => CHEV/ONIX
+    [CorVeiculo] => 
+    [id] => 557
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-14
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 557
+)
+
+Array
+(
+    [Data] => 2026-04-14
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => MHH6909
+    [ModeloVeiculo] => VW SPACEFOX
+    [CorVeiculo] => 
+    [id] => 558
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-14
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 558
+)
+
+Array
+(
+    [Data] => 2026-04-14
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => MIZ7E92
+    [ModeloVeiculo] => HONDA CIVIC
+    [CorVeiculo] => 
+    [id] => 562
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-14
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 562
+)
+
+Array
+(
+    [Data] => 2026-04-14
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => JFD8A59
+    [ModeloVeiculo] => FORD FUSION
+    [CorVeiculo] => 
+    [id] => 564
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-14
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 564
+)
+
+Array
+(
+    [Data] => 2026-04-14
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => RHK6D27
+    [ModeloVeiculo] => FIAT STRADA
+    [CorVeiculo] => 
+    [id] => 565
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-14
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 565
+)
+
+Array
+(
+    [Data] => 2026-04-14
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => RVC6J29
+    [ModeloVeiculo] => CHEV/ ONIX
+    [CorVeiculo] => 
+    [id] => 566
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-14
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 566
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => BCX3I45
+    [ModeloVeiculo] => CHEV/MONTANA
+    [CorVeiculo] => 
+    [id] => 567
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-23
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 567
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IYP7J89
+    [ModeloVeiculo] => FIESTA
+    [CorVeiculo] => 
+    [id] => 568
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-23
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 568
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IWX3G86
+    [ModeloVeiculo] => VW UP
+    [CorVeiculo] => 
+    [id] => 569
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-23
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 569
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ORK9B25
+    [ModeloVeiculo] => FORD FUSION
+    [CorVeiculo] => 
+    [id] => 570
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-23
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 570
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => BDV3E49
+    [ModeloVeiculo] => CHEV/ONIX
+    [CorVeiculo] => 
+    [id] => 571
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-23
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 571
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => BCL4C04
+    [ModeloVeiculo] => VW SAVEIRO
+    [CorVeiculo] => 
+    [id] => 572
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-23
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 572
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => MBW4C45
+    [ModeloVeiculo] => GM/ CORSA
+    [CorVeiculo] => 
+    [id] => 573
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-23
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 573
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IUY2B07
+    [ModeloVeiculo] => CHEV/MONTANA
+    [CorVeiculo] => 
+    [id] => 574
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-23
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 574
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IUY2B07
+    [ModeloVeiculo] => CHEV/MONTANA
+    [CorVeiculo] => 
+    [id] => 574
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-23
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 574
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => QNU0J69
+    [ModeloVeiculo] => HYUNDAI HB20
+    [CorVeiculo] => 
+    [id] => 575
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-23
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 575
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => QNU0J69
+    [ModeloVeiculo] => HYUNDAI HB20
+    [CorVeiculo] => 
+    [id] => 575
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-23
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 575
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 150
+    [ForcliRepasse] => 76
+    [PlacaVeiculo] => IVT2E75
+    [ModeloVeiculo] => CHEV/COBALT
+    [CorVeiculo] => 
+    [id] => 576
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-30
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 576
+)
+
+Array
+(
+    [Data] => 2026-04-23
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 151
+    [ForcliRepasse] => 151
+    [PlacaVeiculo] => ITW5505
+    [ModeloVeiculo] => RENAULT SYMBOL
+    [CorVeiculo] => 
+    [id] => 577
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-23
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 577
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 92
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ITY5I27
+    [ModeloVeiculo] => FIESTA
+    [CorVeiculo] => Branco
+    [id] => 578
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => Emissão de atpv + comunicado de venda na data do contrato! ✅
+    [idUser] => 30
+    [ControleOrigem] => 578
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IQY3F97
+    [ModeloVeiculo] => 207
+    [CorVeiculo] => Prata
+    [id] => 579
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 579
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 93
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IXS9A42
+    [ModeloVeiculo] => ONIX
+    [CorVeiculo] => Branco
+    [id] => 580
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 580
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 94
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IMC5486
+    [ModeloVeiculo] => FOX
+    [CorVeiculo] => Vermelho
+    [id] => 582
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 582
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 94
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IUL3E24
+    [ModeloVeiculo] => C3
+    [CorVeiculo] => Branco
+    [id] => 583
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 583
+)
+
+Array
+(
+    [Data] => 2026-04-06
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 95
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => JXU6B76
+    [ModeloVeiculo] => CR-V 
+    [CorVeiculo] => Preto
+    [id] => 584
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-06
+    [Obs] => TRANSFERENCIA DE PONTUAÇÃO PARA O VICTOR CANCELADA  (J007045396 - E032632367) POIS O MESMO NÃO POSSUIA O CONTRATO DA LOJA QUE ESTA O NOME A CRV, FOI DECIDIDO RECCORER TODAS AS MULTAS NO NOME DA STEFANI
+ 
+RECURSOS NO NOME DA STEFANI - D008895142 - E031985492 - E031985762 - D008930561 - D008930563 - J007045396 - E032632367 - D008760014 - D008775289 - D009013525 - E032263950
+    [idUser] => 30
+    [ControleOrigem] => 584
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 96
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IQU8A80
+    [ModeloVeiculo] => CR-V 
+    [CorVeiculo] => Prata
+    [id] => 587
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-07
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 587
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 97
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ITE5J55
+    [ModeloVeiculo] => FIESTA
+    [CorVeiculo] => Vermelho
+    [id] => 588
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-07
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 588
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 98
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IRB9J13
+    [ModeloVeiculo] => 207
+    [CorVeiculo] => Preto
+    [id] => 590
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-07
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 590
+)
+
+Array
+(
+    [Data] => 2026-04-07
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 99
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IQE4A26
+    [ModeloVeiculo] => UNO
+    [CorVeiculo] => Branco
+    [id] => 606
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-07
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 606
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 101
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IPE4159
+    [ModeloVeiculo] => CG150
+    [CorVeiculo] => 
+    [id] => 607
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 607
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 102
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ASS5E16
+    [ModeloVeiculo] => AUDI
+    [CorVeiculo] => Prata
+    [id] => 608
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 608
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 103
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ILD6141
+    [ModeloVeiculo] => CG125
+    [CorVeiculo] => 
+    [id] => 609
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 609
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 104
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ILF8E42
+    [ModeloVeiculo] => POLO
+    [CorVeiculo] => Preto
+    [id] => 610
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 610
+)
+
+Array
+(
+    [Data] => 2026-04-08
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 105
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => HLP8F44
+    [ModeloVeiculo] => IDEA
+    [CorVeiculo] => Preto
+    [id] => 611
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-08
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 611
+)
+
+Array
+(
+    [Data] => 2026-04-01
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 80
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ISN4B97
+    [ModeloVeiculo] => CG150
+    [CorVeiculo] => 
+    [id] => 627
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-01
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 627
+)
+
+Array
+(
+    [Data] => 2026-04-09
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 106
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IGA2A94
+    [ModeloVeiculo] => CORSA
+    [CorVeiculo] => 
+    [id] => 631
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-09
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 631
+)
+
+Array
+(
+    [Data] => 2026-04-09
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 107
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => ITS5J29
+    [ModeloVeiculo] => CBR
+    [CorVeiculo] => 
+    [id] => 632
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-09
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 632
+)
+
+Array
+(
+    [Data] => 2026-04-09
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 109
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => PLR2J71
+    [ModeloVeiculo] => LOGAN
+    [CorVeiculo] => Branco
+    [id] => 634
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-09
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 634
+)
+
+Array
+(
+    [Data] => 2026-04-09
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 107
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IZR6E96
+    [ModeloVeiculo] => CG160
+    [CorVeiculo] => 
+    [id] => 635
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-09
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 635
+)
+
+Array
+(
+    [Data] => 2026-04-09
+    [Status] => 1
+    [CondPgto] => 2
+    [Forcli] => 110
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => IXD1E79
+    [ModeloVeiculo] => BIZ
+    [CorVeiculo] => Branco
+    [id] => 636
+    [idEmpresa] => 16
+    [DataPgto] => 2026-04-09
+    [Obs] => ✅
+    [idUser] => 30
+    [ControleOrigem] => 636
+)
+
+Array
+(
+    [Data] => 2026-05-05
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 76
+    [PlacaVeiculo] => FYV0004
+    [ModeloVeiculo] => HONDA/FIT
+    [CorVeiculo] => Prata
+    [id] => 901
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 901
+)
+
+Array
+(
+    [Data] => 2026-05-05
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 76
+    [ForcliRepasse] => 76
+    [PlacaVeiculo] => AXI9440
+    [ModeloVeiculo] => VW/FOX
+    [CorVeiculo] => Branco
+    [id] => 902
+    [idEmpresa] => 16
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 30
+    [ControleOrigem] => 902
+)
+
+Array
+(
+    [Data] => 2026-05-05
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => AYK9I48
+    [ModeloVeiculo] => SPIN
+    [CorVeiculo] => Preto
+    [id] => 916
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-05
+    [Obs] => 
+    [idUser] => 29
+    [ControleOrigem] => 916
+)
+

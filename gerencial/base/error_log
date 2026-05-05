@@ -1,0 +1,40 @@
+[08-Mar-2026 12:25:09 America/Fortaleza] PHP Warning:  Undefined variable $db in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 12
+[08-Mar-2026 12:25:09 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php:12
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 12
+[08-Mar-2026 12:26:34 America/Fortaleza] PHP Warning:  Undefined variable $db in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 12
+[08-Mar-2026 12:26:34 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php:12
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 12
+[08-Mar-2026 12:28:46 America/Fortaleza] PHP Warning:  require(base/connection.php): Failed to open stream: No such file or directory in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 3
+[08-Mar-2026 12:28:46 America/Fortaleza] PHP Fatal error:  Uncaught Error: Failed opening required 'base/connection.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php:3
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 3
+[08-Mar-2026 12:29:22 America/Fortaleza] PHP Warning:  Undefined variable $db in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 68
+[08-Mar-2026 12:29:22 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php:68
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 68
+[08-Mar-2026 12:30:19 America/Fortaleza] PHP Warning:  Undefined variable $db in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 68
+[08-Mar-2026 12:30:19 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php:68
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 68
+[08-Mar-2026 12:32:30 America/Fortaleza] PHP Warning:  Undefined variable $db in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 68
+[08-Mar-2026 12:32:30 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php:68
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 68
+[08-Mar-2026 12:36:28 America/Fortaleza] PHP Warning:  require(/home1/luca5858/public_html/gerencial/base/base/connection.php): Failed to open stream: No such file or directory in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 6
+[08-Mar-2026 12:36:28 America/Fortaleza] PHP Fatal error:  Uncaught Error: Failed opening required '/home1/luca5858/public_html/gerencial/base/base/connection.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php:6
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 6
+[08-Mar-2026 12:37:37 America/Fortaleza] PHP Warning:  Undefined variable $db in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 28
+[08-Mar-2026 12:37:37 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php:28
+Stack trace:
+#0 {main}
+  thrown in /home1/luca5858/public_html/gerencial/base/frmRecuperaSenha.php on line 28
