@@ -909,6 +909,18 @@ if (isset($_GET['sucesso'])) {
     }
 
 
+
+    window.onload = function () {
+
+        if (!window.location.hash) {
+
+            window.location = window.location + '#loaded';
+            window.location.reload(true);
+
+        }
+
+    };
+
     </script>
 
 </body>
