@@ -172,26 +172,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
             margin-top: 20px;
         }
 
-        .btn {
-            background-color: #f97316;
-            color: #ffffff;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #ea580c;
-        }
-
-        .btn-secondary {
-            background-color: #fff7ed;
-            color: #f97316;
-            border: 1px solid #f97316;
-        }
     </style>
 </head>
 
@@ -296,7 +276,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
 
             <div class="actions">
                 <a href="frmDespesasLista.php" class="btn btn-secondary">
-                    Listar Despesas
+                 ← Listar Despesas
                 </a>
 
                 <?php if ($Alterando): ?>
@@ -306,11 +286,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
                         class="btn-excluir"
                         onclick="return confirm('Tem certeza que deseja excluir esta despesa / conta? Essa ação não pode ser desfeita.')"
                     >
-                        Excluir
+                     🗑 Excluir
                     </button>
                 <?php endif; ?>
 
-                <button type="submit" name= "salvar" class="btn">Salvar</button>
+                <button type="submit" name= "salvar" class="btn">💾 Salvar</button>
 
             </div>
 

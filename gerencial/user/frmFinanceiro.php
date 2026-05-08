@@ -481,7 +481,13 @@ $lista = ExSqlNET("
 
     <div class="content">
 
-        <h2>Financeiro Geral</h2>
+        <div class="page-header">
+            <div class="page-title-wrap">
+                <h1 class="page-title">
+                    Financeiro Geral
+                </h1>
+            </div>
+        </div>
 
         <!-- <?php if($msg): ?>
         <div class="alert success"><?= $msg ?></div>

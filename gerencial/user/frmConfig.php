@@ -242,7 +242,7 @@ input:focus {
                 value="<?= moeda($empresa['MetaDiaria'] ?? 0) ?>">
         </div>
 
-        <button type="submit" class="btn">Salvar Configurações</button>
+        <button type="submit" class="btn">💾 Salvar</button>
 
     </form>
 

@@ -429,6 +429,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
 
 <style>
 
+
+    .btn-secondary {
+        background: #fff;
+        color: #f97316;
+        border: 1px solid #f97316;
+        padding: 7px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .2s ease;
+    }
+
+    .btn-secondary:hover{
+        background:#f97316;
+        color:#fff;
+    }
+
     .modal-bg {
         position: fixed;
         inset: 0;
@@ -686,9 +704,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         <?php endif; ?>
 
         <form method="post">
-
+            <a href="frmLancamentoLista.php" class="btn-secondary">Voltar</a>
             <div class="card">
-
+                
                 <div class="form-grid">
 
                     <div>
@@ -837,6 +855,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                             <option value="Preto" <?= $Alterando && $dados['CorVeiculo']=="Preto" ? 'selected' : '' ?>>PRETO</option>
                             <option value="Verde" <?= $Alterando && $dados['CorVeiculo']=="Verde" ? 'selected' : '' ?>>VERDE</option>
                             <option value="Vermelho" <?= $Alterando && $dados['CorVeiculo']=="Vermelho" ? 'selected' : '' ?>>VERMELHO</option>
+                            <option value="Laranja" <?= $Alterando && $dados['CorVeiculo']=="Laranja" ? 'selected' : '' ?>>LARANJA</option>
                         </select>
                     </div>
 

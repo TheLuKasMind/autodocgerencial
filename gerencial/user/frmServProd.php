@@ -564,7 +564,7 @@ if (!empty($dados['Grupo'])) {
         <!-- AÇÕES -->
         <div class="actions">
             <a href="frmServProdLista.php" class="btn btn-secondary">
-                Listar Produtos
+                 ← Listar Produtos
             </a>
             <?php if ($Alterando): ?>
                 <button 
@@ -573,10 +573,10 @@ if (!empty($dados['Grupo'])) {
                     class="btn-excluir"
                     onclick="return confirm('Tem certeza que deseja excluir este Produto / Serviço? Essa ação não pode ser desfeita.')"
                 >
-                    Excluir
+                    🗑 Excluir
                 </button>
             <?php endif; ?>
-            <button type="submit" name= "salvar" class="btn">Salvar</button>
+            <button type="submit" name= "salvar" class="btn">💾 Salvar</button>
         </div>
         </form>
     

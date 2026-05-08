@@ -27,39 +27,6 @@ $clientes = ExSqlNET("
     ORDER BY Nome
 ", null, [$_SESSION['idEmpresa']]);
 
-// if ($buscaModal !== null) {
-
-//     $whereBusca = "";
-
-//     if ($buscaModal !== "") {
-//         $whereBusca = "AND Nome LIKE '%$buscaModal%'";
-//     }
-
-//     $listaBusca = ExSqlNET("
-//         SELECT Id, Nome
-//         FROM forcli
-//         WHERE idEmpresa = $idEmpresa
-//         $whereBusca
-//         ORDER BY Nome ASC
-//     ");
-    
-
-//     foreach ($listaBusca as $c) {
-//         // echo "<div class='result-item' onclick=\"selecionarCliente('{$c['Id']}','{$c['Nome']}')\">{$c['Nome']}</div>";
-//         echo "
-        
-//         <div class='result-item'
-//             <tr onclick=\"selecionarCliente('{$c['Id']}','{$c['Nome']}')\" style='cursor:pointer;'>
-//                 <td>{$c['Id']}</td>
-//                 <td>{$c['Nome']}</td>
-//             </tr>
-//         </div>
-//         ";
-//         }
-
-//     exit;
-// }
-
 $statusFiltro  = $_GET['status'] ?? '';
 $clienteFiltro = $_GET['cliente'] ?? '';
 $repasseFiltro = $_GET['repasse'] ?? '';
@@ -117,6 +84,13 @@ $pedidoFiltro = $_GET['pedido'] ?? '';
 if ($pedidoFiltro != '') {
     $pedidoFiltro = intval($pedidoFiltro);
     $where .= " AND p.id = $pedidoFiltro";
+}
+
+$placaFiltro = trim($_GET['placa'] ?? '');
+
+if ($placaFiltro !== '') {
+    $placaFiltro = addslashes($placaFiltro);
+    $where .= " AND p.PlacaVeiculo = '$placaFiltro'";
 }
 
 $listaPedidos = ExSqlNET("SELECT 
@@ -468,6 +442,28 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
             background: #bdbdbd;
         }
 
+        /*.status-pago{*/
+        /*    background: #dcfce7;*/
+        /*    color: #166534;*/
+        /*    font-weight: 700;*/
+        /*    border-radius: 6px;*/
+        /*    text-align: center;*/
+        /*}*/
+        .status-pago{
+            background: #dcfce7;
+            color: #166534;
+            font-weight: 700;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .status-aberto{
+            background: #fef9c3;
+            color: #854d0e;
+            font-weight: 700;
+            border-radius: 6px;
+            text-align: center;
+        }
 
     </style>
 </head>
@@ -584,6 +580,13 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
                             value="<?= $_GET['pedido'] ?? '' ?>"
                             placeholder="Digite o código do pedido">
                     </div>
+                    
+                    <div>
+                        <label>Placa</label>
+                        <input type="text" name="placa" id="placa"
+                            value="<?= $_GET['placa'] ?? '' ?>"
+                            placeholder="Placa do veículo no pedido...">
+                    </div>
                         
                 </div>
 
@@ -633,7 +636,8 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
                             <!--<th>Cond.Pgto</th>-->
                             <th>Obs</th>
                             <th>Veículo</th>
-                            <th>Status</th>
+                            <!--<th>Status</th>-->
+                            <th style="text-align:center;">Status</th>
                             <th>Valor</th>
                              <th>Lucro</th>
                         </tr>
@@ -662,7 +666,17 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
                             <td><?= $row['Obs'] ?></td>
                             <!--<td><?= $row['CondPgtoLiteral'] ?></td>-->
                             <td><?= $row['Veiculo'] ?></td>
-                            <td><?= $row['StatusLiteral'] ?></td>
+                            <!--<td><?= $row['StatusLiteral'] ?></td>-->
+                            <!--<td class="<?= in_array($row['Status'], [1,4]) ? 'status-pago' : '' ?>">-->
+                            <!--    <?= $row['StatusLiteral'] ?>-->
+                            <!--</td>-->
+                            <td class="<?=
+                                in_array($row['Status'], [1,4]) 
+                                    ? 'status-pago' 
+                                    : (in_array($row['Status'], [0,3]) ? 'status-aberto' : '')
+                            ?>">
+                                <?= $row['StatusLiteral'] ?>
+                            </td>
                             <td>R$ <?= number_format($row['Valor'],2,',','.') ?></td>
                             <td>R$ <?= number_format($row['Lucro'] ?? 0, 2, ',', '.') ?></td>
     

@@ -173,18 +173,70 @@ if(isset($_POST['excluir']) && !empty($_POST['lancamentos'])){
         color: #9a3412;
     }
 
-    .btn-lancamento {
-        background: #28a745;
+
+    .btn-lancamento{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        background: linear-gradient(135deg, #fb923c, #ea580c);
         color: #fff;
-        padding: 8px 14px;
-        border-radius: 6px;
+        padding: 18px 34px;
+        border-radius: 18px;
         text-decoration: none;
-        font-weight: bold;
-    }
-    .btn-lancamento:hover {
-        background: #218838;
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: .4px;
+        position: relative;
+        box-shadow:
+            0 18px 40px rgba(249,115,22,.35),
+            inset 0 1px 0 rgba(255,255,255,.25);
+        transition:
+            transform .18s ease,
+            box-shadow .18s ease,
+            filter .18s ease;
+        animation: pulseLancamento 2s infinite;
     }
 
+    .btn-lancamento::before{
+        content: "＋";
+        font-size: 24px;
+        font-weight: 900;
+        line-height: 1;
+    }
+
+    .btn-lancamento:hover{
+        transform: translateY(-4px) scale(1.02);
+        filter: brightness(1.05);
+        box-shadow:
+            0 24px 50px rgba(249,115,22,.45),
+            inset 0 1px 0 rgba(255,255,255,.3);
+    }
+
+    .btn-lancamento:active{
+        transform: scale(.98);
+    }
+
+    @keyframes pulseLancamento{
+
+        0%{
+            box-shadow:
+                0 18px 40px rgba(249,115,22,.35),
+                0 0 0 0 rgba(249,115,22,.35);
+        }
+
+        70%{
+            box-shadow:
+                0 18px 40px rgba(249,115,22,.35),
+                0 0 0 14px rgba(249,115,22,0);
+        }
+
+        100%{
+            box-shadow:
+                0 18px 40px rgba(249,115,22,.35),
+                0 0 0 0 rgba(249,115,22,0);
+        }
+    }
 </style>
 
 </head>
@@ -196,13 +248,27 @@ if(isset($_POST['excluir']) && !empty($_POST['lancamentos'])){
     <div class="content">
 
             
-        <h2 style="display:flex; justify-content:space-between; align-items:center;">
+        <!-- <h2 style="display:flex; justify-content:space-between; align-items:center;">
             <div class="page-title">Caixa do Dia</div>
 
             <a href="frmBoletimCaixaLcto.php" class="btn-lancamento">
-                + Lançamento
+                Lançamento
             </a>
-        </h2>
+        </h2> -->
+
+        <div class="page-header">
+            <div class="page-title-wrap">
+                <h1 class="page-title">
+                    Caixa Diário
+                </h1>
+                <div class="page-subtitle">
+                    Controle completo das entradas, saídas e saldo do caixa
+                </div>
+            </div>
+            <a href="frmBoletimCaixaLcto.php" class="btn-lancamento">
+                Novo Lançamento
+            </a>
+        </div>
 
         <div class="card" style="margin-bottom:20px;">
 

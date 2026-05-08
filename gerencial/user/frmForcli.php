@@ -127,9 +127,9 @@ if ($id) {
             FROM movimentoitem mi
             INNER JOIN movimento m 
                 ON m.id = mi.ControleMovimento
-            WHERE m.Forcli = forcli.id
+            WHERE(m.Forcli = forcli.id OR m.ForcliRepasse = forcli.id)
             AND m.idEmpresa = ".$idEmpresa."
-            AND m.Status = 0
+            AND m.Status in(0, 3)
         ) AS TotalDevedor
 
          FROM forcli
@@ -404,6 +404,10 @@ if (!empty($dados['Grupo'])) {
     <!-- CSS BASE DO SISTEMA -->
     <link rel="stylesheet" href="../css/base.css">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+
     <style>
         /* ===== MODAL PADRÃO DO SISTEMA ===== */
         
@@ -570,6 +574,186 @@ if (!empty($dados['Grupo'])) {
         
         .modal-table-wrapper::-webkit-scrollbar-thumb:hover{
             background: #bdbdbd;
+        }
+
+        .total-devedor-box{
+            width: 100%;
+            margin-bottom: 24px;
+
+            background: linear-gradient(135deg, #fff7ed, #ffedd5);
+            border: 1px solid #fdba74;
+
+            border-radius: 18px;
+
+            padding: 22px 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            box-shadow:
+                0 10px 30px rgba(249, 115, 22, 0.10);
+
+            transition: all .25s ease;
+        }
+
+        .total-devedor-box:hover{
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 34px rgba(249, 115, 22, 0.16);
+        }
+
+        .total-devedor-info{
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .total-label{
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+
+            color: #9a3412;
+        }
+
+        .total-value{
+            font-size: 34px;
+            font-weight: 800;
+
+            color: #ea580c;
+
+            line-height: 1;
+        }
+
+        .total-icon{
+            width: 70px;
+            height: 70px;
+
+            border-radius: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 34px;
+
+            background: rgba(255,255,255,.7);
+
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,.7),
+                0 6px 18px rgba(249,115,22,.12);
+        }
+
+
+
+
+        .actions{
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn,
+        .btn-secondary,
+        .btn-excluir{
+            font-family: 'Inter', sans-serif;
+            border: none;
+            border-radius: 14px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            transition:
+                transform .18s ease,
+                box-shadow .18s ease,
+                background .18s ease,
+                border .18s ease,
+                color .18s ease;
+
+            position: relative;
+            white-space: nowrap;
+        }
+
+        /* ================= SALVAR ================= */
+
+        .btn{
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+
+            box-shadow:
+                0 10px 25px rgba(249,115,22,.22);
+        }
+
+        .btn:hover{
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 30px rgba(249,115,22,.30);
+
+            background: linear-gradient(135deg, #fb923c, #f97316);
+        }
+
+        .btn:active{
+            transform: scale(.98);
+        }
+
+        /* ================= SECUNDÁRIO ================= */
+
+        .btn-secondary{
+            background: white;
+
+            border: 1px solid #fed7aa;
+
+            color: #c2410c;
+
+            box-shadow:
+                0 6px 18px rgba(15,23,42,.04);
+        }
+
+        .btn-secondary:hover{
+            background: #fff7ed;
+
+            border-color: #fdba74;
+
+            color: #9a3412;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 24px rgba(249,115,22,.10);
+        }
+
+        /* ================= EXCLUIR ================= */
+
+        .btn-excluir{
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+
+            box-shadow:
+                0 10px 24px rgba(239,68,68,.22);
+        }
+
+        .btn-excluir:hover{
+            transform: translateY(-2px);
+
+            background: linear-gradient(135deg, #f87171, #ef4444);
+
+            box-shadow:
+                0 14px 30px rgba(239,68,68,.30);
+        }
+
+        .btn-excluir:active{
+            transform: scale(.98);
         }
     </style>
 
@@ -811,41 +995,61 @@ if (!empty($dados['Grupo'])) {
 
         <!-- FINANCEIRO -->
         <div class="card">
-            <div class="info-box">
+            <!-- <div class="info-box">
                 Total Devedor:
                 <?= $Alterando
                     ? 'R$ ' . number_format((float)$dados['TotalDevedor'], 2, ',', '.')
                     : 'R$ 0,00'
                 ?>
+            </div> -->
+
+            <div class="total-devedor-box">
+    
+                <div class="total-devedor-info">
+                    <span class="total-label">
+                        Total Devedor
+                    </span>
+
+                    <span class="total-value">
+                        <?= $Alterando
+                            ? 'R$ ' . number_format((float)$dados['TotalDevedor'], 2, ',', '.')
+                            : 'R$ 0,00'
+                        ?>
+                    </span>
+                </div>
+
+                <div class="total-icon">
+                    💰
+                </div>
+
             </div>
 
             <div class="actions">
 
-                <a href="frmForcliLista.php" class="btn btn-secondary">
-                    Listar Clientes
-                </a>
-                <?php if ($Alterando): ?>
-                    <button 
-                        type="submit"
-                        name="excluir"
-                        class="btn-excluir"
-                        onclick="return confirm('Tem certeza que deseja excluir este Cliente / Fornecedor? Essa ação não pode ser desfeita.')"
-                    >
-                        Excluir
+                <div class="actions">
+                    <a href="frmForcliLista.php" class="btn btn-secondary">
+                        ← Listar Clientes
+                    </a>
+                    <?php if ($Alterando): ?>
+
+                        <a href="frmForcliExtrato.php?cliente=<?= $id ?>&dataInicial=<?= date('Y-m-d') ?>&dataFinal=<?= date('Y-m-d') ?>" 
+                        class="btn btn-secondary">
+                            📄 Abrir Extrato
+                        </a>
+                        <button 
+                            type="submit"
+                            name="excluir"
+                            class="btn-excluir"
+                            onclick="return confirm('Tem certeza que deseja excluir este Cliente / Fornecedor? Essa ação não pode ser desfeita.')"
+                        >
+                            🗑 Excluir
+                        </button>
+                    <?php endif; ?>
+                    <button type="submit" name="salvar" class="btn">
+                        💾 <?= $Alterando ? 'Atualizar' : 'Salvar' ?>
                     </button>
-                <?php endif; ?>
-
-                <a href="frmForcliExtrato.php?cliente=<?= $id ?>&dataInicial=<?= date('Y-m-d') ?>&dataFinal=<?= date('Y-m-d') ?>" 
-                class="btn btn-secondary">
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
-                    Abrir Extrato
-                </a>
-
-                <button type="submit" name = "salvar" class="btn">
-                    Salvar
-                </button>
             </div>
-
+            </div>
         </form>
         
          <!-- ================= MODAL ================= -->

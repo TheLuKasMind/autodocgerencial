@@ -371,7 +371,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
                     id="clienteId"
                     value="<?= $Alterando ? $dados['Forcli'] ?? '' : '' ?>">
 
-                <button type="button" class="btn-cliente-lateral" onclick="abrirModal()">
+                <button type="button" class="btn" onclick="abrirModal()">
                     Selecionar Cliente
                 </button>
             </div>
