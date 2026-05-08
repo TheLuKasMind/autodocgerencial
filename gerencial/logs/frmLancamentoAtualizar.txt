@@ -5021,3 +5021,21 @@ Array
     [ControleOrigem] => 916
 )
 
+Array
+(
+    [Data] => 2026-05-08
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 38
+    [ForcliRepasse] => 38
+    [PlacaVeiculo] => IGH5J93
+    [ModeloVeiculo] => REBOQUE
+    [CorVeiculo] => Laranja
+    [id] => 1023
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => DUDU KAUFFMANN
+    [idUser] => 32
+    [ControleOrigem] => 1023
+)
+

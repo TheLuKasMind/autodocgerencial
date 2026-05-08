@@ -32,6 +32,7 @@ $repasseFiltro = $_GET['repasse'] ?? '';
 $dataInicial   = $_GET['dataInicial'] ?? '';
 $dataFinal     = $_GET['dataFinal'] ?? '';
 $condicaoFiltro = $_GET['CondPgto'] ?? '';
+$placaFiltro = $_GET['placa'] ?? '';
 
 $where = "WHERE p.idEmpresa = ". $idEmpresa;
 
@@ -70,6 +71,13 @@ if ($repasseFiltro !== '') {
             $where .= " AND p.ForcliRepasse = '$repasseFiltro'";
         }
     }
+}
+
+$placaFiltro = trim($_GET['placa'] ?? '');
+
+if ($placaFiltro !== '') {
+    $placaFiltro = addslashes($placaFiltro);
+    $where .= " AND p.PlacaVeiculo = '$placaFiltro'";
 }
 
 /* ================= PEDIDOS ================= */

@@ -679,6 +679,15 @@ if (isset($_SESSION['mensagem_sucesso'])) {
     
     }); 
     
+    // FECHAR CLICANDO FORA DO MODAL
+    document.getElementById('modal').addEventListener('click', function(e) {
+
+        if (e.target === this) {
+            fecharModal();
+        }
+
+    });
+
 </script>
 
 </body>

@@ -311,20 +311,47 @@ if (isset($_GET['sucesso'])) {
         border: 1px solid #d1d5db;
     }
 
-    .btn-login {
-        width: 100%;
-        padding: 12px;
-        background: #f97316;
-        border: none;
-        color: white;
-        border-radius: 6px;
-        font-weight: bold;
-        cursor: pointer;
-        margin-top: 10px;
+    .btn-login{
+        width:100%;
+
+        padding:13px 18px;
+
+        border:none;
+
+        border-radius:12px;
+
+        background:linear-gradient(135deg,#f97316,#ea580c);
+
+        color:white;
+
+        font-size:15px;
+        font-weight:700;
+
+        letter-spacing:.2px;
+
+        cursor:pointer;
+
+        transition:.25s ease;
+
+        box-shadow:
+            0 10px 20px rgba(249,115,22,.18),
+            0 4px 8px rgba(249,115,22,.10);
+
+        margin-top:12px;
     }
 
-    .btn-login:hover {
-        background: #ea580c;
+    .btn-login:hover{
+        transform:translateY(-2px);
+
+        background:linear-gradient(135deg,#fb923c,#f97316);
+
+        box-shadow:
+            0 14px 28px rgba(249,115,22,.24),
+            0 8px 14px rgba(249,115,22,.16);
+    }
+
+    .btn-login:active{
+        transform:scale(.98);
     }
 
     .planos {
@@ -411,6 +438,122 @@ if (isset($_GET['sucesso'])) {
             flex-direction: column;
         }
     }
+
+    /* LINKS LOGIN */
+
+    .login-links{
+        margin-top:18px;
+
+        display:flex;
+        flex-direction:column;
+
+        gap:10px;
+    }
+
+    .link-button{
+        width:100%;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        padding:11px 14px;
+
+        border-radius:10px;
+
+        font-size:14px;
+        font-weight:600;
+
+        text-decoration:none;
+
+        transition:.25s ease;
+
+        cursor:pointer;
+    }
+
+    /* CRIAR CONTA */
+
+    .primary-link{
+        background:#fff7ed;
+
+        color:#ea580c;
+
+        border:1px solid #fed7aa;
+    }
+
+    .primary-link:hover{
+        background:#ffedd5;
+
+        border-color:#fb923c;
+
+        transform:translateY(-1px);
+    }
+
+    /* ESQUECI SENHA */
+
+    .secondary-link{
+        background:white;
+
+        color:#64748b;
+
+        border:1px solid #e2e8f0;
+    }
+
+    .secondary-link:hover{
+        background:#f8fafc;
+
+        color:#0f172a;
+
+        border-color:#cbd5e1;
+    }
+
+    /* VOLTAR LOGIN */
+
+    .back-login-wrapper{
+        margin-top:18px;
+    }
+
+    .back-login-btn{
+        width:100%;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        gap:8px;
+
+        padding:12px 16px;
+
+        border-radius:10px;
+
+        background:#f8fafc;
+
+        border:1px solid #e2e8f0;
+
+        color:#475569;
+
+        font-size:14px;
+        font-weight:600;
+
+        text-decoration:none;
+
+        transition:.25s ease;
+    }
+
+    .back-login-btn:hover{
+        background:#fff7ed;
+
+        border-color:#fdba74;
+
+        color:#ea580c;
+
+        transform:translateY(-1px);
+    }
+
+    .back-login-btn span{
+        font-size:16px;
+    }
+
     </style>
 </head>
 
@@ -481,12 +624,28 @@ if (isset($_GET['sucesso'])) {
 
                 <button type="submit" class="btn-login">Entrar</button>
 
-                <div style="margin-top:15px;text-align:center;">
+                <!-- <div style="margin-top:15px;text-align:center;">
                     <a href="?cadastro=1">Criar conta</a>
                 </div>
 
                 <div style="margin-top:10px;text-align:center;">
                     <a href="javascript:void(0)" onclick="abrirRecuperar()">Esqueceu sua senha?</a>
+                </div> -->
+
+                <div class="login-links">
+
+                    <a href="?cadastro=1" class="link-button primary-link">
+                        Criar conta
+                    </a>
+
+                    <button type="button"
+                            class="link-button secondary-link"
+                            onclick="abrirRecuperar()">
+
+                        Esqueceu sua senha?
+
+                    </button>
+
                 </div>
 
                 <div id="modalRecuperar" style="
@@ -605,8 +764,15 @@ if (isset($_GET['sucesso'])) {
 
                 <button class="btn-login">Cadastrar</button>
 
-                <div style="margin-top:15px;text-align:center;">
+                <!-- <div style="margin-top:15px;text-align:center;">
                     <a href="frmLogin.php">Voltar para login</a>
+                </div> -->
+
+                <div class="back-login-wrapper">
+                    <a href="frmLogin.php" class="back-login-btn">
+                        <span>←</span>
+                        Voltar para login
+                    </a>
                 </div>
 
             </form>
