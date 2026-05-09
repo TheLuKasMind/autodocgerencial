@@ -207,7 +207,7 @@ if (!empty($dados['Grupo'])) {
     <link rel="icon" href="../img/favicon.png">
 
     <!-- CSS BASE DO SISTEMA -->
-    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/base.css?v=15">
 
 <style>
    /* ===== MODAL PADRÃO DO SISTEMA ===== */

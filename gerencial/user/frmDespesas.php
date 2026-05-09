@@ -108,8 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
     <link rel="stylesheet" href="../css/base.css">
 
     <!-- CSS ESPECÍFICO DA HOME / PÁGINAS INTERNAS -->
-    <link rel="stylesheet" href="../css/home.css">
-
+    <link rel="stylesheet" href="../css/base.css?v=15">
     <style>
         /* ===== CONTEÚDO ===== */
         .content {

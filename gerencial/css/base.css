@@ -486,30 +486,22 @@ input[readonly]:focus {
         color: #6b7280;
     }
 }
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
 
-        td {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        td .progress-bar {
-            width: 100%;
-            margin-top: 6px;
-        }
-
-        td .meta-text {
-            margin-top: 6px;
-        }
+    td {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
+    td .progress-bar {
+        width: 100%;
+        margin-top: 6px;
+    }
 
-
-
-
-
-
-
+    td .meta-text {
+        margin-top: 6px;
+    }
+}
 
 .btn,
 .btn-secondary,
@@ -537,12 +529,6 @@ input[readonly]:focus {
     position: relative;
     white-space: nowrap;
 }
-
-
-
-
-
-
 
 
 .page-header{

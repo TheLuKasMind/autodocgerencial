@@ -20,26 +20,6 @@ $dataFinal   = $_GET['dataFinal'] ?? date('Y-m-d');
 
 // ================= CAIXA HOJE =================
 
-// $resumo = ExSqlNET("
-//     SELECT 
-//         SUM(CASE WHEN TipoMov = 'ENTRADA' THEN Valor ELSE 0 END) entradas,
-//         SUM(CASE WHEN TipoMov = 'SAIDA' THEN Valor ELSE 0 END) saidas
-//     FROM movimentocc
-//     WHERE idEmpresa = ?
-//     AND CaixaGeral = 0
-//     AND DATE(Data) = ?
-// ", null, [$idEmpresa, $dataHoje]);
-
-// $resumo = ExSqlNET("
-//     SELECT 
-//         SUM(CASE WHEN TipoMov = 'ENTRADA' THEN Valor ELSE 0 END) entradas,
-//         SUM(CASE WHEN TipoMov = 'SAIDA' THEN Valor ELSE 0 END) saidas
-//     FROM movimentocc
-//     WHERE idEmpresa = ?
-//     AND CaixaGeral = 0
-//     AND DATE(Data) BETWEEN ? AND ?
-// ", null, [$idEmpresa, $dataInicial, $dataFinal]);
-
 $resumo = ExSqlNET("
     SELECT 
         SUM(CASE WHEN TipoMov = 'ENTRADA' THEN Valor ELSE 0 END) entradas,
@@ -57,32 +37,6 @@ $saldo = $entradas - $saidas;
 
 
 // ================= MOVIMENTOS =================
-
-// $lista = ExSqlNET("
-//     SELECT Data, Descricao, Valor, TipoMov
-//     FROM movimentocc
-//     WHERE idEmpresa = ?
-//     AND CaixaGeral = 0
-//     AND DATE(Data) = ?
-//     ORDER BY Data DESC
-// ", null, [$idEmpresa, $dataHoje]);
-// $lista = ExSqlNET("
-//     SELECT Data, Descricao, Valor, TipoMov
-//     FROM movimentocc
-//     WHERE idEmpresa = ?
-//     AND CaixaGeral = 0
-//     AND DATE(Data) BETWEEN ? AND ?
-//     ORDER BY Data DESC
-// ", null, [$idEmpresa, $dataInicial, $dataFinal]);
-
-// $lista = ExSqlNET("
-//     SELECT DataPgto As Data, Descricao, Valor, TipoMov, Controle
-//     FROM movimentocc
-//     WHERE idEmpresa = ?
-//     AND CaixaGeral = 0
-//     AND DATE(DataPgto) BETWEEN ? AND ?
-//     ORDER BY DataPgto DESC
-// ", null, [$idEmpresa, $dataInicial, $dataFinal]);
 
 $lista = ExSqlNET("
     SELECT Data As Data, Descricao, Valor, TipoMov, Controle, ControleOrigem As Pedido
@@ -116,7 +70,7 @@ if(isset($_POST['excluir']) && !empty($_POST['lancamentos'])){
 <head>
     <meta charset="UTF-8">
     <title>Caixa Diário</title>
-    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/base.css?v=15">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/favicon.png">
 <style>

@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
     <title>Cadastro de Multa</title>
 
     <link rel="icon" href="../img/favicon.png">
-    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/base.css?v=15">
     <link rel="stylesheet" href="../css/home.css">
 
     <style>

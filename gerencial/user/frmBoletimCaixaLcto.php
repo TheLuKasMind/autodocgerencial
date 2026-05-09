@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
 <link rel="icon" href="../img/favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <!-- CSS BASE DO SISTEMA -->
-<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/base.css?v=15">
 
     <style>
         body {

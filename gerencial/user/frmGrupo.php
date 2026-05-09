@@ -112,7 +112,7 @@ if (isset($_GET['excluido'])) $msg = "Grupo excluído com sucesso!";
 <meta charset="UTF-8">
 <title>Cadastro de Grupos</title>
 
-<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/base.css?v=15">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../img/favicon.png">
    

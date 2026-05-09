@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerarDocumento'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Documentos - Autodoc</title>
     <link rel="icon" href="../img/favicon.png">
-    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/base.css?v=15">
 
     <style>
         .page-subtitle {
