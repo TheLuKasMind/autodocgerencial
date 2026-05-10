@@ -126,17 +126,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerarDocumento'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Documentos - Autodoc</title>
+    <title>Geração de Documentos - Autodoc</title>
     <link rel="icon" href="../img/favicon.png">
     <link rel="stylesheet" href="../css/base.css?v=15">
 
     <style>
-        .page-subtitle {
-            color: #64748b;
-            margin-top: -10px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
 
         .document-selector {
             position: relative;
@@ -334,7 +328,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerarDocumento'])) {
 <div class="content">
     <form method="POST" target="_blank" id="formDocumentos">
 
-        <div class="page-title">Gerador de Documentos</div>
+        <div class="page-title">Geração de Documentos</div>
         <div class="page-subtitle">
             Gere documentos personalizados de forma rápida e profissional.
         </div>

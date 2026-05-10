@@ -53,7 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
                 e.Status,
                 e.ValidadePlano,
                 e.Email As EmpresaEmail,
-                u.Email As UserEmail
+                u.Email As UserEmail,
+                u.Cargo As Cargo
             FROM user u
             INNER JOIN empresa e ON e.id = u.idEmpresa
             WHERE u.email = ?
@@ -98,11 +99,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
                         $_SESSION['usuario_tipo'] = $usuario['tipo'];
                         $_SESSION['AdminGeral'] = $usuario['AdminGeral'];
                         $_SESSION['idEmpresa'] = $usuario['idEmpresa'];
+                        $_SESSION['usuario_cargo'] = $usuario['Cargo'];
                         
                         if ($usuario['EmpresaEmail'] == $usuario['UserEmail']){
                             $_SESSION['UserAdmin'] = 1;
                         }else{
                             $_SESSION['UserAdmin'] = 0;
+                        }
+                        
+                        /* ===== PERMISSÕES DE ACESSO A TELAS ===== */
+                        $sql = "SELECT pagina FROM userpermissoes WHERE idEmpresa = ? AND idUsuario = ?";
+                        $permissoes = ExSqlNET($sql,null,[$_SESSION['idEmpresa'],$_SESSION['usuario_id']]);
+                        $_SESSION['permissoes'] = [];
+                        if (!empty($permissoes)) {
+                            foreach ($permissoes as $permissao) {
+                                $_SESSION['permissoes'][] =
+                                $permissao['pagina'];
+                            }
                         }
 
                         header("Location: user/frmHome.php");
@@ -231,17 +244,145 @@ if (isset($_GET['sucesso'])) {
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Autodoc Gerencial</title>
-
     <link rel="icon" href="img/favicon.png">
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
 
-<style>
+    .modal-recuperar{
+        display:none;
+        position:fixed;
+        inset:0;
+        background:rgba(15,23,42,.55);
+        backdrop-filter:blur(6px);
+        z-index:9999;
+        align-items:center;
+        justify-content:center;
+        padding:20px;
+        animation:fadeIn .25s ease;
+    }
+
+    .modal-box{
+        width:100%;
+        max-width:420px;
+        background:white;
+        border-radius:28px;
+        padding:35px;
+        position:relative;
+        box-shadow:
+            0 30px 60px rgba(0,0,0,.20),
+            0 10px 25px rgba(0,0,0,.08);
+        animation:modalUp .25s ease;
+    }
+
+    .modal-close{
+        position:absolute;
+        top:16px;
+        right:16px;
+        width:38px;
+        height:38px;
+        border:none;
+        border-radius:12px;
+        background:#f8fafc;
+        color:#64748b;
+        font-size:18px;
+        cursor:pointer;
+        transition:.2s ease;
+    }
+
+    .modal-close:hover{
+        background:#fff7ed;
+        color:#ea580c;
+        transform:rotate(90deg);
+    }
+
+    .modal-icon{
+        width:78px;
+        height:78px;
+        border-radius:22px;
+        background:linear-gradient(135deg,#fff7ed,#ffedd5);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:34px;
+        margin:0 auto 22px auto;
+        box-shadow:
+            inset 0 0 0 1px #fed7aa;
+    }
+
+    .modal-box h3{
+        margin:0;
+        text-align:center;
+        font-size:28px;
+        font-weight:800;
+        color:#111827;
+    }
+
+    .modal-text{
+        margin-top:14px;
+        text-align:center;
+        color:#64748b;
+        line-height:1.6;
+        font-size:15px;
+    }
+
+    .modal-input-group{
+        margin-top:28px;
+    }
+
+    .modal-input-group input{
+        width:100%;
+        height:60px;
+        border-radius:18px;
+        border:2px solid #e2e8f0;
+        padding:0 18px;
+        font-size:15px;
+        font-weight:600;
+        outline:none;
+        transition:.25s ease;
+        background:#fff;
+    }
+
+    .modal-input-group input:focus{
+        border-color:#f97316;
+        box-shadow:
+            0 0 0 5px rgba(249,115,22,.12);
+    }
+
+    .msg-recuperar{
+        margin-top:18px;
+        padding:14px;
+        border-radius:14px;
+        background:#f0fdf4;
+        color:#166534;
+        font-size:14px;
+        line-height:1.5;
+        display:none;
+        border:1px solid #bbf7d0;
+    }
+
+    @keyframes fadeIn{
+        from{
+            opacity:0;
+        }
+        to{
+            opacity:1;
+        }
+    }
+
+    @keyframes modalUp{
+        from{
+            opacity:0;
+            transform:translateY(25px) scale(.96);
+        }
+        to{
+            opacity:1;
+            transform:translateY(0) scale(1);
+        }
+    }
+
     * {
         margin: 0;
         padding: 0;
@@ -289,7 +430,22 @@ if (isset($_GET['sucesso'])) {
     }
 
     .login-form h2 {
-        margin-bottom: 20px;
+        font-size: 32px;
+        font-weight: 800;
+        color: #111827;
+        margin-bottom: 10px;
+        letter-spacing: -1px;
+        position: relative;
+    }
+
+    .login-form h2::after {
+        content: "";
+        width: 70px;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #f97316, #ea580c);
+        display: block;
+        margin-top: 12px;
     }
 
     h3 {
@@ -298,88 +454,183 @@ if (isset($_GET['sucesso'])) {
         color: #374151;
     }
 
+    .form-group label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .8px;
+        color: #475569;
+    }
+
     .form-group {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
 
     .form-group label {
-        font-size: 14px;
-        color: #374151;
+        display: block;
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #475569;
+        letter-spacing: .3px;
     }
 
     .form-group input {
         width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border-radius: 6px;
-        border: 1px solid #d1d5db;
-    }
-
-    .btn-login{
-        width:100%;
-
-        padding:13px 18px;
-
-        border:none;
-
-        border-radius:12px;
-
-        background:linear-gradient(135deg,#f97316,#ea580c);
-
-        color:white;
-
-        font-size:15px;
-        font-weight:700;
-
-        letter-spacing:.2px;
-
-        cursor:pointer;
-
-        transition:.25s ease;
-
+        height: 58px;
+        padding: 0 18px;
+        border-radius: 16px;
+        border: 2px solid #dbe3ec;
+        background: #ffffff;
+        font-size: 15px;
+        font-weight: 600;
+        color: #0f172a;
+        transition: .28s ease;
+        outline: none;
         box-shadow:
-            0 10px 20px rgba(249,115,22,.18),
-            0 4px 8px rgba(249,115,22,.10);
-
-        margin-top:12px;
+            0 4px 10px rgba(15, 23, 42, .04);
     }
 
-    .btn-login:hover{
-        transform:translateY(-2px);
+    .form-group input::placeholder {
+        color: #94a3b8;
+        font-weight: 500;
+    }
 
-        background:linear-gradient(135deg,#fb923c,#f97316);
-
+    .form-group input:hover {
+        border-color: #fb923c;
         box-shadow:
-            0 14px 28px rgba(249,115,22,.24),
-            0 8px 14px rgba(249,115,22,.16);
+            0 8px 18px rgba(249, 115, 22, .10);
     }
 
-    .btn-login:active{
-        transform:scale(.98);
+    .form-group input:focus {
+        border-color: #f97316;
+        background: #fff;
+        transform: translateY(-1px);
+        box-shadow:
+            0 0 0 5px rgba(249, 115, 22, .14),
+            0 14px 30px rgba(249, 115, 22, .18);
+    }
+
+    .btn-login {
+        width: 100%;
+        padding: 13px 18px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f97316, #ea580c);
+        color: white;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: .2px;
+        cursor: pointer;
+        transition: .25s ease;
+        box-shadow:
+            0 10px 20px rgba(249, 115, 22, .18),
+            0 4px 8px rgba(249, 115, 22, .10);
+        margin-top: 12px;
+    }
+
+    .btn-login:hover {
+        transform: translateY(-2px);
+        background: linear-gradient(135deg, #fb923c, #f97316);
+        box-shadow:
+            0 14px 28px rgba(249, 115, 22, .24),
+            0 8px 14px rgba(249, 115, 22, .16);
+    }
+
+    .btn-login:active {
+        transform: scale(.98);
     }
 
     .planos {
         display: flex;
-        gap: 15px;
-        margin-top: 10px;
+        gap: 18px;
+        margin-top: 18px;
     }
 
     .plano {
         flex: 1;
+        position: relative;
+        padding: 24px 20px;
+        border-radius: 22px;
+        background: white;
         border: 2px solid #e5e7eb;
-        border-radius: 10px;
-        padding: 15px;
         cursor: pointer;
         text-align: center;
+        transition: .28s ease;
+        overflow: hidden;
+        box-shadow:
+            0 10px 25px rgba(15, 23, 42, .05);
+    }
+
+    .plano::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: transparent;
+        transition: .28s ease;
     }
 
     .plano input {
         display: none;
     }
 
+    .plano strong {
+        display: block;
+        font-size: 20px;
+        font-weight: 800;
+        color: #111827;
+        margin-bottom: 14px;
+    }
+
+    .plano .valor {
+        font-size: 34px;
+        font-weight: 900;
+        color: #ea580c;
+        line-height: 1;
+    }
+
+    .plano .valor small {
+        font-size: 15px;
+        font-weight: 600;
+        color: #64748b;
+    }
+
+    .plano .periodo {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: #fff7ed;
+        color: #ea580c;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .plano:hover {
+        transform: translateY(-6px);
+        border-color: #fdba74;
+        box-shadow:
+            0 20px 45px rgba(249, 115, 22, .16);
+    }
+
     .plano.selected {
         border-color: #f97316;
-        background: #fff7ed;
+        background: linear-gradient(180deg, #fff7ed 0%, #ffffff 100%);
+        box-shadow:
+            0 22px 50px rgba(249, 115, 22, .22);
+    }
+
+    .plano.selected::before {
+        background: linear-gradient(135deg, #f97316, #ea580c);
+    }
+
+    .plano.selected strong {
+        color: #c2410c;
     }
 
     .login-error {
@@ -404,12 +655,12 @@ if (isset($_GET['sucesso'])) {
         display: flex;
         align-items: center;
     }
-    
+
     .password-wrapper input {
         width: 100%;
         padding-right: 45px;
     }
-    
+
     .toggle-password {
         position: absolute;
         right: 12px;
@@ -418,13 +669,12 @@ if (isset($_GET['sucesso'])) {
         display: flex;
         align-items: center;
     }
-    
+
     .toggle-password:hover {
-        color: #f97316; 
+        color: #f97316;
     }
 
     @media (max-width:900px) {
-
         .login-wrapper {
             flex-direction: column;
         }
@@ -434,130 +684,131 @@ if (isset($_GET['sucesso'])) {
             text-align: center;
         }
 
-        .login-form {
-            padding: 40px;
-        }
-
         .planos {
             flex-direction: column;
         }
     }
 
-    /* LINKS LOGIN */
-
-    .login-links{
-        margin-top:18px;
-
-        display:flex;
-        flex-direction:column;
-
-        gap:10px;
+    .login-links {
+        margin-top: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 
-    .link-button{
-        width:100%;
-
-        display:flex;
-        align-items:center;
-        justify-content:center;
-
-        padding:11px 14px;
-
-        border-radius:10px;
-
-        font-size:14px;
-        font-weight:600;
-
-        text-decoration:none;
-
-        transition:.25s ease;
-
-        cursor:pointer;
+    .link-button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 11px 14px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: .25s ease;
+        cursor: pointer;
     }
 
-    /* CRIAR CONTA */
-
-    .primary-link{
-        background:#fff7ed;
-
-        color:#ea580c;
-
-        border:1px solid #fed7aa;
+    .primary-link {
+        background: #fff7ed;
+        color: #ea580c;
+        border: 1px solid #fed7aa;
     }
 
-    .primary-link:hover{
-        background:#ffedd5;
-
-        border-color:#fb923c;
-
-        transform:translateY(-1px);
+    .primary-link:hover {
+        background: #ffedd5;
+        border-color: #fb923c;
+        transform: translateY(-1px);
     }
 
-    /* ESQUECI SENHA */
-
-    .secondary-link{
-        background:white;
-
-        color:#64748b;
-
-        border:1px solid #e2e8f0;
+    .secondary-link {
+        background: white;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
     }
 
-    .secondary-link:hover{
-        background:#f8fafc;
-
-        color:#0f172a;
-
-        border-color:#cbd5e1;
+    .secondary-link:hover {
+        background: #f8fafc;
+        color: #0f172a;
+        border-color: #cbd5e1;
     }
 
-    /* VOLTAR LOGIN */
-
-    .back-login-wrapper{
-        margin-top:18px;
+    .back-login-wrapper {
+        margin-top: 18px;
     }
 
-    .back-login-btn{
-        width:100%;
-
-        display:flex;
-        align-items:center;
-        justify-content:center;
-
-        gap:8px;
-
-        padding:12px 16px;
-
-        border-radius:10px;
-
-        background:#f8fafc;
-
-        border:1px solid #e2e8f0;
-
-        color:#475569;
-
-        font-size:14px;
-        font-weight:600;
-
-        text-decoration:none;
-
-        transition:.25s ease;
+    .back-login-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 16px;
+        border-radius: 10px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        color: #475569;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: .25s ease;
     }
 
-    .back-login-btn:hover{
-        background:#fff7ed;
-
-        border-color:#fdba74;
-
-        color:#ea580c;
-
-        transform:translateY(-1px);
+    .back-login-btn:hover {
+        background: #fff7ed;
+        border-color: #fdba74;
+        color: #ea580c;
+        transform: translateY(-1px);
     }
 
-    .back-login-btn span{
-        font-size:16px;
+    .back-login-btn span {
+        font-size: 16px;
     }
 
+    .login-form {
+        flex: 1;
+        background: white;
+        padding: 70px 90px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+    }
+
+    .login-form::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: linear-gradient(135deg, #f97316, #ea580c);
+    }
+
+    .login-subtitle {
+        color: #64748b;
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 35px;
+    }
+
+
+    /* Autofill Chrome/Edge/Opera */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill{
+        -webkit-text-fill-color:#0f172a !important;
+        font-weight:700 !important;
+        font-size:15px !important;
+
+        transition: background-color 9999s ease-in-out 0s;
+
+        -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+        box-shadow: 0 0 0px 1000px #ffffff inset !important;
+    }
     </style>
 </head>
 
@@ -565,30 +816,27 @@ if (isset($_GET['sucesso'])) {
 
     <div class="login-wrapper">
 
-        <!--<div class="login-info">-->
-        <!--    <h1>Autodoc Gerencial</h1>-->
-        <!--    <p>Sistema completo para gestão de despachantes e serviços.</p>-->
-        <!--</div>-->
-        
         <div class="login-info">
             <div style="text-align: center;">
                 <!-- Logo -->
-                <img src="img/logoo.png" 
-                     alt="Autodoc Gerencial" 
-                     style="width: 256px; 
-                            height: 256px; 
-                            object-fit: contain; 
-                            border-radius: 28px; 
-                            background: white; 
-                            padding: 20px; 
-                            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
-                            margin-bottom: 30px;">
-        
+                <a href="index.php">
+                    <img src="img/logoo.png" alt="Autodoc Gerencial" style="width: 256px; 
+                        height: 256px; 
+                        object-fit: contain; 
+                        border-radius: 28px; 
+                        background: white; 
+                        padding: 20px; 
+                        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+                        margin-bottom: 30px;
+                        transition: .25s ease;
+                        cursor: pointer;">
+                </a>
+
                 <!-- Título -->
                 <h1 style="font-size: 37px; margin-bottom: 10px; color: white;">
                     Autodoc Gerencial
                 </h1>
-                
+
                 <!-- Subtítulo -->
                 <p style="font-size: 17.5px; opacity: 0.93; max-width: 390px; margin: 0 auto; line-height: 1.4;">
                     Gestão simples, moderna e eficiente para despachantes e empresas automotivas.
@@ -603,17 +851,21 @@ if (isset($_GET['sucesso'])) {
 
             <h2>Acesso ao sistema</h2>
 
+            <p class="login-subtitle">
+                Entre com suas credenciais para acessar a plataforma.
+            </p>
+
             <form method="post">
 
                 <div class="form-group">
                     <label>E-mail</label>
-                    <input type="email" name="email" required>
+                    <input type="email" name="email" autocomplete="email" required>
                 </div>
 
                 <div class="form-group">
                     <label>Senha</label>
                     <div class="password-wrapper">
-                        <input type="password" name="senha" id="senhaLogin" required>
+                        <input type="password" name="senha" autocomplete="current-password"id="senhaLogin" id="senhaLogin" required>
                         <span class="toggle-password" onclick="toggleSenha('senhaLogin', this)"></span>
                     </div>
                 </div>
@@ -628,63 +880,57 @@ if (isset($_GET['sucesso'])) {
 
                 <button type="submit" class="btn-login">Entrar</button>
 
-                <!-- <div style="margin-top:15px;text-align:center;">
-                    <a href="?cadastro=1">Criar conta</a>
-                </div>
-
-                <div style="margin-top:10px;text-align:center;">
-                    <a href="javascript:void(0)" onclick="abrirRecuperar()">Esqueceu sua senha?</a>
-                </div> -->
-
                 <div class="login-links">
 
                     <a href="?cadastro=1" class="link-button primary-link">
                         Criar conta
                     </a>
 
-                    <button type="button"
-                            class="link-button secondary-link"
-                            onclick="abrirRecuperar()">
-
+                    <button type="button" class="link-button secondary-link" onclick="abrirRecuperar()" formnovalidate>
                         Esqueceu sua senha?
-
                     </button>
 
                 </div>
 
-                <div id="modalRecuperar" style="
-                    display:none;
-                    position:fixed;
-                    top:0;
-                    left:0;
-                    width:100%;
-                    height:100%;
-                    background:rgba(0,0,0,0.5);
-                    align-items:center;
-                    justify-content:center;
-                ">
-                
-                <div style="
-                    background:white;
-                    padding:30px;
-                    border-radius:10px;
-                    width:350px;
-                ">
-                
-                <h3>Recuperar senha</h3>
-                
-                <input type="email" id="emailRecuperar" placeholder="Digite seu e-mail"
-                style="width:100%;padding:10px;margin-top:10px;">
-                
-                <button type="button" onclick="enviarRecuperacao()" class="btn-login"
-                    style="margin-top:15px;">
-                    Enviar
-                </button>
-                
-                <div id="msgRecuperar" style="margin-top:10px;font-size:14px;"></div>
-                
+                <div id="modalRecuperar" class="modal-recuperar">
+
+                    <div class="modal-box">
+
+                        <button type="button"
+                                class="modal-close"
+                                onclick="fecharRecuperar()">
+                            ✕
+                        </button>
+
+                        <div class="modal-icon">
+                            🔐
+                        </div>
+
+                        <h3>Recuperar senha</h3>
+
+                        <p class="modal-text">
+                            Informe seu e-mail para receber as instruções de redefinição de senha.
+                        </p>
+
+                        <div class="modal-input-group">
+                            <input type="email"
+                                id="emailRecuperar"
+                                name="emailRecuperar"
+                                placeholder="Digite seu e-mail">
+                        </div>
+
+                        <button type="button"
+                                onclick="enviarRecuperacao()"
+                                class="btn-login">
+                            Enviar recuperação
+                        </button>
+
+                        <div id="msgRecuperar" class="msg-recuperar"></div>
+
+                    </div>
+
                 </div>
-            </div>
+                </div>
 
             </form>
 
@@ -703,16 +949,13 @@ if (isset($_GET['sucesso'])) {
 
                 <div class="form-group">
                     <label>CNPJ / CPF</label>
-                    <input name="documento" id= "documento" oninput="mascararDocumento(this)">
+                    <input name="documento" id="documento" oninput="mascararDocumento(this)">
                 </div>
 
                 <div class="form-group">
                     <label>Telefone</label>
                     <!-- <input name="telefone"> -->
-                  <input type="text"
-                        id="telefone"
-                        name="telefone"
-                        oninput="formatarTelefone(this)">
+                    <input type="text" id="telefone" name="telefone" oninput="formatarTelefone(this)">
                 </div>
 
                 <div class="form-group">
@@ -727,15 +970,14 @@ if (isset($_GET['sucesso'])) {
                     <?php foreach ($listaPlanos as $i => $pl): ?>
 
                     <label class="plano <?= $i == 0 ? 'selected' : '' ?>">
-
                         <input type="radio" name="plano" value="<?= $pl['id'] ?>" <?= $i == 0 ? 'checked' : '' ?>>
-
-                        <strong><?= $pl['Nome'] ?></strong><br>
-
-                        R$ <?= number_format($pl['Valor'],2,',','.') ?><br>
-
-                        <small><?= $pl['Periodo'] ?></small>
-
+                        <strong><?= $pl['Nome'] ?></strong>
+                        <div class="valor">
+                            R$ <?= number_format($pl['Valor'],2,',','.') ?>
+                        </div>
+                        <div class="periodo">
+                            <?= $pl['Periodo'] ?>
+                        </div>
                     </label>
 
                     <?php endforeach; ?>
@@ -787,7 +1029,6 @@ if (isset($_GET['sucesso'])) {
     </div>
 
     <script>
-    
     window.onclick = function(event) {
         let modal = document.getElementById("modalRecuperar");
         if (event.target == modal) {
@@ -843,7 +1084,7 @@ if (isset($_GET['sucesso'])) {
 
         input.value = telefone;
     }
-    
+
     const eyeOpen = `
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
     fill="none" stroke="currentColor" stroke-width="2"
@@ -853,7 +1094,7 @@ if (isset($_GET['sucesso'])) {
         <circle cx="12" cy="12" r="3"/>
     </svg>
     `;
-    
+
     const eyeClosed = `
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
     fill="none" stroke="currentColor" stroke-width="2"
@@ -864,10 +1105,10 @@ if (isset($_GET['sucesso'])) {
         <path d="M9.9 9.9A3 3 0 0012 15a3 3 0 002.1-.9"/>
     </svg>
     `;
-    
+
     function toggleSenha(idCampo, elemento) {
         const input = document.getElementById(idCampo);
-    
+
         if (input.type === "password") {
             input.type = "text";
             elemento.innerHTML = eyeOpen;
@@ -876,48 +1117,79 @@ if (isset($_GET['sucesso'])) {
             elemento.innerHTML = eyeClosed;
         }
     }
-    
+
     // inicia todos como olho fechado
     document.querySelectorAll(".toggle-password").forEach(el => {
         el.innerHTML = eyeClosed;
     });
-    
-    
+
+
     function abrirRecuperar(){
-        document.getElementById("modalRecuperar").style.display="flex";
+        const modal = document.getElementById("modalRecuperar");
+        const inputEmail = document.getElementById("emailRecuperar");
+        modal.style.display = "flex";
+        setTimeout(() => {
+            inputEmail.focus();
+        }, 150);
     }
-    
+
+    function fecharRecuperar(){
+        document.getElementById("modalRecuperar").style.display = "none";
+        document.getElementById("msgRecuperar").style.display = "none";
+        document.getElementById("emailRecuperar").value = "";
+    }
+
     function enviarRecuperacao(){
-    
         const email = document.getElementById("emailRecuperar").value;
-    
+        if(email.trim() === ""){
+            alert("Digite seu e-mail.");
+            return;
+        }
         fetch("ajax/recuperarSenha.php",{
             method:"POST",
-            headers:{'Content-Type':'application/x-www-form-urlencoded'},
+            headers:{
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
             body:"email="+encodeURIComponent(email)
         })
-        .then(r=>r.json())
-        .then(d=>{
-    
-            document.getElementById("msgRecuperar").innerHTML =
-            "Se o e-mail existir no sistema, você receberá instruções para redefinir sua senha. Verifique sua caixa de email.";
-    
+        .then(r => r.json())
+        .then(d => {
+            const msg = document.getElementById("msgRecuperar");
+            msg.style.display = "block";
+            msg.innerHTML =
+            "Se o e-mail existir no sistema, você receberá instruções para redefinir sua senha.";
         })
-        .catch(err=>{
+        .catch(err => {
             console.log(err);
         });
     }
 
-    window.onload = function () {
+    window.onload = function() {
         if (!window.location.hash) {
             window.location = window.location + '#loaded';
             window.location.reload(true);
         }
     };
 
+    window.addEventListener("click", function(event){
+
+        const modal = document.getElementById("modalRecuperar");
+
+        if(event.target === modal){
+            fecharRecuperar();
+        }
+    });
+
+    document.addEventListener("keydown", function(e){
+
+        if(e.key === "Escape"){
+            fecharRecuperar();
+        }
+    });
+
     </script>
 
 </body>
 <?php include 'base/footer-new.php'; ?>
-</html>
 
+</html>

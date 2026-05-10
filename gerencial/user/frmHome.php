@@ -206,6 +206,124 @@ if (!empty($empresa['ValidadePlano'])) {
     <link rel="stylesheet" href="../css/base.css?v=15">
 
     <style>
+
+        .topo-empresa{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        .usuario-logado{
+            display:flex;
+            align-items:center;
+            gap:15px;
+
+            background:rgba(255,255,255,0.12);
+            border:1px solid rgba(255,255,255,0.15);
+
+            padding:12px 16px;
+            border-radius:14px;
+
+            backdrop-filter:blur(4px);
+        }
+
+        .avatar-user{
+            width:50px;
+            height:50px;
+            border-radius:50%;
+
+            background:rgba(255,255,255,0.2);
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            font-size:20px;
+            font-weight:700;
+            color:#fff;
+
+            border:2px solid rgba(255,255,255,0.3);
+        }
+
+        .dados-user{
+            display:flex;
+            flex-direction:column;
+        }
+
+        .label-user{
+            font-size:11px;
+            opacity:.8;
+            margin-bottom:2px;
+        }
+
+        .dados-user strong{
+            font-size:15px;
+            color:#fff;
+        }
+
+        .dados-user small{
+            font-size:12px;
+            color:#ffedd5;
+        }
+
+        .usuario-logado{
+            margin-top:20px;
+            display:flex;
+            align-items:center;
+            gap:15px;
+
+            background:rgba(255,255,255,0.12);
+            border:1px solid rgba(255,255,255,0.15);
+
+            padding:15px;
+            border-radius:14px;
+
+            width:fit-content;
+            backdrop-filter:blur(4px);
+        }
+
+        .avatar-user{
+            width:52px;
+            height:52px;
+            border-radius:50%;
+
+            background:rgba(255,255,255,0.2);
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            font-size:22px;
+            font-weight:700;
+            color:#fff;
+
+            border:2px solid rgba(255,255,255,0.3);
+        }
+
+        .dados-user{
+            display:flex;
+            flex-direction:column;
+        }
+
+        .label-user{
+            font-size:12px;
+            opacity:.8;
+            margin-bottom:2px;
+        }
+
+        .dados-user strong{
+            font-size:16px;
+            color:#fff;
+        }
+
+        .dados-user small{
+            font-size:13px;
+            color:#ffedd5;
+            margin-top:2px;
+        }
+
         body {
             background: #f1f5f9;
         }
@@ -383,8 +501,23 @@ if (!empty($empresa['ValidadePlano'])) {
         <!-- EMPRESA -->
         <div class="empresa-box">
 
-            <div class="empresa-nome">
-                <?= htmlspecialchars($empresa['Nome'] ?? 'Empresa') ?>
+            <div class="topo-empresa">
+                <div class="empresa-nome">
+                    <?= htmlspecialchars($empresa['Nome'] ?? 'Empresa') ?>
+                </div>
+                <div class="usuario-logado">
+                    <div class="avatar-user">
+                        <?= strtoupper(substr($_SESSION['usuario_nome'] ?? 'U', 0, 1)) ?>
+                    </div>
+                    <div class="dados-user">
+                        <strong>
+                            <?= htmlspecialchars($_SESSION['usuario_nome'] ?? '-') ?>
+                        </strong>
+                        <small>
+                            <?= htmlspecialchars($_SESSION['usuario_cargo'] ?? 'Sem cargo') ?>
+                        </small>
+                    </div>
+                </div>
             </div>
 
             <div class="empresa-info">

@@ -100,9 +100,9 @@ if ($dadosCadastro['Status'] == 1) {
 
     
 $dadosCadastro['Obs'] = $_POST['obs'] ?? " ";
-
 $dadosCadastro['idUser'] = $_SESSION['usuario_id']  ?? 0;
-    
+$dadosCadastro['StatusProcesso'] = $_POST['statusProcesso'] ?? null;; 
+
 // if (!empty($dadosCadastro['DataPgto'])) {
 
 //     if (strlen($dadosCadastro['DataPgto']) == 10) {
@@ -117,7 +117,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
  
     try {
         
-        
         if($dadosCadastro['Forcli'] == ""){
           $_SESSION['mensagem_erro'] = "Necessário informar cliente no pedido!";
             header('Location: frmLancamentoLista.php');
@@ -125,16 +124,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         }
         
         if ($Alterando === false){ //CADASTRANDO
-
             $retorno = Movimento($dadosCadastro, "CADASTRAR");
-
             $itens = json_decode($_POST['itens'] ?? '[]', true);
             $idGerado = $_SESSION['idGerado'];
-
             file_put_contents(__DIR__ . '/../logs/frmLancamentoCadastrar.txt', print_r($itens , true) . "\n", FILE_APPEND);
-
             $retornoItens = "";
-            
+    
             // Se existir itens
             if (!empty($itens)) {
 
@@ -429,7 +424,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
 
 <style>
 
+    .topo-pagina{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:18px;
+        gap:10px;
+        flex-wrap:wrap;
+    }
 
+    .btn-voltar{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        background:#fff;
+        color:#f97316;
+        border:1px solid #fed7aa;
+        padding:10px 16px;
+        border-radius:12px;
+        font-size:14px;
+        font-weight:600;
+        text-decoration:none;
+        transition:.2s ease;
+        box-shadow:0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    .btn-voltar:hover{
+        background:#f97316;
+        color:#fff;
+        transform:translateY(-1px);
+        box-shadow:0 6px 16px rgba(249,115,22,0.25);
+    }
     .btn-secondary {
         background: #fff;
         color: #f97316;
@@ -668,6 +693,86 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         background: #bdbdbd;
     }
 
+
+    /* =========================================
+    CARD VEÍCULO - PROFISSIONAL
+    ========================================= */
+
+    .card-veiculo{
+        background:#fff;
+        border:1px solid #e5e7eb;
+        border-left:4px solid #f97316;
+        border-radius:14px;
+        padding:22px;
+        box-shadow:0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    .header-veiculo{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:14px;
+    }
+
+    .header-veiculo h3{
+        margin:0;
+        font-size:18px;
+        font-weight:700;
+        color:#111827;
+    }
+
+    .header-veiculo p{
+        margin:4px 0 0 0;
+        font-size:13px;
+        color:#6b7280;
+    }
+
+    .linha-divisoria{
+        height:1px;
+        background:#f1f5f9;
+        margin-bottom:20px;
+    }
+
+    .grid-veiculo{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+        gap:18px;
+    }
+
+    .grupo-campo{
+        display:flex;
+        flex-direction:column;
+    }
+
+    .grupo-campo label{
+        font-size:13px;
+        font-weight:600;
+        color:#374151;
+        margin-bottom:7px;
+    }
+
+    .grupo-campo input,
+    .grupo-campo select{
+        height:44px;
+        border:1px solid #d1d5db;
+        border-radius:10px;
+        padding:0 14px;
+        font-size:14px;
+        background:#fff;
+        transition:all .2s ease;
+        box-sizing:border-box;
+    }
+
+    .grupo-campo input:focus,
+    .grupo-campo select:focus{
+        outline:none;
+        border-color:#f97316;
+        box-shadow:0 0 0 3px rgba(249,115,22,0.10);
+    }
+
+    .grupo-campo input::placeholder{
+        color:#9ca3af;
+    }
 </style>
 
 </head>
@@ -704,7 +809,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         <?php endif; ?>
 
         <form method="post">
-            <a href="frmLancamentoLista.php" class="btn-secondary">Voltar</a>
+            <!-- <a href="frmLancamentoLista.php" class="btn-secondary">Voltar</a> -->
+            <div class="topo-pagina">
+                <a href="frmLancamentoLista.php" class="btn-voltar">
+                    ← Voltar para lista
+                </a>
+            </div>
             <div class="card">
                 
                 <div class="form-grid">
@@ -743,6 +853,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                             <option value="5" <?= $Alterando && $dados['CondPgto']==5 ? 'selected' : '' ?>>Cheque</option>
                             <option value="6" <?= $Alterando && $dados['CondPgto']==6 ? 'selected' : '' ?>>30 Dias</option>
                             <option value="7" <?= $Alterando && $dados['CondPgto']==7 ? 'selected' : '' ?>>60 Dias</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Andamento Processo</label>
+                        <select id="statusProcesso" name="statusProcesso">
+                            <option value="0" <?= $Alterando && $dados['StatusProcesso']==0 ? 'selected' : '' ?>></option>
+                            <option value="1" <?= $Alterando && $dados['StatusProcesso']==1 ? 'selected' : '' ?>>Em Andamento</option>
+                            <option value="2" <?= $Alterando && $dados['StatusProcesso']==2 ? 'selected' : '' ?>>Concluído</option>
                         </select>
                     </div>
 
@@ -829,14 +948,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
 
             </div>
 
-            <div id="dadosVeiculo" style="display:none; margin-top:25px;" class="card">
+            <!-- <div id="dadosVeiculo" style="display:none; margin-top:25px;" class="card">
                 <h3>Dados do Veículo</h3>
 
                 <div class="form-grid">
 
                     <div>
                         <label>Modelo</label>
-                        <!-- <input type="text" name="veiculo_modelo"> -->
                         <input type="text" id="veiculo_modelo" name="veiculo_modelo"
                             value="<?= $Alterando ? htmlspecialchars($dados['ModeloVeiculo'] ?? '') : '' ?>"
                         >
@@ -866,6 +984,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                         >
                     </div>
                 </div>
+            </div> -->
+
+            <div id="dadosVeiculo" class="card card-veiculo" style="display:none; margin-top:25px;">
+
+                <div class="header-veiculo">
+                    <div>
+                        <h3>Dados do Veículo</h3>
+                        <p>Informações vinculadas ao atendimento</p>
+                    </div>
+                </div>
+
+                <div class="linha-divisoria"></div>
+
+                <div class="grid-veiculo">
+
+                    <div class="grupo-campo">
+                        <label>Modelo do Veículo</label>
+
+                        <input 
+                            type="text"
+                            id="veiculo_modelo"
+                            name="veiculo_modelo"
+                            placeholder="Informe o modelo do veículo"
+                            value="<?= $Alterando ? htmlspecialchars($dados['ModeloVeiculo'] ?? '') : '' ?>"
+                        >
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>Cor</label>
+
+                        <select name="veiculo_cor" id="veiculo_cor">
+
+                            <option value="" <?= $Alterando && $dados['CorVeiculo']=="" ? 'selected' : '' ?>></option>
+
+                            <option value="Amarelo" <?= $Alterando && $dados['CorVeiculo']=="Amarelo" ? 'selected' : '' ?>>AMARELO</option>
+
+                            <option value="Azul" <?= $Alterando && $dados['CorVeiculo']=="Azul" ? 'selected' : '' ?>>AZUL</option>
+
+                            <option value="Bege" <?= $Alterando && $dados['CorVeiculo']=="Bege" ? 'selected' : '' ?>>BEGE</option>
+
+                            <option value="Branco" <?= $Alterando && $dados['CorVeiculo']=="Branco" ? 'selected' : '' ?>>BRANCO</option>
+
+                            <option value="Cinza" <?= $Alterando && $dados['CorVeiculo']=="Cinza" ? 'selected' : '' ?>>CINZA</option>
+
+                            <option value="Prata" <?= $Alterando && $dados['CorVeiculo']=="Prata" ? 'selected' : '' ?>>PRATA</option>
+
+                            <option value="Preto" <?= $Alterando && $dados['CorVeiculo']=="Preto" ? 'selected' : '' ?>>PRETO</option>
+
+                            <option value="Verde" <?= $Alterando && $dados['CorVeiculo']=="Verde" ? 'selected' : '' ?>>VERDE</option>
+
+                            <option value="Vermelho" <?= $Alterando && $dados['CorVeiculo']=="Vermelho" ? 'selected' : '' ?>>VERMELHO</option>
+
+                            <option value="Laranja" <?= $Alterando && $dados['CorVeiculo']=="Laranja" ? 'selected' : '' ?>>LARANJA</option>
+
+                        </select>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>Placa</label>
+
+                        <input 
+                            type="text"
+                            id="veiculo_placa"
+                            name="veiculo_placa"
+                            placeholder="ABC1D23"
+                            style="text-transform:uppercase"
+                            value="<?= $Alterando ? htmlspecialchars($dados['PlacaVeiculo'] ?? '') : '' ?>"
+                        >
+                    </div>
+
+                </div>
+
             </div>
 
             <?php if ($Alterando): ?>

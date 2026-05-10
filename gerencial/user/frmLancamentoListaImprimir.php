@@ -33,6 +33,7 @@ $dataInicial   = $_GET['dataInicial'] ?? '';
 $dataFinal     = $_GET['dataFinal'] ?? '';
 $condicaoFiltro = $_GET['CondPgto'] ?? '';
 $placaFiltro = $_GET['placa'] ?? '';
+$statusProcessoFiltro  = $_GET['statusProcesso'] ?? '';
 
 $where = "WHERE p.idEmpresa = ". $idEmpresa;
 
@@ -78,6 +79,17 @@ $placaFiltro = trim($_GET['placa'] ?? '');
 if ($placaFiltro !== '') {
     $placaFiltro = addslashes($placaFiltro);
     $where .= " AND p.PlacaVeiculo = '$placaFiltro'";
+}
+
+if ($statusProcessoFiltro  !== '' && $statusProcessoFiltro  !== null && $statusProcessoFiltro  !== '0') {
+    $where .= " AND p.StatusProcesso = '$statusProcessoFiltro '";    
+}
+
+$pedidoFiltro = $_GET['pedido'] ?? '';
+
+if ($pedidoFiltro != '') {
+    $pedidoFiltro = intval($pedidoFiltro);
+    $where .= " AND p.id = $pedidoFiltro";
 }
 
 /* ================= PEDIDOS ================= */

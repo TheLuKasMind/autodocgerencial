@@ -130,29 +130,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
         }
 
     }else if ($Alterando === true && isset($_POST['salvar'])){
-        $retorno = ServProd($dados, "ATUALIZAR");
-        if ($retorno === "") {
-            $msgRetorno = "Produto / Serviço atualizado com sucesso!";
-            $tipoMsg = "success";
 
-            //AQUI CADASTRA O MOVIMENTO DE CUSTO
-            $dados['ServProd'] = $dados['id'];
-            $retorno = ServProdCusto($dados, "CADASTRAR");
-            if ($retorno === "") {
-                $msgRetorno = "Produto / Serviço atualizado com sucesso!";
+        // ======================================================
+        // VERIFICA SE MUDOU CUSTO OU VENDA
+        // ======================================================
+
+        $cadastrarHistorico = false;
+
+        // BUSCA VALORES ATUAIS DO PRODUTO
+        $dadosAtual = ExSqlNET(" SELECT ValorCusto, ValorVenda FROM servprod  WHERE id = ?  AND idEmpresa = ? ", null, [$dados['id'], $_SESSION['idEmpresa']]);
+        $dadosAtual = $dadosAtual[0] ?? null;
+        $valorCustoAtual = (float)($dadosAtual['ValorCusto'] ?? 0);
+        $valorVendaAtual = (float)($dadosAtual['ValorVenda'] ?? 0);
+        $valorCustoNovo = (float)$dados['ValorCusto'];
+        $valorVendaNovo = (float)$dados['ValorVenda'];
+        // SE FOR DIFERENTE -> GRAVA HISTÓRICO
+        if (
+            $valorCustoAtual != $valorCustoNovo ||
+            $valorVendaAtual != $valorVendaNovo
+        ) {
+            $cadastrarHistorico = true;
+        }
+        // ======================================================
+        // ATUALIZA PRODUTO
+        // ======================================================
+        $retorno = ServProd($dados, "ATUALIZAR");
+
+        if ($retorno === "") {
+
+            // ======================================================
+            // CADASTRA HISTÓRICO SOMENTE SE ALTEROU
+            // ======================================================
+
+            if ($cadastrarHistorico) {
+
+                $dados['ServProd'] = $dados['id'];
+                $retornoHistorico = ServProdCusto($dados, "CADASTRAR");
+                if ($retornoHistorico !== "") {
+                    $msgRetorno = "Produto atualizado, mas erro ao gravar histórico de custo. Erro -> " . $retornoHistorico;
+                    $tipoMsg = "error";
+                } else {
+                    $msgRetorno = "Produto atualizado com sucesso!";
+                    $tipoMsg = "success";
+                    $_SESSION['mensagem_sucesso'] = $msgRetorno;
+                    header('Location: frmServProdLista.php');
+                    exit;
+                }
+
+            } else {
+                $msgRetorno = "Produto atualizado com sucesso!";
                 $tipoMsg = "success";
                 $_SESSION['mensagem_sucesso'] = $msgRetorno;
                 header('Location: frmServProdLista.php');
                 exit;
-            } else {
-                $msgRetorno = "Erro ao cadastrar MovimentoCusto Produto / Serviço. Erro -> ". $retorno;
-                $tipoMsg = "error";
             }
 
         } else {
-            $msgRetorno = "Erro ao atualizar o Produto / Serviço. Erro -> ". $retorno;
+            $msgRetorno = "Erro ao atualizar o Produto / Serviço. Erro -> " . $retorno;
             $tipoMsg = "error";
         }
+
     }else if(isset($_POST['excluir'])){
         
         $dados['servprod'] = $id;

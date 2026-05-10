@@ -89,105 +89,140 @@ function moeda($v) {
 <link rel="icon" href="../img/favicon.png">
 
 <style>
-
-    .box {
-        background: white;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 6px 14px rgba(0,0,0,0.05);
-        margin-bottom: 20px;
+    body{
+        background:#f1f5f9;
     }
 
-    .titulo {
-        font-size: 22px;
-        font-weight: bold;
-        margin-bottom: 15px;
-        color: #334155;
+    .content{
+        padding:30px;
+        max-width:1000px;
+        margin:0 auto;
     }
 
-    input {
-        width: 100%;
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid #cbd5e1;
-        margin-bottom: 15px;
+    .page-title{
+        font-size:30px;
+        font-weight:700;
+        color:#1e293b;
+        margin-bottom:25px;
     }
 
-    .msg {
-        background: #22c55e;
-        color: white;
-        padding: 10px;
-        border-radius: 8px;
-        margin-bottom: 20px;
+    .msg{
+        background:#16a34a;
+        color:#fff;
+        padding:14px 18px;
+        border-radius:10px;
+        margin-bottom:25px;
+        font-weight:600;
     }
 
-/* Caixa principal */
-.box {
-    background: #ffffff;
-    padding: 30px 25px;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    margin-bottom: 25px;
-    font-family: 'Inter', sans-serif;
-}
+    .config-grid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:25px;
+    }
 
-/* Títulos dentro das caixas */
-.titulo {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #1e293b; /* Azul escuro moderno */
-}
+    @media(max-width:900px){
 
-/* Labels dos campos */
-label {
-    font-size: 14px;
-    color: #334155;
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 500;
-}
+        .config-grid{
+            grid-template-columns:1fr;
+        }
 
-/* Inputs */
-input[type="text"],
-input[type="number"],
-input[type="password"] {
-    width: 100%;
-    padding: 12px 14px;
-    border-radius: 10px;
-    border: 1px solid #cbd5e1;
-    margin-bottom: 18px;
-    font-size: 15px;
-    color: #1e293b;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.2s ease;
-}
+    }
 
-/* Placeholder */
-input::placeholder {
-    color: #94a3b8;
-    font-style: italic;
-}
+    .box{
+        background:#fff;
+        border-radius:14px;
+        padding:28px;
+        border:1px solid #e2e8f0;
+        box-shadow:0 4px 14px rgba(0,0,0,0.05);
+    }
 
-/* Efeito de foco */
-input:focus {
-    border-color: #22c55e;
-    box-shadow: 0 0 6px rgba(34, 197, 94, 0.3);
-    outline: none;
-}
+    .titulo{
+        font-size:20px;
+        font-weight:700;
+        color:#1e293b;
+        margin-bottom:25px;
 
-/* Mensagem de sucesso */
-.msg {
-    background: #22c55e;
-    color: white;
-    padding: 12px 15px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    font-weight: 500;
-    font-family: 'Inter', sans-serif;
-    box-shadow: 0 4px 10px rgba(34, 197, 94, 0.2);
-}
+        display:flex;
+        align-items:center;
+        gap:10px;
+    }
 
+    label{
+        display:block;
+        margin-bottom:7px;
+
+        color:#334155;
+        font-size:14px;
+        font-weight:600;
+    }
+
+    .input-group{
+        margin-bottom:20px;
+    }
+
+    input{
+        width:100%;
+        height:48px;
+
+        border:1px solid #cbd5e1;
+        border-radius:10px;
+
+        padding:0 14px;
+
+        font-size:15px;
+        color:#1e293b;
+
+        transition:.2s ease;
+    }
+
+    input:focus{
+        outline:none;
+        border-color:#f97316;
+        box-shadow:0 0 0 3px rgba(249,115,22,.15);
+    }
+
+    input::placeholder{
+        color:#94a3b8;
+    }
+
+    .info-box{
+        background:#fff7ed;
+        border:1px solid #fed7aa;
+        color:#9a3412;
+
+        padding:14px;
+        border-radius:10px;
+
+        font-size:14px;
+        line-height:1.5;
+    }
+
+    .footer-actions{
+        margin-top:25px;
+    }
+
+    .btn-salvar{
+        height:52px;
+        min-width:240px;
+
+        border:none;
+        border-radius:12px;
+
+        background:#f97316;
+        color:#fff;
+
+        font-size:15px;
+        font-weight:700;
+
+        cursor:pointer;
+
+        transition:.2s ease;
+    }
+
+    .btn-salvar:hover{
+        background:#ea580c;
+    }
 </style>
 </head>
 <body>
@@ -204,45 +239,84 @@ input:focus {
 
     <form method="POST">
 
-        <!-- SENHA -->
-        <div class="box">
-            <div class="titulo">Alterar Minha Senha</div>
+        <div class="config-grid">
 
-            <label>Nova Senha</label>
-            <input type="password" name="senhaNova" placeholder="Digite a nova senha">
+            <!-- SENHA -->
+            <div class="box">
+
+                <div class="titulo">
+                    🔒 Segurança da Conta
+                </div>
+
+                <div class="input-group">
+
+                    <label>Nova Senha</label>
+
+                    <input type="password"
+                        name="senhaNova"
+                        placeholder="Digite a nova senha">
+
+                </div>
+
+                <div class="info-box">
+                    Recomendamos utilizar letras, números
+                    e caracteres especiais.
+                </div>
+
+            </div>
+
+
+            <!-- METAS -->
+            <div class="box">
+
+                <div class="titulo">
+                    🎯 Metas de Faturamento
+                </div>
+
+                <div class="input-group">
+
+                    <label>Meta Mensal (R$)</label>
+
+                    <input type="text"
+                        name="metaMensal"
+                        id="metaMensal"
+                        value="<?= moeda($empresa['MetaMensal'] ?? 0) ?>">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Dias para Alcançar a Meta</label>
+
+                    <input type="number"
+                        name="diasMeta"
+                        id="diasMeta"
+                        placeholder="Ex: 22">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Meta Diária (R$)</label>
+
+                    <input type="text"
+                        name="metaDiaria"
+                        id="metaDiaria"
+                        value="<?= moeda($empresa['MetaDiaria'] ?? 0) ?>">
+
+                </div>
+
+            </div>
+
         </div>
 
-        <!-- METAS -->
-        <!-- <div class="box">
-            <div class="titulo">Metas de Faturamento</div>
+        <div class="footer-actions">
 
-            <label>Meta Mensal (R$)</label>
-            <input type="text" name="metaMensal" id="metaMensal"
-                   value="<?= moeda($empresa['MetaMensal'] ?? 0) ?>">
+            <button type="submit" class="btn-salvar">
+                💾 Salvar Configurações
+            </button>
 
-            <label>Meta Diária (R$)</label>
-            <input type="text" name="metaDiaria" id="metaDiaria"
-                   value="<?= moeda($empresa['MetaDiaria'] ?? 0) ?>">
-        </div> -->
-
-        <!-- METAS -->
-        <div class="box">
-            <div class="titulo">Metas de Faturamento</div>
-
-            <label>Meta Mensal (R$)</label>
-            <input type="text" name="metaMensal" id="metaMensal"
-                value="<?= moeda($empresa['MetaMensal'] ?? 0) ?>">
-
-            <label>Dias para Alcançar a Meta</label>
-            <input type="number" name="diasMeta" id="diasMeta"
-                placeholder="Informe os dias">
-
-            <label>Meta Diária (R$)</label>
-            <input type="text" name="metaDiaria" id="metaDiaria"
-                value="<?= moeda($empresa['MetaDiaria'] ?? 0) ?>">
         </div>
-
-        <button type="submit" class="btn">💾 Salvar</button>
 
     </form>
 
