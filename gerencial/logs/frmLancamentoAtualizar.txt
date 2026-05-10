@@ -5039,3 +5039,307 @@ Array
     [ControleOrigem] => 1023
 )
 
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 0
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 1
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 0
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 1
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 0
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 1
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 0
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 0
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 1
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 2
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 0
+    [ControleOrigem] => 1064
+)
+
+Array
+(
+    [Data] => 2026-05-10
+    [Status] => 1
+    [CondPgto] => 1
+    [Forcli] => 161
+    [ForcliRepasse] => 0
+    [PlacaVeiculo] => 
+    [ModeloVeiculo] => 
+    [CorVeiculo] => 
+    [id] => 1064
+    [idEmpresa] => 11
+    [DataPgto] => 2026-05-10
+    [Obs] => TESTE DO LUCAS
+    [idUser] => 32
+    [StatusProcesso] => 1
+    [ControleOrigem] => 1064
+)
+

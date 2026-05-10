@@ -60,24 +60,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
     $dados['id'] = $id;
 
     $dados['Nome'] = $_POST['Nome'] ?? "";
+
+    if ($dados['Nome'] === "") {
+        $msgRetorno = "Informe nome para a despesa / conta!";
+        $tipoMsg = "error";
+        $_SESSION['mensagem_erro'] = $msgRetorno;
+        header('Location: frmDespesasLista.php');
+        exit;
+    }
+
     if ($Alterando === false){
         $dados['Codigo'] = retornaProximoCod("tipodespesa");
         $retorno = Despesa($dados, "CADASTRAR");
         if ($retorno === "") {
             $msgRetorno = "Despesa / Conta cadastrada com sucesso!";
             $tipoMsg = "success";
+            $_SESSION['mensagem_sucesso'] = $msgRetorno;
+            header('Location: frmDespesasLista.php');
+            exit;
         } else {
             $msgRetorno = "Erro ao cadastrar a despesa / conta. Erro -> ". $retorno;
             $tipoMsg = "error";
+            $_SESSION['mensagem_erro'] = $msgRetorno;
+            header('Location: frmDespesasLista.php');
+            exit;
         }
     }else if ($Alterando === true && isset($_POST['salvar'])){
         $retorno = Despesa($dados, "ATUALIZAR");
         if ($retorno === "") {
             $msgRetorno = "Despesa / Conta atualizada com sucesso!";
             $tipoMsg = "success";
+            $_SESSION['mensagem_sucesso'] = $msgRetorno;
+            header('Location: frmDespesasLista.php');
+            exit;
         } else {
             $msgRetorno = "Erro ao atualizar a despesa / conta. Erro -> ". $retorno;
             $tipoMsg = "error";
+            header('Location: frmDespesasLista.php');
+            exit;
         }
     }else if(isset($_POST['excluir'])){
         $retorno = Despesa($dados, "EXCLUIR");
@@ -90,6 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
         } else {
             $msgRetorno = "Erro ao excluir  a despesa / conta. Erro -> ". $retorno;
             $tipoMsg = "error";
+            header('Location: frmDespesasLista.php');
+            exit;
         }
     }
 

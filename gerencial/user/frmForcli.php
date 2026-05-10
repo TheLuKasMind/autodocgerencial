@@ -208,6 +208,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
 
     $dados['EstadoCivil'] = $_POST['EstadoCivil'] ?? 0;
 
+    $dados['NumeroCNH'] = $_POST['NumeroCNH'] ?? "";
+
+    $dados['DataNasc'] = null;
+    if (!empty($_POST['DataNasc'])) {
+        $data = DateTime::createFromFormat('d/m/Y', $_POST['DataNasc']);
+        if ($data && $data->format('d/m/Y') === $_POST['DataNasc']) {
+            $hoje = new DateTime();
+            if ($data <= $hoje && $data->format('Y') >= 1900) {
+                $dados['DataNasc'] = $data->format('Y-m-d');
+            }
+        }
+    }
 
     if($Alterando == False){
         $dados['TotalDevedor'] = 0;
@@ -228,6 +240,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
     
 
     if ($Alterando === false){
+
+        // VERIFICA SE JÁ EXISTE FORCLI COM MESMO CNPJ ATIVO
+        $sqlExiste = " SELECT id, Nome FROM forcli WHERE idEmpresa = ?  AND Documento = ? AND Inativo = 0 LIMIT 1 ";
+        $forcliExiste = ExSqlNET($sqlExiste, null,[$_SESSION['idEmpresa'],$dados['Documento']]);
+        if (!empty($forcliExiste)) {
+            $_SESSION['mensagem_erro'] = "Já existe um Cliente / Fornecedor ativo cadastrado com este Documento!";
+            $tipoMsg = "error";
+            header('Location: frmForcliLista.php');
+            exit;
+        }
+
         $dados['Codigo'] = retornaProximoCod("forcli");
         $retorno = Forcli($dados, "CADASTRAR");
         if ($retorno === "") {
@@ -238,21 +261,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
             $result = ExSqlNET("SELECT id FROM forcli WHERE idEmpresa = ? AND Codigo = ? LIMIT 1
             ", null, [$_SESSION['idEmpresa'], $dados['Codigo']]);
             $dados['idForcli'] = $result[0]['id'] ?? null;
-
-            // foreach ($documentos as $d) {
-
-            //     $dadosArquivo = [
-            //         'idEmpresa' => $_SESSION['idEmpresa'],
-            //         'idForcli' => $dados['idForcli'],
-            //         'Tipo' => $d['tipo'],
-            //         'Descricao' => $d['descricao'],
-            //         'NomeArquivo' => $d['nome'],
-            //         'ArquivoBase64' => $d['base64']
-            //     ];
-                
-            //     //Arquivo($dadosArquivo, "EXCLUIR");
-            //     $retornoCadArquivo = Arquivo($dadosArquivo, "CADASTRAR");
-            // }
 
             foreach ($documentos as $d) {
 
@@ -271,7 +279,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
 
                 $dadosArquivo = [
                     'idEmpresa' => $_SESSION['idEmpresa'],
-                    'idForcli' => $dados['id'],
+                    'idForcli' => $dados['idForcli'],
+                    // 'idForcli' => $dados['id'],
                     'Tipo' => $tipo,
                     'Descricao' => $descricao,
                     'NomeArquivo' => $nome,
@@ -290,25 +299,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         } else {
             $msgRetorno = "Erro ao cadastrar o Cliente / Fornecedor. Erro -> ". $retorno;
             $tipoMsg = "error";
+            header('Location: frmForcliLista.php');
+            exit;
         }
     }else if ($Alterando === true && isset($_POST['salvar'])){
 
         $retorno = Forcli($dados, "ATUALIZAR");
         $documentos = json_decode($_POST['documentos_json'] ?? '[]', true);
-
-        // foreach ($documentos as $d) {
-
-        //     $dadosArquivo = [
-        //         'idEmpresa' => $_SESSION['idEmpresa'],
-        //         'idForcli' => $dados['id'],
-        //         'Tipo' => $d['tipo'],
-        //         'Descricao' => $d['descricao'],
-        //         'NomeArquivo' => $d['nome'],
-        //         'ArquivoBase64' => $d['base64']
-        //     ];
-        //     //Arquivo($dadosArquivo, "EXCLUIR");
-        //     $retornoCadArquivo = Arquivo($dadosArquivo, "CADASTRAR");
-        // }
 
         foreach ($documentos as $d) {
 
@@ -340,9 +337,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         if ($retorno === "") {
             $msgRetorno = "Cliente / Fornecedor atualizado com sucesso!";
             $tipoMsg = "success";
+            $_SESSION['mensagem_sucesso'] = $msgRetorno;
+            header('Location: frmForcliLista.php');
+            exit;
         } else {
             $msgRetorno = "Erro ao atualizar o Cliente / Fornecedor. Erro -> ". $retorno;
             $tipoMsg = "error";
+            $_SESSION['mensagem_erro'] = $msgRetorno;
+            header('Location: frmForcliLista.php');
+            exit;
         }
 
     }else if(isset($_POST['excluir'])){
@@ -365,29 +368,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         } else {
             $msgRetorno = "Erro ao excluir o Cliente / Fornecedor. Erro -> ". $retorno;
             $tipoMsg = "error";
+            $_SESSION['mensagem_erro'] = $msgRetorno;
+            header('Location: frmForcliLista.php');
+            exit;
         }
     }
 
 }
 
 $nomeGrupo = '';
-
-$grupos = ExSqlNET("
-    SELECT Id, Nome 
-    FROM grupos 
-    WHERE idEmpresa = ? 
-    AND Tipo = 'C'
-    ORDER BY Nome
-", null, [$_SESSION['idEmpresa']]);
-    
+$grupos = ExSqlNET("SELECT Id, Nome FROM grupos WHERE idEmpresa = ? AND Tipo = 'C' ORDER BY Nome ", null, [$_SESSION['idEmpresa']]);
 if (!empty($dados['Grupo'])) {
-
-    $grupoSelecionado = ExSqlNET("
-        SELECT Nome 
-        FROM grupos 
-        WHERE Id = ? AND idEmpresa = ?
-    ", null, [$dados['Grupo'], $_SESSION['idEmpresa']]);
-
+    $grupoSelecionado = ExSqlNET("SELECT Nome FROM grupos  WHERE Id = ? AND idEmpresa = ? ", null, [$dados['Grupo'], $_SESSION['idEmpresa']]);
     if ($grupoSelecionado) {
         $nomeGrupo = $grupoSelecionado[0]['Nome'];
     }
@@ -797,13 +789,6 @@ if (!empty($dados['Grupo'])) {
                     </select>
                 </div>
 
-                <!--
-                <div>
-                    <label>Data de Cadastro</label>
-                    <input type="date">
-                </div>
-                -->
-
                 <div>
                     <label>Grupo</label>
                 
@@ -902,6 +887,15 @@ if (!empty($dados['Grupo'])) {
                     <input type="text" id = "Profissao" name ="Profissao" value="<?= $Alterando ? htmlspecialchars($dados['Profissao'] ?? '') : '' ?>">
                 </div>
 
+                <div>
+                    <label>Número CNH</label>
+                    <input type="text" id="NumeroCNH" name="NumeroCNH" value="<?= $Alterando ? htmlspecialchars($dados['NumeroCNH'] ?? '') : '' ?>">
+                </div>
+
+                <div>
+                    <label>Data de Nascimento</label>
+                    <input type="text" id="DataNasc" name="DataNasc" placeholder="dd/mm/aaaa" maxlength="10" value="<?= $Alterando && !empty($dados['DataNasc']) ? date('d/m/Y', strtotime($dados['DataNasc'])) : '' ?>" oninput="mascararData(this)">
+                </div>
             </div>
         </div>
 
@@ -1404,12 +1398,6 @@ function fecharModal() {
         document.getElementById('gridDocumentos').innerHTML = html;
     }
 
-    // function removerDoc(i) {
-    //     documentos.splice(i, 1);
-    //     renderDocumentos();
-    // }
-
-
     function removerDoc(i) {
         let doc = documentos[i];
         if (doc.id) {
@@ -1430,13 +1418,6 @@ function fecharModal() {
         }));
         document.getElementById('documentos_json').value = JSON.stringify(documentosFinal);
     });
-    // document.querySelector('form').addEventListener('submit', function () {
-    //     document.getElementById('documentos_json').value = JSON.stringify(documentos);
-    // });
-
-
-
-    //let arquivos = <?= json_encode($arquivos ?? []) ?>;
 
     function renderArquivos() {
 
@@ -1543,4 +1524,36 @@ function fecharModal() {
     }
 
 // ==============================================
+
+// ===========VALIDA DATA E NASCIMENTO===================
+document.getElementById('DataNasc').addEventListener('change', function () {
+
+    const data = new Date(this.value);
+    const hoje = new Date();
+
+    hoje.setHours(0,0,0,0);
+
+    if (data > hoje) {
+        alert('Data de nascimento inválida.');
+        this.value = '';
+        return;
+    }
+    if (data.getFullYear() < 1900) {
+        alert('Data de nascimento inválida.');
+        this.value = '';
+    }
+
+});
+
+function mascararData(campo) {
+    let v = campo.value.replace(/\D/g, '');
+    if (v.length > 2) {
+        v = v.replace(/^(\d{2})(\d)/, '$1/$2');
+    }
+    if (v.length > 5) {
+        v = v.replace(/^(\d{2})\/(\d{2})(\d)/, '$1/$2/$3');
+    }
+    campo.value = v;
+}
+
 </script>

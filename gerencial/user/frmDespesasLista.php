@@ -61,6 +61,7 @@ $listaDespesa = ExSqlNET("
         if (isset($_SESSION['mensagem_erro'])) {
             $msgRetorno = $_SESSION['mensagem_erro'];
             unset($_SESSION['mensagem_erro']);
+            $tipoMsg = "error";
         }
 
         if ($msgRetorno): ?>

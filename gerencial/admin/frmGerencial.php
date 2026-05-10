@@ -398,11 +398,11 @@ foreach ($empresas as $e) {
         <div class="subtitle">Controle de clientes cadastrados</div>
 
         <?php
-if (isset($_SESSION['mensagem_sucesso'])) {
-    echo '<div class="alert success">'.$_SESSION['mensagem_sucesso'].'</div>';
-    unset($_SESSION['mensagem_sucesso']);
-}
-?>
+            if (isset($_SESSION['mensagem_sucesso'])) {
+                echo '<div class="alert success">'.$_SESSION['mensagem_sucesso'].'</div>';
+                unset($_SESSION['mensagem_sucesso']);
+            }
+        ?>
 
         <!-- FILTROS -->
 

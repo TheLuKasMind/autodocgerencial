@@ -38,16 +38,20 @@ $dataFinal = $_GET['dataFinal'] ?? $dataHoje;
 
 $condicaoFiltro = $_GET['CondPgto'] ?? '';
 
+$statusProcessoFiltro  = $_GET['statusProcesso'] ?? '';
+
 $where = "WHERE p.idEmpresa = ". $idEmpresa;
 
 if ($statusFiltro !== '' && $statusFiltro !== null) {
-    
     if ($statusFiltro ==  0){
         $where .= " AND p.Status in ( 0, 3) ";
     }else{
         $where .= " AND p.Status = '$statusFiltro'";    
     }
-    
+}
+
+if ($statusProcessoFiltro  !== '' && $statusProcessoFiltro  !== null && $statusProcessoFiltro  !== '0') {
+    $where .= " AND p.StatusProcesso = '$statusProcessoFiltro '";    
 }
 
 
@@ -157,31 +161,14 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
     $ids = implode(",", array_map('intval', $_POST['pedidos']));
     
     //SETA PEDIDO PAGO
-    ExSqlNET("
-        UPDATE movimento
-        SET Status = 1,
-            DataPgto = NOW()
-        WHERE idEmpresa = $idEmpresa
-        AND Status <> 3
-        AND id IN ($ids)
-    ");
+    ExSqlNET(" UPDATE movimento SET Status = 1, DataPgto = NOW()  WHERE idEmpresa = $idEmpresa  AND Status <> 3 AND id IN ($ids)");
     
     //SETA DÉBITO PAGO
-    ExSqlNET(" 
-        UPDATE movimento
-        SET Status = 4,
-            DataPgto = NOW()
-        WHERE idEmpresa = $idEmpresa
-        AND Status = 3
-        AND id IN ($ids)
-    ");
-
+    ExSqlNET(" UPDATE movimento SET Status = 4, DataPgto = NOW()  WHERE idEmpresa = $idEmpresa  AND Status = 3  AND id IN ($ids) ");
     $_SESSION['mensagem_sucesso'] = "Pedidos marcados como pagos!";
     header("Location: frmLancamentoLista.php");
     exit;
 }
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -197,6 +184,44 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
 
 <style>
   
+
+    .status-processo{
+        font-weight: 700;
+        text-align: center;
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-size: 12px;
+        min-width: 130px;
+        display: inline-block;
+        letter-spacing: .3px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .processo-andamento{
+        background: #fef3c7;
+        color: #92400e;
+        border: 1px solid #f59e0b;
+        animation: pulseStatus 1.8s infinite;
+    }
+
+    .processo-concluido{
+        background: #dcfce7;
+        color: #166534;
+        border: 1px solid #22c55e;
+    }
+
+    @keyframes pulseStatus{
+        0%{
+            box-shadow: 0 0 0 0 rgba(245,158,11,.5);
+        }
+        70%{
+            box-shadow: 0 0 0 8px rgba(245,158,11,0);
+        }
+        100%{
+            box-shadow: 0 0 0 0 rgba(245,158,11,0);
+        }
+    }
+
     .lista-clientes {
         max-height: 300px;
         overflow-y: auto;
@@ -505,18 +530,10 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
             <form method="GET" id="formFiltro">
 
                 <div class="form-grid">
-                    <!--<div>-->
-                    <!--    <label>Data Inicial</label>-->
-                    <!--    <input type="date" name="dataInicial" value="<?= $dataInicial ?>">-->
-
-                    <!--    <label>Data Final</label>-->
-                    <!--    <input type="date" name="dataFinal" value="<?= $dataFinal ?>">-->
-                    <!--</div>-->
                     <div>
                         <label>Data Inicial</label>
                         <input type="date" name="dataInicial" value="<?= $dataInicial ?>">
                     </div>
-
 
                     <div>
                         <label>Status</label>
@@ -528,7 +545,6 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
                             <option value="3" <?=($statusFiltro=='3')?'selected':''?>>Débito</option>
                             <option value="4" <?=($statusFiltro=='4')?'selected':''?>>Débito pago</option>
                         </select>
-
                     </div>
 
                     <div>
@@ -588,19 +604,21 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
                             placeholder="Placa do veículo no pedido...">
                     </div>
                         
+
+                    <div>
+                        <label>Andamento Processo</label>
+                        <select name="statusProcesso" id="statusProcesso">
+                            <option value="0" <?=($statusProcessoFiltro=='0')?'selected':''?>>Todos</option>
+                            <option value="1" <?=($statusProcessoFiltro=='1')?'selected':''?>>Em Andamento</option>
+                            <option value="2" <?=($statusProcessoFiltro=='2')?'selected':''?>>Concluído</option>
+                        </select>
+                    </div>
+
                 </div>
 
                 <div class="actions" style="margin-top:20px;">
                     <a href="frmLancamento.php" class="btn btn">Novo Pedido</a>
                     <button type="submit" class="btn btn-secondary">Consultar</button>
-
-                    <!-- <button type="button" class="btn btn-secondary"
-                        onclick="window.open(
-                        'frmLancamentoListaImprimir.php?<?= http_build_query($_GET) ?>',
-                        '_blank'
-                    )">
-                    🖨 Imprimir
-                    </button> -->
                     <button type="button" class="btn btn-secondary" onclick="imprimirLista()">
                         🖨 Imprimir
                     </button>
@@ -637,6 +655,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
                             <th>Obs</th>
                             <th>Veículo</th>
                             <!--<th>Status</th>-->
+                            <th style="text-align:center;">Processo</th>
                             <th style="text-align:center;">Status</th>
                             <th>Valor</th>
                              <th>Lucro</th>
@@ -670,6 +689,19 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
                             <!--<td class="<?= in_array($row['Status'], [1,4]) ? 'status-pago' : '' ?>">-->
                             <!--    <?= $row['StatusLiteral'] ?>-->
                             <!--</td>-->
+                            <td style="text-align:center;">
+                                <?php if ($row['StatusProcesso'] == 1): ?>
+                                    <span class="status-processo processo-andamento">
+                                        ⏳ Em Andamento
+                                    </span>
+                                <?php elseif ($row['StatusProcesso'] == 2): ?>
+                                    <span class="status-processo processo-concluido">
+                                        ✔ Concluído
+                                    </span>
+                                <?php else: ?>
+                                    <span></span>
+                                <?php endif; ?>
+                            </td>
                             <td class="<?=
                                 in_array($row['Status'], [1,4]) 
                                     ? 'status-pago' 
@@ -886,7 +918,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
         .forEach(cb => {
     
             let valor = cb.closest("tr")
-                          .querySelector("td:last-child")
+                          .querySelectorAll("td")[9]
                           .innerText
                           .replace("R$", "")
                           .replace(".", "")

@@ -71,6 +71,7 @@ $listaForcli = ExSqlNET("
         }
         if (isset($_SESSION['mensagem_erro'])) {
             $msgRetorno = $_SESSION['mensagem_erro'];
+            $tipoMsg = "error";
             unset($_SESSION['mensagem_erro']);
         }
 

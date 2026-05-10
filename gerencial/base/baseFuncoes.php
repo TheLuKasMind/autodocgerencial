@@ -176,9 +176,12 @@ function Forcli($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
     $sql = "INSERT INTO forcli 
     (idEmpresa, Codigo, Nome, Documento, RazaoSocial, Tipo, TipoDocumento ,Inativo, Email,
     Telefone, DataCadastro, CEP, UF, Bairro, Cidade, Rua, NumeroEndereco, Obs, DataAlt, Grupo,
-    EstadoCivil, Profissao)
+    EstadoCivil, Profissao, DataNasc, NumeroCNH)
     VALUES 
-    (:idEmpresa, :Codigo, :Nome, :Documento, :RazaoSocial, :Tipo, :TipoDocumento, :Inativo, :Email, :Telefone, :DataCadastro, :CEP, :UF, :Bairro, :Cidade, :Rua, :NumeroEndereco, :Obs, :DataAlt, :Grupo, :EstadoCivil, :Profissao)";
+    (:idEmpresa, :Codigo, :Nome, :Documento, :RazaoSocial, :Tipo, :TipoDocumento,
+     :Inativo, :Email, :Telefone, :DataCadastro, :CEP, :UF, :Bairro, :Cidade, 
+     :Rua, :NumeroEndereco, :Obs, :DataAlt, :Grupo, :EstadoCivil,
+     :Profissao, :DataNasc, :NumeroCNH)";
 
         try {
 
@@ -205,6 +208,8 @@ function Forcli($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
                 ':Grupo' => $dados['Grupo'],
                 ':EstadoCivil' => $dados['EstadoCivil'],
                 ':Profissao' => $dados['Profissao'],
+                ':DataNasc' => $dados['DataNasc'],
+                ':NumeroCNH' => $dados['NumeroCNH'],
                 ':DataAlt' => $dataAlt,
                 ]
             );
@@ -236,6 +241,8 @@ function Forcli($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
             Grupo = :Grupo ,
             EstadoCivil = :EstadoCivil,
             Profissao = :Profissao,
+            DataNasc = :DataNasc,
+            NumeroCNH = :NumeroCNH,
             DataAlt = :DataAlt
             WHERE id = :Id AND idEmpresa = :idEmpresa"; 
 
@@ -264,6 +271,8 @@ function Forcli($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
                 ':Grupo' => $dados['Grupo'],
                 ':EstadoCivil' => $dados['EstadoCivil'],
                 ':Profissao' => $dados['Profissao'],
+                ':DataNasc' => $dados['DataNasc'],
+                ':NumeroCNH' => $dados['NumeroCNH'],
                 ':DataAlt' => $dataAlt,
             ]);
             return ""; 
@@ -473,9 +482,9 @@ function Movimento($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
 
         $sql = "INSERT INTO `movimento` 
         (idEmpresa, Forcli, ForcliRepasse, Data, Status, CondPgto, CorVeiculo, ModeloVeiculo,
-        PlacaVeiculo, DataAlt, DataPgto, Obs, idUser)
+        PlacaVeiculo, DataAlt, DataPgto, Obs, idUser, StatusProcesso)
         VALUES (:idEmpresa, :Forcli, :ForcliRepasse, :Data, :Status, :CondPgto, :CorVeiculo, 
-        :ModeloVeiculo, :PlacaVeiculo, :DataAlt, :DataPgto, :Obs, :idUser)";
+        :ModeloVeiculo, :PlacaVeiculo, :DataAlt, :DataPgto, :Obs, :idUser, :StatusProcesso)";
 
         try {
 
@@ -494,6 +503,7 @@ function Movimento($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
                 ':DataPgto' => $dados['DataPgto'],
                 ':Obs' => $dados['Obs'],
                 ':idUser' => $dados['idUser'],
+                ':StatusProcesso' => $dados['StatusProcesso'],
                 ]
             );
             $idGerado = $dbGeralNET->lastInsertId();
@@ -515,7 +525,8 @@ function Movimento($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
             DataAlt = :DataAlt,
             DataPgto = :DataPgto,
             Obs = :Obs,
-            idUser = :idUser
+            idUser = :idUser,
+            StatusProcesso = :StatusProcesso
             WHERE id = :Id AND idEmpresa = :idEmpresa"; 
 
         try {
@@ -536,6 +547,7 @@ function Movimento($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
                 ':DataPgto' => $dados['DataPgto'],
                 ':Obs' => $dados['Obs'],
                 ':idUser' => $dados['idUser'],
+                ':StatusProcesso' => $dados['StatusProcesso'],
             ]);
             return ""; 
         }catch (PDOException $e) {
@@ -544,9 +556,7 @@ function Movimento($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
     }else if($acao === "EXCLUIR"){
         try {
             $sql = "DELETE FROM `movimento` WHERE id = :Id AND idEmpresa = :idEmpresa";
-
             $stmt = $dbGeralNET->prepare($sql);
-
             $stmt->execute([
                 ':Id' =>$dados['id'],
                 ':idEmpresa'  => $dados['idEmpresa'],

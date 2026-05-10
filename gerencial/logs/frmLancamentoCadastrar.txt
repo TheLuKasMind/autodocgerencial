@@ -9199,3 +9199,35 @@ Array
 
 )
 
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0.5
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 33
+            [id] => 0
+            [descricao] => COMUNICAÇÃO DE VENDA
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 100
+            [total] => 100
+            [solicitaVeiculo] => 1
+        )
+
+)
+

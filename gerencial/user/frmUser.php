@@ -3,6 +3,9 @@ include '../base/baseFuncoes.php';
 require_once '../base/connection.php';
 require_once '../base/verificaPlano.php';
 
+// PUXA AS TELAS QUE O SISTEMA TEM
+require_once '../base/permissoes.php';
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -16,6 +19,9 @@ if (!isset($_SESSION['AdminGeral'])) {
     header("Location: ../frmLogin.php");
     exit;
 }
+
+$msgRetorno = "";
+$tipoMsg = "";
 
 /* ================= FILTROS ================= */
 $busca = $_GET['busca'] ?? '';
@@ -45,22 +51,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['Email'] ?? '';
     $senha = $_POST['Senha'] ?? '';
 
-    $senha = password_hash($senha, PASSWORD_DEFAULT);
-
-
     $cargo = $_POST['Cargo'] ?? '';
     $inativo = isset($_POST['Inativo']) ? 1 : 0;
 
     if ($acao == 'salvar') {
+        $permissoes = $_POST['permissoes'] ?? [];
         if ($id) {
-            // UPDATE
-            ExSqlNET("UPDATE user SET Nome=?, Email=?, Senha=?, Cargo=?, Inativo=? WHERE id=? AND idEmpresa=?", null, [$nome,$email,$senha,$cargo,$inativo,$id,$idEmpresa]);
+
+            if (!empty($senha)) {
+                $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+                ExSqlNET("UPDATE user SET Nome=?, Email=?, Senha=?, Cargo=?, Inativo=? WHERE id=? AND idEmpresa=?", null, [
+                    $nome,
+                    $email,
+                    $senhaHash,
+                    $cargo,
+                    $inativo,
+                    $id,
+                    $idEmpresa
+                ]);
+
+            } else {
+
+                ExSqlNET("UPDATE user SET Nome=?, Email=?, Cargo=?, Inativo=? WHERE id=? AND idEmpresa=?", null, [
+                    $nome,
+                    $email,
+                    $cargo,
+                    $inativo,
+                    $id,
+                    $idEmpresa
+                ]);
+            }
+            $tipoMsg = "success";
+            $idUsuario = $id;
             $_SESSION['mensagem_sucesso'] = "Usuário atualizado com sucesso.";
+
         } else {
-            // INSERT
-            ExSqlNET("INSERT INTO user (Nome, Email, Senha, Cargo, Inativo, idEmpresa) VALUES (?,?,?,?,?,?)", null, [$nome,$email,$senha,$cargo,$inativo,$idEmpresa]);
+
+            $emailExiste = ExSqlNET("SELECT id FROM user WHERE Email = ? LIMIT 1", null,[$email]);
+            if (!empty($emailExiste)) {
+                $_SESSION['mensagem_erro'] = "Já existe um usuário cadastrado com este e-mail.";
+                $tipoMsg  = "erro";
+                header("Location: frmUser.php");
+                exit;
+            }
+
+            $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+            ExSqlNET("INSERT INTO user (Nome, Email, Senha, Cargo, Inativo, idEmpresa) VALUES (?,?,?,?,?,?)", null, [
+                $nome,
+                $email,
+                $senhaHash,
+                $cargo,
+                $inativo,
+                $idEmpresa
+            ]);
+
+            $usuarioNovo = ExSqlNET("SELECT MAX(id) as id FROM user WHERE idEmpresa=?", null, [$idEmpresa]);
+            $idUsuario = $usuarioNovo[0]['id'];
             $_SESSION['mensagem_sucesso'] = "Usuário cadastrado com sucesso.";
+            $tipoMsg  = "success";
         }
+
+        ExSqlNET("DELETE FROM userpermissoes WHERE idEmpresa=? AND idUsuario=?", null, [$idEmpresa, $idUsuario]);
+
+        foreach ($permissoes as $pagina) {
+            ExSqlNET("INSERT INTO userpermissoes (idEmpresa, idUsuario, pagina) VALUES (?,?,?)", null, [
+                $idEmpresa,
+                $idUsuario,
+                $pagina
+            ]);
+        }
+
         header("Location: frmUser.php");
         exit;
     }
@@ -70,7 +132,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (isset($_GET['del'])) {
     $idDel = $_GET['del'];
     ExSqlNET("DELETE FROM user WHERE id=? AND idEmpresa=?", null, [$idDel,$idEmpresa]);
+    ExSqlNET("DELETE FROM userpermissoes WHERE idEmpresa=? AND idUsuario=?", null, [$idEmpresa, $idDel]);
     $_SESSION['mensagem_sucesso'] = "Usuário excluído com sucesso.";
+    $tipoMsg = "success";
     header("Location: frmUser.php");
     exit;
 }
@@ -122,9 +186,33 @@ foreach($usuarios as $u){
     .mobile-row { font-size:13px; margin-top:4px; color:#475569; }
 
     /* ===== MODAL ===== */
-    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); align-items:center; justify-content:center; z-index:999; }
+    .modal {
+        display:none;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.4);
+        align-items:center;
+        justify-content:center;
+        z-index:999;
+    }
     .modal-box { background:white; padding:20px; border-radius:10px; width:100%; max-width:420px; }
     .modal-actions { display:flex; gap:10px; margin-top:10px; }
+
+    body.modal-open .navbar{
+        filter:blur(3px);
+        opacity:.7;
+        pointer-events:none;
+    }
+
+    body.modal-open .content{
+        filter:blur(3px);
+        opacity:.7;
+        pointer-events:none;
+        user-select:none;
+    }
 
     /* ===== RESPONSIVO ===== */
     @media(max-width:900px){
@@ -133,14 +221,12 @@ foreach($usuarios as $u){
         .btn{width:100%;}
     }
 
-    /* ===== FILTROS MELHORADOS ===== */
-
     .filtros {
         display: flex;
         flex-wrap: wrap;
-        gap: 14px;                 /* espaço real entre os campos */
+        gap: 14px;              
         align-items: flex-end;
-        margin: 20px 0 25px 0;     /* respiro em cima e embaixo */
+        margin: 20px 0 25px 0;   
     }
 
     .filtros input,
@@ -183,6 +269,48 @@ foreach($usuarios as $u){
         width: 18px;
         height: 18px;
     }
+
+    .permissoes-grid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+        margin-top:12px;
+        max-height:240px;
+        overflow:auto;
+        padding-right:4px;
+    }
+
+    .check-permissao{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        background:#f8fafc;
+        border:1px solid #e2e8f0;
+        border-radius:10px;
+        padding:10px;
+        font-size:14px;
+        cursor:pointer;
+        transition:.2s;
+    }
+
+    .check-permissao:hover{
+        border-color:#fb923c;
+        background:#fff7ed;
+    }
+
+    .check-permissao input{
+        width:18px;
+        height:18px;
+        accent-color:#ea580c;
+    }
+
+    @media(max-width:700px){
+
+        .permissoes-grid{
+            grid-template-columns:1fr;
+        }
+    }
+
 </style>
 </head>
 
@@ -190,13 +318,33 @@ foreach($usuarios as $u){
 <?php include '../base/navbarUser.php'; ?>
 
 <div class="content">
+
     <div class="page-title">Cadastro de Usuários</div>
     <div class="subtitle">Gerencie os usuários da sua empresa</div>
 
-    <?php if(isset($_SESSION['mensagem_sucesso'])): ?>
-        <div class="alert success"><?= $_SESSION['mensagem_sucesso'] ?></div>
-        <?php unset($_SESSION['mensagem_sucesso']); ?>
-    <?php endif; ?>
+    <?php
+
+        if (isset($_SESSION['mensagem_sucesso'])) {
+            $msgRetorno = $_SESSION['mensagem_sucesso'];
+            $tipoMsg = "success";
+            unset($_SESSION['mensagem_sucesso']);
+        }
+        if (isset($_SESSION['mensagem_erro'])) {
+            $tipoMsg = "error";
+            $msgRetorno = $_SESSION['mensagem_erro'];
+            unset($_SESSION['mensagem_erro']);
+        }
+
+        if ($msgRetorno): ?>
+        <div class="alert <?= $tipoMsg ?>">
+            <?= htmlspecialchars($msgRetorno) ?>
+        </div>
+        <?php endif;
+
+        if ($tipoMsg === 'success') {
+            $_POST = [];
+        }
+    ?>
 
     <!-- BOTÃO NOVO USUÁRIO -->
     <button class="btn btn-salvar" onclick="abrirModal(0,'','','','','0')">+ Novo Usuário</button>
@@ -304,7 +452,7 @@ foreach($usuarios as $u){
             <label>Email</label>
             <input type="email" name="Email" id="mEmail" required>
             <label>Senha</label>
-            <input type="text" name="Senha" id="mSenha" required>
+            <input type="text" name="Senha" id="mSenha">
             <label>Cargo</label>
             <input type="text" name="Cargo" id="mCargo" value="<?= htmlspecialchars($u['Cargo'] ?? '') ?>">
             <!-- <label><input type="checkbox" name="Inativo" id="mInativo"> Inativo</label> -->
@@ -312,37 +460,118 @@ foreach($usuarios as $u){
                 <span>Inativo</span>
                 <input type="checkbox" name="Inativo" id="mInativo">
             </label>
-            <div class="modal-actions">
-                <button class="btn btn-salvar">Salvar</button>
-                <button type="button" class="btn" onclick="fecharModal()">Fechar</button>
+
+            <hr style="margin:20px 0; border:none; border-top:1px solid #e5e7eb;">
+
+            <label style="font-weight:700; margin-bottom:10px; display:block;">
+                Permissões de Acesso
+            </label>
+
+                <div class="permissoes-grid">
+
+                    <?php foreach($paginasSistema as $pagina => $titulo): ?>
+                        <?php
+                            if (
+                                strpos($pagina, 'frmLancamento.php') !== false ||
+                                strpos($pagina, 'frmMulta.php') !== false ||
+                                strpos($pagina, 'frmServProd.php') !== false ||
+                                strpos($pagina, 'frmForcli.php') !== false ||
+                                strpos($pagina, 'frmDespesas.php') !== false
+                            ){
+                                continue;
+                            }
+                        ?>
+
+                        <label class="check-permissao">
+                            <input type="checkbox" name="permissoes[]" value="<?= $pagina ?>" class="checkPermissao">
+                            <span><?= $titulo ?></span>
+                        </label>
+
+                    <?php endforeach; ?>
+
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-salvar">Salvar</button>
+                    <button type="button" class="btn" onclick="fecharModal()">Fechar</button>
+                </div>
+
             </div>
         </form>
     </div>
 </div>
 
 <script>
+
+    const permissoesUsuarios = <?= json_encode(
+        array_reduce($usuarios, function($carry, $u) use ($idEmpresa){
+            $permissoes = ExSqlNET("SELECT pagina FROM userpermissoes WHERE idEmpresa=? AND idUsuario=?", null,
+                [
+                    $idEmpresa,
+                    $u['id']
+                ]
+            );
+            $carry[$u['id']] =
+            array_column($permissoes, 'pagina');
+            return $carry;
+        }, [])
+
+    ) ?>;
+
     function abrirModal(id, nome, email, senha, cargo, inativo){
+
         document.getElementById('modal').style.display='flex';
         document.getElementById('mId').value = id;
         document.getElementById('mNome').value = id == 0 ? '' : nome;
         document.getElementById('mEmail').value = id == 0 ? '' : email;
         document.getElementById('mSenha').value = id == 0 ? '' : senha;
         document.getElementById('mCargo').value = id == 0 ? '' : cargo;
-        document.getElementById('mInativo').checked = (inativo==1);
+        document.getElementById('mInativo').checked = (inativo == 1);
+
+        document
+        .querySelectorAll('.checkPermissao')
+        .forEach(check => {
+            check.checked = false;
+        });
+
+        if(permissoesUsuarios[id]){
+            permissoesUsuarios[id].forEach(pagina => {
+                const checkbox =
+                document.querySelector(
+                    `.checkPermissao[value="${pagina}"]`
+                );
+                if(checkbox){
+                    checkbox.checked = true;
+                }
+            });
+
+        }
     }
     function fecharModal(){
         document.getElementById('modal').style.display='none';
     }
 
     function abrirModalFromData(el) {
-        document.getElementById('modal').style.display = 'flex';
-        document.getElementById('mId').value = el.dataset.id;
-        document.getElementById('mNome').value = el.dataset.nome;
-        document.getElementById('mEmail').value = el.dataset.email;
-        document.getElementById('mSenha').value = el.dataset.senha;
-        document.getElementById('mCargo').value = el.dataset.cargo;
-        document.getElementById('mInativo').checked = el.dataset.inativo == 1;
+        abrirModal(
+            el.dataset.id,
+            el.dataset.nome,
+            el.dataset.email,
+            el.dataset.senha,
+            el.dataset.cargo,
+            el.dataset.inativo
+        );
     }
+
+    window.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+            fecharModal();
+        }
+    });
+
+    document.getElementById('modal').addEventListener('click', function(e){
+        if(e.target.id === 'modal'){
+            fecharModal();
+        }
+    });
 </script>
 </body>
 </html>
