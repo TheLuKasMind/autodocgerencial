@@ -140,7 +140,7 @@ class PDF extends FPDF {
         $this->Cell(
             0,
             10,
-            utf8_decode(
+            cv(
                 'Gerado em '.date('d/m/Y H:i').
                 '  |  Página '.$this->PageNo()
             ),
@@ -161,7 +161,7 @@ class PDF extends FPDF {
         $this->Cell(
             0,
             8,
-            utf8_decode($titulo),
+            cv($titulo),
             0,
             1,
             'L',
