@@ -883,15 +883,6 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
         window.open("frmLancamentoListaImprimir.php?" + url, "_blank");
     }
 
-//   function marcarTodos(source) {
-
-//         let checkboxes = document.querySelectorAll('input[name="pedidos[]"]');
-
-//         checkboxes.forEach(c => {
-//             c.checked = source.checked;
-//         });
-
-//     }
     function marcarTodos(source) {
     
         let checkboxes = document.querySelectorAll('input[name="pedidos[]"]');
@@ -918,7 +909,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
         .forEach(cb => {
     
             let valor = cb.closest("tr")
-                          .querySelectorAll("td")[9]
+                          .querySelectorAll("td")[10]
                           .innerText
                           .replace("R$", "")
                           .replace(".", "")
