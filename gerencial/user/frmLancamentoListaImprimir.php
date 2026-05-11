@@ -85,11 +85,21 @@ if ($statusProcessoFiltro  !== '' && $statusProcessoFiltro  !== null && $statusP
     $where .= " AND p.StatusProcesso = '$statusProcessoFiltro '";    
 }
 
-$pedidoFiltro = $_GET['pedido'] ?? '';
+// $pedidoFiltro = $_GET['pedido'] ?? '';
 
-if ($pedidoFiltro != '') {
-    $pedidoFiltro = intval($pedidoFiltro);
-    $where .= " AND p.id = $pedidoFiltro";
+// if ($pedidoFiltro != '') {
+//     $pedidoFiltro = intval($pedidoFiltro);
+//     $where .= " AND p.id = $pedidoFiltro";
+// }
+
+$pedidoFiltro = $_GET['pedido'] ?? '';
+if (!empty($pedidoFiltro)) {
+    $pedidos = explode(',', $pedidoFiltro);
+    $pedidos = array_filter(array_map('intval', $pedidos));
+    if (!empty($pedidos)) {
+        $lista = implode(',', $pedidos);
+        $where .= " AND p.id IN ($lista)";
+    }
 }
 
 /* ================= PEDIDOS ================= */

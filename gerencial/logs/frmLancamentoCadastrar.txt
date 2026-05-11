@@ -9231,3 +9231,19 @@ Array
 
 )
 
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 46
+            [id] => 0
+            [descricao] => CERTIDÃO DETRAN
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 35
+            [total] => 35
+            [solicitaVeiculo] => 1
+        )
+
+)
+

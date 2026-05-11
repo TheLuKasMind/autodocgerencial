@@ -83,11 +83,32 @@ if ($repasseFiltro !== '') {
     }
 }
 
+// $pedidoFiltro = $_GET['pedido'] ?? '';
+
+// if ($pedidoFiltro != '') {
+//     $pedidoFiltro = intval($pedidoFiltro);
+//     $where .= " AND p.id = $pedidoFiltro";
+// }
+
 $pedidoFiltro = $_GET['pedido'] ?? '';
 
-if ($pedidoFiltro != '') {
-    $pedidoFiltro = intval($pedidoFiltro);
-    $where .= " AND p.id = $pedidoFiltro";
+if (!empty($pedidoFiltro)) {
+
+    // quebra por vírgula
+    $pedidos = explode(',', $pedidoFiltro);
+
+    // limpa espaços e garante inteiros válidos
+    $pedidos = array_map(function ($v) {
+        return (int) trim($v);
+    }, $pedidos);
+
+    // remove zeros inválidos
+    $pedidos = array_filter($pedidos);
+
+    if (!empty($pedidos)) {
+        $lista = implode(',', $pedidos);
+        $where .= " AND p.Id IN ($lista)";
+    }
 }
 
 $placaFiltro = trim($_GET['placa'] ?? '');
@@ -161,10 +182,10 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
     $ids = implode(",", array_map('intval', $_POST['pedidos']));
     
     //SETA PEDIDO PAGO
-    ExSqlNET(" UPDATE movimento SET Status = 1, DataPgto = NOW()  WHERE idEmpresa = $idEmpresa  AND Status <> 3 AND id IN ($ids)");
+    ExSqlNET(" UPDATE movimento SET Status = 1, DataPgto = NOW(), DataAlt = NOW()  WHERE idEmpresa = $idEmpresa  AND Status <> 3 AND id IN ($ids)");
     
     //SETA DÉBITO PAGO
-    ExSqlNET(" UPDATE movimento SET Status = 4, DataPgto = NOW()  WHERE idEmpresa = $idEmpresa  AND Status = 3  AND id IN ($ids) ");
+    ExSqlNET(" UPDATE movimento SET Status = 4, DataPgto = NOW(), DataAlt = NOW()  WHERE idEmpresa = $idEmpresa  AND Status = 3  AND id IN ($ids) ");
     $_SESSION['mensagem_sucesso'] = "Pedidos marcados como pagos!";
     header("Location: frmLancamentoLista.php");
     exit;
@@ -631,7 +652,10 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
         <form method="POST">
 
             <div style="margin-bottom:15px;">
-                <button type="submit" name="marcar_pago" class="btn">
+                <button type="submit" 
+                        name="marcar_pago" 
+                        class="btn"
+                        onclick="return confirm('Deseja realmente marcar os pedidos selecionados como pagos?')">
                     ✔ Marcar selecionados como Pago
                 </button>
             </div>
