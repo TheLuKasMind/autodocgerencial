@@ -82,12 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         ExSqlNET("
             UPDATE empresa 
-            SET Plano = ?, Status = ?, ValidadePlano = ?
+            SET Plano = ?, Status = ?, ValidadePlano = ?, LimiteUsuarios = ?
             WHERE id = ?
         ", null, [
             $_POST['Plano'],
             $_POST['Status'],
             $_POST['ValidadePlano'],
+            $_POST['LimiteUsuarios'],
             $id
         ]);
 
@@ -137,255 +138,514 @@ foreach ($empresas as $e) {
     <link rel="icon" href="../img/favicon.png">
 
 <style>
-    /* ===== FILTROS ===== */
 
-    .filtros {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-bottom: 20px;
+:root{
+    --primary:#f97316;
+    --primary-dark:#ea580c;
+
+    --success:#22c55e;
+    --danger:#ef4444;
+    --warning:#f59e0b;
+
+    --bg:#f8fafc;
+    --card:#ffffff;
+
+    --text:#0f172a;
+    --muted:#64748b;
+
+    --border:#e2e8f0;
+
+    --shadow:
+        0 10px 30px rgba(15,23,42,.06);
+
+    --radius:16px;
+}
+
+body{
+    background:var(--bg);
+}
+
+/* ===== CONTENT ===== */
+
+.content{
+    padding:30px;
+}
+
+.page-title{
+    font-size:32px;
+    font-weight:800;
+    color:var(--text);
+    margin-bottom:4px;
+}
+
+.subtitle{
+    color:var(--muted);
+    margin-bottom:28px;
+    font-size:15px;
+}
+
+/* ===== FILTROS ===== */
+
+.filtros{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+
+    background:var(--card);
+
+    padding:18px;
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:25px;
+    align-items:flex-end;
+}
+
+.filtros input,
+.filtros select{
+    min-width:220px;
+
+    height:46px;
+
+    padding:0 14px;
+
+    border:1px solid var(--border);
+    border-radius:12px;
+
+    background:#fff;
+
+    font-size:14px;
+    color:var(--text);
+
+    transition:.2s;
+}
+
+.filtros input:focus,
+.filtros select:focus{
+    outline:none;
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 4px rgba(249,115,22,.12);
+}
+
+/* ===== CARDS ===== */
+
+.cards{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+
+    margin-bottom:28px;
+}
+
+.card-metric{
+    position:relative;
+
+    overflow:hidden;
+
+    background:var(--card);
+
+    padding:24px;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    border:1px solid rgba(226,232,240,.7);
+
+    transition:.25s;
+}
+
+.card-metric:hover{
+    transform:translateY(-3px);
+}
+
+.card-metric::before{
+    content:'';
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--primary-dark)
+        );
+}
+
+.metric-title{
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.metric-value{
+    font-size:34px;
+    font-weight:800;
+    color:var(--text);
+}
+
+/* ===== CARD ===== */
+
+.card{
+    background:var(--card);
+
+    border-radius:var(--radius);
+
+    padding:24px;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid rgba(226,232,240,.7);
+
+    margin-bottom:24px;
+}
+
+/* ===== TABELA ===== */
+
+.table-modern{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+}
+
+.table-modern thead th{
+    background:#fff7ed;
+
+    color:var(--primary-dark);
+
+    font-size:13px;
+    font-weight:700;
+
+    padding:16px 14px;
+
+    text-align:left;
+
+    border-bottom:1px solid #fed7aa;
+}
+
+.table-modern thead th:first-child{
+    border-top-left-radius:12px;
+}
+
+.table-modern thead th:last-child{
+    border-top-right-radius:12px;
+}
+
+.table-modern tbody td{
+    padding:16px 14px;
+
+    border-bottom:1px solid #f1f5f9;
+
+    vertical-align:middle;
+
+    color:#334155;
+}
+
+.table-modern tbody tr{
+    transition:.18s;
+}
+
+.table-modern tbody tr:hover{
+    background:#fffaf5;
+}
+
+.table-modern small{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* ===== BADGES ===== */
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    font-size:11px;
+    font-weight:700;
+
+    letter-spacing:.3px;
+}
+
+.badge-ativa{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.badge-pendente{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.badge-inativa{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.badge-vencido{
+    background:#e2e8f0;
+    color:#334155;
+}
+
+/* ===== BOTÕES ===== */
+
+.btn{
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    height:42px;
+
+    padding:0 16px;
+
+    border:none;
+    border-radius:12px;
+
+    font-size:13px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.22s;
+
+    text-decoration:none;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+.btn-aprovar{
+    background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #16a34a
+        );
+
+    color:white;
+
+    box-shadow:
+        0 8px 18px rgba(34,197,94,.22);
+}
+
+.btn-gerenciar{
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-dark)
+        );
+
+    color:white;
+
+    box-shadow:
+        0 8px 18px rgba(249,115,22,.24);
+}
+
+.btn-aprovar:hover,
+.btn-gerenciar:hover{
+    filter:brightness(1.03);
+}
+
+/* ===== MOBILE CARD ===== */
+
+.mobile-card{
+    display:none;
+
+    background:var(--card);
+
+    padding:18px;
+
+    border-radius:16px;
+
+    margin-bottom:16px;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid rgba(226,232,240,.7);
+}
+
+.mobile-card strong{
+    font-size:16px;
+    color:var(--text);
+}
+
+.mobile-row{
+    margin-top:7px;
+
+    font-size:13px;
+    color:#475569;
+}
+
+/* ===== MODAL ===== */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(15,23,42,.45);
+
+    backdrop-filter:blur(3px);
+
+    z-index:999;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+.modal-box{
+    width:100%;
+    max-width:460px;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:28px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.18);
+
+    animation:fadeUp .2s ease;
+}
+
+.modal-box h3{
+    margin-top:0;
+    margin-bottom:22px;
+
+    font-size:22px;
+    color:var(--text);
+}
+
+.modal-box label{
+    display:block;
+
+    margin-bottom:6px;
+    margin-top:14px;
+
+    font-size:13px;
+    font-weight:700;
+
+    color:#475569;
+}
+
+.modal-box input,
+.modal-box select{
+    width:100%;
+    height:46px;
+
+    padding:0 14px;
+
+    border:1px solid var(--border);
+    border-radius:12px;
+
+    font-size:14px;
+
+    transition:.2s;
+}
+
+.modal-box input:focus,
+.modal-box select:focus{
+    outline:none;
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 4px rgba(249,115,22,.12);
+}
+
+.modal-actions{
+    display:flex;
+    gap:12px;
+
+    margin-top:24px;
+}
+
+/* ===== ANIMAÇÃO ===== */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ===== RESPONSIVO ===== */
+
+@media(max-width:900px){
+
+    .table-desktop{
+        display:none;
+    }
+
+    .mobile-card{
+        display:block;
+    }
+
+    .btn{
+        width:100%;
+    }
+}
+
+@media(max-width:768px){
+
+    .content{
+        padding:18px;
+    }
+
+    .filtros{
+        flex-direction:column;
+        align-items:stretch;
     }
 
     .filtros input,
-    .filtros select {
-        padding: 9px 12px;
-        border-radius: 8px;
-        border: 1px solid #e2e8f0;
+    .filtros select,
+    .filtros .btn{
+        width:100%;
+        min-width:unset;
     }
 
-    /* ===== CARDS ===== */
-
-    .cards {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-        margin-bottom: 20px;
+    .cards{
+        grid-template-columns:1fr;
     }
 
-    .card-metric {
-        flex: 1;
-        min-width: 180px;
-        background: white;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        border-left: 4px solid #f97316;
+    .modal-actions{
+        flex-direction:column;
     }
+}
 
-    .metric-title {
-        font-size: 13px;
-        color: #64748b;
-    }
-
-    .metric-value {
-        font-size: 26px;
-        font-weight: 700;
-        color: #ea580c;
-    }
-
-    /* ===== TABELA ===== */
-
-    .table-modern {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .table-modern th {
-        background: #fff7ed;
-        color: #c2410c;
-        padding: 12px;
-        text-align: left;
-        font-weight: 600;
-    }
-
-    .table-modern td {
-        padding: 12px;
-        border-bottom: 1px solid #e5e7eb;
-    }
-
-    .table-modern tr:hover {
-        background: #fffaf5;
-    }
-
-    /* ===== BADGES ===== */
-
-    .badge {
-        padding: 4px 10px;
-        border-radius: 999px;
-        font-size: 12px;
-        font-weight: 600;
-    }
-
-    .badge-ativa {
-        background: #dcfce7;
-        color: #166534;
-    }
-
-    .badge-pendente {
-        background: #fef3c7;
-        color: #92400e;
-    }
-
-    .badge-inativa {
-        background: #fee2e2;
-        color: #991b1b;
-    }
-
-    .badge-vencido {
-        background: #e5e7eb;
-        color: #334155;
-    }
-
-    /* ===== BOTÕES LARANJA ===== */
-
-    .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        padding: 9px 14px;
-        border: none;
-        border-radius: 8px;
-        font-size: 13px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.25s;
-    }
-
-    .btn-aprovar {
-        background: linear-gradient(135deg, #22c55e, #16a34a);
-        color: white;
-    }
-
-    .btn-gerenciar {
-        background: linear-gradient(135deg, #f97316, #ea580c);
-        color: white;
-        box-shadow: 0 2px 6px rgba(249, 115, 22, 0.3);
-    }
-
-    .btn:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    /* ===== MOBILE ===== */
-
-    .mobile-card {
-        display: none;
-        background: white;
-        padding: 15px;
-        border-radius: 12px;
-        margin-bottom: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        border-left: 4px solid #f97316;
-    }
-
-    .mobile-row {
-        font-size: 13px;
-        margin-top: 4px;
-        color: #475569;
-    }
-
-    /* ===== MODAL ===== */
-
-    .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.4);
-        align-items: center;
-        justify-content: center;
-        z-index: 999;
-    }
-
-    .modal-box {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        width: 100%;
-        max-width: 420px;
-    }
-
-    .modal-actions {
-        display: flex;
-        gap: 10px; /* espaço entre os botões */
-    }
-    
-    /* ===== RESPONSIVO ===== */
-
-    @media(max-width:900px) {
-
-        .table-desktop {
-            display: none;
-        }
-
-        .mobile-card {
-            display: block;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px;
-            font-size: 14px;
-        }
-
-    }
-
-    .filtros {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin-bottom: 25px;
-        background: #ffffff;
-        padding: 18px;
-        border-radius: 12px;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-        align-items: flex-end;
-    }
-
-    .filtros input,
-    .filtros select {
-        min-width: 200px;
-        padding: 10px 14px;
-        border-radius: 8px;
-        border: 1px solid #e2e8f0;
-        font-size: 14px;
-        transition: 0.2s;
-    }
-
-    .filtros input:focus,
-    .filtros select:focus {
-        outline: none;
-        border-color: #f97316;
-        box-shadow: 0 0 0 3px rgba(249,115,22,0.15);
-    }
-
-    /* botão alinhado corretamente */
-    .filtros .btn {
-        height: 40px;
-        padding: 0 18px;
-        white-space: nowrap;
-    }
-
-    /* RESPONSIVO */
-
-    @media (max-width: 768px) {
-        .filtros {
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        .filtros input,
-        .filtros select,
-        .filtros .btn {
-            width: 100%;
-            min-width: unset;
-        }
-    }
-    </style>
+</style>
 </head>
 
 <body>
@@ -528,7 +788,8 @@ foreach ($empresas as $e) {
                                 <?= $emp['id'] ?>,
                                 '<?= $emp['Plano'] ?>',
                                 '<?= $emp['Status'] ?>',
-                                '<?= $emp['ValidadePlano'] ?>'
+                                '<?= $emp['ValidadePlano'] ?>',
+                                '<?= $emp['LimiteUsuarios'] ?>'
                                 )">
                                 ⚙ Gerenciar
                             </button>
@@ -591,6 +852,7 @@ foreach ($empresas as $e) {
                     '<?= $emp['Plano'] ?>',
                     '<?= $emp['Status'] ?>',
                     '<?= $emp['ValidadePlano'] ?>'
+                    '<?= $emp['LimiteUsuarios'] ?>'
                     )">
                     ⚙ Gerenciar
                 </button>
@@ -639,6 +901,9 @@ foreach ($empresas as $e) {
                 <label>Validade</label>
                 <input type="date" name="ValidadePlano" id="mValidade">
 
+                <label>Limite Usuários</label>
+                <input type="number" name="LimiteUsuarios" id="mLimiteUsuarios">
+
                 <br><br>
 
                 <div class="modal-actions">
@@ -652,7 +917,7 @@ foreach ($empresas as $e) {
     </div>
 
 <script>
-    function abrirModal(id, plano, status, validade) {
+    function abrirModal(id, plano, status, validade, limiteUsuarios) {
 
         document.getElementById('modal').style.display = 'flex';
 
@@ -660,6 +925,7 @@ foreach ($empresas as $e) {
         mPlano.value = plano;
         mStatus.value = status;
         mValidade.value = validade;
+        mLimiteUsuarios.value = limiteUsuarios;
 
     }
 

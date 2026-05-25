@@ -414,6 +414,15 @@ body{
             </li>
             <?php endif; ?>
 
+            <?php if ($isAdminGeral || podeAcessar('frmLembrete.php')): ?>
+            <li>
+                <a href="../user/frmLembrete.php"
+                class="<?= in_array($currentPage, ['frmLembrete.php']) ? 'active' : '' ?>">
+                Lembretes
+                </a>
+            </li>
+            <?php endif; ?>
+
             <div class="menu-group">Sistema</div>
 
             <?php if ($isAdminGeral || podeAcessar('frmForcliExtrato.php')): ?>

@@ -948,44 +948,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
 
             </div>
 
-            <!-- <div id="dadosVeiculo" style="display:none; margin-top:25px;" class="card">
-                <h3>Dados do Veículo</h3>
-
-                <div class="form-grid">
-
-                    <div>
-                        <label>Modelo</label>
-                        <input type="text" id="veiculo_modelo" name="veiculo_modelo"
-                            value="<?= $Alterando ? htmlspecialchars($dados['ModeloVeiculo'] ?? '') : '' ?>"
-                        >
-                    </div>
-
-                    <div>
-                        <label>Cor</label>
-                        <select name="veiculo_cor" id="veiculo_cor">
-                            <option value="" <?= $Alterando && $dados['CorVeiculo']=="" ? 'selected' : '' ?>></option>
-                            <option value="Amarelo" <?= $Alterando && $dados['CorVeiculo']=="Amarelo" ? 'selected' : '' ?>>AMARELO</option>
-                            <option value="Azul" <?= $Alterando && $dados['CorVeiculo']=="Azul" ? 'selected' : '' ?>>AZUL</option>
-                            <option value="Bege" <?= $Alterando && $dados['CorVeiculo']=="Bege" ? 'selected' : '' ?>>BEGE</option>
-                            <option value="Branco" <?= $Alterando && $dados['CorVeiculo']=="Branco" ? 'selected' : '' ?>>BRANCO</option>
-                            <option value="Cinza" <?= $Alterando && $dados['CorVeiculo']=="Cinza" ? 'selected' : '' ?>>CINZA</option>
-                            <option value="Prata" <?= $Alterando && $dados['CorVeiculo']=="Prata" ? 'selected' : '' ?>>PRATA</option>
-                            <option value="Preto" <?= $Alterando && $dados['CorVeiculo']=="Preto" ? 'selected' : '' ?>>PRETO</option>
-                            <option value="Verde" <?= $Alterando && $dados['CorVeiculo']=="Verde" ? 'selected' : '' ?>>VERDE</option>
-                            <option value="Vermelho" <?= $Alterando && $dados['CorVeiculo']=="Vermelho" ? 'selected' : '' ?>>VERMELHO</option>
-                            <option value="Laranja" <?= $Alterando && $dados['CorVeiculo']=="Laranja" ? 'selected' : '' ?>>LARANJA</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label>Placa</label>
-                        <input type="text" id="veiculo_placa" name="veiculo_placa"
-                            value="<?= $Alterando ? htmlspecialchars($dados['PlacaVeiculo'] ?? '') : '' ?>"
-                        >
-                    </div>
-                </div>
-            </div> -->
-
             <div id="dadosVeiculo" class="card card-veiculo" style="display:none; margin-top:25px;">
 
                 <div class="header-veiculo">
@@ -1015,29 +977,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                         <label>Cor</label>
 
                         <select name="veiculo_cor" id="veiculo_cor">
-
                             <option value="" <?= $Alterando && $dados['CorVeiculo']=="" ? 'selected' : '' ?>></option>
-
                             <option value="Amarelo" <?= $Alterando && $dados['CorVeiculo']=="Amarelo" ? 'selected' : '' ?>>AMARELO</option>
-
                             <option value="Azul" <?= $Alterando && $dados['CorVeiculo']=="Azul" ? 'selected' : '' ?>>AZUL</option>
-
                             <option value="Bege" <?= $Alterando && $dados['CorVeiculo']=="Bege" ? 'selected' : '' ?>>BEGE</option>
-
                             <option value="Branco" <?= $Alterando && $dados['CorVeiculo']=="Branco" ? 'selected' : '' ?>>BRANCO</option>
-
                             <option value="Cinza" <?= $Alterando && $dados['CorVeiculo']=="Cinza" ? 'selected' : '' ?>>CINZA</option>
-
                             <option value="Prata" <?= $Alterando && $dados['CorVeiculo']=="Prata" ? 'selected' : '' ?>>PRATA</option>
-
                             <option value="Preto" <?= $Alterando && $dados['CorVeiculo']=="Preto" ? 'selected' : '' ?>>PRETO</option>
-
                             <option value="Verde" <?= $Alterando && $dados['CorVeiculo']=="Verde" ? 'selected' : '' ?>>VERDE</option>
-
                             <option value="Vermelho" <?= $Alterando && $dados['CorVeiculo']=="Vermelho" ? 'selected' : '' ?>>VERMELHO</option>
-
                             <option value="Laranja" <?= $Alterando && $dados['CorVeiculo']=="Laranja" ? 'selected' : '' ?>>LARANJA</option>
-
+                            <option value="Roxo" <?= $Alterando && $dados['CorVeiculo']=="Roxo" ? 'selected' : '' ?>>ROXO</option>
                         </select>
                     </div>
 

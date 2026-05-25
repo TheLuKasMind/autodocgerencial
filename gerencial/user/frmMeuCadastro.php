@@ -77,9 +77,6 @@ $usuario = $dadosUsuario[0];
 
     <style>
 
-        body{
-            background:#f1f5f9;
-        }
 
         .content{
             padding:30px;

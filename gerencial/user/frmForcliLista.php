@@ -23,6 +23,7 @@ $listaForcli = ExSqlNET("
         WHEN 2 THEN 'Revenda' 
         WHEN 3 THEN 'Fornecedor'
         WHEN 4 THEN 'Consumidor Final'
+        WHEN 5 Then 'Despachante'
     END AS TipoLiteral,
     (
         SELECT IFNULL(SUM(mi.TotalItem),0)

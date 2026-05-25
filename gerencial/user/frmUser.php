@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $cargo = $_POST['Cargo'] ?? '';
     $inativo = isset($_POST['Inativo']) ? 1 : 0;
+    $naoVerDadosFinanceiro  = isset($_POST['NaoVerDadosFinanceiro']) ? 1 : 0;
 
     if ($acao == 'salvar') {
         $permissoes = $_POST['permissoes'] ?? [];
@@ -61,23 +62,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!empty($senha)) {
                 $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
-                ExSqlNET("UPDATE user SET Nome=?, Email=?, Senha=?, Cargo=?, Inativo=? WHERE id=? AND idEmpresa=?", null, [
+                ExSqlNET("UPDATE user SET Nome=?, Email=?, Senha=?, Cargo=?, Inativo=?, NaoVerDadosFinanceiro=? 
+                WHERE id=? AND idEmpresa=?", null, [
                     $nome,
                     $email,
                     $senhaHash,
                     $cargo,
                     $inativo,
+                    $naoVerDadosFinanceiro,
                     $id,
                     $idEmpresa
                 ]);
 
             } else {
 
-                ExSqlNET("UPDATE user SET Nome=?, Email=?, Cargo=?, Inativo=? WHERE id=? AND idEmpresa=?", null, [
+                ExSqlNET("UPDATE user SET Nome=?, Email=?, Cargo=?, Inativo=?, NaoVerDadosFinanceiro=? 
+                WHERE id=? AND idEmpresa=?", null, [
                     $nome,
                     $email,
                     $cargo,
                     $inativo,
+                    $naoVerDadosFinanceiro,
                     $id,
                     $idEmpresa
                 ]);
@@ -87,6 +92,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['mensagem_sucesso'] = "Usuário atualizado com sucesso.";
 
         } else {
+
+            // ================= VALIDAR LIMITE =================
+            $totalUsuarios = ExSqlNET("
+                SELECT COUNT(*) AS total
+                FROM user
+                WHERE idEmpresa = ?
+            ", null, [$idEmpresa]);
+            $totalUsuarios = $totalUsuarios[0]['total'] ?? 0;
+            $limiteUsuarios = $_SESSION['empresa_limiteUsuarios'] ?? 0;
+            if ($limiteUsuarios > 0 && $totalUsuarios >= $limiteUsuarios) {
+                $_SESSION['mensagem_erro'] ="Limite de usuários do seu plano foi atingido. Entre em contato o administrador para liberação de novos cadastros.";
+                header("Location: frmUser.php");
+                exit;
+            }
 
             $emailExiste = ExSqlNET("SELECT id FROM user WHERE Email = ? LIMIT 1", null,[$email]);
             if (!empty($emailExiste)) {
@@ -270,6 +289,19 @@ foreach($usuarios as $u){
         height: 18px;
     }
 
+    .modal-box label:has(#mNaoVerDadosFinanceiro) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        font-weight: 500;
+    }
+
+    .modal-box #mNaoVerDadosFinanceiro {
+        width: 18px;
+        height: 18px;
+    }
+
     .permissoes-grid{
         display:grid;
         grid-template-columns:1fr 1fr;
@@ -310,7 +342,9 @@ foreach($usuarios as $u){
             grid-template-columns:1fr;
         }
     }
-
+    .hide-id{
+        display:none;
+    }
 </style>
 </head>
 
@@ -377,7 +411,7 @@ foreach($usuarios as $u){
         <table class="table-modern table-desktop">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th class="hide-id">ID</th>
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Cargo</th>
@@ -390,7 +424,7 @@ foreach($usuarios as $u){
                 $statusClass = $u['Inativo'] ? 'badge-inativo' : 'badge-ativo';
             ?>
                 <tr>
-                    <td><?= $u['id'] ?></td>
+                    <td class="hide-id"><?= $u['id'] ?></td>
                     <td><?= $u['Nome'] ?></td>
                     <td><?= $u['Email'] ?></td>
                     <td><?= $u['Cargo'] ?></td>
@@ -403,6 +437,7 @@ foreach($usuarios as $u){
                             data-senha="<?= htmlspecialchars("", ENT_QUOTES) ?>"
                             data-cargo="<?= htmlspecialchars($u['Cargo'], ENT_QUOTES) ?>"
                             data-inativo="<?= $u['Inativo'] ?>"
+                            data-nao-ver-dados-financeiro="<?= $u['NaoVerDadosFinanceiro'] ?>"
                             onclick="abrirModalFromData(this)">
                             Editar
                         </button>
@@ -431,6 +466,7 @@ foreach($usuarios as $u){
                 data-senha="<?= htmlspecialchars("", ENT_QUOTES) ?>"
                 data-cargo="<?= htmlspecialchars($u['Cargo'], ENT_QUOTES) ?>"
                 data-inativo="<?= $u['Inativo'] ?>"
+                data-nao-ver-dados-financeiro="<?= $u['NaoVerDadosFinanceiro'] ?>"
                 onclick="abrirModalFromData(this)">
                 Editar
             </button>
@@ -459,6 +495,11 @@ foreach($usuarios as $u){
             <label class="label-inativo">
                 <span>Inativo</span>
                 <input type="checkbox" name="Inativo" id="mInativo">
+            </label>
+
+            <label class="label-inativo">
+                <span>Não ver financeiro na tela inicial</span>
+                <input type="checkbox" name="NaoVerDadosFinanceiro" id="mNaoVerDadosFinanceiro">
             </label>
 
             <hr style="margin:20px 0; border:none; border-top:1px solid #e5e7eb;">
@@ -517,7 +558,7 @@ foreach($usuarios as $u){
 
     ) ?>;
 
-    function abrirModal(id, nome, email, senha, cargo, inativo){
+    function abrirModal(id, nome, email, senha, cargo, inativo, naoVerDadosFinanceiro){
 
         document.getElementById('modal').style.display='flex';
         document.getElementById('mId').value = id;
@@ -526,6 +567,7 @@ foreach($usuarios as $u){
         document.getElementById('mSenha').value = id == 0 ? '' : senha;
         document.getElementById('mCargo').value = id == 0 ? '' : cargo;
         document.getElementById('mInativo').checked = (inativo == 1);
+        document.getElementById('mNaoVerDadosFinanceiro').checked = (naoVerDadosFinanceiro == 1);
 
         document
         .querySelectorAll('.checkPermissao')
@@ -557,7 +599,8 @@ foreach($usuarios as $u){
             el.dataset.email,
             el.dataset.senha,
             el.dataset.cargo,
-            el.dataset.inativo
+            el.dataset.inativo,
+            el.dataset.naoVerDadosFinanceiro
         );
     }
 

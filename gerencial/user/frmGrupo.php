@@ -380,8 +380,8 @@ select:focus {
         
                 <div class="campo nome">
                     <label>Nome do Grupo</label>
-                    <input type="text" name="nomeGrupo"
-value="<?= $grupoEditar['Nome'] ?? '' ?>">
+                    <input type="text" name="nomeGrupo" required
+                        value="<?= $grupoEditar['Nome'] ?? '' ?>">
                 </div>
         
                 <div class="campo tipo">
@@ -405,7 +405,7 @@ value="<?= $grupoEditar['Nome'] ?? '' ?>">
         <input type="hidden" name="id" value="<?= $grupoEditar['Id'] ?? '' ?>">
 
         <button type="submit" class="btn">
-            <?= $grupoEditar ? 'Atualizar Grupo' : 'Salvar Grupo' ?>
+            <?= $grupoEditar ? 'Atualizar Grupo' : 'Cadastrar Grupo' ?>
         </button>
 
     </form>

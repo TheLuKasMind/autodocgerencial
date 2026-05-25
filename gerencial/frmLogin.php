@@ -54,7 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
                 e.ValidadePlano,
                 e.Email As EmpresaEmail,
                 u.Email As UserEmail,
-                u.Cargo As Cargo
+                u.Cargo As Cargo,
+                u.NaoVerDadosFinanceiro,
+                e.LimiteUsuarios
             FROM user u
             INNER JOIN empresa e ON e.id = u.idEmpresa
             WHERE u.email = ?
@@ -101,12 +103,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
                         $_SESSION['idEmpresa'] = $usuario['idEmpresa'];
                         $_SESSION['usuario_cargo'] = $usuario['Cargo'];
                         
+                        $_SESSION['usuario_config_NaoVerDadosFinanceiro'] = $usuario['NaoVerDadosFinanceiro'];
+                        
                         if ($usuario['EmpresaEmail'] == $usuario['UserEmail']){
                             $_SESSION['UserAdmin'] = 1;
                         }else{
                             $_SESSION['UserAdmin'] = 0;
                         }
                         
+                        $_SESSION['empresa_limiteUsuarios'] = $usuario['LimiteUsuarios'];
+
                         /* ===== PERMISSÕES DE ACESSO A TELAS ===== */
                         $sql = "SELECT pagina FROM userpermissoes WHERE idEmpresa = ? AND idUsuario = ?";
                         $permissoes = ExSqlNET($sql,null,[$_SESSION['idEmpresa'],$_SESSION['usuario_id']]);
