@@ -738,7 +738,6 @@ function MovimentoCC($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
                 ':TipoMov' => $dados['TipoMov'],
                 ':CaixaGeral' => $dados['CaixaGeral'],
                 ':ControleOrigem' => $dados['ControleOrigem'],
-                ':Controle' => $dados['Controle'],
                 ':DataAlt' => $dataAlt,
                 ':idUser' => $dados['idUser'],
             ]);
@@ -1322,5 +1321,76 @@ function Multa($dados, $acao){
 
     return "Ação inválida.";
 }
+
+function Lembrete($dados, $acao){
+
+    global $dbGeralNET;
+
+    if($acao === "CADASTRAR"){
+        $sql = "INSERT INTO movtolembrete (idEmpresa,Titulo,Descricao,DataLembrete,
+            Concluido,DataCadastro, idUser
+        ) VALUES (:idEmpresa,:Titulo,:Descricao,:DataLembrete,
+            :Concluido, NOW(), :idUser
+        )";
+        try{
+            $stmt = $dbGeralNET->prepare($sql);
+            $stmt->execute([
+                ':idEmpresa'    => $dados['idEmpresa'],
+                ':Titulo'       => $dados['Titulo'],
+                ':Descricao'    => $dados['Descricao'],
+                ':DataLembrete' => $dados['DataLembrete'],
+                ':Concluido'    => $dados['Concluido'],
+                ':idUser' => $dados['idUser']
+            ]);
+            return "";
+        }catch(PDOException $e){
+            return $e->getMessage();
+        }
+    }
+
+    if($acao === "ATUALIZAR"){
+        $sql = "UPDATE movtolembrete SET
+            Titulo = :Titulo,
+            Descricao = :Descricao,
+            DataLembrete = :DataLembrete,
+            Concluido = :Concluido
+        WHERE id = :id
+        AND idEmpresa = :idEmpresa
+        AND idUser = :idUser";
+
+        try{
+            $stmt = $dbGeralNET->prepare($sql);
+            $stmt->execute([
+                ':id'            => $dados['id'],
+                ':idEmpresa'     => $dados['idEmpresa'],
+                ':Titulo'        => $dados['Titulo'],
+                ':Descricao'     => $dados['Descricao'],
+                ':DataLembrete'  => $dados['DataLembrete'],
+                ':Concluido'     => $dados['Concluido'],
+                ':idUser' => $dados['idUser'],
+            ]);
+            return "";
+        }catch(PDOException $e){
+            return $e->getMessage();
+        }
+    }
+
+    if($acao === "EXCLUIR"){
+        $sql = "DELETE FROM movtolembrete WHERE id = :id AND idEmpresa = :idEmpresa";
+        try{
+            $stmt = $dbGeralNET->prepare($sql);
+            $stmt->execute([
+                ':id'        => $dados['id'],
+                ':idEmpresa' => $dados['idEmpresa']
+            ]);
+            return "";
+        }catch(PDOException $e){
+            return $e->getMessage();
+        }
+    }
+    return "Ação inválida.";
+}
+
+
 
 ?>

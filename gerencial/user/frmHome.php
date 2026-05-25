@@ -35,11 +35,6 @@ $empresa = ExSqlNET($sqlEmpresa, null, [$idEmpresa])[0] ?? null;
 
 /* ================= CONTADORES ================= */
 
-// $dadosForcli = ExSqlNET(
-//     "SELECT COUNT(id) AS Total FROM forcli WHERE idEmpresa = ?",
-//     null,
-//     [$idEmpresa]
-// )[0] ?? [];
 
 $dadosItensHoje = ExSqlNET(
     "SELECT COUNT(movimentoitem.id) AS Total
@@ -62,12 +57,6 @@ $dadosItensMes = ExSqlNET(
     null,
     [$idEmpresa]
 )[0] ?? [];
-
-// $dadosServProd = ExSqlNET(
-//     "SELECT COUNT(id) AS Total FROM servprod WHERE idEmpresa = ? AND Inativo = 0",
-//     null,
-//     [$idEmpresa]
-// )[0] ?? [];
 
 
 /* ================= SALDO DO DIA ================= */
@@ -106,22 +95,6 @@ $metaDiaria = (float)($empresa['MetaDiaria'] ?? 0);
 
 /* ===== FATURAMENTO MÊS ===== */
 
-// $faturamentoMes = ExSqlNET("
-//     SELECT COALESCE(SUM(valorMov),0) as Total 
-//     FROM (
-//         SELECT movimento.id,
-//               COALESCE(SUM(movimentoitem.TotalItem),0) as valorMov
-//         FROM movimento
-//         LEFT JOIN movimentoitem 
-//             ON movimento.id = movimentoitem.ControleMovimento
-//         WHERE movimento.idEmpresa = ?
-//         AND movimento.Status <> 2
-//         AND MONTH(movimento.Data) = MONTH(CURDATE())
-//         AND YEAR(movimento.Data) = YEAR(CURDATE())
-//         GROUP BY movimento.id
-//     ) as x
-// ", null, [$idEmpresa]);
-
 $faturamentoMes = ExSqlNET("
     SELECT COALESCE(SUM(Valor),0) as Total
     FROM movimentocc
@@ -137,19 +110,6 @@ $faturamentoMes = $faturamentoMes[0]['Total'] ?? 0;
 
 /* ===== FATURAMENTO DIA ===== */
 
-// $faturamentoDia = ExSqlNET("
-// SELECT SUM(valorMov) as Total FROM (
-//     SELECT movimento.id,
-//           SUM(movimentoitem.TotalItem) as valorMov
-//     FROM movimento
-//     LEFT JOIN movimentoitem 
-//         ON movimento.id = movimentoitem.ControleMovimento
-//     WHERE movimento.idEmpresa = ?
-//     AND movimento.Status <> 2
-//     AND DATE(movimento.Data) = CURDATE()
-//     GROUP BY movimento.id
-// ) as x
-// ", null, [$idEmpresa])[0]['Total'] ?? 0;
 
 $dataHoje = date('Y-m-d');
 // $dataHoje = date('Y-m-d', strtotime('-1 day')); //PARA TESTES
@@ -162,14 +122,6 @@ AND Descricao = 'LUCRO VENDA PEDIDO'
 AND DATE(movimentocc.Data) = ?
 ", null, [$idEmpresa, $dataHoje])[0]['Total'] ?? 0;
 
-// $faturamentoDia = ExSqlNET("
-// SELECT SUM(Valor) as Total FROM movimentocc
-// where idEmpresa = ?
-// AND TipoMov = 'ENTRADA'
-// AND DATE(movimentocc.Data) = CURDATE()
-// ", null, [$idEmpresa])[0]['Total'] ?? 0;
-
-
 /* ================= CÁLCULOS ================= */
 
 $percMensal = $metaMensal > 0 ? ($faturamentoMes / $metaMensal) * 100 : 0;
@@ -180,6 +132,41 @@ $percDiaria = $metaDiaria > 0 ? ($faturamentoDia / $metaDiaria) * 100 : 0;
 $percDiaria = min($percDiaria, 100);
 $faltaDiaria = max($metaDiaria - $faturamentoDia, 0);
 
+
+$naoVerFinanceiro = $_SESSION['usuario_config_NaoVerDadosFinanceiro'] ?? 0;
+
+$idUser = $_SESSION['usuario_id'];
+
+/* ================= LEMBRETES ================= */
+
+$lembretes = ExSqlNET("
+    SELECT *
+    FROM movtolembrete
+    WHERE idEmpresa = ?
+    AND Concluido = 0
+    AND idUser = ?
+    AND DataLembrete <= CURDATE()
+    ORDER BY DataLembrete ASC, id ASC
+", null, [$idEmpresa, $idUser]);
+
+/* ================= CONCLUIR LEMBRETE ================= */
+
+if(isset($_GET['concluirLembrete'])){
+    $idLembrete = (int)$_GET['concluirLembrete'];
+    ExSqlNET("
+        UPDATE movtolembrete
+        SET 
+            Concluido = 1,
+            DataConclusao = NOW()
+        WHERE idEmpresa = ?
+        AND id = ?
+    ", null, [
+        $idEmpresa,
+        $idLembrete
+    ]);
+    header("Location: frmHome.php");
+    exit;
+}
 
 /* ================= FUNÇÕES ================= */
 
@@ -489,6 +476,76 @@ if (!empty($empresa['ValidadePlano'])) {
             color: #334155;
         }
 
+
+        .lembrete-box{
+            background:white;
+            border-radius:14px;
+            padding:20px;
+            box-shadow:0 6px 14px rgba(0,0,0,0.05);
+            margin-bottom:25px;
+        }
+
+        .lembrete-item{
+            border:1px solid #e2e8f0;
+            border-left:5px solid #f97316;
+            border-radius:12px;
+
+            padding:15px;
+            margin-top:12px;
+
+            display:flex;
+            justify-content:space-between;
+            gap:15px;
+
+            background:#fff;
+        }
+
+        .lembrete-titulo{
+            font-size:16px;
+            font-weight:700;
+            color:#334155;
+            margin-bottom:6px;
+        }
+
+        .lembrete-descricao{
+            font-size:14px;
+            color:#64748b;
+            white-space:pre-line;
+        }
+
+        .lembrete-data{
+            margin-top:8px;
+            font-size:12px;
+            color:#94a3b8;
+        }
+
+        .btn-concluir{
+            min-width:42px;
+            height:42px;
+
+            border-radius:50%;
+            border:none;
+
+            background:#22c55e;
+            color:white;
+
+            font-size:20px;
+            cursor:pointer;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            text-decoration:none;
+
+            transition:.2s;
+        }
+
+        .btn-concluir:hover{
+            transform:scale(1.06);
+            background:#16a34a;
+        }
+
     </style>
 </head>
 
@@ -548,30 +605,22 @@ if (!empty($empresa['ValidadePlano'])) {
 
         <div class="cards">
 
-        <!--    <div class="card">-->
-        <!--        <h3>Serviços/Produtos Hoje</h3>-->
-        <!--        <div class="value"><?= $dadosItensHoje['Total'] ?? 0 ?></div>-->
-        <!--    </div>-->
+        <?php if (!$naoVerFinanceiro): ?>
+            <div class="card">
 
-        <!--    <div class="card">-->
-        <!--        <h3>Serviços/Produtos Mensal</h3>-->
-        <!--        <div class="value"><?= $dadosItensMes['Total'] ?? 0 ?></div>-->
-        <!--    </div>-->
-<div class="card">
+                <h3>Serviços / Produtos</h3>
 
-    <h3>Serviços / Produtos</h3>
+                <div class="duplo-linha">
+                    <span>Hoje</span>
+                    <strong><?= $dadosItensHoje['Total'] ?? 0 ?></strong>
+                </div>
 
-    <div class="duplo-linha">
-        <span>Hoje</span>
-        <strong><?= $dadosItensHoje['Total'] ?? 0 ?></strong>
-    </div>
+                <div class="duplo-linha">
+                    <span>Mês</span>
+                    <strong><?= $dadosItensMes['Total'] ?? 0 ?></strong>
+                </div>
 
-    <div class="duplo-linha">
-        <span>Mês</span>
-        <strong><?= $dadosItensMes['Total'] ?? 0 ?></strong>
-    </div>
-
-</div>
+            </div>
 
 
             <div class="card">
@@ -589,7 +638,6 @@ if (!empty($empresa['ValidadePlano'])) {
             </div>
 
         </div>
-
 
         <div class="metas-grid">
 
@@ -635,8 +683,36 @@ if (!empty($empresa['ValidadePlano'])) {
                 </div>
 
             </div>
-
+            
+        <?php endif; ?>
         </div>
+
+        <?php if(count($lembretes) > 0): ?>
+
+        <div class="lembrete-box">
+            <div class="meta-titulo">📌 Lembretes</div>
+
+            <?php foreach($lembretes as $lem): ?>
+                <div class="lembrete-item">
+                    <div style="flex:1;">
+                        <div class="lembrete-titulo">
+                            <?= htmlspecialchars($lem['Titulo']) ?>
+                        </div>
+                        <?php if(!empty($lem['Descricao'])): ?>
+                            <div class="lembrete-descricao">
+                                <?= htmlspecialchars($lem['Descricao']) ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="lembrete-data">
+                            Data:<?= date('d/m/Y', strtotime($lem['DataLembrete'])) ?>
+                        </div>
+                    </div>
+                    <a href="?concluirLembrete=<?= $lem['id'] ?>" class="btn-concluir" onclick="return confirm('Concluir lembrete?')" title="Concluir lembrete">✔</a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <?php endif; ?>
 
     </div>
 </body>

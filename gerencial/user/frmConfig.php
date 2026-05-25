@@ -89,9 +89,6 @@ function moeda($v) {
 <link rel="icon" href="../img/favicon.png">
 
 <style>
-    body{
-        background:#f1f5f9;
-    }
 
     .content{
         padding:30px;

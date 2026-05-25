@@ -786,6 +786,9 @@ if (!empty($dados['Grupo'])) {
                         <option value="4" <?= ($Alterando && $dados['Tipo'] == 4) ? 'selected' : '' ?>>
                             Consumidor Final
                         </option>
+                        <option value="5" <?= ($Alterando && $dados['Tipo'] == 5) ? 'selected' : '' ?>>
+                            Despachante
+                        </option>
                     </select>
                 </div>
 
@@ -940,12 +943,17 @@ if (!empty($dados['Grupo'])) {
                         <label>Tipo de Documento</label>
                         <select id="docTipo">
                             <option value="">Selecione</option>
-                            <option value="CNH">CNH</option>
-                            <option value="CPF">CPF</option>
-                            <option value="RG">RG</option>
-                            <option value="Comprovante">Comprovante</option>
+                            <!-- <option value="CNH">CNH</option>
+                            <!-- <option value="CPF">CPF</option> -->
+                            <!-- <option value="RG">RG</option> -->
+                            <!-- <option value="Comprovante">Comprovante</option>
                             <option value="Contrato">Contrato</option>
-                            <option value="Outros">Outros</option>
+                            <option value="Outros">Outros</option> --> 
+
+                            <option value="CNH">CNH</option>
+                            <option value="PROCURACAO">Procuração</option>
+                            <option value="HONORARIOS">Contrato de Honorários</option>
+                            <option value="AIT">AIT</option>
                         </select>
                     </div>
 

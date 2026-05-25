@@ -31,6 +31,8 @@ $paginasSistema = [
     'frmDespesasLista.php' => 'Despesas e Contas',
     'frmDespesas.php' => 'Despesas e Contas',
 
+    'frmLembrete.php' => 'Lembretes',
+
     'frmForcliExtrato.php' => 'Extrato Clientes',
 
     'frmDocumentos.php' => 'Geração de Documentos',
