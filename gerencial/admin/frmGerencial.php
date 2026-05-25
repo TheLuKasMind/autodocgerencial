@@ -851,7 +851,7 @@ body{
                     <?= $emp['id'] ?>,
                     '<?= $emp['Plano'] ?>',
                     '<?= $emp['Status'] ?>',
-                    '<?= $emp['ValidadePlano'] ?>'
+                    '<?= $emp['ValidadePlano'] ?>',
                     '<?= $emp['LimiteUsuarios'] ?>'
                     )">
                     ⚙ Gerenciar

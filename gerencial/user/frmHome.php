@@ -482,6 +482,7 @@ if (!empty($empresa['ValidadePlano'])) {
             border-radius:14px;
             padding:20px;
             box-shadow:0 6px 14px rgba(0,0,0,0.05);
+            margin-top:30px;
             margin-bottom:25px;
         }
 

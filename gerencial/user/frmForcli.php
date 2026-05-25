@@ -177,8 +177,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         case 3:
             $dados['Tipo'] = 3; //Fornecedor
             break;
-        case 3:
+        case 4:
             $dados['Tipo'] = 4; //Consumidor Final
+            break;
+        case 5:
+            $dados['Tipo'] = 5; //Desmanche
             break;
     }
 
@@ -787,7 +790,7 @@ if (!empty($dados['Grupo'])) {
                             Consumidor Final
                         </option>
                         <option value="5" <?= ($Alterando && $dados['Tipo'] == 5) ? 'selected' : '' ?>>
-                            Despachante
+                            Desmanche
                         </option>
                     </select>
                 </div>
