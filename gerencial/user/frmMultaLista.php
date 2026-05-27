@@ -1,7 +1,7 @@
 <?php
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -114,8 +114,8 @@ foreach ($listaMultas as $multa) {
     <meta charset="UTF-8">
     <title>Lista de Multas</title>
     <link rel="icon" href="../img/favicon.png">
-    <link rel="stylesheet" href="../css/base.css?v=15">
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/home.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -384,7 +384,7 @@ foreach ($listaMultas as $multa) {
 </head>
 <body>
 
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <div class="content">
 
@@ -494,7 +494,7 @@ foreach ($listaMultas as $multa) {
             </div>
 
             <div class="actions">
-                <a href="frmMulta.php" class="btn">Nova Multa</a>
+                <a href="Multa" class="btn">Nova Multa</a>
                 <button type="submit" class="btn btn-secondary">Consultar</button>
                 <button type="button" class="btn btn-secondary" onclick="imprimirLista()">🖨 Imprimir</button>
             </div>
@@ -522,7 +522,7 @@ foreach ($listaMultas as $multa) {
             <tbody>
                 <?php if(count($listaMultas) > 0): ?>
                     <?php foreach($listaMultas as $m): ?>
-                        <tr onclick="window.location.href='frmMulta.php?id=<?= $m['id'] ?>'" style="cursor:pointer;">
+                        <tr onclick="window.location.href='Multa?id=<?= $m['id'] ?>'" style="cursor:pointer;">
                             <!-- <td><?= $m['id'] ?></td> -->
                             <td><?= date('d/m/Y', strtotime($m['DataCadastro'])) ?></td>
                             <td><?= htmlspecialchars($m['ClienteNome']) ?></td>
@@ -635,7 +635,7 @@ function imprimirLista() {
     const formData = new FormData(form);
     const url = new URLSearchParams(formData).toString();
 
-    window.open('frmMultaListaImprimir.php?' + url, '_blank');
+    window.open('Multas/ImprimirLista?' + url, '_blank');
 }
 
 document.addEventListener('DOMContentLoaded', function() {

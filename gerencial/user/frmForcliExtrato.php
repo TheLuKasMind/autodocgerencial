@@ -1,14 +1,15 @@
 <?php
-require_once '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -250,7 +251,7 @@ foreach ($lista as $item) {
     <meta charset="UTF-8">
     <title>Extrato do Cliente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/base.css?v=15"> 
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <link rel="icon" href="../img/favicon.png">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -489,7 +490,7 @@ foreach ($lista as $item) {
 
 <body>
 
-    <?php include '../base/navbarUser.php'; ?>
+    <?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
     <div class="content">
 
@@ -697,11 +698,11 @@ foreach ($lista as $item) {
 
         const url = new URLSearchParams(formData).toString();
 
-        window.open("pdfExtrato.php?" + url, "_blank");
+        window.open("/gerencial/Cliente/Extrato/Imprimir?" + url, "_blank");
     }
     
     function abrirLancamento(id) {                        
-        window.location.href = 'frmLancamento.php?id=' + id;
+        window.location.href = 'Pedido?id=' + id;
     }
     
     

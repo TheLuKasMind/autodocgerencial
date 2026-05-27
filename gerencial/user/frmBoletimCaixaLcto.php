@@ -1,7 +1,7 @@
 <?php
-include '../base/baseFuncoes.php'; 
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php'; 
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 date_default_timezone_set('America/Sao_Paulo');
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
         $msgRetorno = "Informe o tipo de despesa/conta!";
         $tipoMsg = "error";
         $_SESSION['mensagem_error'] = $msgRetorno;
-        header('Location: frmBoletimCaixaLcto.php');
+        header('Location: /gerencial/BoletimCaixa/Lancamento');
         exit;
     }
 
@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
         $msgRetorno = "Lançamento cadastrado com sucesso!";
         $tipoMsg = "success";
         // $_SESSION['mensagem_sucesso'] = $msgRetorno;
-        header('Location: frmBoletimCaixa.php');
+        header('Location: /gerencial/BoletimCaixa');
         exit;
     } else {
         $msgRetorno = "Erro ao cadastrar lançamento no boletim de caixa! Erro -> ". $retorno;
@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
 <link rel="icon" href="../img/favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <!-- CSS BASE DO SISTEMA -->
-<link rel="stylesheet" href="../css/base.css?v=15">
+<link rel="stylesheet" href="/gerencial/css/base.css?v=15">
 
     <style>
         body {
@@ -465,7 +465,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
 
 <body>
 
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <div class="content">
     <div class="page-title">Novo Lançamento de Caixa</div>
@@ -628,7 +628,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
             <input type="hidden" id="tipodespesa" name="tipodespesa">
             <div class="actions">
                 <button class="btn" name="salvar" id="salvar">Salvar Lançamento</button>
-               <a href="frmBoletimCaixa.php" class="btn-secondary">Voltar</a>
+               <a href= "/gerencial/BoletimCaixa" class="btn-secondary">Voltar</a>
             </div>
 
         </form>

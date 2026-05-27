@@ -1,7 +1,7 @@
 <?php
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
  
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -83,26 +83,16 @@ if ($repasseFiltro !== '') {
     }
 }
 
-// $pedidoFiltro = $_GET['pedido'] ?? '';
-
-// if ($pedidoFiltro != '') {
-//     $pedidoFiltro = intval($pedidoFiltro);
-//     $where .= " AND p.id = $pedidoFiltro";
-// }
-
 $pedidoFiltro = $_GET['pedido'] ?? '';
 
 if (!empty($pedidoFiltro)) {
 
-    // quebra por vírgula
     $pedidos = explode(',', $pedidoFiltro);
 
-    // limpa espaços e garante inteiros válidos
     $pedidos = array_map(function ($v) {
         return (int) trim($v);
     }, $pedidos);
 
-    // remove zeros inválidos
     $pedidos = array_filter($pedidos);
 
     if (!empty($pedidos)) {
@@ -187,7 +177,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
     //SETA DÉBITO PAGO
     ExSqlNET(" UPDATE movimento SET Status = 4, DataPgto = NOW(), DataAlt = NOW()  WHERE idEmpresa = $idEmpresa  AND Status = 3  AND id IN ($ids) ");
     $_SESSION['mensagem_sucesso'] = "Pedidos marcados como pagos!";
-    header("Location: frmLancamentoLista.php");
+    header("Location: Pedidos");
     exit;
 }
 ?>
@@ -198,8 +188,8 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
     <meta charset="UTF-8">
     <title>Lista de Pedidos</title>
     <link rel="icon" href="../img/favicon.png">
-    <link rel="stylesheet" href="../css/base.css?v=15"> 
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/home.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -516,7 +506,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
 
 <body>
 
-    <?php include '../base/navbarUser.php'; ?>
+    <?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
     <div class="content">
 
@@ -638,7 +628,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
                 </div>
 
                 <div class="actions" style="margin-top:20px;">
-                    <a href="frmLancamento.php" class="btn btn">Novo Pedido</a>
+                    <a href="Pedido" class="btn btn">Novo Pedido</a>
                     <button type="submit" class="btn btn-secondary">Consultar</button>
                     <button type="button" class="btn btn-secondary" onclick="imprimirLista()">
                         🖨 Imprimir
@@ -691,7 +681,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
                         <?php if(count($listaPedidos)>0): ?>
                         <?php foreach($listaPedidos as $row): ?>
     
-                        <tr onclick="window.location.href='frmLancamento.php?id=<?= $row['id'] ?>'">
+                        <tr onclick="window.location.href='/gerencial/Pedido?id=<?= $row['id'] ?>'">
     
                             <td>
                                 <!--<input type="checkbox" name="pedidos[]" value="<?= $row['id'] ?>" onclick="event.stopPropagation()">-->
@@ -894,7 +884,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
     }
 
     function abrirLancamento(id) {
-        window.location.href = 'frmLancamento.php?id=' + id;
+        window.location.href = 'Pedido?id=' + id;
     }
 
     function imprimirLista() {
@@ -904,7 +894,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
 
         const url = new URLSearchParams(formData).toString();
 
-        window.open("frmLancamentoListaImprimir.php?" + url, "_blank");
+        window.open("Pedidos/ImprimirLista?" + url, "_blank");
     }
 
     function marcarTodos(source) {

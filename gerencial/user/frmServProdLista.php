@@ -1,7 +1,7 @@
 <?php
-include '../base/baseFuncoes.php'; 
-require_once '../base/connection.php'; 
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 $msgRetorno = "";
 $tipoMsg = "";
@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -34,7 +34,7 @@ $listaServProd = ExSqlNET("
 <meta charset="UTF-8">
 <title>Produtos / Serviços</title>
 
-<link rel="stylesheet" href="../css/base.css?v=15">
+<link rel="stylesheet" href="/gerencial/css/base.css?v=15">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../img/favicon.png">
 <style>
@@ -69,7 +69,7 @@ $listaServProd = ExSqlNET("
 </head>
 <body>
 
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <div class="content">
 
@@ -77,7 +77,7 @@ $listaServProd = ExSqlNET("
     <div class="subtitle">Cadastro de produtos e serviços.</div>
 
     <div class="actions">
-        <a href="frmServProd.php" class="btn">Novo Cadastro</a>
+        <a href="Produto" class="btn">Novo Cadastro</a>
     </div>
     <?php
 
@@ -208,7 +208,7 @@ $listaServProd = ExSqlNET("
 
 <script>
 function abrirProduto(id) {
-    window.location.href = 'frmServProd.php?id=' + id;
+    window.location.href = 'Produto?id=' + id;
 }
 
 

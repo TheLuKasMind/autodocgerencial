@@ -1,7 +1,8 @@
 <?php
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 date_default_timezone_set('America/Sao_Paulo');
 ini_set('display_errors', 1);
@@ -13,7 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -22,70 +23,8 @@ $idEmpresa = $_SESSION['idEmpresa'];
 $msg = '';
 $tipoMsg = '';
 
-// if(isset($_POST['idExcluir'])){
-
-//     $dados['idMovimento'] = $_POST['idExcluir'];
-//     $dados['UserAlt'] = $_SESSION['usuario_id'];
-
-//     $retorno = MovimentoCC($dados,"EXCLUIR");
-
-//     if ($retorno === "") {
-//         $tipoMsg = "success";
-//         $msg = "Movimento excluído com sucesso!";
-//     } else {
-//         $tipoMsg = "error";
-//         $msg = "Erro ao excluir movimento: ".$retorno;
-//     }
-// }
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-//     $valor = formataValorGravacao($_POST['valor']);
-//     $descricao = $_POST['descricao'];
-//     $tipo = $_POST['tipo'];
-//     $dataHoraAtual = date('Y-m-d H:i:s');
-//     // ExSqlNET("
-//     //     INSERT INTO movimentocc
-//     //     (Data, DataPgto, Descricao, idEmpresa, Valor, TipoMov, CaixaGeral)
-//     //     VALUES (NOW(), NOW(), ?, ?, ?, ?, 1)
-//     // ", null, [
-//     //     $descricao,
-//     //     $idEmpresa,
-//     //     $valor,
-//     //     $tipo
-//     // ]);
-//     $dados['idEmpresa'] = $idEmpresa;
-//     $dados['TipoDespesa'] = 0;
-//     $dados['Descricao'] = $descricao;
-//     $dados['Valor'] = $valor;
-//     $dados['Data'] = $dataHoraAtual;
-//     $dados['idForcli'] = 0;
-//     $dados['idServProd'] = 0;
-//     $dados['DataPgto'] = $dataHoraAtual;
-//     $dados['ValorPgto'] = $valor;
-//     $dados['UserAlt'] = $_SESSION['usuario_id'];
-//     $dados['TipoMov'] = $tipo;
-//     $dados['CaixaGeral'] = 1;
-//     $dados['ControleOrigem'] = '0';
-
-//     $dados['idUser'] = $_SESSION['usuario_id'];
-    
-//     $retorno = MovimentoCC($dados, "CADASTRAR");
-//     if ($retorno === "") {
-//         $tipoMsg = "success";
-//         $msg = "Movimento registrado com sucesso!";        
-//     }else{
-//         $tipoMsg = "error";
-//         $msg = "Erro ao cadastrar movimento, contate o administrador! Erro: ". $retorno;
-//     }
-    
-// }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // $valor = formataValorGravacao($_POST['valor']);
-    // $descricao = $_POST['descricao'];
-    // $tipo = $_POST['tipo'];
-    // $dataHoraAtual = date('Y-m-d H:i:s');
 
     $valor = isset($_POST['valor']) && $_POST['valor'] !== '' ? formataValorGravacao($_POST['valor']) : 0;
     $descricao = $_POST['descricao'] ?? '';
@@ -93,18 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dataHoraAtual = date('Y-m-d H:i:s');
 
     $dados['idEmpresa'] = $idEmpresa;
-    // $dados['TipoDespesa'] = 0;
-    // $dados['Descricao'] = $descricao;
-    // $dados['Valor'] = $valor;
-    // $dados['Data'] = $dataHoraAtual;
-    // $dados['idForcli'] = 0;
-    // $dados['idServProd'] = 0;
-    // $dados['DataPgto'] = $dataHoraAtual;
-    // $dados['ValorPgto'] = $valor;
-    // $dados['UserAlt'] = $_SESSION['usuario_id'];
-    // $dados['TipoMov'] = $tipo;
-    // $dados['CaixaGeral'] = 1;
-    // $dados['ControleOrigem'] = '0';
 
     $dados['TipoDespesa'] = $_POST['TipoDespesa'] ?? 0;
     $dados['Descricao'] = $descricao ?? '';
@@ -188,7 +115,7 @@ $lista = ExSqlNET("
 <head>
     <meta charset="UTF-8">
     <title>Financeiro Geral</title>
-    <link rel="stylesheet" href="../css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/favicon.png">
 
@@ -477,7 +404,7 @@ $lista = ExSqlNET("
 
 <body>
 
-    <?php include '../base/navbarUser.php'; ?>
+    <?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
     <div class="content">
 

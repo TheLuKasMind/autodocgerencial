@@ -1,14 +1,14 @@
 <?php
-
-require_once '../base/connection.php';
-include '../base/baseFuncoes.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -25,7 +25,8 @@ if (isset($_GET['excluir'])) {
         WHERE Id = ? AND idEmpresa = ?
     ", null, [$idExcluir, $idEmpresa]);
 
-    header("Location: " . $_SERVER['PHP_SELF'] . "?excluido=1");
+    // :header("Location: " . $_SERVER['PHP_SELF'] . "?excluido=1");
+    header("Location: Grupos?excluido=1");
     exit;
 }
 
@@ -82,7 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 WHERE Id = ? AND idEmpresa = ?
             ", null, [$nome, $tipo, $inativo, $id, $idEmpresa]);
 
-            header("Location: " . $_SERVER['PHP_SELF'] . "?editado=1");
+            // header("Location: " . $_SERVER['PHP_SELF'] . "?editado=1");
+             header("Location: Grupos?editado=1");
         } else {
 
             ExSqlNET("
@@ -90,7 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 VALUES (?, ?, ?, ?)
             ", null, [$nome, $tipo, $inativo, $idEmpresa]);
 
-            header("Location: " . $_SERVER['PHP_SELF'] . "?sucesso=1");
+            // header("Location: " . $_SERVER['PHP_SELF'] . "?sucesso=1");
+            header("Location: Grupos?sucesso=1");
         }
 
         exit;
@@ -112,7 +115,7 @@ if (isset($_GET['excluido'])) $msg = "Grupo excluído com sucesso!";
 <meta charset="UTF-8">
 <title>Cadastro de Grupos</title>
 
-<link rel="stylesheet" href="../css/base.css?v=15">
+<link rel="stylesheet" href="/gerencial/css/base.css?v=15">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../img/favicon.png">
    
@@ -359,7 +362,7 @@ select:focus {
 
 <body>
 
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <div class="content">
 

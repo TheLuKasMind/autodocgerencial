@@ -1,7 +1,7 @@
 <?php
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -12,7 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -60,14 +60,12 @@ $total = 0;
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
     <title>Patrimônio - Autodoc</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/favicon.png">
-
-    <link rel="stylesheet" href="../css/base.css?v=15">
-
+    <link rel="stylesheet" href="/gerencial/css/home.css">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
 <style>
 
     .tituloPagina {
@@ -211,10 +209,9 @@ $total = 0;
 
 </head>
 
-   
 <body>
    
-     <?php include '../base/navbarUser.php'; ?>
+    <?php include __DIR__ . '/../base/navbarUser.php'; ?>
     <div class="content">
  
         <div class="page-title">Patrimônio / Compras</div>

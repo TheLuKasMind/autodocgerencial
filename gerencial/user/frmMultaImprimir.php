@@ -1,10 +1,10 @@
 <?php
 ob_start();
 
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require('../base/fpdf/fpdf.php');
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
+require_once  __DIR__ .'/../base/fpdf/fpdf.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

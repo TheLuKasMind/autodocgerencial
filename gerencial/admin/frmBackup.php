@@ -1,7 +1,7 @@
 <?php
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -10,12 +10,12 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
 if (!isset($_SESSION['AdminGeral']) || $_SESSION['AdminGeral'] != 1) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
         if (!password_verify($senhaDigitada, $senhaHash)) {
 
             $_SESSION['mensagem_erro'] = 'Senha inválida.';
-            header('Location: frmBackup.php');
+            header('Location: Backup');
             exit;
         }
 
@@ -203,12 +203,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
 <head>
     <meta charset="UTF-8">
     <title>Backup do Sistema</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="icon" href="../img/favicon.png">
-    <link rel="stylesheet" href="../css/base.css?v=15">
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/home.css?v=15">
 
     <style>
 
@@ -313,7 +311,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
 
 <body>
 
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <div class="content">
 

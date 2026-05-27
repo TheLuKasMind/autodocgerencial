@@ -1,7 +1,7 @@
 <?php
-include '../base/baseFuncoes.php'; 
-require_once '../base/connection.php'; 
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 $msgRetorno = "";
 $tipoMsg = "";
@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -50,13 +50,12 @@ $listaForcli = ExSqlNET("
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/favicon.png">
     <!-- CSS BASE DO SISTEMA -->
-    <link rel="stylesheet" href="../css/base.css?v=15"> 
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
 
- 
 </head>
 <body>
 
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <div class="content">
     <div class="page-title">Clientes / Fornecedores</div>
@@ -88,7 +87,7 @@ $listaForcli = ExSqlNET("
     ?>
 
     <div class="actions">
-        <a href="frmForcli.php" class="btn">Novo Cadastro</a>
+        <a href="Cliente" class="btn">Novo Cadastro</a>
     </div>
 
     <div class="card">
@@ -172,7 +171,7 @@ $listaForcli = ExSqlNET("
 
 <script>
 function abrirForcli(id) {
-    window.location.href = 'frmForcli.php?id=' + id;
+    window.location.href = 'Cliente?id=' + id;
 }
 
 
@@ -205,7 +204,7 @@ function filtrarTabela(){
 }
 
 function abrirForcli(id) {
-    window.location.href = 'frmForcli.php?id=' + id;
+    window.location.href = 'Cliente?id=' + id;
 }
 
 </script>

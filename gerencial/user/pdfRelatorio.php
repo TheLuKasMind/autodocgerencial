@@ -1,7 +1,8 @@
 <?php
-require_once '../base/connection.php';
-require_once '../base/baseFuncoes.php';
-require_once '../base/fpdf/fpdf.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
+require_once __DIR__ .'/../base/fpdf/fpdf.php';
 
 ob_start();
 
@@ -258,26 +259,6 @@ if ($tipoRelatorio == 'metas') {
         $whereFiltro = " AND sp.Grupo = ? ";
         $paramsLucro[] = $grupoId;
     }
-    
-    // $lucroProdutos = ExSqlNET("
-    //     SELECT 
-    //         sp.Nome,
-    //         SUM(mi.Qtd) AS quantidade,
-    //         SUM(mi.TotalItem) AS faturamento,
-    //         SUM(IFNULL(mi.ValorCusto,0) * mi.Qtd) AS custoTotal,
-    //         SUM(mi.TotalItem - (IFNULL(mi.ValorCusto,0) * mi.Qtd)) AS lucro
-    //     FROM movimentoitem mi
-    //     LEFT JOIN movimento m 
-    //         ON m.id = mi.ControleMovimento
-    //     LEFT JOIN servprod sp 
-    //         ON sp.id = mi.ServProd
-    //     WHERE m.idEmpresa = ?
-    //     AND sp.idEmpresa = ?
-    //     AND DATE(m.Data) BETWEEN ? AND ?
-    //     $whereFiltro
-    //     GROUP BY sp.id
-    //     ORDER BY sp.Nome ASC
-    // ", null, $paramsLucro);
     
     $lucroProdutos = ExSqlNET("
         SELECT 

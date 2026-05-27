@@ -1,19 +1,19 @@
 <?php
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])){
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
 if (!isset($_SESSION['AdminGeral']) || $_SESSION['AdminGeral'] != 1) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 /* ================= FILTROS ================= */
@@ -61,21 +61,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($acao == 'aprovar') {
 
-        ExSqlNET("
-            UPDATE empresa 
-            SET Status = 'ATIVA',
-                ValidadePlano = DATE_ADD(NOW(), INTERVAL 30 DAY)
-            WHERE id = ?
-        ", null, [$id]);
+        $empresa = ExSqlNET(
+            "SELECT Status FROM empresa WHERE id = ? LIMIT 1",
+            null,
+            [$id]
+        );
 
-        ExSqlNET("
-            UPDATE user 
-            SET Inativo = 0
-            WHERE idEmpresa = ?
-        ", null, [$id]);
+        if (!empty($empresa) && $empresa[0]['Status'] != 'ATIVA') {
 
-        enviaEmailCadastroAprovado($email);
-        $_SESSION['mensagem_sucesso'] = "Empresa aprovada com sucesso.";
+            ExSqlNET("
+                UPDATE empresa 
+                SET Status = 'ATIVA',
+                    ValidadePlano = DATE_ADD(NOW(), INTERVAL 30 DAY)
+                WHERE id = ?
+            ", null, [$id]);
+
+            ExSqlNET("
+                UPDATE user 
+                SET Inativo = 0
+                WHERE idEmpresa = ?
+            ", null, [$id]);
+
+            enviaEmailCadastroAprovado($email);
+
+            $_SESSION['mensagem_sucesso'] = "Empresa aprovada com sucesso.";
+        }
     }
 
     if ($acao == 'salvar') {
@@ -131,12 +141,9 @@ foreach ($empresas as $e) {
 <head>
     <meta charset="UTF-8">
     <title>Gestão de Empresas</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="../css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <link rel="icon" href="../img/favicon.png">
-
 <style>
 
 :root{
@@ -645,12 +652,23 @@ body{
     }
 }
 
+.btn-operando{
+    background:#dcfce7;
+    color:#166534;
+    cursor:default;
+    box-shadow:none;
+    opacity:.9;
+}
+
+.btn-operando:hover{
+    transform:none;
+}
 </style>
 </head>
 
 <body>
 
-    <?php include '../base/navbarUser.php'; ?>
+    <?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
     <div class="content">
 
@@ -777,12 +795,32 @@ body{
 
                         <td>
 
-                            <form method="post" style="display:inline">
+                            <!-- <form method="post" style="display:inline">
                                 <input type="hidden" name="id" value="<?= $emp['id'] ?>">
                                 <input type="hidden" name="email" value="<?= $emp['Email'] ?>">
                                 <input type="hidden" name="acao" value="aprovar">
                                 <button class="btn btn-aprovar">✔ Aprovar</button>
-                            </form>
+                            </form> -->
+
+                            <?php if ($emp['Status'] != 'ATIVA'): ?>
+
+                                <form method="post" style="display:inline">
+                                    <input type="hidden" name="id" value="<?= $emp['id'] ?>">
+                                    <input type="hidden" name="email" value="<?= $emp['Email'] ?>">
+                                    <input type="hidden" name="acao" value="aprovar">
+
+                                    <button class="btn btn-aprovar">
+                                        ✔ Aprovar
+                                    </button>
+                                </form>
+
+                            <?php else: ?>
+
+                                <button class="btn btn-operando" disabled>
+                                    ✅ Operando
+                                </button>
+
+                            <?php endif; ?>
 
                             <button class="btn btn-gerenciar" onclick="abrirModal(
                                 <?= $emp['id'] ?>,
@@ -841,11 +879,27 @@ body{
 
             <div style="margin-top:10px; display:flex; flex-direction:column; gap:8px;">
 
-                <form method="post">
+                <!-- <form method="post">
                     <input type="hidden" name="id" value="<?= $emp['id'] ?>">
                     <input type="hidden" name="acao" value="aprovar">
                     <button class="btn btn-aprovar">✔ Aprovar</button>
-                </form>
+                </form> -->
+
+                <?php if ($emp['Status'] != 'ATIVA'): ?>
+                    <form method="post">
+                        <input type="hidden" name="id" value="<?= $emp['id'] ?>">
+                        <input type="hidden" name="acao" value="aprovar">
+
+                        <button class="btn btn-aprovar">
+                            ✔ Aprovar
+                        </button>
+                    </form>
+
+                <?php else: ?>
+                    <button class="btn btn-operando" disabled>
+                        ✅ Operando
+                    </button>
+                <?php endif; ?>
 
                 <button class="btn btn-gerenciar" onclick="abrirModal(
                     <?= $emp['id'] ?>,

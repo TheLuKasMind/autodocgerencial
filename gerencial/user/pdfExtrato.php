@@ -2,9 +2,10 @@
 ob_start();
 error_reporting(0);
 
-require_once '../base/connection.php';
-require_once '../base/baseFuncoes.php';
-require_once '../base/fpdf/fpdf.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
+require_once __DIR__ .'/../base/fpdf/fpdf.php';
 
 $idEmpresa = $_SESSION['idEmpresa'];
 

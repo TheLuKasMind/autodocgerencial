@@ -1,21 +1,19 @@
 <?php
-include '../base/baseFuncoes.php'; 
-require_once '../base/connection.php'; 
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
 // ================= CONSULTA CEP AJAX =================
 if (isset($_GET['consultarCepAjax'])) {
-
-    require_once '../base/baseFuncoes.php'; 
 
     $cep = $_GET['cep'] ?? '';
 
@@ -41,10 +39,10 @@ if (isset($_GET['consultarCnpjAjax'])) {
         $response = curl_exec($ch);
 
         if(curl_errno($ch)) {
+            $erro = curl_error($ch);
             curl_close($ch);
-            return ['error' => curl_error($ch)];
+            return ['error' => $erro];
         }
-        curl_close($ch);
 
         $data = json_decode($response, true);
         if(json_last_error() !== JSON_ERROR_NONE) {
@@ -250,7 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         if (!empty($forcliExiste)) {
             $_SESSION['mensagem_erro'] = "Já existe um Cliente / Fornecedor ativo cadastrado com este Documento!";
             $tipoMsg = "error";
-            header('Location: frmForcliLista.php');
+            header('Location: Clientes');
             exit;
         }
 
@@ -296,13 +294,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
             $msgRetorno = "Cliente / Fornecedor cadastrado com sucesso!";
             $tipoMsg = "success";
             $_SESSION['mensagem_sucesso'] = $msgRetorno;
-            header('Location: frmForcliLista.php');
+            header('Location: Clientes');
             exit;
 
         } else {
             $msgRetorno = "Erro ao cadastrar o Cliente / Fornecedor. Erro -> ". $retorno;
             $tipoMsg = "error";
-            header('Location: frmForcliLista.php');
+            header('Location: Clientes');
             exit;
         }
     }else if ($Alterando === true && isset($_POST['salvar'])){
@@ -341,13 +339,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
             $msgRetorno = "Cliente / Fornecedor atualizado com sucesso!";
             $tipoMsg = "success";
             $_SESSION['mensagem_sucesso'] = $msgRetorno;
-            header('Location: frmForcliLista.php');
+            header('Location: Clientes');
             exit;
         } else {
             $msgRetorno = "Erro ao atualizar o Cliente / Fornecedor. Erro -> ". $retorno;
             $tipoMsg = "error";
             $_SESSION['mensagem_erro'] = $msgRetorno;
-            header('Location: frmForcliLista.php');
+            header('Location: Clientes');
             exit;
         }
 
@@ -366,13 +364,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
             $msgRetorno = "Cliente / Fornecedor excluído com sucesso!";
             $_SESSION['mensagem_sucesso'] = $msgRetorno;
             $tipoMsg = "success";
-            header('Location: frmForcliLista.php');
+            header('Location: Clientes');
             exit;
         } else {
             $msgRetorno = "Erro ao excluir o Cliente / Fornecedor. Erro -> ". $retorno;
             $tipoMsg = "error";
             $_SESSION['mensagem_erro'] = $msgRetorno;
-            header('Location: frmForcliLista.php');
+            header('Location: Clientes');
             exit;
         }
     }
@@ -397,7 +395,7 @@ if (!empty($dados['Grupo'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/favicon.png">
     <!-- CSS BASE DO SISTEMA -->
-    <link rel="stylesheet" href="../css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
@@ -754,7 +752,7 @@ if (!empty($dados['Grupo'])) {
 </head>
 <body>
 
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <div class="content">
     <form method="post">
@@ -1031,12 +1029,12 @@ if (!empty($dados['Grupo'])) {
             <div class="actions">
 
                 <div class="actions">
-                    <a href="frmForcliLista.php" class="btn btn-secondary">
+                    <a href="Clientes" class="btn btn-secondary">
                         ← Listar Clientes
                     </a>
                     <?php if ($Alterando): ?>
 
-                        <a href="frmForcliExtrato.php?cliente=<?= $id ?>&dataInicial=<?= date('Y-m-d') ?>&dataFinal=<?= date('Y-m-d') ?>" 
+                        <a href="Cliente/Extrato?cliente=<?= $id ?>&dataInicial=<?= date('Y-m-d') ?>&dataFinal=<?= date('Y-m-d') ?>" 
                         class="btn btn-secondary">
                             📄 Abrir Extrato
                         </a>
@@ -1280,7 +1278,7 @@ function fecharModal() {
             return;
         }
 
-        fetch(`ajaxCnpj.php?cnpj=${cnpj}`)
+        fetch(`?consultarCnpjAjax=1&cnpj=${cnpj}`)
             .then(res => res.json())
             .then(data => {
                 if (data.error) {
@@ -1459,7 +1457,7 @@ function fecharModal() {
 
     function abrirArquivo(id) {
 
-        fetch(`?abrirArquivo=1&id=${id}`)
+        fetch(`?/gerencial/abrirArquivo=1&id=${id}`)
             .then(res => res.json())
             .then(data => {
 

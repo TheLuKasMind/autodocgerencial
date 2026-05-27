@@ -1,24 +1,25 @@
-<script src="../base/base.js"></script>
+<script src="/gerencial/base/base.js"></script>
 
 <?php
-require_once '../base/verificaPlano.php';
-require_once '../base/permissoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
+require_once __DIR__ . '/../base/permissoes.php';
 
-require_once '../base/verificaAcessoTela.php';
-
-$homeLink = '/gerencial/user/frmHome.php';
+require_once  __DIR__ .'/../base/verificaAcessoTela.php';
+$homeLink = 'Home';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: /gerencial/Login");
     exit;
 }
 
 global $currentPage;
-$currentPage = basename($_SERVER['PHP_SELF']);
+// $currentPage = basename($_SERVER['PHP_SELF']);
+$currentPage = $_GET['url'] ?? '';
+
 ?>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -307,7 +308,7 @@ body{
         </button>
 
         <a href="<?= $homeLink ?>" class="logo" style="padding:20px;text-align:center;display:block;">
-            <img src="../img/logoo.png"
+            <img src="/gerencial/img/logoo.png"
             style="width:180px;height:180px;object-fit:contain;border-radius:20px;background:white;padding:12px;">
         </a>
 
@@ -322,8 +323,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmHome.php')): ?>
             <li>
-                <a href="../user/frmHome.php"
-                class="<?= $currentPage == 'frmHome.php' ? 'active' : '' ?>">
+                <a href="/gerencial/Home"
+                class="<?= $currentPage == 'gerencial/Home' ? 'active' : '' ?>">
                 Inicial
                 </a>
             </li>
@@ -331,8 +332,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmLancamentoLista.php')): ?>
             <li>
-                <a href="../user/frmLancamentoLista.php"
-                class="<?= in_array($currentPage, ['frmLancamentoLista.php','frmLancamento.php']) ? 'active' : '' ?>">
+                <a href="/gerencial/Pedidos"
+                class="<?= in_array($currentPage, ['gerencial/Pedidos','gerencial/Pedido']) ? 'active' : '' ?>">
                 Pedidos e Vendas
                 </a>
             </li>
@@ -340,8 +341,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmMultaLista.php')): ?>
             <li>
-                <a href="../user/frmMultaLista.php"
-                class="<?= in_array($currentPage, ['frmMultaLista.php','frmMulta.php']) ? 'active' : '' ?>">
+                <a href=/gerencial/Multas
+                class="<?= in_array($currentPage, ['gerencial/Multas','gerencial/Multa']) ? 'active' : '' ?>">
                 Multas
                 </a>
             </li>
@@ -351,8 +352,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmBoletimCaixa.php')): ?>
             <li>
-                <a href="../user/frmBoletimCaixa.php"
-                class="<?= in_array($currentPage, ['frmBoletimCaixa.php','frmBoletimCaixaLcto.php']) ? 'active' : '' ?>">
+                <a href="/gerencial/BoletimCaixa"
+                class="<?= in_array($currentPage, ['gerencial/BoletimCaixa','gerencial/BoletimCaixa/Lancamento']) ? 'active' : '' ?>">
                 Boletim de Caixa
                 </a>
             </li>
@@ -360,8 +361,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmFinanceiro.php')): ?>
             <li>
-                <a href="../user/frmFinanceiro.php"
-                class="<?= $currentPage == 'frmFinanceiro.php' ? 'active' : '' ?>">
+                <a href="/gerencial/Financeiro"
+                class="<?= $currentPage == 'gerencial/Financeiro' ? 'active' : '' ?>">
                 Financeiro Geral
                 </a>
             </li>
@@ -369,8 +370,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmPatrimonio.php')): ?>
             <li>
-                <a href="../user/frmPatrimonio.php"
-                class="<?= $currentPage == 'frmPatrimonio.php' ? 'active' : '' ?>">
+                <a href="/gerencial/Patrimonio"
+                class="<?= $currentPage == 'gerencial/Patrimonio' ? 'active' : '' ?>">
                 Compras e Patrimônio
                 </a>
             </li>
@@ -380,8 +381,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmServProdLista.php')): ?>
             <li>
-                <a href="../user/frmServProdLista.php"
-                class="<?= in_array($currentPage, ['frmServProdLista.php','frmServProd.php']) ? 'active' : '' ?>">
+                <a href="/gerencial/Produtos"
+                class="<?= in_array($currentPage, ['gerencial/Produtos','gerencial/Produto']) ? 'active' : '' ?>">
                 Serviços / Produtos
                 </a>
             </li>
@@ -389,8 +390,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmForcliLista.php')): ?>
             <li>
-                <a href="../user/frmForcliLista.php"
-                class="<?= in_array($currentPage, ['frmForcliLista.php','frmForcli.php']) ? 'active' : '' ?>">
+                <a href="/gerencial/Clientes"
+                class="<?= in_array($currentPage, ['gerencial/Clientes','gerencial/Cliente']) ? 'active' : '' ?>">
                 Clientes / Fornecedores
                 </a>
             </li>
@@ -398,8 +399,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmGrupo.php')): ?>
             <li>
-                <a href="../user/frmGrupo.php"
-                class="<?= $currentPage == 'frmGrupo.php' ? 'active' : '' ?>">
+                <a href="/gerencial/Grupos"
+                class="<?= $currentPage == 'gerencial/Grupos' ? 'active' : '' ?>">
                 Grupos
                 </a>
             </li>
@@ -407,8 +408,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmDespesasLista.php')): ?>
             <li>
-                <a href="../user/frmDespesasLista.php"
-                class="<?= in_array($currentPage, ['frmDespesasLista.php','frmDespesas.php']) ? 'active' : '' ?>">
+                <a href="/gerencial/Despesas"
+                class="<?= in_array($currentPage, ['gerencial/Despesas','gerencial/Despesa']) ? 'active' : '' ?>">
                 Despesas e Contas
                 </a>
             </li>
@@ -416,8 +417,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmLembrete.php')): ?>
             <li>
-                <a href="../user/frmLembrete.php"
-                class="<?= in_array($currentPage, ['frmLembrete.php']) ? 'active' : '' ?>">
+                <a href="/gerencial/Lembretes"
+                class="<?= in_array($currentPage, ['gerencial/Lembretes']) ? 'active' : '' ?>">
                 Lembretes
                 </a>
             </li>
@@ -427,8 +428,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmForcliExtrato.php')): ?>
             <li>
-                <a href="../user/frmForcliExtrato.php"
-                class="<?= $currentPage == 'frmForcliExtrato.php' ? 'active' : '' ?>">
+                <a href="/gerencial/Cliente/Extrato"
+                class="<?= $currentPage == 'gerencial/Cliente/Extrato' ? 'active' : '' ?>">
                 Extrato Clientes
                 </a>
             </li>
@@ -436,8 +437,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmDocumentos.php')): ?>
             <li>
-                <a href="../user/frmDocumentos.php"
-                class="<?= $currentPage == 'frmDocumentos.php' ? 'active' : '' ?>">
+                <a href="/gerencial/Documentos"
+                class="<?= $currentPage == 'gerencial/Documentos' ? 'active' : '' ?>">
                 Geração de Documentos
                 </a>
             </li>
@@ -445,8 +446,8 @@ body{
 
             <?php if (($isAdminGeral || $isUsuarioAdmin) && ($isAdminGeral || podeAcessar('frmUser.php'))): ?>
             <li>
-                <a href="../user/frmUser.php"
-                class="<?= $currentPage == 'frmUser.php' ? 'active' : '' ?>">
+                <a href="/gerencial/Usuarios"
+                class="<?= $currentPage == 'gerencial/Usuarios' ? 'active' : '' ?>">
                 Usuários
                 </a>
             </li>
@@ -454,8 +455,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmRel.php')): ?>
             <li>
-                <a href="../user/frmRel.php"
-                class="<?= $currentPage == 'frmRel.php' ? 'active' : '' ?>">
+                <a href="/gerencial/Relatorios"
+                class="<?= $currentPage == 'gerencial/Relatorios' ? 'active' : '' ?>">
                 Relatórios e Dashboards
                 </a>
             </li>
@@ -463,8 +464,8 @@ body{
 
             <?php if ($isAdminGeral): ?>
             <li>
-                <a href="../admin/frmGerencial.php"
-                class="<?= $currentPage == 'frmGerencial.php' ? 'active' : '' ?>">
+                <a href="/gerencial/Gerencial"
+                class="<?= $currentPage == 'gerencial/Gerencial' ? 'active' : '' ?>">
                 Gerencial
                 </a>
             </li>
@@ -472,8 +473,8 @@ body{
 
             <?php if ($isAdminGeral): ?>
             <li>
-                <a href="../admin/frmPlanos.php"
-                class="<?= $currentPage == 'frmPlanos.php' ? 'active' : '' ?>">
+                <a href="/gerencial/Planos"
+                class="<?= $currentPage == 'gerencial/Planos' ? 'active' : '' ?>">
                 Planos
                 </a>
             </li>
@@ -481,8 +482,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmMeuCadastro.php')): ?>
             <li>
-                <a href="../user/frmMeuCadastro.php"
-                class="<?= $currentPage == 'frmMeuCadastro.php' ? 'active' : '' ?>">
+                <a href="/gerencial/MeuCadastro"
+                class="<?= $currentPage == 'gerencial/MeuCadastro' ? 'active' : '' ?>">
                 Meu Cadastro
                 </a>
             </li>
@@ -490,8 +491,8 @@ body{
 
             <?php if ($isAdminGeral || podeAcessar('frmConfig.php')): ?>
             <li>
-                <a href="../user/frmConfig.php"
-                class="<?= $currentPage == 'frmConfig.php' ? 'active' : '' ?>">
+                <a href="/gerencial/Configuracao"
+                class="<?= $currentPage == 'gerencial/Configuracao' ? 'active' : '' ?>">
                 Configurações
                 </a>
             </li>
@@ -499,8 +500,8 @@ body{
 
             <?php if ($isAdminGeral): ?>
             <li>
-                <a href="../admin/frmBackup.php"
-                class="<?= $currentPage == 'frmBackup.php' ? 'active' : '' ?>">
+                <a href="/gerencial/Backup"
+                class="<?= $currentPage == 'gerencial/Backup' ? 'active' : '' ?>">
                 Backup
                 </a>
             </li>
@@ -508,7 +509,7 @@ body{
             
         </ul>
 
-        <a href="../frmLogin.php" class="logout">Sair</a>
+        <a href="/gerencial/Login" class="logout">Sair</a>
 
     </div>
 </nav>
@@ -573,7 +574,7 @@ window.addEventListener('load', () => {
 
     const href = activeItem.getAttribute('href');
 
-    if(href.includes('frmHome.php')) return;
+    if(href.includes('Home')) return;
 
     setTimeout(() => {
 

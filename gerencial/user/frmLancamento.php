@@ -1,7 +1,7 @@
 <?php
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 $idEmpresa = $_SESSION['idEmpresa'];
 
@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         
         if($dadosCadastro['Forcli'] == ""){
           $_SESSION['mensagem_erro'] = "Necessário informar cliente no pedido!";
-            header('Location: frmLancamentoLista.php');
+            header('Location: Pedidos');
             exit;
         }
         
@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                     if ($retornoItens != "") {
                         $msgRetorno = "Erro ao cadastrar o Item do Movimento. Erro -> " . $retornoItens;
                         $_SESSION['mensagem_erro'] = $msgRetorno;
-                        header('Location: frmLancamento.php');
+                        header('Location: Pedido');
                         exit;
                     }
                 }
@@ -225,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                 $tipoMsg = "error";
                 $msgRetorno = "Erro ao cadastrar movimento CONTA CORRENTE, contate o administrador! Erro -> " . $retornoCC;
                 $_SESSION['mensagem_erro'] = $msgRetorno;
-                header('Location: frmLancamentoLista.php');
+                header('Location: Pedidos');
                 exit;
             }
 
@@ -233,7 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
             if ($retorno === "") {
 
                 $_SESSION['mensagem_sucesso'] = "Movimento cadastrado com sucesso!";
-                header('Location: frmLancamentoLista.php');
+                header('Location: Pedidos');
                 exit;
 
             } else {
@@ -245,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                 $msgRetorno = "Movimento cadastrado com sucesso!";
                 $tipoMsg = "success";
                 $_SESSION['mensagem_sucesso'] = $msgRetorno;
-                header('Location: frmLancamentoLista.php');
+                header('Location: Pedidos');
                 exit;
 
             } else {
@@ -291,7 +291,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                     if ($retornoItens != "") {
                         $msgRetorno = "Erro ao cadastrar o Item do Movimento. Erro -> " . $retornoItens;
                         $_SESSION['mensagem_erro'] = $msgRetorno;
-                        header('Location: frmLancamentoLista.php');
+                        header('Location: Pedidos');
                         exit;
                     }
                 }
@@ -359,14 +359,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
             if ($retorno === "") {
 
                 $_SESSION['mensagem_sucesso'] = "Movimento atualizado com sucesso!";
-                header('Location: frmLancamentoLista.php');
+                header('Location: Pedidos');
                 exit;
 
             } else {
                 unset($_SESSION['mensagem_sucesso']);
                 $tipoMsg = "error";
                 $_SESSION['mensagem_erro'] = "Erro ao atualizar Movimento-> " . $retorno;
-                header('Location: frmLancamentoLista.php');
+                header('Location: Pedidos');
                 exit;
             }
             
@@ -374,7 +374,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                 $msgRetorno = "Movimento atualizado com sucesso!" . $retorno ;
                 $tipoMsg = "success";
                 $_SESSION['mensagem_sucesso'] = $msgRetorno;
-                header('Location: frmLancamentoLista.php');
+                header('Location: Pedidos');
                 exit;
 
             } else {
@@ -393,7 +393,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                 $msgRetorno = "Movimento excluído com sucesso!";
                 $_SESSION['mensagem_sucesso'] = $msgRetorno;
                 $tipoMsg = "success";
-                header('Location: frmLancamentoLista.php');
+                header('Location: Pedidos');
                 exit;
             } else {
                 $msgRetorno = "Erro ao excluir o Movimento. Erro -> ". $retorno. $retornoItens;
@@ -419,8 +419,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/favicon.png">
-    <link rel="stylesheet" href="../css/base.css?v=15">
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/home.css">
 
 <style>
 
@@ -779,7 +779,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
 
 <body>
 
-    <?php include '../base/navbarUser.php'; ?>
+    <?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
     <div class="content">
           <div class="page-title">Lançamento de Venda / Prestação de Serviço</div>
@@ -809,9 +809,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         <?php endif; ?>
 
         <form method="post">
-            <!-- <a href="frmLancamentoLista.php" class="btn-secondary">Voltar</a> -->
             <div class="topo-pagina">
-                <a href="frmLancamentoLista.php" class="btn-voltar">
+                <a href=Pedidos class="btn-voltar">
                     ← Voltar para lista
                 </a>
             </div>
@@ -1025,7 +1024,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
             <?php if ($Alterando): ?>
 
             <button class="btn-imprimir"
-                    onclick="window.open('frmLancamentoImprimir.php?id=<?= $id ?>', '_blank')">
+                    onclick="window.open('Pedido/Imprimir?id=<?= $id ?>', '_blank')">
 
                 🖨 Gerar PDF
 

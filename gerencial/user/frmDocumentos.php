@@ -1,8 +1,8 @@
 <?php
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
-require_once 'docModels/modelProcuracao.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
+require_once __DIR__ .'/../user/docModels/modelProcuracao.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerarDocumento'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geração de Documentos - Autodoc</title>
     <link rel="icon" href="../img/favicon.png">
-    <link rel="stylesheet" href="../css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
 
     <style>
 
@@ -322,7 +322,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerarDocumento'])) {
 </head>
 <body>
 
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <div class="content">
     <form method="POST" target="_blank" id="formDocumentos">
