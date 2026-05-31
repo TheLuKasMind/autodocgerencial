@@ -72,7 +72,7 @@ if(isset($_POST['excluir']) && !empty($_POST['lancamentos'])){
     <title>Caixa Diário</title>
     <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
 <style>
 
     .resumo {

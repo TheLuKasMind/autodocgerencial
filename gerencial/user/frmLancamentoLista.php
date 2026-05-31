@@ -187,7 +187,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
 <head>
     <meta charset="UTF-8">
     <title>Lista de Pedidos</title>
-    <link rel="icon" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
     <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <link rel="stylesheet" href="/gerencial/css/home.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">

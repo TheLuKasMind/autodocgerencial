@@ -418,7 +418,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
     <title>Lançamento de Venda / Prestação de Serviço</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
     <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <link rel="stylesheet" href="/gerencial/css/home.css">
 
