@@ -1,14 +1,14 @@
 <?php
-require_once '../base/connection.php';
-include '../base/baseFuncoes.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -164,7 +164,7 @@ if(isset($_GET['concluirLembrete'])){
         $idEmpresa,
         $idLembrete
     ]);
-    header("Location: frmHome.php");
+    header("Location: Home");
     exit;
 }
 
@@ -187,11 +187,9 @@ if (!empty($empresa['ValidadePlano'])) {
 <head>
     <meta charset="UTF-8">
     <title>Autodoc Gerencial</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/favicon.png">
-    <link rel="stylesheet" href="../css/base.css?v=15">
-
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <style>
 
         .topo-empresa{
@@ -552,8 +550,7 @@ if (!empty($empresa['ValidadePlano'])) {
 
 <body>
 
-    <?php include '../base/navbarUser.php'; ?>
-
+    <?php require_once  __DIR__ .'/../base/navbarUser.php';?>
     <div class="content">
 
         <!-- EMPRESA -->

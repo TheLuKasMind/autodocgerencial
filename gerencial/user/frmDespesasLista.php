@@ -1,7 +1,9 @@
 <?php
-include '../base/baseFuncoes.php'; 
-require_once '../base/connection.php'; 
-require_once '../base/verificaPlano.php';
+
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
+
 
 $msgRetorno = "";
 $tipoMsg = "";
@@ -10,7 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -33,16 +35,14 @@ $listaDespesa = ExSqlNET("
     <meta charset="UTF-8">
     <title>Lista de Despesas | Autodoc Gerencial</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
     <!-- CSS base do sistema -->
-    <link rel="stylesheet" href="../css/base.css?v=15">
-
-
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
 </head>
 
 <body>
 
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <div class="content">
 
@@ -76,7 +76,7 @@ $listaDespesa = ExSqlNET("
     ?>
 
     <div class="actions">
-        <a href="frmDespesas.php" class="btn">Nova Despesa</a>
+        <a href="Despesa" class="btn">Nova Despesa</a>
     </div>
 
     <div class="card">
@@ -163,13 +163,11 @@ $listaDespesa = ExSqlNET("
 
 </div>
 
-<!--<?php include '../base/footer.php'; ?>-->
-
 </body>
 </html>
 <script>
 function selecionarDespesa(Codigo) {
-    window.location.href = 'frmDespesas.php?Codigo=' + Codigo;
+    window.location.href = 'Despesa?Codigo=' + Codigo;
 }
 
 

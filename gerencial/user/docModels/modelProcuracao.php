@@ -1,6 +1,6 @@
 <?php
 
-require_once '../base/fpdf/fpdf.php';
+require_once  __DIR__ .'/../../base/fpdf/fpdf.php';
 
 class ModelProcuracao
 {

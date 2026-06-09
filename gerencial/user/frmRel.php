@@ -1,14 +1,15 @@
 <?php
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -384,8 +385,8 @@ foreach ($servicosForcli as $item) {
 <head>
     <meta charset="UTF-8">
     <title>Relatórios</title>
-    <link rel="stylesheet" href="../css/base.css?v=15">
-    <link rel="icon" href="../img/favicon.png">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -582,7 +583,7 @@ foreach ($servicosForcli as $item) {
 
 <body>
 
-    <?php include '../base/navbarUser.php'; ?>
+    <?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
     <div class="content">
 
@@ -770,13 +771,22 @@ foreach ($servicosForcli as $item) {
                     <!--<th>Faturamento</th>-->
                     <th>% da Meta</th>
                 </tr>
+                
+                <?php
+                    $totalVendido = 0;
+                    $totalMeta = 0;
+                ?>
 
                 <?php foreach($metas as $m):
+                
+                    $meta = $m['MetaMensal'] ?? 0;
+                    $vendido = $m['vendido'] ?? 0;
+                    $faturamento = $m['Faturamento'] ?? 0;
+                    $perc = $meta > 0 ? ($vendido / $meta) * 100 : 0;
 
-                $meta = $m['MetaMensal'] ?? 0;
-                $vendido = $m['vendido'] ?? 0;
-                $faturamento = $m['Faturamento'] ?? 0;
-                $perc = $meta > 0 ? ($vendido / $meta) * 100 : 0;
+                    $totalVendido += $vendido;
+                    $totalMeta += $meta;
+
                 ?>
 
                 <tr>
@@ -799,9 +809,20 @@ foreach ($servicosForcli as $item) {
 
         </div>
 
+        <div class="cards">
+            <div class="card-box">
+                <h4>Total Vendido</h4>
+                <span><?= $totalVendido?></span>
+            </div>
+            <div class="card-box">
+                <h4>Total Meta</h4>
+                <span style="color:#dc2626">
+                    <?= $totalMeta?>
+                </span>
+            </div>
+        </div>
+
         <?php endif; ?>
-
-
 
         <?php if ($tipoRelatorio == 'lucro'): ?>
 
@@ -1285,7 +1306,7 @@ document.getElementById('btnPdf').addEventListener('click', function(e) {
 
     const form = document.createElement('form');
     form.method = 'POST';
-    form.action = 'pdfRelatorio.php';
+    form.action = 'Relatorio/PDF';
     form.target = '_blank';
 
     function addCampo(nome, valor) {

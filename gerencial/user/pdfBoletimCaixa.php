@@ -1,15 +1,17 @@
 <?php
 ob_start();
 
-require_once '../base/connection.php';
-require_once '../base/baseFuncoes.php';
-require_once '../base/fpdf/fpdf.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
+
+require_once  __DIR__ .'/../base/fpdf/fpdf.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 

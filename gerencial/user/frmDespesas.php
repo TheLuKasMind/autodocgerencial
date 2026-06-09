@@ -1,14 +1,14 @@
 <?php
-include '../base/baseFuncoes.php'; 
-require_once '../base/connection.php'; 
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 $id = $_GET['Codigo'] ?? null;
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
         $msgRetorno = "Informe nome para a despesa / conta!";
         $tipoMsg = "error";
         $_SESSION['mensagem_erro'] = $msgRetorno;
-        header('Location: frmDespesasLista.php');
+        header('Location: Despesas');
         exit;
     }
 
@@ -76,13 +76,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
             $msgRetorno = "Despesa / Conta cadastrada com sucesso!";
             $tipoMsg = "success";
             $_SESSION['mensagem_sucesso'] = $msgRetorno;
-            header('Location: frmDespesasLista.php');
+            header('Location: Despesas');
             exit;
         } else {
             $msgRetorno = "Erro ao cadastrar a despesa / conta. Erro -> ". $retorno;
             $tipoMsg = "error";
             $_SESSION['mensagem_erro'] = $msgRetorno;
-            header('Location: frmDespesasLista.php');
+            header('Location: Despesas');
             exit;
         }
     }else if ($Alterando === true && isset($_POST['salvar'])){
@@ -91,12 +91,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
             $msgRetorno = "Despesa / Conta atualizada com sucesso!";
             $tipoMsg = "success";
             $_SESSION['mensagem_sucesso'] = $msgRetorno;
-            header('Location: frmDespesasLista.php');
+            header('Location: Despesas');
             exit;
         } else {
             $msgRetorno = "Erro ao atualizar a despesa / conta. Erro -> ". $retorno;
             $tipoMsg = "error";
-            header('Location: frmDespesasLista.php');
+            header('Location: Despesas');
             exit;
         }
     }else if(isset($_POST['excluir'])){
@@ -105,12 +105,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
             $msgRetorno = "Despesa / Conta excluída com sucesso!";
             $_SESSION['mensagem_sucesso'] = $msgRetorno;
             $tipoMsg = "success";
-            header('Location: frmDespesasLista.php');
+            header('Location: Despesas');
             exit;
         } else {
             $msgRetorno = "Erro ao excluir  a despesa / conta. Erro -> ". $retorno;
             $tipoMsg = "error";
-            header('Location: frmDespesasLista.php');
+            header('Location: Despesas');
             exit;
         }
     }
@@ -125,12 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
     <meta charset="UTF-8">
     <title>Despesas e Contas | Autodoc Gerencial</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
     <!-- CSS BASE DO SISTEMA -->
-    <link rel="stylesheet" href="../css/base.css">
-
-    <!-- CSS ESPECÍFICO DA HOME / PÁGINAS INTERNAS -->
-    <link rel="stylesheet" href="../css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <style>
         /* ===== CONTEÚDO ===== */
         .content {
@@ -198,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
 
 <body>
 
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <div class="content">
     <div class="page-title">Cadastro de Despesas / Contas</div>
@@ -296,7 +293,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
             </div>
 
             <div class="actions">
-                <a href="frmDespesasLista.php" class="btn btn-secondary">
+                <a href="Despesas" class="btn btn-secondary">
                  ← Listar Despesas
                 </a>
 
@@ -319,13 +316,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
     </div>
 </div>
 
-<!--<?php include '../base/footer.php'; ?> -->
-
 </body>
 </html>
 <script>
 function abrirListaProdutos() {
-    window.location.href = 'servprodLista.php';
+    window.location.href = 'Produtos';
 }
 
 //======================================================================

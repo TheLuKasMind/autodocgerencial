@@ -1,10 +1,10 @@
 <?php
 ob_start();
 
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require('../base/fpdf/fpdf.php');
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
+require  __DIR__ .'/../base/fpdf/fpdf.php';
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -84,13 +84,6 @@ if ($placaFiltro !== '') {
 if ($statusProcessoFiltro  !== '' && $statusProcessoFiltro  !== null && $statusProcessoFiltro  !== '0') {
     $where .= " AND p.StatusProcesso = '$statusProcessoFiltro '";    
 }
-
-// $pedidoFiltro = $_GET['pedido'] ?? '';
-
-// if ($pedidoFiltro != '') {
-//     $pedidoFiltro = intval($pedidoFiltro);
-//     $where .= " AND p.id = $pedidoFiltro";
-// }
 
 $pedidoFiltro = $_GET['pedido'] ?? '';
 if (!empty($pedidoFiltro)) {

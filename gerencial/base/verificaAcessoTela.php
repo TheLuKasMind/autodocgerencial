@@ -5,9 +5,25 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once 'connection.php';
+require_once 'ambiente.php';
+
+if ($EM_MANUTENCAO == 1) {
+
+    if (
+        !isset($_SESSION['AdminGeral']) ||
+        $_SESSION['AdminGeral'] != 1
+    ) {
+
+        if ($currentPage != 'frmLogin.php' && $currentPage != 'Login') {
+
+            header("Location: Login?manutencao=1");
+            exit;
+        }
+    }
+}
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 

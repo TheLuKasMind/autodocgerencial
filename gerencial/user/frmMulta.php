@@ -1,14 +1,15 @@
 <?php
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -79,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
             $_SESSION['mensagem_erro'] = 'Necessário selecionar um cliente!';
             $msgRetorno = $_SESSION['mensagem_erro'];
             $tipoMsg = "error";
-            header('Location: frmMulta.php');
+            header('Location: Multa');
             exit;
         }
 
@@ -87,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
             $_SESSION['mensagem_erro'] = 'Necessário informar a série da multa!';
             $msgRetorno = $_SESSION['mensagem_erro'];
             $tipoMsg = "error";
-            header('Location: frmMulta.php' . ($id ? '?id=' . $id : ''));
+            header('Location: Multa' . ($id ? '?id=' . $id : ''));
             exit;
         }
 
@@ -105,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
             $msgRetorno = $_SESSION['mensagem_sucesso'];
             $tipoMsg = "success";
 
-            header('Location: frmMultaLista.php');
+            header('Location: Multas');
             exit;
         } else {
             $_SESSION['mensagem_erro'] = 'Erro ao salvar multa: ' . $retorno;
@@ -134,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
     } else {
         $_SESSION['mensagem_erro'] = "Erro ao excluir multa: " . $retorno;
     }
-    header("Location: frmMultaLista.php");
+    header("Location: Multas");
     exit;
 }
 
@@ -146,9 +147,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Multa</title>
 
-    <link rel="icon" href="../img/favicon.png">
-    <link rel="stylesheet" href="../css/base.css?v=15">
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/home.css">
 
     <style>
 
@@ -316,7 +317,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
 </head>
 <body>
 
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <div class="content">
 
@@ -507,7 +508,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
         <?php endif; ?>
 
         <button class="btn-imprimir"
-            onclick="window.open('frmMultaImprimir.php?id=<?= $id ?>', '_blank')">
+            onclick="window.open('Multa/Imprimir?id=<?= $id ?>', '_blank')">
             🖨 Gerar PDF
         </button>
 

@@ -5,6 +5,7 @@ header("Expires: 0");
 
 include 'base/baseFuncoes.php'; 
 require_once 'base/connection.php'; 
+require_once 'base/ambiente.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -40,8 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
 
     if ($email === '' || $senha === '') {
         $erro = 'Preencha todos os campos.';
-    } else {
 
+    } else {
+        if ($EM_MANUTENCAO == 1) {
+            $erro = "⚠ Sistema temporariamente em manutenção. Tente novamente mais tarde.";
+        } else {
         $sql = "
             SELECT 
                 u.id, 
@@ -124,11 +128,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
                             }
                         }
 
-                        header("Location: user/frmHome.php");
+                        header("Location: Home");
                         exit;
                     }
                 }
             }
+        }
         }
     }
 }
@@ -229,7 +234,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
 
                 $dbGeralNET->commit();
 
-                header("Location: frmLogin.php?sucesso=1");
+                header("Location: Login?sucesso=1");
                 exit;
 
             } catch (Exception $e) {
@@ -256,136 +261,137 @@ if (isset($_GET['sucesso'])) {
     <link rel="icon" href="img/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-
-    .modal-recuperar{
-        display:none;
-        position:fixed;
-        inset:0;
-        background:rgba(15,23,42,.55);
-        backdrop-filter:blur(6px);
-        z-index:9999;
-        align-items:center;
-        justify-content:center;
-        padding:20px;
-        animation:fadeIn .25s ease;
+    .modal-recuperar {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, .55);
+        backdrop-filter: blur(6px);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        animation: fadeIn .25s ease;
     }
 
-    .modal-box{
-        width:100%;
-        max-width:420px;
-        background:white;
-        border-radius:28px;
-        padding:35px;
-        position:relative;
+    .modal-box {
+        width: 100%;
+        max-width: 420px;
+        background: white;
+        border-radius: 28px;
+        padding: 35px;
+        position: relative;
         box-shadow:
-            0 30px 60px rgba(0,0,0,.20),
-            0 10px 25px rgba(0,0,0,.08);
-        animation:modalUp .25s ease;
+            0 30px 60px rgba(0, 0, 0, .20),
+            0 10px 25px rgba(0, 0, 0, .08);
+        animation: modalUp .25s ease;
     }
 
-    .modal-close{
-        position:absolute;
-        top:16px;
-        right:16px;
-        width:38px;
-        height:38px;
-        border:none;
-        border-radius:12px;
-        background:#f8fafc;
-        color:#64748b;
-        font-size:18px;
-        cursor:pointer;
-        transition:.2s ease;
+    .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+        border: none;
+        border-radius: 12px;
+        background: #f8fafc;
+        color: #64748b;
+        font-size: 18px;
+        cursor: pointer;
+        transition: .2s ease;
     }
 
-    .modal-close:hover{
-        background:#fff7ed;
-        color:#ea580c;
-        transform:rotate(90deg);
+    .modal-close:hover {
+        background: #fff7ed;
+        color: #ea580c;
+        transform: rotate(90deg);
     }
 
-    .modal-icon{
-        width:78px;
-        height:78px;
-        border-radius:22px;
-        background:linear-gradient(135deg,#fff7ed,#ffedd5);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:34px;
-        margin:0 auto 22px auto;
+    .modal-icon {
+        width: 78px;
+        height: 78px;
+        border-radius: 22px;
+        background: linear-gradient(135deg, #fff7ed, #ffedd5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 34px;
+        margin: 0 auto 22px auto;
         box-shadow:
             inset 0 0 0 1px #fed7aa;
     }
 
-    .modal-box h3{
-        margin:0;
-        text-align:center;
-        font-size:28px;
-        font-weight:800;
-        color:#111827;
+    .modal-box h3 {
+        margin: 0;
+        text-align: center;
+        font-size: 28px;
+        font-weight: 800;
+        color: #111827;
     }
 
-    .modal-text{
-        margin-top:14px;
-        text-align:center;
-        color:#64748b;
-        line-height:1.6;
-        font-size:15px;
+    .modal-text {
+        margin-top: 14px;
+        text-align: center;
+        color: #64748b;
+        line-height: 1.6;
+        font-size: 15px;
     }
 
-    .modal-input-group{
-        margin-top:28px;
+    .modal-input-group {
+        margin-top: 28px;
     }
 
-    .modal-input-group input{
-        width:100%;
-        height:60px;
-        border-radius:18px;
-        border:2px solid #e2e8f0;
-        padding:0 18px;
-        font-size:15px;
-        font-weight:600;
-        outline:none;
-        transition:.25s ease;
-        background:#fff;
+    .modal-input-group input {
+        width: 100%;
+        height: 60px;
+        border-radius: 18px;
+        border: 2px solid #e2e8f0;
+        padding: 0 18px;
+        font-size: 15px;
+        font-weight: 600;
+        outline: none;
+        transition: .25s ease;
+        background: #fff;
     }
 
-    .modal-input-group input:focus{
-        border-color:#f97316;
+    .modal-input-group input:focus {
+        border-color: #f97316;
         box-shadow:
-            0 0 0 5px rgba(249,115,22,.12);
+            0 0 0 5px rgba(249, 115, 22, .12);
     }
 
-    .msg-recuperar{
-        margin-top:18px;
-        padding:14px;
-        border-radius:14px;
-        background:#f0fdf4;
-        color:#166534;
-        font-size:14px;
-        line-height:1.5;
-        display:none;
-        border:1px solid #bbf7d0;
+    .msg-recuperar {
+        margin-top: 18px;
+        padding: 14px;
+        border-radius: 14px;
+        background: #f0fdf4;
+        color: #166534;
+        font-size: 14px;
+        line-height: 1.5;
+        display: none;
+        border: 1px solid #bbf7d0;
     }
 
-    @keyframes fadeIn{
-        from{
-            opacity:0;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
         }
-        to{
-            opacity:1;
+
+        to {
+            opacity: 1;
         }
     }
 
-    @keyframes modalUp{
-        from{
-            opacity:0;
-            transform:translateY(25px) scale(.96);
+    @keyframes modalUp {
+        from {
+            opacity: 0;
+            transform: translateY(25px) scale(.96);
         }
-        to{
-            opacity:1;
-            transform:translateY(0) scale(1);
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
     }
 
@@ -805,10 +811,10 @@ if (isset($_GET['sucesso'])) {
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus,
     textarea:-webkit-autofill,
-    select:-webkit-autofill{
-        -webkit-text-fill-color:#0f172a !important;
-        font-weight:700 !important;
-        font-size:15px !important;
+    select:-webkit-autofill {
+        -webkit-text-fill-color: #0f172a !important;
+        font-weight: 700 !important;
+        font-size: 15px !important;
 
         transition: background-color 9999s ease-in-out 0s;
 
@@ -825,7 +831,7 @@ if (isset($_GET['sucesso'])) {
         <div class="login-info">
             <div style="text-align: center;">
                 <!-- Logo -->
-                <a href="index.php">
+                <a href="Inicial">
                     <img src="img/logoo.png" alt="Autodoc Gerencial" style="width: 256px; 
                         height: 256px; 
                         object-fit: contain; 
@@ -861,6 +867,17 @@ if (isset($_GET['sucesso'])) {
                 Entre com suas credenciais para acessar a plataforma.
             </p>
 
+            <?php if ($EM_MANUTENCAO == 1): ?>
+            <div class="login-error" style="
+                    background:#fff7ed;
+                    color:#c2410c;
+                    border:1px solid #fdba74;
+                    font-weight:700;
+                ">
+                ⚠ Sistema em manutenção no momento. O acesso está temporariamente indisponível.
+            </div>
+            <?php endif; ?>
+
             <form method="post">
 
                 <div class="form-group">
@@ -871,7 +888,8 @@ if (isset($_GET['sucesso'])) {
                 <div class="form-group">
                     <label>Senha</label>
                     <div class="password-wrapper">
-                        <input type="password" name="senha" autocomplete="current-password"id="senhaLogin" id="senhaLogin" required>
+                        <input type="password" name="senha" autocomplete="current-password" id="senhaLogin"
+                            id="senhaLogin" required>
                         <span class="toggle-password" onclick="toggleSenha('senhaLogin', this)"></span>
                     </div>
                 </div>
@@ -902,9 +920,7 @@ if (isset($_GET['sucesso'])) {
 
                     <div class="modal-box">
 
-                        <button type="button"
-                                class="modal-close"
-                                onclick="fecharRecuperar()">
+                        <button type="button" class="modal-close" onclick="fecharRecuperar()">
                             ✕
                         </button>
 
@@ -919,15 +935,11 @@ if (isset($_GET['sucesso'])) {
                         </p>
 
                         <div class="modal-input-group">
-                            <input type="email"
-                                id="emailRecuperar"
-                                name="emailRecuperar"
+                            <input type="email" id="emailRecuperar" name="emailRecuperar"
                                 placeholder="Digite seu e-mail">
                         </div>
 
-                        <button type="button"
-                                onclick="enviarRecuperacao()"
-                                class="btn-login">
+                        <button type="button" onclick="enviarRecuperacao()" class="btn-login">
                             Enviar recuperação
                         </button>
 
@@ -936,102 +948,99 @@ if (isset($_GET['sucesso'])) {
                     </div>
 
                 </div>
-                </div>
+        </div>
 
-            </form>
+        </form>
 
-            <?php else: ?>
+        <?php else: ?>
 
-            <h2>Criar Conta</h2>
+        <h2>Criar Conta</h2>
 
-            <form method="post">
+        <form method="post">
 
-                <h3>Dados da Empresa</h3>
+            <h3>Dados da Empresa</h3>
 
-                <div class="form-group">
-                    <label>Nome da Empresa *</label>
-                    <input name="empresaNome" required>
-                </div>
+            <div class="form-group">
+                <label>Nome da Empresa *</label>
+                <input name="empresaNome" required>
+            </div>
 
-                <div class="form-group">
-                    <label>CNPJ / CPF</label>
-                    <input name="documento" id="documento" oninput="mascararDocumento(this)">
-                </div>
+            <div class="form-group">
+                <label>CNPJ / CPF</label>
+                <input name="documento" id="documento" maxlength="18" oninput="mascararDocumento(this)">
+            </div>
 
-                <div class="form-group">
-                    <label>Telefone</label>
-                    <!-- <input name="telefone"> -->
-                    <input type="text" id="telefone" name="telefone" oninput="formatarTelefone(this)">
-                </div>
+            <div class="form-group">
+                <label>Telefone</label>
+                <!-- <input name="telefone"> -->
+                <input type="text" id="telefone" name="telefone" oninput="formatarTelefone(this)">
+            </div>
 
-                <div class="form-group">
-                    <label>E-mail Empresa</label>
-                    <input name="emailEmpresa">
-                </div>
+            <div class="form-group">
+                <label>E-mail Empresa</label>
+                <input name="emailEmpresa">
+            </div>
 
-                <h3>Plano</h3>
+            <h3>Plano</h3>
 
-                <div class="planos">
+            <div class="planos">
 
-                    <?php foreach ($listaPlanos as $i => $pl): ?>
+                <?php foreach ($listaPlanos as $i => $pl): ?>
 
-                    <label class="plano <?= $i == 0 ? 'selected' : '' ?>">
-                        <input type="radio" name="plano" value="<?= $pl['id'] ?>" <?= $i == 0 ? 'checked' : '' ?>>
-                        <strong><?= $pl['Nome'] ?></strong>
-                        <div class="valor">
-                            R$ <?= number_format($pl['Valor'],2,',','.') ?>
-                        </div>
-                        <div class="periodo">
-                            <?= $pl['Periodo'] ?>
-                        </div>
-                    </label>
-
-                    <?php endforeach; ?>
-
-                </div>
-
-                <h3>Usuário Administrador</h3>
-
-                <div class="form-group">
-                    <label>Nome *</label>
-                    <input name="nome" required>
-                </div>
-
-                <div class="form-group">
-                    <label>E-mail *</label>
-                    <input type="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Senha *</label>
-                    <div class="password-wrapper">
-                        <input type="password" name="senha" id="senhaCadastro" required>
-                        <span class="toggle-password" onclick="toggleSenha('senhaCadastro', this)"></span>
+                <label class="plano <?= $i == 0 ? 'selected' : '' ?>">
+                    <input type="radio" name="plano" value="<?= $pl['id'] ?>" <?= $i == 0 ? 'checked' : '' ?>>
+                    <strong><?= $pl['Nome'] ?></strong>
+                    <div class="valor">
+                        R$ <?= number_format($pl['Valor'],2,',','.') ?>
                     </div>
+                    <div class="periodo">
+                        <?= $pl['Periodo'] ?>
+                    </div>
+                </label>
+
+                <?php endforeach; ?>
+
+            </div>
+
+            <h3>Usuário Administrador</h3>
+
+            <div class="form-group">
+                <label>Nome *</label>
+                <input name="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label>E-mail *</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Senha *</label>
+                <div class="password-wrapper">
+                    <input type="password" name="senha" id="senhaCadastro" required>
+                    <span class="toggle-password" onclick="toggleSenha('senhaCadastro', this)"></span>
                 </div>
+            </div>
 
-                <?php if ($erro): ?>
-                <div class="login-error"><?= $erro ?></div>
-                <?php endif; ?>
-
-                <button class="btn-login">Cadastrar</button>
-
-                <!-- <div style="margin-top:15px;text-align:center;">
-                    <a href="frmLogin.php">Voltar para login</a>
-                </div> -->
-
-                <div class="back-login-wrapper">
-                    <a href="frmLogin.php" class="back-login-btn">
-                        <span>←</span>
-                        Voltar para login
-                    </a>
-                </div>
-
-            </form>
-
+            <?php if ($erro): ?>
+            <div class="login-error"><?= $erro ?></div>
             <?php endif; ?>
 
-        </div>
+            <button class="btn-login">Cadastrar</button>
+
+
+            <div class="back-login-wrapper">
+                <a href="Login" class="back-login-btn">
+                    <span>←</span>
+                    Voltar para login
+                </a>
+            </div>
+
+        </form>
+
+        <?php endif; ?>
+
+    </div>
     </div>
 
     <script>
@@ -1130,7 +1139,7 @@ if (isset($_GET['sucesso'])) {
     });
 
 
-    function abrirRecuperar(){
+    function abrirRecuperar() {
         const modal = document.getElementById("modalRecuperar");
         const inputEmail = document.getElementById("emailRecuperar");
         modal.style.display = "flex";
@@ -1139,35 +1148,35 @@ if (isset($_GET['sucesso'])) {
         }, 150);
     }
 
-    function fecharRecuperar(){
+    function fecharRecuperar() {
         document.getElementById("modalRecuperar").style.display = "none";
         document.getElementById("msgRecuperar").style.display = "none";
         document.getElementById("emailRecuperar").value = "";
     }
 
-    function enviarRecuperacao(){
+    function enviarRecuperacao() {
         const email = document.getElementById("emailRecuperar").value;
-        if(email.trim() === ""){
+        if (email.trim() === "") {
             alert("Digite seu e-mail.");
             return;
         }
-        fetch("ajax/recuperarSenha.php",{
-            method:"POST",
-            headers:{
-                'Content-Type':'application/x-www-form-urlencoded'
-            },
-            body:"email="+encodeURIComponent(email)
-        })
-        .then(r => r.json())
-        .then(d => {
-            const msg = document.getElementById("msgRecuperar");
-            msg.style.display = "block";
-            msg.innerHTML =
-            "Se o e-mail existir no sistema, você receberá instruções para redefinir sua senha.";
-        })
-        .catch(err => {
-            console.log(err);
-        });
+        fetch("ajax/recuperarSenha.php", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: "email=" + encodeURIComponent(email)
+            })
+            .then(r => r.json())
+            .then(d => {
+                const msg = document.getElementById("msgRecuperar");
+                msg.style.display = "block";
+                msg.innerHTML =
+                    "Se o e-mail existir no sistema, você receberá instruções para redefinir sua senha.";
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     window.onload = function() {
@@ -1177,22 +1186,21 @@ if (isset($_GET['sucesso'])) {
         }
     };
 
-    window.addEventListener("click", function(event){
+    window.addEventListener("click", function(event) {
 
         const modal = document.getElementById("modalRecuperar");
 
-        if(event.target === modal){
+        if (event.target === modal) {
             fecharRecuperar();
         }
     });
 
-    document.addEventListener("keydown", function(e){
+    document.addEventListener("keydown", function(e) {
 
-        if(e.key === "Escape"){
+        if (e.key === "Escape") {
             fecharRecuperar();
         }
     });
-
     </script>
 
 </body>

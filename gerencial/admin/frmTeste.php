@@ -1,6 +1,6 @@
 <?php
 
-$senha = 'AutodocPro99*';
+$senha = '';
 
 echo password_hash($senha, PASSWORD_DEFAULT);
 

@@ -3,8 +3,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once '../base/connection.php';
-require_once '../base/baseFuncoes.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
 
 $idEmpresa = $_SESSION['idEmpresa'] ?? 0;
 

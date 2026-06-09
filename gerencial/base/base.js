@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("table").forEach(function (table) {
         const headers = [];

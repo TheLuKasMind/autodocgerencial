@@ -1,13 +1,13 @@
 <?php
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 date_default_timezone_set('America/Sao_Paulo');
@@ -70,9 +70,9 @@ if(isset($_POST['excluir']) && !empty($_POST['lancamentos'])){
 <head>
     <meta charset="UTF-8">
     <title>Caixa Diário</title>
-    <link rel="stylesheet" href="../css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
 <style>
 
     .resumo {
@@ -197,18 +197,9 @@ if(isset($_POST['excluir']) && !empty($_POST['lancamentos'])){
 
 <body>
 
-    <?php include '../base/navbarUser.php'; ?>
+    <?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
     <div class="content">
-
-            
-        <!-- <h2 style="display:flex; justify-content:space-between; align-items:center;">
-            <div class="page-title">Caixa do Dia</div>
-
-            <a href="frmBoletimCaixaLcto.php" class="btn-lancamento">
-                Lançamento
-            </a>
-        </h2> -->
 
         <div class="page-header">
             <div class="page-title-wrap">
@@ -219,7 +210,7 @@ if(isset($_POST['excluir']) && !empty($_POST['lancamentos'])){
                     Controle completo das entradas, saídas e saldo do caixa
                 </div>
             </div>
-            <a href="frmBoletimCaixaLcto.php" class="btn-lancamento">
+            <a href="BoletimCaixa/Lancamento" class="btn-lancamento">
                 Novo Lançamento
             </a>
         </div>
@@ -242,7 +233,7 @@ if(isset($_POST['excluir']) && !empty($_POST['lancamentos'])){
                     <button type="submit" class="btn">
                         Filtrar
                     </button>
-                    <a href="pdfBoletimCaixa.php?dataInicial=<?= $dataInicial ?>&dataFinal=<?= $dataFinal ?>" class="btn btn-secondary" target="_blank">
+                    <a href="BoletimCaixa/Imprimir?dataInicial=<?= $dataInicial ?>&dataFinal=<?= $dataFinal ?>" class="btn btn-secondary" target="_blank">
                         Imprimir
                     </a>
                 </div>

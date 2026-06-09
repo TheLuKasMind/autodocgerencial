@@ -1,22 +1,22 @@
 <?php 
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 // PUXA AS TELAS QUE O SISTEMA TEM
-require_once '../base/permissoes.php';
+require_once __DIR__ .'/../base/permissoes.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])){
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
 if (!isset($_SESSION['AdminGeral'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $limiteUsuarios = $_SESSION['empresa_limiteUsuarios'] ?? 0;
             if ($limiteUsuarios > 0 && $totalUsuarios >= $limiteUsuarios) {
                 $_SESSION['mensagem_erro'] ="Limite de usuários do seu plano foi atingido. Entre em contato o administrador para liberação de novos cadastros.";
-                header("Location: frmUser.php");
+                header("Location: Usuarios");
                 exit;
             }
 
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!empty($emailExiste)) {
                 $_SESSION['mensagem_erro'] = "Já existe um usuário cadastrado com este e-mail.";
                 $tipoMsg  = "erro";
-                header("Location: frmUser.php");
+                header("Location: Usuarios");
                 exit;
             }
 
@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
         }
 
-        header("Location: frmUser.php");
+        header("Location: Usuarios");
         exit;
     }
 }
@@ -154,7 +154,7 @@ if (isset($_GET['del'])) {
     ExSqlNET("DELETE FROM userpermissoes WHERE idEmpresa=? AND idUsuario=?", null, [$idEmpresa, $idDel]);
     $_SESSION['mensagem_sucesso'] = "Usuário excluído com sucesso.";
     $tipoMsg = "success";
-    header("Location: frmUser.php");
+    header("Location: Usuarios");
     exit;
 }
 
@@ -175,8 +175,8 @@ foreach($usuarios as $u){
 <meta charset="UTF-8">
 <title>Cadastro de Usuários</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../css/base.css?v=15">
-<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="/gerencial/css/base.css?v=15">
+<link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
 
 <style>
     /* ===== FILTROS ===== */
@@ -349,7 +349,7 @@ foreach($usuarios as $u){
 </head>
 
 <body>
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <div class="content">
 

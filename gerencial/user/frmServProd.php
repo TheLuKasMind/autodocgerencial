@@ -1,14 +1,14 @@
 <?php
-include '../base/baseFuncoes.php'; 
-require_once '../base/connection.php'; 
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -115,15 +115,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
                 $msgRetorno = "Produto / Serviço cadastrado com sucesso!";
                 $tipoMsg = "success";
                 $_SESSION['mensagem_sucesso'] = $msgRetorno;
-                header('Location: frmServProdLista.php');
+                header('Location: Produtos');
                 exit;
             } else {
                 $msgRetorno = "Erro ao cadastrar MovimentoCusto Produto / Serviço. Erro -> ". $retorno;
                 $tipoMsg = "error";
             }
 
-            // header('Location: frmServProdLista.php');
-            // exit;
         } else {
             $msgRetorno = "Erro ao cadastrar o Produto / Serviço. Erro -> ". $retorno;
             $tipoMsg = "error";
@@ -173,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
                     $msgRetorno = "Produto atualizado com sucesso!";
                     $tipoMsg = "success";
                     $_SESSION['mensagem_sucesso'] = $msgRetorno;
-                    header('Location: frmServProdLista.php');
+                    header('Location: Produtos');
                     exit;
                 }
 
@@ -181,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
                 $msgRetorno = "Produto atualizado com sucesso!";
                 $tipoMsg = "success";
                 $_SESSION['mensagem_sucesso'] = $msgRetorno;
-                header('Location: frmServProdLista.php');
+                header('Location: Produtos');
                 exit;
             }
 
@@ -200,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])  || isset($
             $msgRetorno = "Produto / Serviço excluído com sucesso!";
             $_SESSION['mensagem_sucesso'] = $msgRetorno;
             $tipoMsg = "success";
-            header('Location: frmServProdLista.php');
+            header('Location: Produtos');
             exit;
         } else {
             $msgRetorno = "Erro ao excluir o Produto / Serviço. Erro -> ". $retorno. $retornoCusto;
@@ -241,10 +239,10 @@ if (!empty($dados['Grupo'])) {
     <meta charset="UTF-8">
     <title>Produto / Serviço - Autodoc</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
 
     <!-- CSS BASE DO SISTEMA -->
-    <link rel="stylesheet" href="../css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
 
 <style>
    /* ===== MODAL PADRÃO DO SISTEMA ===== */
@@ -393,7 +391,7 @@ if (!empty($dados['Grupo'])) {
 </head>
 <body>
 
-    <?php include '../base/navbarUser.php'; ?>
+    <?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
     <div class="content">
         <form method="post">
@@ -600,7 +598,7 @@ if (!empty($dados['Grupo'])) {
 
         <!-- AÇÕES -->
         <div class="actions">
-            <a href="frmServProdLista.php" class="btn btn-secondary">
+            <a href="Produtos" class="btn btn-secondary">
                  ← Listar Produtos
             </a>
             <?php if ($Alterando): ?>

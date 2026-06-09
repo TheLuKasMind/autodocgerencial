@@ -1,15 +1,14 @@
 <?php
-
-require_once '../base/connection.php';
-require_once '../base/baseFuncoes.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 if(session_status() === PHP_SESSION_NONE){
     session_start();
 }
 
 if(!isset($_SESSION['usuario_id'])){
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -65,7 +64,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }else{
         $_SESSION['mensagem_erro'] = $erro;
     }
-    header("Location: frmLembrete.php");
+    header("Location: Lembretes");
     exit;
 }
 
@@ -80,7 +79,7 @@ if(isset($_GET['del'])){
     }else{
         $_SESSION['mensagem_erro'] = $erro;
     }
-    header("Location: frmLembrete.php");
+    header("Location: Lembretes");
     exit;
 }
 
@@ -120,14 +119,11 @@ LIMIT 50
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
     <title>Lembretes</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="../css/base.css?v=15">
-    <link rel="icon" href="../img/favicon.png">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
 
     <style>
     .check-inline{
@@ -288,7 +284,7 @@ LIMIT 50
 
 <body>
 
-    <?php include '../base/navbarUser.php'; ?>
+    <?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
     <div class="content">
 
@@ -379,7 +375,7 @@ LIMIT 50
 
                     <?php if($editar): ?>
 
-                    <a href="frmLembrete.php" class="btn">
+                    <a href="Lembrete" class="btn">
                         Cancelar
                     </a>
 

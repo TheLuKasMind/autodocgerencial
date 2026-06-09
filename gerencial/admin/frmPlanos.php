@@ -1,19 +1,19 @@
 <?php
-include '../base/baseFuncoes.php';
-require_once '../base/connection.php';
-require_once '../base/verificaPlano.php';
+require_once __DIR__ . '/../base/connection.php';
+require_once  __DIR__ .'/../base/baseFuncoes.php';
+require_once  __DIR__ .'/../base/verificaPlano.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])){
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
 if (!isset($_SESSION['AdminGeral']) || $_SESSION['AdminGeral'] != 1) {
-    header("Location: ../frmLogin.php");
+    header("Location: Login");
     exit;
 }
 
@@ -71,7 +71,7 @@ if (isset($_GET['del'])) {
     $stmt = $dbGeralNET->prepare($sql);
     $stmt->execute([$id]);
 
-    header("Location: frmPlanos.php");
+    header("Location: Planos");
     exit;
 }
 
@@ -85,7 +85,7 @@ if (isset($_GET['toggle'])) {
     $stmt = $dbGeralNET->prepare($sql);
     $stmt->execute([$id]);
 
-    header("Location: frmPlanos.php");
+    header("Location: Planos");
     exit;
 }
 
@@ -118,9 +118,9 @@ $planos = ExSqlNET($sql);
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Planos</title>
-    <link rel="stylesheet" href="../css/base.css?v=15">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
     <style>
         /* ================= PLANOS ================= */
 
@@ -264,7 +264,7 @@ $planos = ExSqlNET($sql);
     </style>
 </head>
 
-<?php include '../base/navbarUser.php'; ?>
+<?php include __DIR__ . '/../base/navbarUser.php'; ?>
 
 <body>
 
