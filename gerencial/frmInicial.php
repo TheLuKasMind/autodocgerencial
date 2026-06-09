@@ -602,7 +602,7 @@
 
             <a href="#" class="logo">
 
-                <img src="img/logoo.png" alt="Autodoc">
+                <img src="/gerencial/img/logoo.png" alt="Autodoc">
 
                 <div class="logo-text">
                     <span class="logo-title">Autodoc Gerencial</span>
@@ -615,7 +615,9 @@
                 <a href="#beneficios">Benefícios</a>
                 <a href="#metricas">Resultados</a>
                 <a href="#cta">Começar</a>
-                <a class="btn-login" href="Login">Acessar sistema</a>
+                <a class="btn-login" href="<?= dirname($_SERVER['PHP_SELF']) ?>/Login">
+                    Acessar sistema
+                </a>
             </nav>
 
         </div>
@@ -870,7 +872,7 @@
 
                 </div>
 
-                <a class="btn-main" href="Login">
+                <a class="btn-main" href="/gerencial/Login">
                     Acessar sistema
                 </a>
 

@@ -10,8 +10,12 @@ switch ($url) {
         require 'frmInicial.php';
         break;
     case 'gerencial/Login':
-        require 'frmLogin.php';
+        require __DIR__ . '/frmLogin.php';
         break;
+    // case 'gerencial/Login':
+    //     require 'frmLogin.php';
+    //     break;
+    
     case 'gerencial/Home':
         require 'user/frmHome.php';
         break;
@@ -161,7 +165,7 @@ switch ($url) {
 
     default:
         // echo 'Página não encontrada. Página: '. $url;
-        require '../gerencial/frmInicial.php';
+        require __DIR__ . '/../gerencial/frmInicial.php';
         break;
 }
 
