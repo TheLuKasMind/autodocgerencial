@@ -159,9 +159,8 @@ switch ($url) {
         require 'admin/frmBackup.php';
         break;
 
-
     default:
-        echo 'Página não encontrada. Página: '. $url;
+        // echo 'Página não encontrada. Página: '. $url;
         require '../gerencial/frmInicial.php';
         break;
 }

@@ -635,13 +635,13 @@
                 </div>
 
                 <h1>
-                    Controle todo o seu <span>despacho</span> em um único sistema
+                    Controle todo o seu <span>escritório</span> em um único sistema
                 </h1>
 
                 <p>
                     O <strong>Autodoc Gerencial</strong> foi criado para simplificar o dia a dia
                     de despachantes e empresas automotivas com gestão financeira,
-                    clientes, veículos, serviços e produtividade em um só lugar.
+                    clientes, produtos, serviços e produtividade em um só lugar.
                 </p>
 
                 <div class="hero-list">
@@ -653,7 +653,7 @@
 
                     <div>
                         <span>✓</span>
-                        <p>Gestão de clientes e veículos</p>
+                        <p>Gestão de clientes e produtos</p>
                     </div>
 
                     <div>
@@ -697,8 +697,8 @@
                         </div>
 
                         <div class="stat">
-                            <strong>🚗</strong>
-                            <span>Cadastro de veículos</span>
+                            <strong>📦</strong>
+                            <span>Cadastro de produtos</span>
                         </div>
 
                         <div class="stat">
@@ -766,13 +766,13 @@
                 </div>
 
                 <div class="benefit">
-                    <div class="benefit-icon">🚗</div>
+                    <div class="benefit-icon">📦</div>
 
-                    <h3>Controle de veículos</h3>
+                    <h3>Controle de produtos</h3>
 
                     <p>
-                        Centralize placas, dados dos veículos e histórico
-                        dos atendimentos realizados.
+                        Gerencie seu catálogo de produtos, acompanhe informações,
+                        preços e mantenha tudo organizado em um único lugar.
                     </p>
                 </div>
 
@@ -816,7 +816,7 @@
 
                     <p>
                         Reduza tarefas repetitivas e tenha mais praticidade
-                        na gestão do despacho.
+                        na gestão do escritório.
                     </p>
                 </div>
 
@@ -850,7 +850,7 @@
 
                     <div class="highlight-item">
                         <span>✔</span>
-                        <p>Cadastro de clientes e veículos</p>
+                        <p>Cadastro de clientes e produtos</p>
                     </div>
 
                     <div class="highlight-item">
@@ -890,7 +890,7 @@
                 <span class="section-badge">Autodoc Gerencial</span>
 
                 <h2>
-                    Leve mais organização para o seu despacho
+                    Leve mais organização para o seu escritório
                 </h2>
 
                 <p>
@@ -992,7 +992,7 @@
             <div class="cta-card">
 
                 <h2>
-                    Pronto para modernizar seu despacho?
+                    Pronto para modernizar seu escritório?
                 </h2>
 
                 <p>
