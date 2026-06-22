@@ -2,6 +2,28 @@
 require_once __DIR__ . '/../base/connection.php';
 require_once  __DIR__ .'/../base/baseFuncoes.php';
 require_once  __DIR__ .'/../base/verificaPlano.php';
+require_once  __DIR__ .'/../base/ambiente.php';
+
+$ambiente = $DEBUG_LOCAL; 
+$tokenValido = false;
+$tokenExpiraEm = null;
+
+$arquivoToken = __DIR__ . '/token.json'; // ajuste o caminho
+
+if (file_exists($arquivoToken)) {
+    $token = json_decode(file_get_contents($arquivoToken), true);
+    if (
+        isset($token['access_token']) &&
+        isset($token['created']) &&
+        isset($token['expires_in'])
+    ) {
+        $tokenExpiraEm = $token['created'] + $token['expires_in'];
+        if ($tokenExpiraEm > time()) {
+            $tokenValido = true;
+        }
+    }
+}
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -158,18 +180,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
 
         $zip->close();
 
+
         // LIMPA BUFFER
         if (ob_get_length()) {
             ob_end_clean();
         }
 
-        // DOWNLOAD
+        //FAZ O ENVIO PRO DRIVE
+        require_once 'googleDriveUpload.php';
+
+        $resultado = enviarBackupGoogleDrive($arquivoZip);
+        // echo '<pre>';
+        // var_dump($resultado);
+        // echo '</pre>';
+        // exit;
+        if ($resultado) {
+            logBackup('Backup enviado com sucesso.');
+            $_SESSION['mensagem_sucesso'] = '✅ Backup gerado e enviado para o Google Drive com sucesso.';
+        } else {
+            logBackup('Falha ao enviar backup.');
+            $_SESSION['mensagem_erro'] = '❌ Falha ao enviar o backup para o Google Drive.';
+        }
+
+        // header('Location: Backup');
+        // exit;
+
+        /*
+        // DOWNLOAD DESABILITADO
         header('Content-Type: application/zip');
         header('Content-Disposition: attachment; filename="' . basename($arquivoZip) . '"');
         header('Content-Length: ' . filesize($arquivoZip));
         header('Pragma: public');
-
         readfile($arquivoZip);
+        */
 
         // LIMPA TEMP
         @unlink($arquivoSql);
@@ -182,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
         }
 
         @unlink($arquivoZip);
-
+        header('Location: Backup');
         exit;
 
     } catch (Exception $e) {
@@ -306,6 +349,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
             }
         }
 
+        @keyframes loadingMove {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .btn-auth {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            padding: 16px 28px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .25s ease;
+            min-width: 320px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            box-shadow:
+                0 8px 20px rgba(34, 197, 94, 0.25),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .btn-auth:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            box-shadow:
+                0 15px 35px rgba(34, 197, 94, 0.35),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .btn-auth:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-auth:disabled {
+            opacity: .7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+
+        @media(max-width:700px) {
+            .btn-auth {
+                width: 100%;
+                min-width: 100%;
+            }
+        }
+
     </style>
 </head>
 
@@ -318,12 +419,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
     <div class="page-title">Backup do Sistema</div>
 
     <?php if(isset($_SESSION['mensagem_erro'])): ?>
-
         <div class="alert error">
             <?= $_SESSION['mensagem_erro'] ?>
         </div>
-
     <?php unset($_SESSION['mensagem_erro']); endif; ?>
+
+    <?php if(isset($_SESSION['mensagem_sucesso'])): ?>
+        <div class="alert success">
+            <?= $_SESSION['mensagem_sucesso'] ?>
+        </div>
+    <?php unset($_SESSION['mensagem_sucesso']); endif; ?>
 
     <div class="backup-wrapper">
 
@@ -339,7 +444,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
 
             <div class="backup-desc">
                 Gere um backup completo do banco de dados do sistema.
-                O arquivo será baixado automaticamente em formato ZIP.
+                O backup será gerado e enviado automaticamente para o Google Drive.
             </div>
 
             <div class="backup-info">
@@ -353,7 +458,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
                 </ul>
             </div>
 
-            <form method="POST">
+            <form method="POST" id="formBackup">
+                <div id="loadingBackup" style="display:none; margin-top:20px;">
+                    <div style="font-weight:600; color:#ea580c;">
+                        ⏳ Gerando backup e enviando para o Google Drive...
+                    </div>
+
+                    <div style="
+                        margin-top:12px;
+                        height:10px;
+                        background:#eee;
+                        border-radius:20px;
+                        overflow:hidden;
+                    ">
+                        <div style="
+                            height:100%;
+                            width:100%;
+                            background:linear-gradient(90deg,#f97316,#ea580c);
+                            animation: loadingMove 1s linear infinite;
+                        "></div>
+                    </div>
+                </div>
+
                 <div style="margin-bottom:20px; text-align:left;">
                     <label style="font-weight:600;">Senha de Segurança</label>
                     <input type="password"  name="senha_backup" id="senha_backup" placeholder="Digite a senha do backup" required
@@ -367,7 +493,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
                         ">
 
                 </div>
-                <button type="submit" name="gerar_backup" class="btn-backup">⬇ Gerar Backup Completo </button>
+                <input type="hidden" name="gerar_backup" value="1">
+
+                <?php if ($tokenValido): ?>
+                    <div class="alert success" style="margin-bottom:15px;">
+                        ✅ Google Drive autenticado
+
+                        <?php if ($tokenExpiraEm): ?>
+                            <br>
+                            <small>
+                                Token válido até:
+                                <?= date('d/m/Y H:i:s', $tokenExpiraEm) ?>
+                            </small>
+                        <?php endif; ?>
+                    </div>
+
+                <?php else: ?>
+
+                    <div class="alert error" style="margin-bottom:15px;">
+                        ⚠️ Google Drive não autenticado ou token expirado.
+                    </div>
+
+                <?php endif; ?>
+
+                <?php if (!$tokenValido): ?>
+                    <button
+                        type="button"
+                        class="btn-auth"
+                        onclick="window.location.href='http://localhost/gerar-token.php'">
+                        🔐 Autenticar Google Drive
+                    </button>
+                <?php endif; ?>
+
+                <button type="submit"
+                        name="gerar_backup"
+                        class="btn-backup"
+                        id="btnBackup"
+                        <?= !$tokenValido ? 'disabled' : '' ?>>
+                    ☁️ Gerar e Enviar Backup
+                </button>
             </form>
 
         </div>
@@ -375,6 +539,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
     </div>
 
 </div>
+
+<script>
+document.getElementById('formBackup').addEventListener('submit', function() {
+    document.getElementById('loadingBackup').style.display = 'block';
+    const btn = document.getElementById('btnBackup');
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Processando...';
+});
+
+</script>
 
 </body>
 </html>

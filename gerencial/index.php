@@ -163,9 +163,19 @@ switch ($url) {
         require 'admin/frmBackup.php';
         break;
 
+    // === ROTA PARA CALLBACK ===
+    case 'gerencial/Callback':
+        require 'admin/callback.php';
+        break;
+
+    case 'gerencial/GerarToken':
+        require 'admin/gerar-token.php';
+        break;  
+
     default:
         // echo 'Página não encontrada. Página: '. $url;
         require __DIR__ . '/../gerencial/frmInicial.php';
+        
         break;
 }
 

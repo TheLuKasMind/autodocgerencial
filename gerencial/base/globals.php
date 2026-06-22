@@ -8,3 +8,7 @@ $GLOBALS['EMAIL_SMTP'] = [
     'senha_app' => 'xxkr rfrx cqjz mtgu',
     'remetente_nome' => 'Autodoc Gerencial'
 ];
+
+$GLOBALS['global'] = [
+    'limite_usuarios' => '1',  
+];

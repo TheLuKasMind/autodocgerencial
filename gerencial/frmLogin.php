@@ -6,6 +6,9 @@ header("Expires: 0");
 include 'base/baseFuncoes.php'; 
 require_once 'base/connection.php'; 
 require_once 'base/ambiente.php';
+require_once 'base/globals.php';
+$config = $GLOBALS['global'];
+
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -103,8 +106,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
                         $_SESSION['usuario_id']   = $usuario['id'];
                         $_SESSION['usuario_nome'] = $usuario['nome'];
                         $_SESSION['usuario_tipo'] = $usuario['tipo'];
+                        // $_SESSION['AdminGeral'] = $usuario['AdminGeral'];
                         $_SESSION['AdminGeral'] = $usuario['AdminGeral'];
-                        $_SESSION['idEmpresa'] = $usuario['idEmpresa'];
+
+                        if ($usuario['AdminGeral'] == 1 && !empty($_POST['empresa_admin'])) {
+
+                            $empresaAdmin = (int)$_POST['empresa_admin'];
+
+                            $empresaExiste = ExSqlNET(
+                                "SELECT id FROM empresa WHERE id = ? LIMIT 1",
+                                null,
+                                [$empresaAdmin]
+                            );
+
+                            if (!empty($empresaExiste)) {
+                                $_SESSION['idEmpresa'] = $empresaAdmin;
+                            } else {
+                                $_SESSION['idEmpresa'] = $usuario['idEmpresa'];
+                            }
+
+                        } else {
+                            $_SESSION['idEmpresa'] = $usuario['idEmpresa'];
+                        }
+
+                        // $_SESSION['idEmpresa'] = $usuario['idEmpresa'];
+                        
                         $_SESSION['usuario_cargo'] = $usuario['Cargo'];
                         
                         $_SESSION['usuario_config_NaoVerDadosFinanceiro'] = $usuario['NaoVerDadosFinanceiro'];
@@ -128,6 +154,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
                             }
                         }
 
+                        if ($usuario['AdminGeral'] == 1 && empty($_POST['empresa_admin'])) {
+                            $erro = "Informe o ID da empresa que deseja acessar.";
+                        }
+                        
                         header("Location: Home");
                         exit;
                     }
@@ -203,10 +233,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
 
                 // INSERE EMPRESA
                 $stmt = $dbGeralNET->prepare("
-                    INSERT INTO empresa 
-                    (nome, documento, telefone, email, plano, status)
-                    VALUES (?, ?, ?, ?, ?, 'PENDENTE')
-                ");
+                    INSERT INTO empresa
+                    (nome, documento, telefone, email, plano, status, limiteUsuarios)
+                    VALUES (?, ?, ?, ?, ?, 'PENDENTE', {$config['limite_usuarios']})
+                ");+
 
                 $stmt->execute([
                     $empresaNome,
@@ -892,6 +922,12 @@ if (isset($_GET['sucesso'])) {
                             id="senhaLogin" required>
                         <span class="toggle-password" onclick="toggleSenha('senhaLogin', this)"></span>
                     </div>
+                </div>
+                <div id="campoEmpresaAdmin" style="display:none;" class="form-group">
+                    <label>ID da Empresa</label>
+                    <input type="number"
+                        name="empresa_admin"
+                        placeholder="Informe o ID da empresa">
                 </div>
 
                 <?php if ($erro): ?>
