@@ -169,7 +169,7 @@ switch ($url) {
         break;
 
     case 'gerencial/GerarToken':
-        require 'admin/gerar-token.php';
+        require 'admin/gdrive-auth.php';
         break;  
 
     default:

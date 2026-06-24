@@ -1,5 +1,4 @@
 <?php
-// gerar-token.php
 require_once __DIR__ . '/gerencial/vendor/autoload.php';
 require_once __DIR__ . '/gerencial/base/verificaPlano.php';
 require_once __DIR__ . '/gerencial/base/ambiente.php';
@@ -12,7 +11,7 @@ if ($ambiente == 1) {
     $URL_BASE = 'https://autodocoficial.com';
 }
 
-$URL_REDIRECT_GOOGLE = $URL_BASE . '/gerar-token.php';
+$URL_REDIRECT_GOOGLE = $URL_BASE . '/gdrive-auth-token.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
