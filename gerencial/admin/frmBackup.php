@@ -520,7 +520,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
                     <button
                         type="button"
                         class="btn-auth"
-                        onclick="window.location.href='http://localhost/gerar-token.php'">
+                        onclick="window.location.href='http://autodocoficial.com/gerar-token.php'">
                         🔐 Autenticar Google Drive
                     </button>
                 <?php endif; ?>
