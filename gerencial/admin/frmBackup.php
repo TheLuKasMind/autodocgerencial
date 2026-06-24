@@ -515,15 +515,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_backup'])) {
                     </div>
 
                 <?php endif; ?>
+                    <?php
+                    if (!$tokenValido):
 
-                <?php if (!$tokenValido): ?>
-                    <button
-                        type="button"
-                        class="btn-auth"
-                        onclick="window.location.href='http://autodocoficial.com/ga.php'">
-                        🔐 Autenticar Google Drive
-                    </button>
-                <?php endif; ?>
+                        if ($DEBUG_LOCAL == 1) {
+                            $redirectUrl = 'http://localhost/auth.php';
+                        } else {
+                            $redirectUrl = 'http://autodocoficial.com/auth.php';
+                        }
+                    ?>
+
+                        <button
+                            type="button"
+                            class="btn-auth"
+                            onclick="window.location.href='<?= $redirectUrl ?>'">
+                            🔐 Autenticar com Google Drive
+                        </button>
+
+                    <?php endif; ?>
 
                 <button type="submit"
                         name="gerar_backup"

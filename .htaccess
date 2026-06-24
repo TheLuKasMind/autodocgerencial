@@ -7,32 +7,3 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
-
-# ====================== DESATIVAR MOD_SECURITY ======================
-
-<IfModule mod_security.c>
-    SecRuleEngine Off
-</IfModule>
-
-<IfModule mod_security2.c>
-    SecRuleEngine Off
-</IfModule>
-
-<Files "ga.php">
-    SecRuleEngine Off
-    SecRuleRemoveByTag "OWASP"
-    SecRuleRemoveByTag "ModSecurity"
-    SecRuleRemoveByTag "attack"
-    SecRuleRemoveById 950130 960015 960032 960904 973333 981244 981245
-</Files>
-
-<FilesMatch "^ga\.php$">
-    SecRuleEngine Off
-    SetEnv MODSEC_ENABLE Off
-</FilesMatch>
-
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{QUERY_STRING} code= [NC]
-    RewriteRule ^ga\.php$ - [L]
-</IfModule>
