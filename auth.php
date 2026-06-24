@@ -3,7 +3,7 @@
 require_once __DIR__ . '/gerencial/vendor/autoload.php';
 require_once __DIR__ . '/gerencial/base/verificaPlano.php';
 require_once __DIR__ . '/gerencial/base/ambiente.php';
-require_once __DIR__ . '/gerencial/base/connection.php';   // ← Adicione isso
+require_once __DIR__ . '/gerencial/base/connection.php';  
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
