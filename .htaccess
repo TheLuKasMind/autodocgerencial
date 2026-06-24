@@ -18,7 +18,7 @@ RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
     SecRuleEngine Off
 </IfModule>
 
-<Files "gdrive-auth.php">
+<Files "ga.php">
     SecRuleEngine Off
     SecRuleRemoveByTag "OWASP"
     SecRuleRemoveByTag "ModSecurity"
@@ -26,7 +26,7 @@ RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
     SecRuleRemoveById 950130 960015 960032 960904 973333 981244 981245
 </Files>
 
-<FilesMatch "^gdrive-auth\.php$">
+<FilesMatch "^ga\.php$">
     SecRuleEngine Off
     SetEnv MODSEC_ENABLE Off
 </FilesMatch>
@@ -34,5 +34,5 @@ RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{QUERY_STRING} code= [NC]
-    RewriteRule ^gdrive-auth\.php$ - [L]
+    RewriteRule ^ga\.php$ - [L]
 </IfModule>
