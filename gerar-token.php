@@ -1,7 +1,8 @@
 <?php
+// gerar-token.php  ← na raiz do projeto
 require_once __DIR__ . '/gerencial/vendor/autoload.php';
-require_once  __DIR__ .'/gerencial/base/verificaPlano.php';
-require_once  __DIR__ .'/gerencial/base/ambiente.php';
+require_once __DIR__ . '/gerencial/base/verificaPlano.php';
+require_once __DIR__ . '/gerencial/base/ambiente.php';
 
 $ambiente = $DEBUG_LOCAL; 
 
@@ -11,7 +12,6 @@ if ($ambiente == 1) {
     $URL_BASE = 'https://autodocoficial.com';
 }
 
-$URL_BACKUP = $URL_BASE . '/?url=gerencial/Backup';
 $URL_REDIRECT_GOOGLE = $URL_BASE . '/gerar-token.php';
 
 ini_set('display_errors', 1);
@@ -21,17 +21,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['usuario_id']) || !isset($_SESSION['AdminGeral']) || $_SESSION['AdminGeral'] != 1) {
     header("Location: Login");
     exit;
 }
-
-if (!isset($_SESSION['AdminGeral']) || $_SESSION['AdminGeral'] != 1) {
-    header("Location: Login");
-    exit;
-}
-
-$idEmpresa = $_SESSION['idEmpresa'] ?? 0;
 
 $client = new Google\Client();
 $client->setAuthConfig(__DIR__ . '/gerencial/admin/oauth-credentials.json');
@@ -40,32 +33,83 @@ $client->setRedirectUri($URL_REDIRECT_GOOGLE);
 $client->setAccessType('offline');
 
 $tokenPath = __DIR__ . '/gerencial/admin/token.json';
+?>
 
-echo '<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Gerar Token Google Drive - Autodoc</title>
+    <title>Gerar Token Google Drive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <style>
-        body {font-family: Arial, sans-serif; padding: 50px; background: #f4f4f4;}
-        .box {background: white; padding: 40px; border-radius: 12px; max-width: 800px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.1);}
-        pre {background:#f8f8f8; padding:15px; overflow:auto; text-align:left; font-size:14px;}
-        .success {color:green;}
-        .warning {color:orange;}
+        :root{
+            --primary:#f97316;
+            --primary-dark:#ea580c;
+        }
+
+        .box {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            max-width: 700px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .success { color: #22c55e; }
+        .warning { color: #f59e0b; }
+
+        pre {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: left;
+            font-size: 13px;
+            max-height: 300px;
+            overflow: auto;
+            margin: 20px 0;
+        }
+
+        .btn-google {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 16px 32px;
+            font-size: 17px;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .btn-google:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(249, 115, 22, 0.4);
+        }
     </style>
 </head>
-<body><div class="box">';
+<body>
 
+<?php include __DIR__ . '/gerencial/base/navbarUser.php'; ?>
+
+<div class="content">
+    <div class="page-title">Gerar Token Google Drive</div>
+    <div class="subtitle">Autorização para envio automático de backups</div>
+
+    <div class="box">
+
+<?php
 if (isset($_GET['code'])) {
+    // Callback do Google
     echo "<h2 class='success'>✅ Código recebido do Google!</h2>";
     
     try {
         $accessToken = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-        
-        echo "<p><strong>Resposta do Google:</strong></p>";
-        echo '<pre>' . htmlspecialchars(json_encode($accessToken, JSON_PRETTY_PRINT)) . '</pre>';
 
-        // Salva o token (mesmo sem refresh_token)
         $salvo = file_put_contents($tokenPath, json_encode($accessToken, JSON_PRETTY_PRINT));
         
         if ($salvo !== false) {
@@ -73,22 +117,21 @@ if (isset($_GET['code'])) {
             echo '<p>Arquivo criado/atualizado em: <strong>gerencial/admin/token.json</strong></p>';
             
             if (!isset($accessToken['refresh_token'])) {
-                echo '<p class="warning">⚠️ Atenção: Não veio refresh_token. O token pode expirar em 1 hora.</p>';
+                echo '<p class="warning">⚠️ Não veio refresh_token. O token pode expirar em 1 hora.</p>';
             }
             
-            // Redireciona para a página de Backup
+            echo '<p>Redirecionando para a tela de Backup...</p>';
             echo '<script>
                 setTimeout(function() {
-                    window.location.href = "gerencial/Backup";
-                }, 2500);
+                    window.location.href = "/?url=gerencial/Backup";
+                }, 2800);
             </script>';
-            
         } else {
             echo '<h2 style="color:red;">❌ Erro ao salvar o arquivo token.json</h2>';
         }
     } catch (Exception $e) {
         echo '<h2 style="color:red;">Erro ao processar token:</h2>';
-        echo '<p>' . $e->getMessage() . '</p>';
+        echo '<p>' . htmlspecialchars($e->getMessage()) . '</p>';
     }
 } 
 else {
@@ -97,27 +140,24 @@ else {
         $tokenData = json_decode(file_get_contents($tokenPath), true);
         $client->setAccessToken($tokenData);
 
-        if ($client->isAccessTokenExpired()) {
-            echo '<h2>Token expirado</h2>';
-        } else {
-            echo '<h2 class="success">✅ Token válido</h2>';
+        if (!$client->isAccessTokenExpired()) {
+            echo '<h2 class="success">✅ Token já está válido!</h2>';
             echo '<p>Redirecionando para Backup...</p>';
-            echo '<script>setTimeout(() => window.location.href = "gerencial/Backup", 1500);</script>';
+            echo '<script>setTimeout(() => window.location.href = "/?url=gerencial/Backup", 1800);</script>';
             exit;
+        } else {
+            echo '<h2 style="color:#f59e0b;">⚠️ Token expirado</h2>';
         }
     }
 
     $authUrl = $client->createAuthUrl();
-    echo '<h2>Gerar Token Google Drive</h2>';
-    echo '<a href="' . htmlspecialchars($authUrl) . '" style="font-size:20px; padding:15px 30px; background:#4285f4; color:white; text-decoration:none; border-radius:8px; display:inline-block;">🔑 Autorizar Acesso ao Google Drive</a>';
+    echo '<p>Clique no botão abaixo para autorizar o Google Drive:</p>';
+    echo '<a href="' . htmlspecialchars($authUrl) . '" class="btn-google">🔑 Autorizar Google Drive</a>';
 }
-echo '<div style="
-    background:#f3f4f6;
-    padding:10px;
-    border-radius:8px;
-    margin-bottom:20px;
-">
-    Ambiente: <strong>' .
-    ($ambiente == 1 ? 'LOCAL' : 'PRODUÇÃO')
-    . '</strong>
-</div>';
+?>
+
+    </div>
+</div>
+
+</body>
+</html>

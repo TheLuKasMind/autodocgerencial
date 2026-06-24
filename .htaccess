@@ -7,3 +7,15 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+
+<IfModule mod_security.c>
+    SecRuleEngine Off
+</IfModule>
+
+<IfModule mod_security2.c>
+    SecRuleEngine Off
+</IfModule>
+
+<Files "gerar-token.php">
+    SecRuleEngine Off
+</Files>
