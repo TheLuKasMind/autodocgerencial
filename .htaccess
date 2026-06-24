@@ -8,7 +8,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
 
-# ====================== MOD_SECURITY DISABLE ======================
+# ====================== DESATIVAR MOD_SECURITY ======================
+
 <IfModule mod_security.c>
     SecRuleEngine Off
 </IfModule>
@@ -22,14 +23,16 @@ RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
     SecRuleRemoveByTag "OWASP"
     SecRuleRemoveByTag "ModSecurity"
     SecRuleRemoveByTag "attack"
-    SecRuleRemoveById 950130 960015 960032 960904 973333
+    SecRuleRemoveById 950130 960015 960032 960904 973333 981244 981245
 </Files>
 
-<FilesMatch "gerar-token\.php$">
+<FilesMatch "^gerar-token\.php$">
     SecRuleEngine Off
-    Header unset X-Frame-Options
+    SetEnv MODSEC_ENABLE Off
 </FilesMatch>
 
-<Files "gerar-token.php">
-    SetEnvIf Request_URI "gerar-token.php" MODSEC_ENABLE=Off
-</Files>
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{QUERY_STRING} code= [NC]
+    RewriteRule ^gerar-token\.php$ - [L]
+</IfModule>
