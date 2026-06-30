@@ -8,7 +8,7 @@ $ambiente = $DEBUG_LOCAL;
 $tokenValido = false;
 $tokenExpiraEm = null;
 
-$arquivoToken = __DIR__ . '/token.json'; // ajuste o caminho
+$arquivoToken = __DIR__ . '/token.json'; 
 
 if (file_exists($arquivoToken)) {
     $token = json_decode(file_get_contents($arquivoToken), true);

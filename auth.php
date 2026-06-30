@@ -3,7 +3,7 @@
 require_once __DIR__ . '/gerencial/vendor/autoload.php';
 require_once __DIR__ . '/gerencial/base/verificaPlano.php';
 require_once __DIR__ . '/gerencial/base/ambiente.php';
-require_once __DIR__ . '/gerencial/base/connection.php';  
+require_once __DIR__ . '/gerencial/base/connection.php';   
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -47,10 +47,8 @@ if (isset($_GET['code'])) {
     exit;
 }
 
-// Se não tem code, gera o link e salva no banco
 $authUrl = $client->createAuthUrl();
 
-// Salva o link no banco
 ExSqlNET("
     INSERT INTO config (id, GoogleDriveLink, GoogleDriveValidade) 
     VALUES (1, ?, NOW()) 
