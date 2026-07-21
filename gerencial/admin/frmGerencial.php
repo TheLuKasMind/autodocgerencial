@@ -776,7 +776,7 @@ body{
                             <small><?= $emp['Email'] ?></small><br>
                             <small><?= $emp['Telefone'] ?></small><br>
                             <small>
-                                <?= htmlspecialchars($emp['Cidade']) ?>
+                                <?= htmlspecialchars($emp['Cidade'] ?? '') ?>
                                 <?= !empty($emp['UF']) ? ' - ' . htmlspecialchars($emp['UF']) : '' ?>
                             </small><br>
                         </td>
