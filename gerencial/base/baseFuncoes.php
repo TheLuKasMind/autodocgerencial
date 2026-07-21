@@ -890,6 +890,103 @@ function enviaEmailCadastroAprovado($emailRecebe) {
     }
 }
 
+//=============================EMAIL - BOAS-VINDAS=============================
+function enviaEmailBoasVindas($emailRecebe) { 
+
+    require_once __DIR__ . '/globals.php';
+
+    $config = $GLOBALS['EMAIL_SMTP'];
+
+    $nomeSistema = $config['remetente_nome'];
+    $linkSistema = $config['link_sistema'];
+    $nomeEnvia = $config['remetente_nome'];
+    $emailEnvia = $config['usuario'];
+    $senhaApp = $config['senha_app'];
+
+    $mail = new PHPMailer(true);
+    $mail->CharSet = 'UTF-8';
+    $mail->Encoding = 'base64';
+
+    try {
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $emailEnvia;
+        $mail->Password   = $senhaApp;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+
+        $mail->setFrom($emailEnvia, $nomeEnvia);
+        $mail->addAddress($emailRecebe);
+
+        // Anexa o manual (altere o caminho conforme necessário)
+        $caminhoManual = __DIR__ . '/manuais/Manual_AutoDoc.pdf';
+        if (file_exists($caminhoManual)) {
+            $mail->addAttachment($caminhoManual, 'Manual_AutoDoc.pdf');
+        }
+
+        $msg = "
+        <div style='font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 30px; border-radius: 10px;'>
+            <div style='background-color: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);'>
+
+                <h2 style='color:#ff6600; text-align:center;'>
+                    🚗 Seja bem-vindo(a) ao Sistema AutoDoc!
+                </h2>
+
+                <p style='font-size:16px; color:#333; text-align:center;'>
+                    Prezado(a),
+                </p>
+
+                <p style='font-size:16px; color:#555; text-align:center;'>
+                    Seja bem-vindo(a) ao <strong style='color:#ff6600;'>Sistema AutoDoc</strong>.
+                </p>
+
+                <p style='font-size:16px; color:#555; text-align:center;'>
+                    Agradecemos pela confiança em nossa plataforma.
+                </p>
+
+                <p style='font-size:16px; color:#555; text-align:center;'>
+                    Em anexo encaminhamos o <strong>Manual de Utilização do Sistema</strong>.
+                </p>
+
+                <div style='text-align:center; margin-top:25px;'>
+                    <a href='".$linkSistema."'
+                        style='background-color:#ff6600; color:#fff; text-decoration:none;
+                               padding:12px 25px; border-radius:6px; font-weight:bold;'>
+                        Acessar o Sistema
+                    </a>
+                </div>
+
+                <p style='font-size:16px; color:#555; text-align:center; margin-top:25px;'>
+                    Caso necessite de qualquer auxílio, nossa equipe estará à disposição pelo
+                    <strong>WhatsApp (51) 99539-2177</strong>.
+                </p>
+
+                <p style='font-size:16px; color:#333; text-align:center; margin-top:30px;'>
+                    Atenciosamente,<br>
+                    <strong>Equipe AutoDoc</strong>
+                </p>
+
+                <p style='font-size:13px; color:#777; text-align:center; margin-top:30px;'>
+                    Sistema <strong>".$nomeSistema."</strong> 🚗
+                </p>
+
+            </div>
+        </div>
+        ";
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Seja bem-vindo(a) ao Sistema AutoDoc!';
+        $mail->Body = $msg;
+        $mail->send();
+
+        return true;
+
+    } catch (Exception $e) {
+        file_put_contents('logs/erro_email_BoasVindas.txt', "Erro: {$mail->ErrorInfo}");
+        return false;
+    }
+}
 
 //-----------------------------BRASIL API----------------------
 //============================CONSULTAR CEP====================

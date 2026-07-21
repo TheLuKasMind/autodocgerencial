@@ -773,7 +773,12 @@ body{
                         <td>
                             <strong><?= $emp['Nome'] ?></strong><br>
                             <small><?= $emp['Documento'] ?></small><br>
-                            <small><?= $emp['Email'] ?></small>
+                            <small><?= $emp['Email'] ?></small><br>
+                            <small><?= $emp['Telefone'] ?></small><br>
+                            <small>
+                                <?= htmlspecialchars($emp['Cidade']) ?>
+                                <?= !empty($emp['UF']) ? ' - ' . htmlspecialchars($emp['UF']) : '' ?>
+                            </small><br>
                         </td>
 
                         <td><?= $emp['NomePlano'] ?></td>

@@ -185,6 +185,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
     $emailUser = trim($_POST['email'] ?? '');
     $senhaUser = $_POST['senha'] ?? '';
 
+    $ufEmpresa = trim($_POST['ufNome'] ?? '');
+    $cidadeEmpresa = trim($_POST['cidadeNome'] ?? '');
+
     $documentoVerificar = preg_replace('/\D/', '', $_POST['documento'] ?? '');
     if (!empty($documentoVerificar)) {
 
@@ -234,8 +237,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
                 // INSERE EMPRESA
                 $stmt = $dbGeralNET->prepare("
                     INSERT INTO empresa
-                    (nome, documento, telefone, email, plano, status, limiteUsuarios)
-                    VALUES (?, ?, ?, ?, ?, 'PENDENTE', {$config['limite_usuarios']})
+                    (nome, documento, telefone, email, plano, status, limiteUsuarios, UF, Cidade)
+                    VALUES (?, ?, ?, ?, ?, 'PENDENTE', {$config['limite_usuarios']}, ?, ?)
                 ");+
 
                 $stmt->execute([
@@ -243,7 +246,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
                     $documento,
                     $telefone,
                     $emailEmp,
-                    $plano
+                    $plano,
+                    $ufEmpresa,
+                    $cidadeEmpresa
                 ]);
 
                 $idEmpresa = $dbGeralNET->lastInsertId();
@@ -264,6 +269,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
 
                 $dbGeralNET->commit();
 
+                enviaEmailBoasVindas($emailUser);
+                
                 header("Location: Login?sucesso=1");
                 exit;
 
@@ -851,6 +858,44 @@ if (isset($_GET['sucesso'])) {
         -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
         box-shadow: 0 0 0px 1000px #ffffff inset !important;
     }
+
+    .form-group select {
+        width: 100%;
+        height: 58px;
+        padding: 0 18px;
+        border-radius: 16px;
+        border: 2px solid #dbe3ec;
+        background: #ffffff;
+        font-size: 15px;
+        font-weight: 600;
+        color: #0f172a;
+        transition: .28s ease;
+        outline: none;
+        box-shadow: 0 4px 10px rgba(15, 23, 42, .04);
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2364748b' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 18px center;
+        padding-right: 50px;
+    }
+
+    .form-group select:hover {
+        border-color: #fb923c;
+        box-shadow: 0 8px 18px rgba(249, 115, 22, .10);
+    }
+
+    .form-group select:focus {
+        border-color: #f97316;
+        background-color: #fff;
+        transform: translateY(-1px);
+        box-shadow:
+            0 0 0 5px rgba(249, 115, 22, .14),
+            0 14px 30px rgba(249, 115, 22, .18);
+    }
     </style>
 </head>
 
@@ -1015,6 +1060,45 @@ if (isset($_GET['sucesso'])) {
             <div class="form-group">
                 <label>E-mail Empresa</label>
                 <input name="emailEmpresa">
+            </div>
+
+            <div class="form-group">
+                <label>UF</label>
+                <select name="ufEmpresa" id="Estado" required>
+                    <option value="">Selecione a UF</option>
+                    <option value="AC">AC - Acre</option>
+                    <option value="AL">AL - Alagoas</option>
+                    <option value="AP">AP - Amapá</option>
+                    <option value="AM">AM - Amazonas</option>
+                    <option value="BA">BA - Bahia</option>
+                    <option value="CE">CE - Ceará</option>
+                    <option value="DF">DF - Distrito Federal</option>
+                    <option value="ES">ES - Espírito Santo</option>
+                    <option value="GO">GO - Goiás</option>
+                    <option value="MA">MA - Maranhão</option>
+                    <option value="MT">MT - Mato Grosso</option>
+                    <option value="MS">MS - Mato Grosso do Sul</option>
+                    <option value="MG">MG - Minas Gerais</option>
+                    <option value="PA">PA - Pará</option>
+                    <option value="PB">PB - Paraíba</option>
+                    <option value="PR">PR - Paraná</option>
+                    <option value="PE">PE - Pernambuco</option>
+                    <option value="PI">PI - Piauí</option>
+                    <option value="RJ">RJ - Rio de Janeiro</option>
+                    <option value="RN">RN - Rio Grande do Norte</option>
+                    <option value="RS">RS - Rio Grande do Sul</option>
+                    <option value="RO">RO - Rondônia</option>
+                    <option value="RR">RR - Roraima</option>
+                    <option value="SC">SC - Santa Catarina</option>
+                    <option value="SP">SP - São Paulo</option>
+                    <option value="SE">SE - Sergipe</option>
+                    <option value="TO">TO - Tocantins</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Cidade</label>
+                <input name="cidadeEmpresa" required>
             </div>
 
             <h3>Plano</h3>
