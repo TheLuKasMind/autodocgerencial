@@ -15,6 +15,43 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
+
+// Se entrou pelo navbar, limpa os filtros
+if (isset($_GET['limparFiltros']) && $_GET['limparFiltros'] == 1) {
+    unset($_SESSION['filtroMultas']);
+}
+
+// Verifica se algum filtro foi informado
+$possuiFiltro = false;
+
+$camposFiltro = [
+    'status',
+    'cliente',
+    'serie',
+    'placa',
+    'orgao',
+    'processo',
+    'auto',
+    'dataInicial',
+    'dataFinal'
+];
+
+foreach ($camposFiltro as $campo) {
+    if (isset($_GET[$campo]) && $_GET[$campo] != '') {
+        $possuiFiltro = true;
+        break;
+    }
+}
+
+// Salva os filtros na sessão
+if ($possuiFiltro) {
+    $_SESSION['filtroMultas'] = $_GET;
+}
+
+// Recupera os filtros salvos
+$filtros = $_SESSION['filtroMultas'] ?? [];
+
+
 $idEmpresa = $_SESSION['idEmpresa'];
 
 $clientes = ExSqlNET("
@@ -25,22 +62,27 @@ $clientes = ExSqlNET("
     ORDER BY Nome
 ", null, [$idEmpresa]);
 
-$statusFiltro   = $_GET['status'] ?? '';
-$clienteFiltro  = $_GET['cliente'] ?? '';
-$serieFiltro    = $_GET['serie'] ?? '';
-$placaFiltro    = $_GET['placa'] ?? '';
-$orgaoFiltro    = $_GET['orgao'] ?? '';
-$processoFiltro = $_GET['processo'] ?? '';
-$autoFiltro     = $_GET['auto'] ?? '';
-$dataInicial    = $_GET['dataInicial'] ?? '';
-$dataFinal      = $_GET['dataFinal'] ?? '';
+// $statusFiltro   = $_GET['status'] ?? '';
+// $clienteFiltro  = $_GET['cliente'] ?? '';
+// $serieFiltro    = $_GET['serie'] ?? '';
+// $placaFiltro    = $_GET['placa'] ?? '';
+// $orgaoFiltro    = $_GET['orgao'] ?? '';
+// $processoFiltro = $_GET['processo'] ?? '';
+// $autoFiltro     = $_GET['auto'] ?? '';
+// $dataInicial    = $_GET['dataInicial'] ?? '';
+// $dataFinal      = $_GET['dataFinal'] ?? '';
 
-// SE NÃO VEIO FILTRO, USA DATA DE HOJE
-if ($dataInicial == '' && $dataFinal == '') {
-    $dataHoje = date('Y-m-d');
-    $dataInicial = $dataHoje;
-    $dataFinal = $dataHoje;
-}
+$statusFiltro   = $_GET['status'] ?? ($filtros['status'] ?? '');
+$clienteFiltro  = $_GET['cliente'] ?? ($filtros['cliente'] ?? '');
+$serieFiltro    = $_GET['serie'] ?? ($filtros['serie'] ?? '');
+$placaFiltro    = $_GET['placa'] ?? ($filtros['placa'] ?? '');
+$orgaoFiltro    = $_GET['orgao'] ?? ($filtros['orgao'] ?? '');
+$processoFiltro = $_GET['processo'] ?? ($filtros['processo'] ?? '');
+$autoFiltro     = $_GET['auto'] ?? ($filtros['auto'] ?? '');
+$dataInicial    = $_GET['dataInicial'] ?? ($filtros['dataInicial'] ?? '');
+$dataFinal      = $_GET['dataFinal'] ?? ($filtros['dataFinal'] ?? '');
+
+
 
 $where = " WHERE m.idEmpresa = $idEmpresa ";
 
@@ -70,6 +112,13 @@ if ($processoFiltro != '') {
 
 if ($autoFiltro !== '') {
     $where .= " AND m.AutoSuspensiva = '$autoFiltro' ";
+}
+
+// SE NÃO VEIO FILTRO, USA DATA DE HOJE
+if ($dataInicial == '' && $dataFinal == '') {
+    $dataHoje = date('Y-m-d');
+    $dataInicial = $dataHoje;
+    $dataFinal = $dataHoje;
 }
 
 if ($dataInicial != '') {
@@ -107,6 +156,8 @@ foreach ($listaMultas as $multa) {
         $totalAuto++;
     }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html>

@@ -101,7 +101,14 @@ switch ($url) {
         break;
 
     //GRUPOS==============
+    // case 'gerencial/Grupos':
+    //     require 'user/frmGrupo.php';
+    //     break;
     case 'gerencial/Grupos':
+        require 'user/frmGruposLista.php';
+        break;
+
+    case 'gerencial/Grupo':
         require 'user/frmGrupo.php';
         break;
 

@@ -1282,7 +1282,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         </tr>`;
 
 
-        tbody.innerHTML += linha;
+        //tbody.innerHTML += linha;
+        tbody.insertAdjacentHTML('beforeend', linha);
 
         calcularTotal();
         verificarVeiculoObrigatorio();

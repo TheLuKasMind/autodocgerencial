@@ -813,6 +813,76 @@ function MovimentoCC($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
     }
 }
 
+// =================================GRUPOS=======================================================
+function Grupo($dados, $acao){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
+
+    global $dbGeralNET;
+    $dataAlt = date('Y-m-d H:i:s');
+
+    if($acao === "CADASTRAR"){
+        $sql = "INSERT INTO `grupos` 
+        (idEmpresa, Nome, Tipo, Inativo, DataCadastro)
+        VALUES (:idEmpresa, :Nome, :Tipo, :Inativo, :DataCadastro)";
+
+        try {
+
+            $stmt = $dbGeralNET->prepare($sql);
+            $stmt->execute([
+                ':idEmpresa'  => $dados['idEmpresa'],
+                ':Nome' => $dados['Nome'],
+                ':Tipo' => $dados['Tipo'],
+                ':Inativo' => $dados['Inativo'],
+                ':DataCadastro' => $dataAlt,
+                ]
+            );
+
+            return ""; 
+        }catch (PDOException $e) {
+            return $e; 
+        }
+    }else if($acao === "ATUALIZAR"){
+
+        $sql = "UPDATE `grupos`
+        SET Nome = :Nome,
+        Tipo = :Tipo,
+        Inativo = :Inativo
+        WHERE id = :Id AND idEmpresa = :idEmpresa";
+
+        try {
+            $stmt = $dbGeralNET->prepare($sql);
+
+            $stmt->execute([
+                ':idEmpresa'  => $dados['idEmpresa'],
+                ':Nome' => $dados['Nome'],
+                ':Tipo' => $dados['Tipo'],
+                ':Inativo' => $dados['Inativo'],
+                ':Id' => $dados['id'],
+            ]);
+            return ""; 
+        }catch (PDOException $e) {
+            return $e; 
+        }
+    }else if($acao === "EXCLUIR"){
+
+        try {
+            $sql = "DELETE FROM `grupos` WHERE id = :Id AND idEmpresa = :idEmpresa";;
+
+            $stmt = $dbGeralNET->prepare($sql);
+
+            $stmt->execute([
+                ':Id' =>$dados['id'],
+                ':idEmpresa'  => $dados['idEmpresa'],
+            ]);
+
+            //echo $stmt->rowCount();
+                return ""; 
+        } catch (PDOException $e) {
+            return $e; 
+        }
+
+    }
+}
+
 //=============================EMAIL - CADASTRO APROVADO=============================
 function enviaEmailCadastroAprovado($emailRecebe) { 
     // $nomeSistema = "Autodoc";
@@ -1419,6 +1489,124 @@ function Multa($dados, $acao){
     return "Ação inválida.";
 }
 
+// =================================EXCLUIR EMPRESA=======================================================
+function ExcluirEmpresa($idEmpresa){ //1 = CADASTRAR, 2 = ATUALIZAR, 3 = EXCLUIR
+    global $dbGeralNET;
+
+    // arquivos
+    // forcli
+    // grupos
+    // movimento
+    // movimentocc
+    // movimentoitem
+    // movtolembrete
+    // multa
+    // patrimonio
+    // servprod
+    // servprodcusto
+    // tipodespesa
+    // user
+    // userpermissoes
+    // empresa
+
+    try{
+        $sql = "DELETE FROM arquivos WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+        
+        $sql = "DELETE FROM forcli WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+
+        $sql = "DELETE FROM grupos WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+        
+        $sql = "DELETE FROM movimento WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+
+        $sql = "DELETE FROM movimentocc WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+
+        $sql = "DELETE FROM movimentoitem WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+
+        $sql = "DELETE FROM movtolembrete WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+
+        $sql = "DELETE FROM multa WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+
+        $sql = "DELETE FROM patrimonio WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+
+        $sql = "DELETE FROM servprod WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+
+        $sql = "DELETE FROM servprodcusto WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+        
+        $sql = "DELETE FROM tipodespesa WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+
+        $sql = "DELETE FROM user WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+
+        $sql = "DELETE FROM userpermissoes WHERE idEmpresa = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+
+        $sql = "DELETE FROM empresa WHERE id = :idEmpresa";
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':idEmpresa' => $idEmpresa
+        ]);
+
+        return "";
+    }catch(PDOException $e){
+        return $e->getMessage();
+    }
+
+}
+
 function Lembrete($dados, $acao){
 
     global $dbGeralNET;
@@ -1487,7 +1675,5 @@ function Lembrete($dados, $acao){
     }
     return "Ação inválida.";
 }
-
-
 
 ?>

@@ -9247,3 +9247,31 @@ Array
 
 )
 
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 178
+            [id] => 0
+            [descricao] => CANCELAMENTO DE COMUNICAÇÃO DE VENDA
+            [qtd] => 2
+            [valorCusto] => 0
+            [valor] => 120
+            [total] => 240
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 41
+            [id] => 0
+            [descricao] => BAIXA DE VEÍCULO
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 150
+            [total] => 150
+            [solicitaVeiculo] => 1
+        )
+
+)
+

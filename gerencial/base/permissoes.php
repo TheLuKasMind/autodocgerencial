@@ -26,7 +26,8 @@ $paginasSistema = [
     'frmForcliLista.php' => 'Clientes / Fornecedores',
     'frmForcli.php' => 'Clientes / Fornecedores',
 
-    'frmGrupo.php' => 'Grupos',
+    'frmGrupo.php' => 'Grupo',
+    'frmGruposLista.php' => 'Grupos',
 
     'frmDespesasLista.php' => 'Despesas e Contas',
     'frmDespesas.php' => 'Despesas e Contas',

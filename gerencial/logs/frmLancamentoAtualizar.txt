@@ -5343,3 +5343,22 @@ Array
     [ControleOrigem] => 1064
 )
 
+Array
+(
+    [Data] => 2026-07-24
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 37
+    [ForcliRepasse] => 37
+    [PlacaVeiculo] => IZB9F77
+    [ModeloVeiculo] => TRACKER
+    [CorVeiculo] => Prata
+    [id] => 2721
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 32
+    [StatusProcesso] => 0
+    [ControleOrigem] => 2721
+)
+

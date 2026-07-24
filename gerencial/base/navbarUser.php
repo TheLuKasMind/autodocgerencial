@@ -330,18 +330,36 @@ body{
             </li>
             <?php endif; ?>
 
-            <?php if ($isAdminGeral || podeAcessar('frmLancamentoLista.php')): ?>
+            <!-- <?php if ($isAdminGeral || podeAcessar('frmLancamentoLista.php')): ?>
             <li>
                 <a href="/gerencial/Pedidos"
                 class="<?= in_array($currentPage, ['gerencial/Pedidos','gerencial/Pedido']) ? 'active' : '' ?>">
                 Pedidos e Vendas
                 </a>
             </li>
+            <?php endif; ?> -->
+
+            <?php if ($isAdminGeral || podeAcessar('frmLancamentoLista.php')): ?>
+            <li>
+                <a href="/gerencial/Pedidos?limparFiltros=1"
+                class="<?= in_array($currentPage, ['gerencial/Pedidos','gerencial/Pedido']) ? 'active' : '' ?>">
+                    Pedidos e Vendas
+                </a>
+            </li>
             <?php endif; ?>
+
+            <!-- <?php if ($isAdminGeral || podeAcessar('frmMultaLista.php')): ?>
+            <li>
+                <a href=/gerencial/Multas
+                class="<?= in_array($currentPage, ['gerencial/Multas','gerencial/Multa']) ? 'active' : '' ?>">
+                Multas
+                </a>
+            </li>
+            <?php endif; ?> -->
 
             <?php if ($isAdminGeral || podeAcessar('frmMultaLista.php')): ?>
             <li>
-                <a href=/gerencial/Multas
+                <a href="/gerencial/Multas?limparFiltros=1"
                 class="<?= in_array($currentPage, ['gerencial/Multas','gerencial/Multa']) ? 'active' : '' ?>">
                 Multas
                 </a>
@@ -400,7 +418,7 @@ body{
             <?php if ($isAdminGeral || podeAcessar('frmGrupo.php')): ?>
             <li>
                 <a href="/gerencial/Grupos"
-                class="<?= $currentPage == 'gerencial/Grupos' ? 'active' : '' ?>">
+                class="<?= in_array($currentPage, ['gerencial/Grupos','gerencial/Grupo']) ? 'active' : '' ?>">
                 Grupos
                 </a>
             </li>

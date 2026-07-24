@@ -104,6 +104,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $_SESSION['mensagem_sucesso'] = "Dados atualizados com sucesso.";
     }
+
+    if ($acao == 'excluir_empresa') {
+
+        ExcluirEmpresa($id);
+
+        $_SESSION['mensagem_sucesso'] =
+            "Empresa excluída com sucesso.";
+
+        header("Location: Gerencial");
+        exit;
+    }
+
 }
 
 /* ================= LISTA ================= */
@@ -133,6 +145,86 @@ foreach ($empresas as $e) {
         $totalVencidas++;
     }
 }
+
+$metricasEmpresa = [
+
+    [
+        'titulo' => 'Produtos',
+        'sql' => "SELECT COUNT(*) AS Total FROM servprod WHERE idEmpresa = ?",
+        'campo' => 'Total'
+    ],
+
+    [
+        'titulo' => 'Clientes',
+        'sql' => "SELECT COUNT(*) AS Total FROM forcli WHERE idEmpresa = ?",
+        'campo' => 'Total'
+    ],
+
+    [
+        'titulo' => 'Pedidos',
+        'sql' => "SELECT COUNT(*) AS Total FROM movimento WHERE idEmpresa = ?",
+        'campo' => 'Total'
+    ],
+
+    [
+        'titulo' => 'Multas',
+        'sql' => "SELECT COUNT(*) AS Total FROM multa WHERE idEmpresa = ?",
+        'campo' => 'Total'
+    ],
+
+    [
+        'titulo' => 'Arquivos',
+        'sql' => "SELECT COUNT(*) AS Total FROM arquivos WHERE idEmpresa = ?",
+        'campo' => 'Total'
+    ],
+    
+    [
+        'titulo' => 'Cadastros de Despesas',
+        'sql' => "SELECT COUNT(*) AS Total FROM tipodespesa WHERE idEmpresa = ?",
+        'campo' => 'Total'
+    ],
+
+    [
+        'titulo' => 'Lançamentos de Conta Corrente',
+        'sql' => "SELECT COUNT(*) AS Total FROM movimentocc WHERE idEmpresa = ?",
+        'campo' => 'Total'
+    ],
+
+    [
+        'titulo' => 'Usuários Ativos',
+        'sql' => "SELECT COUNT(*) AS Total FROM user WHERE idEmpresa = ? AND Inativo = 0",
+        'campo' => 'Total'
+    ]
+
+];
+
+
+foreach ($empresas as &$empresa) {
+
+    $empresa['metricas'] = [];
+
+    foreach ($metricasEmpresa as $metrica){
+
+        $resultado = ExSqlNET(
+            $metrica['sql'],
+            null,
+            [$empresa['id']]
+        );
+
+        $valor = 0;
+
+        if (!empty($resultado)){
+            $valor = $resultado[0][$metrica['campo']] ?? 0;
+        }
+
+        $empresa['metricas'][] = [
+            'titulo' => $metrica['titulo'],
+            'valor' => $valor
+        ];
+    }
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -145,6 +237,45 @@ foreach ($empresas as $e) {
     <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
     <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
 <style>
+
+    .nome-empresa-modal{
+        margin-top:-10px;
+        margin-bottom:20px;
+
+        font-size:24px;
+        font-weight:700;
+
+        color:var(--primary);
+
+        border-bottom:1px solid #eee;
+        padding-bottom:15px;
+    }
+
+    .metrica-item{
+
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+
+        padding:15px;
+
+        border-bottom:1px solid #eee;
+
+    }
+
+    .metrica-item strong{
+
+        font-size:16px;
+
+    }
+
+    .metrica-item span{
+
+        font-size:20px;
+        font-weight:bold;
+        color:var(--primary);
+
+    }
 
 :root{
     --primary:#f97316;
@@ -837,6 +968,27 @@ body{
                                 ⚙ Gerenciar
                             </button>
 
+                            <button
+                                class="btn btn-gerenciar"
+                                onclick='abrirModalMetricas(
+                                    <?= json_encode($emp["metricas"]) ?>,
+                                    <?= json_encode($emp["Nome"]) ?>
+                                )'>
+                                📊 Estatísticas
+                            </button>
+
+                            <button
+                                type="button"
+                                class="btn btn-excluir"
+                                onclick="confirmarExclusaoEmpresa(<?= $emp['id'] ?>)">
+                                🗑
+                            </button>
+
+                            <form id="formExcluirEmpresa" method="post" style="display:none;">
+                                <input type="hidden" name="id" id="idExcluirEmpresa">
+                                <input type="hidden" name="acao" value="excluir_empresa">
+                            </form>
+
                         </td>
 
                     </tr>
@@ -975,6 +1127,31 @@ body{
         </div>
     </div>
 
+    <div id="modalMetricas" class="modal">
+
+        <div class="modal-box">
+
+            <h3>Informações da Empresa</h3>
+
+            <div id="nomeEmpresaModal" class="nome-empresa-modal"></div>
+
+            <div id="metricasContainer"></div>
+
+            <br>
+
+            <button
+            type="button"
+            class="btn"
+            onclick="fecharModalMetricas()">
+
+                Fechar
+
+            </button>
+
+        </div>
+
+    </div>
+
 <script>
     function abrirModal(id, plano, status, validade, limiteUsuarios) {
 
@@ -994,15 +1171,19 @@ body{
     
     
     //FECHANDO MODAL NO ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const modal = document.getElementById('modal');
-            if (modal && modal.style.display === 'flex') {
-                fecharModal();
-            }
+    document.addEventListener('keydown', function(e){
+
+        if (e.key !== 'Escape') return;
+
+        if (document.getElementById('modal').style.display === 'flex'){
+            fecharModal();
         }
-    
-    }); 
+
+        if (document.getElementById('modalMetricas').style.display === 'flex'){
+            fecharModalMetricas();
+        }
+
+    });
     
     // FECHAR CLICANDO FORA DO MODAL
     document.getElementById('modal').addEventListener('click', function(e) {
@@ -1012,6 +1193,66 @@ body{
         }
 
     });
+
+    document.getElementById('modalMetricas').addEventListener('click', function(e) {
+
+        if (e.target === this) {
+            fecharModalMetricas();
+        }
+
+    });
+
+
+    function abrirModalMetricas(metricas, nomeEmpresa){
+
+        document.getElementById('nomeEmpresaModal').innerText = nomeEmpresa;
+
+        let html = '';
+
+        metricas.forEach(function(item){
+
+            html += `
+                <div class="metrica-item">
+                    <strong>${item.titulo}</strong>
+                    <span>${item.valor}</span>
+                </div>
+            `;
+
+        });
+
+        document.getElementById('metricasContainer').innerHTML = html;
+        document.getElementById('modalMetricas').style.display = 'flex';
+
+    }
+
+
+    function fecharModalMetricas(){
+
+        document.getElementById('modalMetricas').style.display = 'none';
+
+    }
+
+    function confirmarExclusaoEmpresa(id){
+
+        if (!confirm(
+            "ATENÇÃO!\n\n" +
+            "Todos os dados desta empresa serão removidos do sistema.\n\n" +
+            "Deseja continuar?"
+        )){
+            return;
+        }
+
+        if (!confirm(
+            "ESSA AÇÃO NÃO PODE SER DESFEITA.\n\n" +
+            "Tem CERTEZA ABSOLUTA que deseja excluir permanentemente esta empresa?"
+        )){
+            return;
+        }
+
+        document.getElementById('idExcluirEmpresa').value = id;
+        document.getElementById('formExcluirEmpresa').submit();
+
+    }
 
 </script>
 

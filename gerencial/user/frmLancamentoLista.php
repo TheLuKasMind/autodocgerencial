@@ -27,18 +27,92 @@ $clientes = ExSqlNET("
     ORDER BY Nome
 ", null, [$_SESSION['idEmpresa']]);
 
-$statusFiltro  = $_GET['status'] ?? '';
-$clienteFiltro = $_GET['cliente'] ?? '';
-$repasseFiltro = $_GET['repasse'] ?? '';
+
+
+// Se veio pelo navbar, limpa todos os filtros
+if (isset($_GET['limparFiltros']) && $_GET['limparFiltros'] == 1) {
+    unset($_SESSION['filtroPedidos']);
+
+}
+
+// Se o usuário realizou uma pesquisa, salva os filtros na sessão
+$getSemUrl = $_GET;
+unset($getSemUrl['url']);
+
+if (!empty($getSemUrl)) {
+    $_SESSION['filtroPedidos'] = $_GET;
+}
+
+// Recupera os filtros salvos, caso existam
+$filtros = $_SESSION['filtroPedidos'] ?? [];
+
+
+// Pesquisou os filtros?
+$camposFiltro = [
+    'status',
+    'cliente',
+    'repasse',
+    'dataInicial',
+    'dataFinal',
+    'CondPgto',
+    'statusProcesso',
+    'pedido',
+    'placa'
+];
+
+$pesquisouFiltros = false;
+
+foreach ($camposFiltro as $campo) {
+    if (isset($_GET[$campo])) {
+        $pesquisouFiltros = true;
+        break;
+    }
+}
+
+// Salva somente se realmente for uma pesquisa.
+if ($pesquisouFiltros) {
+    $_SESSION['filtroPedidos'] = [];
+
+    foreach ($camposFiltro as $campo) {
+        $_SESSION['filtroPedidos'][$campo] = $_GET[$campo] ?? '';
+    }
+}
+
+$filtros = $_SESSION['filtroPedidos'] ?? [];
+
+
+
+
+
+
+
+// $statusFiltro  = $_GET['status'] ?? '';
+// $clienteFiltro = $_GET['cliente'] ?? '';
+// $repasseFiltro = $_GET['repasse'] ?? '';
+$statusFiltro  = $_GET['status'] ?? ($filtros['status'] ?? '');
+$clienteFiltro = $_GET['cliente'] ?? ($filtros['cliente'] ?? '');
+$repasseFiltro = $_GET['repasse'] ?? ($filtros['repasse'] ?? '');
 
 $dataHoje = date('Y-m-d');
 
-$dataInicial = $_GET['dataInicial'] ?? $dataHoje;
-$dataFinal = $_GET['dataFinal'] ?? $dataHoje;
+// $dataInicial = $_GET['dataInicial'] ?? $dataHoje;
+// $dataFinal = $_GET['dataFinal'] ?? $dataHoje;
 
-$condicaoFiltro = $_GET['CondPgto'] ?? '';
+// $condicaoFiltro = $_GET['CondPgto'] ?? '';
 
-$statusProcessoFiltro  = $_GET['statusProcesso'] ?? '';
+// $statusProcessoFiltro  = $_GET['statusProcesso'] ?? '';
+
+$dataInicial = $_GET['dataInicial'] ?? ($filtros['dataInicial'] ?? $dataHoje);
+$dataFinal = $_GET['dataFinal'] ?? ($filtros['dataFinal'] ?? $dataHoje);
+
+$condicaoFiltro = $_GET['CondPgto'] ?? ($filtros['CondPgto'] ?? '');
+
+$statusProcessoFiltro = $_GET['statusProcesso'] ?? ($filtros['statusProcesso'] ?? '');
+
+$pedidoFiltro = $_GET['pedido'] ?? ($filtros['pedido'] ?? '');
+
+$placaFiltro = trim($_GET['placa'] ?? ($filtros['placa'] ?? ''));
+
 
 $where = "WHERE p.idEmpresa = ". $idEmpresa;
 
@@ -83,7 +157,7 @@ if ($repasseFiltro !== '') {
     }
 }
 
-$pedidoFiltro = $_GET['pedido'] ?? '';
+// $pedidoFiltro = $_GET['pedido'] ?? '';
 
 if (!empty($pedidoFiltro)) {
 
@@ -101,7 +175,7 @@ if (!empty($pedidoFiltro)) {
     }
 }
 
-$placaFiltro = trim($_GET['placa'] ?? '');
+// $placaFiltro = trim($_GET['placa'] ?? '');
 
 if ($placaFiltro !== '') {
     $placaFiltro = addslashes($placaFiltro);
@@ -180,6 +254,7 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
     header("Location: Pedidos");
     exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html>

@@ -153,6 +153,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
 
     <style>
 
+    .btn-voltar{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        background:#fff;
+        color:#f97316;
+        border:1px solid #fed7aa;
+        padding:10px 16px;
+        border-radius:12px;
+        font-size:14px;
+        font-weight:600;
+        text-decoration:none;
+        transition:.2s ease;
+        box-shadow:0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    .btn-voltar:hover{
+        background:#f97316;
+        color:#fff;
+        transform:translateY(-1px);
+        box-shadow:0 6px 16px rgba(249,115,22,0.25);
+    }
+    
+    .topo-pagina{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:18px;
+        gap:10px;
+        flex-wrap:wrap;
+    }
+
         .btn-cliente-lateral {
             min-width: 160px;
         }
@@ -356,6 +388,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
     <?php endif; ?>
 
     <form method="post">
+        <div class="topo-pagina">
+            <a href=Multas class="btn-voltar">
+                ← Voltar para lista
+            </a>
+        </div>
 
         <div class="card">
             <label>Cliente</label>
