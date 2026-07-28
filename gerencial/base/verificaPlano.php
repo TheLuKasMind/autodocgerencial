@@ -16,7 +16,7 @@ if ($idEmpresa) {
 
     if ($empresa && $empresa['ValidadePlano'] < date('Y-m-d')) {
         session_destroy();
-        header("Location: ../frmLogin.php?erro=plano_vencido");
+        header("Location: Login?erro=plano_vencido");
         exit;
     }
 }

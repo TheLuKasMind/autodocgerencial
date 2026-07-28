@@ -9275,3 +9275,43 @@ Array
 
 )
 
+Array
+(
+    [0] => Array
+        (
+            [idProduto] => 77
+            [id] => 0
+            [descricao] => IDENTIFICAÇÃO DE CONDUTOR
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 1
+        )
+
+    [1] => Array
+        (
+            [idProduto] => 45
+            [id] => 0
+            [descricao] => DECLARAÇÕES
+            [qtd] => 1
+            [valorCusto] => 0
+            [valor] => 20
+            [total] => 20
+            [solicitaVeiculo] => 1
+        )
+
+    [2] => Array
+        (
+            [idProduto] => 61
+            [id] => 0
+            [descricao] => RESERVA DE DOMÍNIO
+            [qtd] => 1
+            [valorCusto] => 228.02
+            [valor] => 330
+            [total] => 330
+            [solicitaVeiculo] => 1
+        )
+
+)
+

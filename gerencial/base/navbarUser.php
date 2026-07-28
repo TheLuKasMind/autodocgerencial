@@ -26,9 +26,93 @@ $currentPage = $_GET['url'] ?? '';
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
 
+.sidebar ul li a i{
+    color:#f8c78d; 
+    transition:.2s;
+}
+
+.sidebar ul li a.active i,
+.sidebar ul li a.active svg{
+    color:#fff7ed;
+    opacity:.95;
+}
+
+
+.sidebar ul li a i {
+    width: 20px;
+    margin-right: 12px;
+    color: #fcd9b6; 
+    transition: .25s;
+}
+
+.sidebar ul li a:hover i {
+    color: #fff3e6;
+}
+
+.sidebar ul li a.active i {
+    color: #fff7ed;
+}
+
+.sidebar ul li a.active{
+    background:#ea580c;
+    color:#fff;
+}
+
+.sidebar ul li a.active i{
+    color:#ffd8a8; 
+}
+.sidebar ul li.active a i{
+    color: #fff !important;
+}
+.sidebar ul li a.active i{
+    color:#ffe5b4;
+    text-shadow:0 0 8px rgba(255,255,255,.4);
+}
+
+.navbar li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar li a i {
+    width: 20px;
+    color: #fdba74;
+    font-size: 16px;
+}
+
+.navbar li a:hover i,
+.navbar li a.active i {
+      color: #f97316;
+}
+.navbar li a:hover i {
+    color: #f97316;
+}
+.sidebar ul li a i{
+    color:#fdba74;
+    transition:.25s;
+}
+
+.sidebar ul li a:hover i{
+    color:#f97316;
+}
+
+.sidebar ul li a.active{
+    background:linear-gradient(135deg,#f97316,#ea580c);
+    color:#fff;
+}
+
+.sidebar ul li a.active i{
+    color:#fff !important;
+    text-shadow:0 0 8px rgba(255,255,255,.35);
+}
+.navbar li a.active i {
+    color: #fff !important;
+}
 body{
     margin:0;
     font-family:'Inter', sans-serif;
@@ -325,42 +409,27 @@ body{
             <li>
                 <a href="/gerencial/Home"
                 class="<?= $currentPage == 'gerencial/Home' ? 'active' : '' ?>">
+                <i class="fa-solid fa-house"></i>
                 Inicial
                 </a>
             </li>
             <?php endif; ?>
 
-            <!-- <?php if ($isAdminGeral || podeAcessar('frmLancamentoLista.php')): ?>
-            <li>
-                <a href="/gerencial/Pedidos"
-                class="<?= in_array($currentPage, ['gerencial/Pedidos','gerencial/Pedido']) ? 'active' : '' ?>">
-                Pedidos e Vendas
-                </a>
-            </li>
-            <?php endif; ?> -->
-
             <?php if ($isAdminGeral || podeAcessar('frmLancamentoLista.php')): ?>
             <li>
                 <a href="/gerencial/Pedidos?limparFiltros=1"
                 class="<?= in_array($currentPage, ['gerencial/Pedidos','gerencial/Pedido']) ? 'active' : '' ?>">
+                <i class="fa-solid fa-cart-shopping"></i>
                     Pedidos e Vendas
                 </a>
             </li>
             <?php endif; ?>
 
-            <!-- <?php if ($isAdminGeral || podeAcessar('frmMultaLista.php')): ?>
-            <li>
-                <a href=/gerencial/Multas
-                class="<?= in_array($currentPage, ['gerencial/Multas','gerencial/Multa']) ? 'active' : '' ?>">
-                Multas
-                </a>
-            </li>
-            <?php endif; ?> -->
-
             <?php if ($isAdminGeral || podeAcessar('frmMultaLista.php')): ?>
             <li>
                 <a href="/gerencial/Multas?limparFiltros=1"
                 class="<?= in_array($currentPage, ['gerencial/Multas','gerencial/Multa']) ? 'active' : '' ?>">
+                <i class="fa-solid fa-car-burst"></i>
                 Multas
                 </a>
             </li>
@@ -372,6 +441,7 @@ body{
             <li>
                 <a href="/gerencial/BoletimCaixa"
                 class="<?= in_array($currentPage, ['gerencial/BoletimCaixa','gerencial/BoletimCaixa/Lancamento']) ? 'active' : '' ?>">
+                <i class="fa-solid fa-cash-register"></i>
                 Boletim de Caixa
                 </a>
             </li>
@@ -381,6 +451,7 @@ body{
             <li>
                 <a href="/gerencial/Financeiro"
                 class="<?= $currentPage == 'gerencial/Financeiro' ? 'active' : '' ?>">
+                <i class="fa-solid fa-chart-line"></i>
                 Financeiro Geral
                 </a>
             </li>
@@ -390,6 +461,7 @@ body{
             <li>
                 <a href="/gerencial/Patrimonio"
                 class="<?= $currentPage == 'gerencial/Patrimonio' ? 'active' : '' ?>">
+                <i class="fa-solid fa-boxes-stacked"></i>
                 Compras e Patrimônio
                 </a>
             </li>
@@ -401,7 +473,8 @@ body{
             <li>
                 <a href="/gerencial/Produtos"
                 class="<?= in_array($currentPage, ['gerencial/Produtos','gerencial/Produto']) ? 'active' : '' ?>">
-                Serviços / Produtos
+                <i class="fa-solid fa-box"></i>
+                Produtos / Serviços
                 </a>
             </li>
             <?php endif; ?>
@@ -410,6 +483,7 @@ body{
             <li>
                 <a href="/gerencial/Clientes"
                 class="<?= in_array($currentPage, ['gerencial/Clientes','gerencial/Cliente']) ? 'active' : '' ?>">
+                <i class="fa-solid fa-users"></i>
                 Clientes / Fornecedores
                 </a>
             </li>
@@ -419,6 +493,7 @@ body{
             <li>
                 <a href="/gerencial/Grupos"
                 class="<?= in_array($currentPage, ['gerencial/Grupos','gerencial/Grupo']) ? 'active' : '' ?>">
+                <i class="fa-solid fa-layer-group"></i>
                 Grupos
                 </a>
             </li>
@@ -428,6 +503,7 @@ body{
             <li>
                 <a href="/gerencial/Despesas"
                 class="<?= in_array($currentPage, ['gerencial/Despesas','gerencial/Despesa']) ? 'active' : '' ?>">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
                 Despesas e Contas
                 </a>
             </li>
@@ -437,6 +513,7 @@ body{
             <li>
                 <a href="/gerencial/Lembretes"
                 class="<?= in_array($currentPage, ['gerencial/Lembretes']) ? 'active' : '' ?>">
+                <i class="fa-solid fa-bell"></i>
                 Lembretes
                 </a>
             </li>
@@ -448,6 +525,7 @@ body{
             <li>
                 <a href="/gerencial/Cliente/Extrato"
                 class="<?= $currentPage == 'gerencial/Cliente/Extrato' ? 'active' : '' ?>">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
                 Extrato Clientes
                 </a>
             </li>
@@ -457,6 +535,7 @@ body{
             <li>
                 <a href="/gerencial/Documentos"
                 class="<?= $currentPage == 'gerencial/Documentos' ? 'active' : '' ?>">
+                <i class="fa-solid fa-file-signature"></i>
                 Geração de Documentos
                 </a>
             </li>
@@ -466,6 +545,7 @@ body{
             <li>
                 <a href="/gerencial/Usuarios"
                 class="<?= $currentPage == 'gerencial/Usuarios' ? 'active' : '' ?>">
+                <i class="fa-solid fa-user-gear"></i>
                 Usuários
                 </a>
             </li>
@@ -475,6 +555,7 @@ body{
             <li>
                 <a href="/gerencial/Relatorios"
                 class="<?= $currentPage == 'gerencial/Relatorios' ? 'active' : '' ?>">
+                <i class="fa-solid fa-chart-column"></i>
                 Relatórios e Dashboards
                 </a>
             </li>
@@ -484,6 +565,7 @@ body{
             <li>
                 <a href="/gerencial/Gerencial"
                 class="<?= $currentPage == 'gerencial/Gerencial' ? 'active' : '' ?>">
+                <i class="fa-solid fa-gauge-high"></i>
                 Gerencial
                 </a>
             </li>
@@ -493,6 +575,7 @@ body{
             <li>
                 <a href="/gerencial/Planos"
                 class="<?= $currentPage == 'gerencial/Planos' ? 'active' : '' ?>">
+                <i class="fa-solid fa-credit-card"></i>
                 Planos
                 </a>
             </li>
@@ -502,6 +585,7 @@ body{
             <li>
                 <a href="/gerencial/MeuCadastro"
                 class="<?= $currentPage == 'gerencial/MeuCadastro' ? 'active' : '' ?>">
+                <i class="fa-solid fa-building"></i>
                 Meu Cadastro
                 </a>
             </li>
@@ -511,6 +595,7 @@ body{
             <li>
                 <a href="/gerencial/Configuracao"
                 class="<?= $currentPage == 'gerencial/Configuracao' ? 'active' : '' ?>">
+                <i class="fa-solid fa-gear"></i>
                 Configurações
                 </a>
             </li>
@@ -520,6 +605,7 @@ body{
             <li>
                 <a href="/gerencial/Backup"
                 class="<?= $currentPage == 'gerencial/Backup' ? 'active' : '' ?>">
+                <i class="fa-solid fa-database"></i>
                 Backup
                 </a>
             </li>

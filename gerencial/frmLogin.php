@@ -23,6 +23,12 @@ $modoCadastro = isset($_GET['cadastro']);
 $erro = '';
 $sucesso = '';
 
+$retornoContrato = ExSqlNet("SELECT ContratoSistema FROM config");
+$retornoContrato = $retornoContrato[0];
+$contratoLicenciamento = <<<HTML
+{$retornoContrato['ContratoSistema']}
+HTML;
+
 /* ================= PLANOS ================= */
 
 $sqlPlanos = "
@@ -34,7 +40,8 @@ $sqlPlanos = "
 
 $listaPlanos = ExSqlNET($sqlPlanos);
 
-
+$planoVencido = false;
+$empresa = [];
 /* ================= LOGIN ================= */
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
@@ -93,12 +100,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
 
                     $dataHoje = date('Y-m-d');
 
+                    // if (!empty($usuario['ValidadePlano']) &&
+                    //     $usuario['ValidadePlano'] != '0000-00-00' &&
+                    //     strtotime($usuario['ValidadePlano']) < strtotime($dataHoje)) {
+
+                    //     $erro = "Plano contratado está VENCIDO. Entre em contato com o suporte.";
+
+                    // } else {
+                    $planoVencido = false;
+
                     if (!empty($usuario['ValidadePlano']) &&
                         $usuario['ValidadePlano'] != '0000-00-00' &&
                         strtotime($usuario['ValidadePlano']) < strtotime($dataHoje)) {
 
-                        $erro = "Plano contratado está VENCIDO. Entre em contato com o suporte.";
+                        $planoVencido = true;
+                        $erro = "Seu plano está vencido. Realize o pagamento via PIX para reativar seu acesso.";
 
+                        $sqlEmpresa = "
+                            SELECT 
+                                empresa.Nome,
+                                Documento,
+                                planos.Nome As Plano,
+                                ValidadePlano,
+                                empresa.MetaMensal,
+                                empresa.MetaDiaria,
+                                planos.Valor As ValorPlano,
+                                id_Asaas,
+                                Email,
+                                empresa.Plano As idPlano,
+                                empresa.Nome as nome,
+                                empresa.Documento as documento,
+                                empresa.Email as email
+                            FROM empresa
+                            LEFT JOIN planos on planos.id = empresa.Plano
+                            WHERE empresa.id = ?
+                        ";
+                        
+                        $resultado = ExSqlNET($sqlEmpresa, null, [$usuario['idEmpresa']])[0] ?? null;
+                        $empresa = $resultado;
+
+                        if (!empty($usuario['idEmpresa'])) {
+                            $_SESSION['idEmpresa'] = $usuario['idEmpresa'];
+                        }
+ 
                     } else {
 
                         /* ===== LOGIN OK ===== */
@@ -188,6 +232,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
     $ufEmpresa = trim($_POST['ufNome'] ?? '');
     $cidadeEmpresa = trim($_POST['cidadeNome'] ?? '');
 
+    $id_Asaas = trim($_POST['id_Asaas'] ?? '');
+
     $documentoVerificar = preg_replace('/\D/', '', $_POST['documento'] ?? '');
     if (!empty($documentoVerificar)) {
 
@@ -234,12 +280,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
 
                 $dbGeralNET->beginTransaction();
 
+                $validade = date('Y-m-d', strtotime('+1 month'));
                 // INSERE EMPRESA
                 $stmt = $dbGeralNET->prepare("
                     INSERT INTO empresa
-                    (nome, documento, telefone, email, plano, status, limiteUsuarios, UF, Cidade)
-                    VALUES (?, ?, ?, ?, ?, 'PENDENTE', {$config['limite_usuarios']}, ?, ?)
-                ");+
+                    (nome, documento, telefone, email, plano, status, limiteUsuarios, UF, Cidade, id_Asaas, ValidadePlano)
+                    VALUES (?, ?, ?, ?, ?, 'ATIVA', {$config['limite_usuarios']}, ?, ?, ?, ?)
+                ");
 
                 $stmt->execute([
                     $empresaNome,
@@ -248,7 +295,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
                     $emailEmp,
                     $plano,
                     $ufEmpresa,
-                    $cidadeEmpresa
+                    $cidadeEmpresa,
+                    $id_Asaas,
+                    $validade
                 ]);
 
                 $idEmpresa = $dbGeralNET->lastInsertId();
@@ -271,13 +320,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
 
                 enviaEmailBoasVindas($emailUser);
                 
-                header("Location: Login?sucesso=1");
+                $_SESSION['usuario_id'] = $dbGeralNET->lastInsertId();
+                $_SESSION['usuario_nome'] = $nomeUser;
+                $_SESSION['usuario_tipo'] = 2;
+                $_SESSION['idEmpresa'] = $idEmpresa;
+                $_SESSION['UserAdmin'] = 1;
+                $_SESSION['AdminGeral'] = 0;
+
+                header("Location: Home");
                 exit;
+
+                // header("Location: Login?sucesso=1");
+                // exit;
 
             } catch (Exception $e) {
 
                 $dbGeralNET->rollBack();
-                $erro = "Erro ao cadastrar, contato o adminstrado. Erro:" . $e;
+                $erro = "Erro ao cadastrar, contato o adminstrador. Erro:" . $e;
             }
         }
     }
@@ -287,6 +346,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
 if (isset($_GET['sucesso'])) {
     $sucesso = "Cadastro realizado com sucesso! Sua solicitação será analisada e você receberá um e-mail quando for aprovado.";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -298,6 +358,46 @@ if (isset($_GET['sucesso'])) {
     <link rel="icon" href="img/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+    .contrato-texto {
+
+        max-height: 300px;
+        overflow-y: auto;
+
+        margin-top: 20px;
+        padding: 20px;
+
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+
+        background: #f8fafc;
+
+        line-height: 1.7;
+        white-space: pre-line;
+    }
+
+    .aceite-termos {
+
+        margin-top: 20px;
+    }
+
+    .aceite-termos label {
+
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        color: #334155;
+    }
+
+    #aceitarContrato {
+
+        width: 18px;
+        height: 18px;
+    }
+
     .modal-recuperar {
         display: none;
         position: fixed;
@@ -896,6 +996,95 @@ if (isset($_GET['sucesso'])) {
             0 0 0 5px rgba(249, 115, 22, .14),
             0 14px 30px rgba(249, 115, 22, .18);
     }
+
+    .valor-plano{
+        margin-top:20px;
+        text-align:center;
+        font-size:42px;
+        font-weight:900;
+        color:#f97316;
+        letter-spacing:-1px;
+    }
+
+    #imgQrCode{
+        width:250px;
+        display:block;
+        margin:25px auto;
+        padding:15px;
+        background:white;
+        border-radius:20px;
+        box-shadow:0 10px 25px rgba(0,0,0,.08);
+    }
+
+    .contador-box{
+        margin-top:10px;
+        text-align:center;
+        padding:15px;
+        border-radius:16px;
+        background:#fff7ed;
+        border:1px solid #fed7aa;
+    }
+
+    .contador-box div{
+        font-size:13px;
+        color:#78716c;
+        font-weight:600;
+    }
+
+    #contadorPix{
+        display:block;
+        margin-top:5px;
+        font-size:32px;
+        font-weight:800;
+        color:#ea580c;
+    }
+
+    .modal-aviso {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.65);
+        justify-content: center;
+        align-items: center;
+        z-index: 99999;
+    }
+
+    .modal-aviso-box {
+        background: #fff;
+        width: 380px;
+        max-width: 90%;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-aviso-box p {
+        font-size: 18px;
+        color: #444;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+
+    .modal-aviso-box button {
+        width: 100%;
+        padding: 18px;
+        border: none;
+        border-radius: 10px;
+        background: #f57c00;
+        color: white;
+        font-size: 22px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .modal-aviso-box button:hover {
+        opacity: 0.95;
+    }
+
     </style>
 </head>
 
@@ -955,6 +1144,8 @@ if (isset($_GET['sucesso'])) {
 
             <form method="post">
 
+                <input type="hidden" name="id_Asaas" id="id_Asaas">
+
                 <div class="form-group">
                     <label>E-mail</label>
                     <input type="email" name="email" autocomplete="email" required>
@@ -970,9 +1161,7 @@ if (isset($_GET['sucesso'])) {
                 </div>
                 <div id="campoEmpresaAdmin" style="display:none;" class="form-group">
                     <label>ID da Empresa</label>
-                    <input type="number"
-                        name="empresa_admin"
-                        placeholder="Informe o ID da empresa">
+                    <input type="number" name="empresa_admin" placeholder="Informe o ID da empresa">
                 </div>
 
                 <?php if ($erro): ?>
@@ -1037,9 +1226,11 @@ if (isset($_GET['sucesso'])) {
 
         <h2>Criar Conta</h2>
 
-        <form method="post">
+        <form method="post" id="formCadastro">
 
             <h3>Dados da Empresa</h3>
+
+            <input type="hidden" name="id_Asaas" id="id_Asaas">
 
             <div class="form-group">
                 <label>Nome da Empresa *</label>
@@ -1146,8 +1337,10 @@ if (isset($_GET['sucesso'])) {
             <div class="login-error"><?= $erro ?></div>
             <?php endif; ?>
 
-            <button class="btn-login">Cadastrar</button>
-
+            <!-- <button class="btn-login">Cadastrar</button> -->
+            <button type="button" class="btn-login" onclick="abrirModalContrato()">
+                Cadastrar
+            </button>
 
             <div class="back-login-wrapper">
                 <a href="Login" class="back-login-btn">
@@ -1164,11 +1357,157 @@ if (isset($_GET['sucesso'])) {
     </div>
 
     <script>
+
+    let intervaloPagamento = null;
+    let contadorPagamento = null;
+    let segundosPagamento = 120;
+    let idCobrancaPix = null;
+    let estaCadastrandoEmpresa = false;
+
     window.onclick = function(event) {
         let modal = document.getElementById("modalRecuperar");
         if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
+
+    function mostrarAviso(mensagem) {
+        document.getElementById("mensagemAviso").innerText = mensagem;
+        document.getElementById("modalAviso").style.display = "flex";
+    }
+
+    function fecharModalAviso() {
+        document.getElementById("modalAviso").style.display = "none";
+    }
+
+    function validarEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+    function validarCPF(cpf) {
+        cpf = cpf.replace(/\D/g, '');
+        if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
+            return false;
+        }
+        let soma = 0;
+        for (let i = 0; i < 9; i++) {
+            soma += parseInt(cpf.charAt(i)) * (10 - i);
+        }
+        let resto = (soma * 10) % 11;
+        if (resto === 10) resto = 0;
+        if (resto !== parseInt(cpf.charAt(9))) {
+            return false;
+        }
+        soma = 0;
+        for (let i = 0; i < 10; i++) {
+            soma += parseInt(cpf.charAt(i)) * (11 - i);
+        }
+        resto = (soma * 10) % 11;
+        if (resto === 10) resto = 0;
+        return resto === parseInt(cpf.charAt(10));
+    }
+
+    function validarCNPJ(cnpj) {
+        cnpj = cnpj.replace(/\D/g, '');
+        if (cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) {
+            return false;
+        }
+        let tamanho = cnpj.length - 2;
+        let numeros = cnpj.substring(0, tamanho);
+        let digitos = cnpj.substring(tamanho);
+        let soma = 0;
+        let pos = tamanho - 7;
+
+        for (let i = tamanho; i >= 1; i--) {
+            soma += numeros.charAt(tamanho - i) * pos--;
+            if (pos < 2) pos = 9;
+        }
+        let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+        if (resultado != digitos.charAt(0)) {
+            return false;
+        }
+        tamanho++;
+        numeros = cnpj.substring(0, tamanho);
+        soma = 0;
+        pos = tamanho - 7;
+        for (let i = tamanho; i >= 1; i--) {
+            soma += numeros.charAt(tamanho - i) * pos--;
+            if (pos < 2) pos = 9;
+        }
+        resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+        return resultado == digitos.charAt(1);
+    }
+
+    function validarDocumento(documento) {
+        const numeros = documento.replace(/\D/g, '');
+        if (numeros.length === 11) {
+            return validarCPF(numeros);
+        }
+        if (numeros.length === 14) {
+            return validarCNPJ(numeros);
+        }
+        return false;
+    }
+
+    function validarCamposCadastro() {
+
+        const camposObrigatorios = [
+            { name: "empresaNome", descricao: "Nome da Empresa" },
+            { name: "documento", descricao: "CNPJ / CPF" },
+            { name: "telefone", descricao: "Telefone" },
+            { name: "emailEmpresa", descricao: "E-mail da Empresa" },
+            { name: "ufEmpresa", descricao: "UF" },
+            { name: "cidadeEmpresa", descricao: "Cidade" },
+            { name: "nome", descricao: "Nome do Usuário Administrador" },
+            { name: "email", descricao: "E-mail do Usuário Administrador" },
+            { name: "senha", descricao: "Senha" }
+        ];
+
+        for (const campo of camposObrigatorios) {
+            const elemento = document.querySelector(`[name="${campo.name}"]`);
+            if (!elemento || elemento.value.trim() === "") {
+                mostrarAviso(`Por favor, informe o campo "${campo.descricao}".`);
+                if (elemento) {
+                    elemento.focus();
+                }
+                return false;
+            }
+        }
+
+         // Validação do CPF/CNPJ
+        const documento = document.querySelector('[name="documento"]').value;
+
+        if (!validarDocumento(documento)) {
+            mostrarAviso("Informe um CPF ou CNPJ válido.");
+            return false;
+        }
+
+        // Validação do e-mail da empresa
+        const emailEmpresa = document.querySelector('[name="emailEmpresa"]').value;
+
+        if (!validarEmail(emailEmpresa)) {
+            mostrarAviso("Informe um e-mail válido para a empresa.");
+            return false;
+        }
+
+        // Validação do e-mail do administrador
+        const emailUsuario = document.querySelector('[name="email"]').value;
+
+        if (!validarEmail(emailUsuario)) {
+            mostrarAviso("Informe um e-mail válido para o usuário administrador.");
+            return false;
+        }
+
+        // Verifica se um plano foi selecionado
+        const planoSelecionado = document.querySelector('input[name="plano"]:checked');
+
+        if (!planoSelecionado) {
+            mostrarAviso("Selecione um plano.");
+            return false;
+        }
+
+        return true;
     }
 
     document.querySelectorAll('.plano').forEach(p => {
@@ -1240,6 +1579,13 @@ if (isset($_GET['sucesso'])) {
         <path d="M9.9 9.9A3 3 0 0012 15a3 3 0 002.1-.9"/>
     </svg>
     `;
+
+    function abrirModalContrato() {
+        if (!validarCamposCadastro()) {
+            return;
+        }
+        document.getElementById("modalContrato").style.display = "flex";
+    }
 
     function toggleSenha(idCampo, elemento) {
         const input = document.getElementById(idCampo);
@@ -1321,6 +1667,445 @@ if (isset($_GET['sucesso'])) {
             fecharRecuperar();
         }
     });
+
+
+
+
+    const formCadastro = document.getElementById("formCadastro");
+
+
+    function fecharContrato() {
+        document.getElementById("modalContrato").style.display = "none";
+        document.getElementById("aceitarContrato").checked = false;
+        document.getElementById("aceitarContrato").disabled = true;
+        document.getElementById("btnAceitarContrato").disabled = true;
+        const texto = document.getElementById("textoContrato");
+
+        if (texto) {
+            texto.scrollTop = 0;
+        }
+    }
+
+    //function enviarCadastro() {
+    //    fecharContrato();
+    //    document.getElementById("formCadastro").submit();
+    //}
+
+    function enviarCadastro() {
+        gerarPagamento();
+    }
+
+    function gerarPagamento() {
+        estaCadastrandoEmpresa = true;
+        let form = document.getElementById("formCadastro");
+        let dados = new FormData(form);
+
+        let plano = document.querySelector(
+            'input[name="plano"]:checked'
+        ).value;
+
+        dados.append("idPlano", plano);
+        fetch("ajax/ajaxGerarPagamentoPlano.php", {
+
+                method: "POST",
+                body: dados
+
+            })
+            .then(r => r.json())
+            .then(retorno => {
+                if (!retorno.sucesso) {
+                    alert("Erro ao gerar cobrança.");
+                    return;
+                }
+                idCobrancaPix = retorno.idCobranca;
+                document.getElementById(
+                    "valorPlanoPix"
+                ).innerHTML = "R$ " + retorno.valor;
+
+                document.getElementById(
+                    "imgQrCode"
+                ).src = "data:image/png;base64," + retorno.qrCode;
+
+                document.getElementById(
+                    "modalPix"
+                ).style.display = "flex";
+
+                document.getElementById("id_Asaas").value = retorno.id_Asaas;
+
+                document.getElementById("modalPix").style.display = "flex";
+                iniciarConsultaPagamento();
+                iniciarContadorPagamento();
+            });
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        const checkbox = document.getElementById("aceitarContrato");
+        const btnConfirmar = document.getElementById("btnAceitarContrato");
+
+        if (!textoContrato) return;
+
+        textoContrato.addEventListener("scroll", function() {
+
+            if (
+                textoContrato.scrollTop + textoContrato.clientHeight >=
+                textoContrato.scrollHeight - 5
+            ) {
+                checkbox.disabled = false;
+            }
+
+        });
+
+        checkbox.addEventListener("change", function() {
+            btnConfirmar.disabled = !this.checked;
+        });
+
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        <?php if (isset($planoVencido) && $planoVencido): ?>
+            gerarPagamentoPlanoVencido();
+        <?php endif; ?>
+    });
+
+    function atualizarContador(){
+        let minutos = Math.floor(segundosPagamento / 60);
+        let segundos = segundosPagamento % 60;
+        minutos = String(minutos).padStart(2,'0');
+        segundos = String(segundos).padStart(2,'0');
+        document.getElementById("contadorPix").innerHTML =
+            minutos + ":" + segundos;
+    }
+
+    function excluirClienteAsaas(idCliente) {
+
+        fetch("ajax/ajaxCancelarPagamento.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "id=" + encodeURIComponent(idCliente)
+        })
+        .then(r => r.json())
+        .then(retorno => {
+            // console.log("Cliente Asaas excluído:", retorno);
+        })
+        .catch(erro => {
+            console.error("Erro ao excluir cliente:", erro);
+        });
+
+    }
+
+    function iniciarContadorPagamento() {
+
+        clearInterval(contadorPagamento);
+        segundosPagamento = 120;
+        atualizarContador();
+
+        contadorPagamento = setInterval(function () {
+            segundosPagamento--;
+            atualizarContador();
+            if (segundosPagamento <= 0) {
+                clearInterval(contadorPagamento);
+                let idClienteAsaas = document.getElementById("id_Asaas").value;
+                if (idClienteAsaas) {
+                    excluirClienteAsaas(idClienteAsaas);
+                }
+                // alert("ID Asaas recebido: " + idClienteAsaas);
+                alert("Tempo do pagamento expirou.");
+                document.getElementById("modalPix").style.display = "none";
+            }
+
+        }, 1000);
+    }
+
+    function cancelarPagamento(){
+    fetch("ajax/ajaxCancelarPagamento.php", {
+        method: "POST",
+        headers:{
+            "Content-Type":"application/x-www-form-urlencoded"
+        },
+        body:"id=" + encodeURIComponent(idCobrancaPix)
+        + "&naoExcluirCliente=1"
+    });
+}
+
+    function fecharModalPix() {
+        document.getElementById("modalPix").style.display = "none";
+        clearInterval(intervaloPagamento);
+        clearInterval(contadorPagamento);
+        if(idCobrancaPix){
+            cancelarPagamento();
+        }
+    }
+
+    function iniciarContadorPagamentoVencido() {
+        clearInterval(contadorPagamento);
+        segundosPagamento = 120;
+        atualizarContador();
+        contadorPagamento = setInterval(function () {
+            segundosPagamento--;
+            atualizarContador();
+            if (segundosPagamento <= 0) {
+                clearInterval(contadorPagamento);
+                // alert("ID Asaas recebido: " + idClienteAsaas);
+                alert("Tempo do pagamento expirou.");
+                fecharModalPix();
+                document.getElementById("modalPix").style.display = "none";
+            }
+        }, 1000);
+    }
+
+    window.addEventListener("click", function (event) {
+        const modalPix = document.getElementById("modalPix");
+        if (event.target === modalPix) {
+            if (estaCadastrandoEmpresa) {
+                let inputIdAsaas = document.getElementById("id_Asaas");
+                let idClienteAsaas = inputIdAsaas.value;
+                if (idClienteAsaas) {
+                    excluirClienteAsaas(idClienteAsaas);
+                    inputIdAsaas.value = "";
+                }
+            }
+            fecharModalPix();
+        }
+    });
+
+    function atualizarContador() {
+
+        let minutos = Math.floor(segundosPagamento / 60);
+        let segundos = segundosPagamento % 60;
+
+        minutos = String(minutos).padStart(2, '0');
+        segundos = String(segundos).padStart(2, '0');
+
+        document.getElementById("contadorPix").innerHTML =
+            minutos + ":" + segundos;
+
+    }
+
+    function iniciarConsultaPagamento() {
+
+        intervaloPagamento = setInterval(function() {
+            fetch("ajax/ajaxStatusPagamento.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "id=" + encodeURIComponent(idCobrancaPix)
+            })
+            .then(r => r.json())
+            // .then(async r => {
+            //     let texto = await r.text();
+            //     console.log("Resposta PHP:", texto);
+            //     return JSON.parse(texto);
+
+            // })
+            .then(retorno => {
+                // console.log("Status pagamento:", retorno);
+                if(
+                    retorno.status == "RECEIVED" ||
+                    retorno.status == "CONFIRMED"
+                ){
+                    clearInterval(intervaloPagamento);
+                    clearInterval(contadorPagamento);
+                    document.getElementById("modalPix").style.display = "none";
+                    // alert("Pagamento aprovado!");
+                    document.getElementById("formCadastro").submit();
+                }
+
+            })
+
+            .catch(erro => {
+                console.error("Erro consulta pagamento:", erro);
+            });
+
+        }, 5000);
+
+    }
+
+    function iniciarConsultaPagamentoVencido() {
+        let liberarSistema = 1;
+        intervaloPagamento = setInterval(function() {
+            fetch("ajax/ajaxStatusPagamento.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "id=" + encodeURIComponent(idCobrancaPix)
+            })
+            .then(r => r.json())
+            // .then(async r => {
+            //     let texto = await r.text();
+            //     console.log("Resposta PHP:", texto);
+            //     return JSON.parse(texto);
+
+            // })
+            .then(retorno => {
+                // console.log("Status pagamento:", retorno);
+                if(
+                    retorno.status == "RECEIVED" ||
+                    retorno.status == "CONFIRMED"
+                ){
+                    if(liberarSistema == '1'){
+                            fetch("ajax/ajaxStatusPagamento.php", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded"
+                            },
+                            body: "id=" + encodeURIComponent(idCobrancaPix)
+                            + "&liberarSistema=1"
+                        })
+                    }
+                    clearInterval(intervaloPagamento);
+                    clearInterval(contadorPagamento);
+                    document.getElementById("modalPix").style.display = "none";
+                    
+                    window.location.href = "Home";
+                    // alert("Pagamento aprovado!");
+                }
+            })
+            .catch(erro => {
+                console.error("Erro consulta pagamento:", erro);
+            });
+        }, 5000);
+    }
+
+    let empresa = <?= json_encode($empresa); ?>;
+    function gerarPagamentoPlanoVencido() {
+        estaCadastrandoEmpresa = false;
+        if (empresa !== null){
+            let dados = new FormData();
+            for (let chave in empresa) {
+                dados.append(chave, empresa[chave]);
+            }
+            let plano = empresa.idPlano;
+            dados.append("idPlano", plano);
+            fetch("ajax/ajaxGerarPagamentoPlano.php", {
+                    method: "POST",
+                    body: dados
+                })
+                .then(r => r.json())
+                .then(retorno => {
+                    if (!retorno.sucesso) {
+                        alert("Erro ao gerar cobrança, contate o administrador.");
+                        return;
+                    }
+                    idCobrancaPix = retorno.idCobranca;
+                    document.getElementById(
+                        "valorPlanoPix"
+                    ).innerHTML = "R$ " + retorno.valor;
+
+                    document.getElementById(
+                        "imgQrCode"
+                    ).src = "data:image/png;base64," + retorno.qrCode;
+
+                    document.getElementById(
+                        "modalPix"
+                    ).style.display = "flex";
+
+                    document.getElementById("id_Asaas").value = retorno.id_Asaas;
+
+                    document.getElementById("modalPix").style.display = "flex";
+                    iniciarConsultaPagamentoVencido();
+                    iniciarContadorPagamentoVencido();
+                });
+            }
+
+    }
+
+    </script>
+
+
+    <div id="modalContrato" class="modal-recuperar">
+
+        <div class="modal-box" style="max-width:700px;">
+
+            <h3>Contrato de Prestação de Serviços</h3>
+
+            <p class="modal-text">
+                Leia atentamente os termos abaixo.
+            </p>
+
+            <div class="contrato-texto" id="textoContrato">
+                <?= nl2br($contratoLicenciamento); ?>
+            </div>
+
+            <div class="aceite-termos">
+
+                <label>
+                    <input type="checkbox" id="aceitarContrato" disabled>
+                    Li e aceito integralmente os termos do contrato.
+                </label>
+
+            </div>
+
+            <div style="display:flex; gap:10px; margin-top:20px;">
+
+                <button type="button" class="btn-login" style="background:#64748b;" onclick="fecharContrato()">
+                    Cancelar
+                </button>
+
+                <button type="button" class="btn-login" id="btnAceitarContrato" disabled onclick="enviarCadastro()">
+                    Aceitar e continuar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="modalPix" class="modal-recuperar">
+        <div class="modal-box">
+            <h3>Pagamento via PIX</h3>
+
+            <p class="modal-text">
+                Escaneie o QR Code para concluir sua assinatura.
+            </p>
+
+            <div class="valor-plano" id="valorPlanoPix">
+                R$ 0,00
+            </div>
+
+            <img id="imgQrCode">
+
+            <p class="modal-aviso">
+                Após efetuar o pagamento, aguarde alguns instantes enquanto confirmamos a transação. Não feche esta janela até que a confirmação seja realizada.
+            </p>
+
+            <div class="contador-box">
+                <div>⏳ Tempo restante</div>
+                <span id="contadorPix">02:00</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalAviso" class="modal-aviso">
+        <div class="modal-aviso-box">
+            <p id="mensagemAviso"></p>
+            <button type="button" onclick="fecharModalAviso()">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("modalContrato").addEventListener("click", function(event){
+            if(event.target === this){
+                fecharContrato();
+            }
+        });
+
+        document.getElementById("modalPix").addEventListener("click", function(event){
+            if(event.target === this){
+                document.getElementById("modalPix").style.display = "none";
+            }
+        });
+
     </script>
 
 </body>

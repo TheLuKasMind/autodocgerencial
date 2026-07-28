@@ -37,7 +37,7 @@ $listaForcli = ExSqlNET("
 
     FROM forcli 
     WHERE idEmpresa = ".$idEmpresa."
- ORDER BY forcli.Nome ASC");
+    ORDER BY forcli.Nome ASC");
 
 ?>
 

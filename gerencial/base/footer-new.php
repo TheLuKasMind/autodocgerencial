@@ -70,6 +70,8 @@
 }
 </style>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 <footer class="site-footer">
     <div class="footer-content">
 
@@ -80,14 +82,16 @@
 
         <div class="footer-contact">
             <p>
-                📧 <a href="mailto:thiagoallgayer.direito@gmail.com">
-                    thiagoallgayer.direito@gmail.com
+                <i class="fa-solid fa-envelope" style="color: #f57c00; font-size: 28px; vertical-align: middle; margin-right: 6px;"></i>
+                <a href="mailto:autodocva@gmail.com">
+                    autodocva@gmail.com
                 </a>
             </p>
 
             <p>
-                📱 <a href="https://wa.me/555195888759" target="_blank">
-                    WhatsApp (51) 9588-8759
+                <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 28px; vertical-align: middle; margin-right: 6px;"></i>
+                <a href="https://wa.me/555195392177" target="_blank">
+                    WhatsApp (51) 9539-2177
                 </a>
             </p>
         </div>

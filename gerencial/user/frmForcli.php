@@ -254,6 +254,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
 
         $dados['Codigo'] = retornaProximoCod("forcli");
         $retorno = Forcli($dados, "CADASTRAR");
+
         if ($retorno === "") {
 
             $documentos = json_decode($_POST['documentos_json'] ?? '[]', true);

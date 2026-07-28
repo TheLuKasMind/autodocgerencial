@@ -1676,4 +1676,447 @@ function Lembrete($dados, $acao){
     return "Ação inválida.";
 }
 
+
+
+
+
+
+// //-----------------------------ASAAS----------------------
+// //============================GERA QR CODE DINÂMICO====================
+// function GeraQrCodePagamento($description, $value, $allowsMultiplePayments, $externalReference)
+// {
+//     $baseUrl = "https://api.asaas.com";
+//     $url = $baseUrl . "/v3/pix/qrCodes/static";
+//     $chaveAPI = '$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OmFjMDVhNDYxLWU0MTYtNDQ1Yi1hMmQxLTg5OTBhYjkzNzUzZjo6JGFhY2hfNGY4ZjRmNDMtMjM3OC00ZjdiLWI0MGYtODBiNGM0Yjk0NTY3';
+
+//     $expirationDate = date('Y-m-d H:i:s', strtotime('+1 day'));
+
+//     $body = [
+//         "description" => $description,
+//         "value" => $value,
+//         "format" => "ALL",
+//         "expirationDate" => $expirationDate,
+//         "allowsMultiplePayments" => $allowsMultiplePayments,
+//         "externalReference" => $externalReference
+//     ];
+
+//     $headers = [
+//         "accept: application/json",
+//         "content-type: application/json",
+//         "access_token: ".$chaveAPI,
+//         "User-Agent: AutodocBrasil/1.0"
+//     ];
+
+//     $ch = curl_init($url);
+
+//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+//     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+//     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
+
+//     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+//     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+//     $response = curl_exec($ch);
+//     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+//     if (curl_errno($ch)) {
+//         $erro = curl_error($ch);
+//         curl_close($ch);
+
+//         return [
+//             'status_code' => 0,
+//             'body' => ['erro' => $erro]
+//         ];
+//     }
+
+//     curl_close($ch);
+
+//     return [
+//         'status_code' => $httpCode,
+//         'body' => json_decode($response, true)
+//     ];
+// }
+
+
+//-----------------------------ASAAS----------------------
+//============================CRIA COBRANÇA====================
+function GeraQrCodePagamento($description, $value, $allowsMultiplePayments, $externalReference)
+{
+    $baseUrl = "https://api.asaas.com";
+    $url = $baseUrl . "/v3/pix/qrCodes/static";
+    $chaveAPI = '$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OmFjMDVhNDYxLWU0MTYtNDQ1Yi1hMmQxLTg5OTBhYjkzNzUzZjo6JGFhY2hfNGY4ZjRmNDMtMjM3OC00ZjdiLWI0MGYtODBiNGM0Yjk0NTY3';
+
+    $expirationDate = date('Y-m-d H:i:s', strtotime('+1 day'));
+
+    $body = [
+        "description" => $description,
+        "value" => $value,
+        "format" => "ALL",
+        "expirationDate" => $expirationDate,
+        "allowsMultiplePayments" => $allowsMultiplePayments,
+        "externalReference" => $externalReference
+    ];
+
+    $headers = [
+        "accept: application/json",
+        "content-type: application/json",
+        "access_token: ".$chaveAPI,
+        "User-Agent: AutodocBrasil/1.0"
+    ];
+
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if (curl_errno($ch)) {
+        $erro = curl_error($ch);
+        curl_close($ch);
+
+        return [
+            'status_code' => 0,
+            'body' => ['erro' => $erro]
+        ];
+    }
+
+    curl_close($ch);
+
+    return [
+        'status_code' => $httpCode,
+        'body' => json_decode($response, true)
+    ];
+}
+
+//-----------------------------ASAAS----------------------
+//============================CRIA CLIENTE====================
+function Asaas_CriaCliente($nome, $documento, $email)
+{
+    require_once __DIR__ . '/globals.php';
+    $config = $GLOBALS['global'];
+
+    $chaveAPI = $config['asaas_chave'];
+    $baseUrl = "https://api.asaas.com";
+    $url = $baseUrl . "/v3/customers";
+
+    $body = [
+        "name" =>  $nome,
+        "cpfCnpj" => preg_replace('/\D/', '', $documento),
+        "email" =>  $email,
+        "notificationDisabled" =>  false
+    ];
+
+    $headers = [
+        "accept: application/json",
+        "content-type: application/json",
+        "access_token: ".$chaveAPI,
+        "User-Agent: AutodocBrasil/1.0"
+    ];
+
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if (curl_errno($ch)) {
+        $erro = curl_error($ch);
+        curl_close($ch);
+
+        return [
+            'status_code' => 0,
+            'body' => ['erro' => $erro]
+        ];
+    }
+
+    curl_close($ch);
+
+    return [
+        'status_code' => $httpCode,
+        'body' => json_decode($response, true)
+    ];
+}
+
+//============================CRIA COBRANÇA====================
+function Asaas_CriaCobranca($cliente_id, $valor, $tipoCobranca)
+{
+    require_once __DIR__ . '/globals.php';
+    $config = $GLOBALS['global'];
+
+    $chaveAPI = $config['asaas_chave'];
+    $baseUrl = "https://api.asaas.com";
+    $url = $baseUrl . "/v3/payments";
+    $expirationDate = date('Y-m-d H:i:s', strtotime('+1 day'));
+
+    $body = [
+        "customer"=> $cliente_id,
+        "billingType"=> $tipoCobranca,
+        "value"=>  $valor,
+        "dueDate"=> $expirationDate,
+        "description"=> "PAGAMENTO MENSALIDADE AUTODOC",
+        "postalService"=>  false
+    ];
+
+    $headers = [
+        "accept: application/json",
+        "content-type: application/json",
+        "access_token: ".$chaveAPI,
+        "User-Agent: AutodocBrasil/1.0"
+    ];
+
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if (curl_errno($ch)) {
+        $erro = curl_error($ch);
+        curl_close($ch);
+
+        return [
+            'status_code' => 0,
+            'body' => ['erro' => $erro]
+        ];
+    }
+
+    curl_close($ch);
+
+    return [
+        'status_code' => $httpCode,
+        'body' => json_decode($response, true)
+    ];
+}
+
+//============================OBTER QR CODE COBRANÇA====================
+function Asaas_CobrancaQrCode($id_cobranca)
+{
+    require_once __DIR__ . '/globals.php';
+    $config = $GLOBALS['global'];
+
+    $chaveAPI = $config['asaas_chave'];
+    $baseUrl = "https://api.asaas.com";
+    $url = $baseUrl . "/v3/payments/".$id_cobranca."/pixQrCode";
+
+    $headers = [
+        "accept: application/json",
+        "content-type: application/json",
+        "access_token: ".$chaveAPI,
+        "User-Agent: AutodocBrasil/1.0"
+    ];
+
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if (curl_errno($ch)) {
+        $erro = curl_error($ch);
+        curl_close($ch);
+
+        return [
+            'status_code' => 0,
+            'body' => ['erro' => $erro]
+        ];
+    }
+
+    curl_close($ch);
+
+    return [
+        'status_code' => $httpCode,
+        'body' => json_decode($response, true)
+    ];
+}
+
+//============================OBTER STATUS PAGAMENTO===================
+function Asaas_PagamentoStatus($id_cobranca)
+{
+    require_once __DIR__ . '/globals.php';
+    $config = $GLOBALS['global'];
+
+    $chaveAPI = $config['asaas_chave'];
+    $baseUrl = "https://api.asaas.com";
+    $url = $baseUrl . "/v3/payments/".$id_cobranca;
+
+    $headers = [
+        "accept: application/json",
+        "content-type: application/json",
+        "access_token: ".$chaveAPI,
+        "User-Agent: AutodocBrasil/1.0"
+    ];
+
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if (curl_errno($ch)) {
+        $erro = curl_error($ch);
+        curl_close($ch);
+
+        return [
+            'status_code' => 0,
+            'body' => ['erro' => $erro]
+        ];
+    }
+
+    curl_close($ch);
+    
+    return [
+        'status_code' => $httpCode,
+        'body' => json_decode($response, true)
+    ];
+}
+
+//============================EXCLUIR COBRANÇA===================
+function Asaas_ExcluirCobranca($id_cobranca)
+{
+    require_once __DIR__ . '/globals.php';
+    $config = $GLOBALS['global'];
+
+    $chaveAPI = $config['asaas_chave'];
+    $baseUrl = "https://api.asaas.com";
+    $url = $baseUrl . "/v3/payments/".$id_cobranca;
+
+    $headers = [
+        "accept: application/json",
+        "content-type: application/json",
+        "access_token: ".$chaveAPI,
+        "User-Agent: AutodocBrasil/1.0"
+    ];
+
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if (curl_errno($ch)) {
+        $erro = curl_error($ch);
+        curl_close($ch);
+
+        return [
+            'status_code' => 0,
+            'body' => ['erro' => $erro]
+        ];
+    }
+
+    curl_close($ch);
+    
+    return [
+        'status_code' => $httpCode,
+        'body' => json_decode($response, true)
+    ];
+}
+
+//============================Excluir Cliente===================
+function Asaas_ExcluirCliente($id)
+{
+    require_once __DIR__ . '/globals.php';
+    $config = $GLOBALS['global'];
+
+    $chaveAPI = $config['asaas_chave'];
+    $baseUrl = "https://api.asaas.com";
+    $url = $baseUrl . "/v3/customers/".$id;
+
+    $headers = [
+        "accept: application/json",
+        "content-type: application/json",
+        "access_token: ".$chaveAPI,
+        "User-Agent: AutodocBrasil/1.0"
+    ];
+
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if (curl_errno($ch)) {
+        $erro = curl_error($ch);
+        curl_close($ch);
+
+        return [
+            'status_code' => 0,
+            'body' => ['erro' => $erro]
+        ];
+    }
+
+    curl_close($ch);
+    
+    return [
+        'status_code' => $httpCode,
+        'body' => json_decode($response, true)
+    ];
+}
+function LiberarSistema($idEmpresa)
+{
+    global $dbGeralNET;
+    $validade = date('Y-m-d', strtotime('+1 month'));
+    $dataAlt = date('Y-m-d H:i:s');
+
+    $sql = "UPDATE `empresa`
+        SET ValidadePlano = :ValidadePlano
+        WHERE id = :idEmpresa";
+
+    try {
+        $stmt = $dbGeralNET->prepare($sql);
+        $stmt->execute([
+            ':ValidadePlano'  => $validade,
+            ':idEmpresa'  => $idEmpresa,
+        ]);
+        return ""; 
+    }catch (PDOException $e) {
+        return $e; 
+    }
+}
+
 ?>

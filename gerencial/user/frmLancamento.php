@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
             $retorno = Movimento($dadosCadastro, "CADASTRAR");
             $itens = json_decode($_POST['itens'] ?? '[]', true);
             $idGerado = $_SESSION['idGerado'];
-            file_put_contents(__DIR__ . '/../logs/frmLancamentoCadastrar.txt', print_r($itens , true) . "\n", FILE_APPEND);
+            // file_put_contents(__DIR__ . '/../logs/frmLancamentoCadastrar.txt', print_r($itens , true) . "\n", FILE_APPEND);
             $retornoItens = "";
     
             // Se existir itens
@@ -268,7 +268,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
             $itens = json_decode($_POST['itens'] ?? '[]', true);
             // $idGerado = $_SESSION['idGerado'];
 
-            file_put_contents(__DIR__ . '/../logs/frmLancamentoAtualizar.txt', print_r($dadosCadastro , true) . "\n", FILE_APPEND);
+            // file_put_contents(__DIR__ . '/../logs/frmLancamentoAtualizar.txt', print_r($dadosCadastro , true) . "\n", FILE_APPEND);
 
             // Se existir itens
             if (!empty($itens)) {

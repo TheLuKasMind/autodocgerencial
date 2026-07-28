@@ -5362,3 +5362,22 @@ Array
     [ControleOrigem] => 2721
 )
 
+Array
+(
+    [Data] => 2026-07-28
+    [Status] => 0
+    [CondPgto] => 1
+    [Forcli] => 40
+    [ForcliRepasse] => 40
+    [PlacaVeiculo] => QQR3G53
+    [ModeloVeiculo] => ONIX
+    [CorVeiculo] => Branco
+    [id] => 2772
+    [idEmpresa] => 11
+    [DataPgto] => 
+    [Obs] => 
+    [idUser] => 32
+    [StatusProcesso] => 0
+    [ControleOrigem] => 2772
+)
+

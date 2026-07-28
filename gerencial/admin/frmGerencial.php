@@ -828,7 +828,7 @@ body{
             </select>
 
             <select name="plano">
-                <option value="">Plano</option>
+                <option  id="Plano" value="">Plano</option>
 
                 <?php foreach ($planosLista as $pl): ?>
 
