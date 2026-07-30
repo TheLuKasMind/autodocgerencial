@@ -2,8 +2,14 @@
 
 include '../base/baseFuncoes.php';
 require_once '../base/connection.php';
+require_once '../base/globals.php';
+
+
+$config = $GLOBALS['global'];
 
 $idPlano = (int)$_POST['idPlano'];
+
+$totalUsuarios =  max(1, (int)($_POST['totalUsuarios'] ?? 1));
 
 $sql = "
     SELECT id, Nome, Valor
@@ -12,7 +18,7 @@ $sql = "
     LIMIT 1
 ";
 
-// $sql = "
+// $sql = " 
 //     SELECT id, Nome, 5 As Valor
 //     FROM planos
 //     WHERE id = ?
@@ -37,7 +43,13 @@ function atualizaIdAsaas(){
 
 $plano = $plano[0];
 
-$valorPlano = $plano['Valor'];
+
+$valorUsuarioAdicional = $config['valor_usuario_adicional'];
+
+$valorAdicional = ($totalUsuarios - 1) * $valorUsuarioAdicional;
+
+$valorPlano = $plano['Valor'] + $valorAdicional;
+
 
 if (isset($_POST['id_Asaas']) && $_POST['id_Asaas'] <> '' ) {
     $cliente['body']['id'] = $_POST['id_Asaas'];
@@ -68,6 +80,7 @@ $cobranca = Asaas_CriaCobranca(
     "PIX"
 );
 
+// Pra excluir depois, caso o usuário cancele a cobrança
 $_SESSION['id_CobrancaAsaasQrCode'] = $cobranca['body']['id'];
 
 // qr code

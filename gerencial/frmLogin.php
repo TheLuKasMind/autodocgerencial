@@ -130,7 +130,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
                                 empresa.Plano As idPlano,
                                 empresa.Nome as nome,
                                 empresa.Documento as documento,
-                                empresa.Email as email
+                                empresa.Email as email,
+                                empresa.LimiteUsuarios
                             FROM empresa
                             LEFT JOIN planos on planos.id = empresa.Plano
                             WHERE empresa.id = ?
@@ -281,11 +282,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
                 $dbGeralNET->beginTransaction();
 
                 $validade = date('Y-m-d', strtotime('+1 month'));
+                // $totalUsuariosEmpresa =  max(1, (int)($_POST['totalUsuarios'] ?? 1));
+                $totalUsuariosEmpresa =  (int) $_POST['totalUsuarios'] ?? $config['limite_usuarios'];
+
                 // INSERE EMPRESA
                 $stmt = $dbGeralNET->prepare("
                     INSERT INTO empresa
                     (nome, documento, telefone, email, plano, status, limiteUsuarios, UF, Cidade, id_Asaas, ValidadePlano)
-                    VALUES (?, ?, ?, ?, ?, 'ATIVA', {$config['limite_usuarios']}, ?, ?, ?, ?)
+                    VALUES (?, ?, ?, ?, ?, 'ATIVA', ?, ?, ?, ?, ?)
                 ");
 
                 $stmt->execute([
@@ -294,6 +298,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
                     $telefone,
                     $emailEmp,
                     $plano,
+                    $totalUsuariosEmpresa,
                     $ufEmpresa,
                     $cidadeEmpresa,
                     $id_Asaas,
@@ -346,6 +351,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
 if (isset($_GET['sucesso'])) {
     $sucesso = "Cadastro realizado com sucesso! Sua solicitação será analisada e você receberá um e-mail quando for aprovado.";
 }
+
+$valorUsuarioAdicional = $config['valor_usuario_adicional'];
 
 ?>
 <!DOCTYPE html>
@@ -1085,6 +1092,67 @@ if (isset($_GET['sucesso'])) {
         opacity: 0.95;
     }
 
+    .modal-avisoPix {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #666;
+        text-align: center;
+        line-height: 1.4;
+    }
+
+    .usuarios-info{
+        margin-bottom:15px;
+        color:#666;
+        font-size:15px;
+    }
+
+    .usuarios-box{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:15px;
+        margin-bottom:15px;
+    }
+
+    .usuarios-box button{
+        width:45px;
+        height:45px;
+        border:none;
+        border-radius:50%;
+        background:#f57c00;
+        color:white;
+        font-size:28px;
+        cursor:pointer;
+        font-weight:bold;
+        transition:0.2s;
+    }
+
+    .usuarios-box button:hover{
+        transform:scale(1.05);
+    }
+
+    .usuarios-box input{
+        width:80px;
+        height:50px;
+        text-align:center;
+        border:2px solid #f57c00;
+        border-radius:10px;
+        font-size:22px;
+        font-weight:bold;
+        background:#fff;
+    }
+
+    .usuarios-total{
+        text-align:center;
+        font-size:18px;
+        color:#333;
+    }
+
+    .usuarios-total span{
+        color:#f57c00;
+        font-weight:bold;
+    }
+
     </style>
 </head>
 
@@ -1313,6 +1381,23 @@ if (isset($_GET['sucesso'])) {
 
             </div>
 
+            <h3>Usuários Adicionais</h3>
+            <p class="usuarios-info">
+                Cada usuário adicional custa
+                <strong>
+                    R$ <?= number_format($valorUsuarioAdicional, 2, ',', '.') ?>
+                </strong>.
+            </p>
+            <div class="usuarios-box">
+                <button type="button" onclick="alterarUsuarios(-1)">−</button>
+                <input type="text" id="totalUsuarios" name="totalUsuarios" value="1" readonly>
+                <button type="button" onclick="alterarUsuarios(1)">+</button>
+            </div>
+
+            <p class="usuarios-total">
+                Valor adicional: <span id="valorUsuarios">R$ 0,00</span>
+            </p>
+
             <h3>Usuário Administrador</h3>
 
             <div class="form-group">
@@ -1371,6 +1456,26 @@ if (isset($_GET['sucesso'])) {
         }
     }
 
+    const VALOR_USUARIO_ADICIONAL = <?= $valorUsuarioAdicional ?>;
+    let totalUsuariosAdicionais = 1;
+
+    function alterarUsuarios(valor) {
+        if (valor < 0 && totalUsuariosAdicionais <= 1) {
+            return;
+        }
+        if (valor > 0 && totalUsuariosAdicionais >= 30) {
+            return;
+        }
+        totalUsuariosAdicionais += valor;
+        document.getElementById("totalUsuarios").value = totalUsuariosAdicionais;
+        const valorTotal = (totalUsuariosAdicionais - 1) * VALOR_USUARIO_ADICIONAL;
+        document.getElementById("valorUsuarios").innerText =
+            valorTotal.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+    }
+
     function mostrarAviso(mensagem) {
         document.getElementById("mensagemAviso").innerText = mensagem;
         document.getElementById("modalAviso").style.display = "flex";
@@ -1381,9 +1486,9 @@ if (isset($_GET['sucesso'])) {
     }
 
     function validarEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-}
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
 
     function validarCPF(cpf) {
         cpf = cpf.replace(/\D/g, '');
@@ -1697,45 +1802,57 @@ if (isset($_GET['sucesso'])) {
 
     function gerarPagamento() {
         estaCadastrandoEmpresa = true;
+
         let form = document.getElementById("formCadastro");
         let dados = new FormData(form);
+        let totalUsuarios = document.getElementById("totalUsuarios").value;
 
         let plano = document.querySelector(
             'input[name="plano"]:checked'
         ).value;
 
         dados.append("idPlano", plano);
+        dados.append("totalUsuarios", totalUsuarios);
+
         fetch("ajax/ajaxGerarPagamentoPlano.php", {
+            method: "POST",
+            body: dados
+        })
+        .then(async (r) => {
+            const texto = await r.text();
+            try {
+                return JSON.parse(texto);
+            } catch (e) {
+                console.error("Resposta do PHP:");
+                console.log(texto);
+                throw new Error("O PHP não retornou um JSON válido.");
+            }
+        })
+        .then(retorno => {
+            if (!retorno.sucesso) {
+                alert("Erro ao gerar cobrança.");
+                return;
+            }
 
-                method: "POST",
-                body: dados
+            idCobrancaPix = retorno.idCobranca;
 
-            })
-            .then(r => r.json())
-            .then(retorno => {
-                if (!retorno.sucesso) {
-                    alert("Erro ao gerar cobrança.");
-                    return;
-                }
-                idCobrancaPix = retorno.idCobranca;
-                document.getElementById(
-                    "valorPlanoPix"
-                ).innerHTML = "R$ " + retorno.valor;
+            document.getElementById("valorPlanoPix").innerHTML =
+                "R$ " + retorno.valor;
 
-                document.getElementById(
-                    "imgQrCode"
-                ).src = "data:image/png;base64," + retorno.qrCode;
+            document.getElementById("imgQrCode").src =
+                "data:image/png;base64," + retorno.qrCode;
 
-                document.getElementById(
-                    "modalPix"
-                ).style.display = "flex";
+            document.getElementById("modalPix").style.display = "flex";
 
-                document.getElementById("id_Asaas").value = retorno.id_Asaas;
+            document.getElementById("id_Asaas").value = retorno.id_Asaas;
 
-                document.getElementById("modalPix").style.display = "flex";
-                iniciarConsultaPagamento();
-                iniciarContadorPagamento();
-            });
+            iniciarConsultaPagamento();
+            iniciarContadorPagamento();
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Erro: " + error.message);
+        });
     }
 
 
@@ -1983,6 +2100,8 @@ if (isset($_GET['sucesso'])) {
             }
             let plano = empresa.idPlano;
             dados.append("idPlano", plano);
+            dados.append("totalUsuarios", empresa.LimiteUsuarios);
+
             fetch("ajax/ajaxGerarPagamentoPlano.php", {
                     method: "POST",
                     body: dados
@@ -2073,7 +2192,7 @@ if (isset($_GET['sucesso'])) {
 
             <img id="imgQrCode">
 
-            <p class="modal-aviso">
+            <p class="modal-avisoPix">
                 Após efetuar o pagamento, aguarde alguns instantes enquanto confirmamos a transação. Não feche esta janela até que a confirmação seja realizada.
             </p>
 
@@ -2084,7 +2203,7 @@ if (isset($_GET['sucesso'])) {
         </div>
     </div>
 
-    <div id="modalAviso" class="modal-aviso">
+    <div id="modalAviso" class="modal-aviso" name="modalAviso"  onclick="fecharModalAviso(event)">
         <div class="modal-aviso-box">
             <p id="mensagemAviso"></p>
             <button type="button" onclick="fecharModalAviso()">

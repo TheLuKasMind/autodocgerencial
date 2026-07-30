@@ -23,6 +23,7 @@ if ($liberarSistema == '1'){
     $status = $retorno['body']['status'] ?? null;
 }
 
+// $status = "RECEIVED";
 echo json_encode([
     "status" => $status
 ]);

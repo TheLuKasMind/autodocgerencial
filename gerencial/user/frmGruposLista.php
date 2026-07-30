@@ -94,7 +94,7 @@ $listaGrupos = ExSqlNET("
             <input 
                 type="text"
                 id="filtroTabela"
-                placeholder="Buscar despesa..."
+                placeholder="Buscar grupo..."
                 style="
                     width:100%;
                     padding:8px 8px 8px 32px;

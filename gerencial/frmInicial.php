@@ -783,8 +783,8 @@
                         que está acontecendo no escritório assim que você entra — sem planilha, sem caderno, sem
                         procurar.</p>
                     <div class="hero-cta">
-                        <a class="btn btn-primary" href="https://autodocoficial.com/Login">Entrar no sistema</a>
-                        <a class="btn btn-outline" href="https://wa.me/555195888759">Falar no WhatsApp</a>
+                        <a class="btn btn-primary" href="https://autodocoficial.com/gerencial/Login">Entrar no sistema</a>
+                        <a class="btn btn-outline" href="https://wa.me/555195392177">Falar no WhatsApp</a>
                     </div>
                     <div class="trust">
                         <span><b>✓</b>100% na nuvem</span>
@@ -956,8 +956,8 @@
                         WhatsApp — a gente responde.</p>
                 </div>
                 <div class="cta-actions reveal">
-                    <a class="btn btn-white" href="https://autodocoficial.com/Login">Entrar no sistema</a>
-                    <a class="btn btn-ghost-w" href="https://wa.me/555195888759">Falar no WhatsApp</a>
+                    <a class="btn btn-white" href="https://autodocoficial.com/gerencial/Login">Entrar no sistema</a>
+                    <a class="btn btn-ghost-w" href="https://wa.me/555195392177">Falar no WhatsApp</a>
                 </div>
             </div>
         </section>
@@ -980,7 +980,7 @@
                     <a href="#fluxo">Como funciona</a>
                     <a href="#metas">Metas</a>
                     <a href="https://autodocoficial.com/gerencial/Login">Acessar sistema</a>
-                    <a href="https://wa.me/555195888759">WhatsApp (51) 95888-8759</a>
+                    <a href="https://wa.me/555195392177">WhatsApp (51) 9539-2177</a>
                 </div>
             </div>
             <div class="foot-bottom">

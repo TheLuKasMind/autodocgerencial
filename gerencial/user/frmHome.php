@@ -89,7 +89,8 @@ $sqlEmpresa = "
         empresa.Plano As idPlano,
         empresa.Nome as nome,
         empresa.Documento as documento,
-        empresa.Email as email
+        empresa.Email as email,
+        empresa.LimiteUsuarios
     FROM empresa
     LEFT JOIN planos on planos.id = empresa.Plano
     WHERE empresa.id = ?
@@ -270,7 +271,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
         $_SESSION['usuario_id']
     ]);
 
+    $retorno= ExSqlNET("SELECT id_Asaas FROM empresa WHERE id  = ?", null, [$_POST['idEmpresa']]);
+
     $_SESSION['idEmpresa'] = $_POST['idEmpresa'];
+    $_SESSION['id_Asaas']  = $retorno['id_Asaas'];
 
     $_SESSION['mensagem_sucesso'] = "Empresa de acesso alterada com sucesso.";
 
@@ -1268,40 +1272,65 @@ if (!empty($empresa['ValidadePlano'])) {
         let empresa = <?= json_encode($empresa); ?>;
         function gerarPagamento() {
             let dados = new FormData();
+
             for (let chave in empresa) {
                 dados.append(chave, empresa[chave]);
             }
-            let plano = empresa.idPlano;;
+
+            let plano = empresa.idPlano;
+
             dados.append("idPlano", plano);
+            dados.append("totalUsuarios", empresa.LimiteUsuarios);
+
             fetch("ajax/ajaxGerarPagamentoPlano.php", {
-                    method: "POST",
-                    body: dados
-                })
-                .then(r => r.json())
-                .then(retorno => {
-                    if (!retorno.sucesso) {
-                        alert("Erro ao gerar cobrança, contate o administrador.");
-                        return;
-                    }
-                    idCobrancaPix = retorno.idCobranca;
-                    document.getElementById(
-                        "valorPlanoPix"
-                    ).innerHTML = "R$ " + retorno.valor;
+                method: "POST",
+                body: dados
+            })
+            .then(async (r) => {
+                const texto = await r.text();
 
-                    document.getElementById(
-                        "imgQrCode"
-                    ).src = "data:image/png;base64," + retorno.qrCode;
+                try {
+                    return JSON.parse(texto);
+                } catch (e) {
+                    console.error("Resposta do PHP:");
+                    console.log(texto);
 
-                    document.getElementById(
-                        "modalPix"
-                    ).style.display = "flex";
+                    throw new Error(texto);
+                }
+            })
+            .then(retorno => {
 
-                    document.getElementById("id_Asaas").value = retorno.id_Asaas;
+                if (!retorno.sucesso) {
+                    alert("Erro ao gerar cobrança, contate o administrador.");
+                    return;
+                }
 
-                    document.getElementById("modalPix").style.display = "flex";
-                    iniciarConsultaPagamento();
-                    iniciarContadorPagamento();
-                });
+                idCobrancaPix = retorno.idCobranca;
+
+                document.getElementById("valorPlanoPix").innerHTML =
+                    "R$ " + retorno.valor;
+
+                document.getElementById("imgQrCode").src =
+                    "data:image/png;base64," + retorno.qrCode;
+
+                document.getElementById("modalPix").style.display = "flex";
+
+                document.getElementById("id_Asaas").value = retorno.id_Asaas;
+
+                iniciarConsultaPagamento();
+                iniciarContadorPagamento();
+            })
+            .catch(error => {
+                console.error(error);
+
+                let msg = error.message;
+
+                if (msg.length > 1000) {
+                    msg = msg.substring(0, 1000);
+                }
+
+                alert("Erro:\n\n" + msg);
+            });
         }
 
         function pagarMensalidade(){
