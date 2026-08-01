@@ -12,5 +12,5 @@ $GLOBALS['EMAIL_SMTP'] = [
 $GLOBALS['global'] = [
     'limite_usuarios' => '1',  
     'valor_usuario_adicional' => '16.90',  
-    'asaas_chave' => '$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OmFjMDVhNDYxLWU0MTYtNDQ1Yi1hMmQxLTg5OTBhYjkzNzUzZjo6JGFhY2hfNGY4ZjRmNDMtMjM3OC00ZjdiLWI0MGYtODBiNGM0Yjk0NTY3',  
+    'asaas_chave' => '$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjkyNzcxMzk2LWI0OGEtNGIwNS04MjhmLTIyOTRjMmFkY2E1NTo6JGFhY2hfMjVkMzY5YmMtNGVmZC00MmFmLWFjN2YtOTZmMGNlNDU1MGU5',  
 ];

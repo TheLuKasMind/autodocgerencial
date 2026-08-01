@@ -4,6 +4,10 @@ require_once  __DIR__ .'/../base/baseFuncoes.php';
 require_once  __DIR__ .'/../base/verificaPlano.php';
 date_default_timezone_set('America/Sao_Paulo');
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -50,9 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
 
     $descricao  = $_POST['descricao'] ?? '';
     $valor      = $_POST['valor'] ?? 0;
-    // $forcli     = $_POST['forcli'] ?? 0;
-    $forcli = !empty($_POST['forcli']) ? $_POST['forcli'] : 0;
-    
+    $forcli     = $_POST['forcli'] ?? 0;
+    $dados['idForcli'] = (int)$forcli;
+
     $tipodespesa = $_POST['tipodespesa'] ?? null;
     
     if (empty($tipodespesa)) {
@@ -97,7 +101,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
     $dados['Data'] = $data;
     // $dados['idForcli'] = $forcli;
     
-    if (!isset($forcli) || $forcli === "" || $forcli === "undefined") {
+    // if (!isset($forcli) || $forcli === "" || $forcli === "undefined") {
+    if (!isset($forcli) || $forcli === "") {
         $dados['idForcli'] = 0;
     } else {
         $dados['idForcli'] = intval($forcli);
@@ -237,33 +242,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
             color: #9a3412;
             margin-bottom: 20px;
         }
-
-        /* 
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,.4);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-        }
-
-        .modal-box {
-            background: #fff;
-            width: 90%;
-            max-width: 700px;
-            border-radius: 12px;
-            padding: 20px;
-        }
-
-        .modal table tr {
-            cursor: pointer;
-        }
-
-        .modal table tr:hover {
-            background: #fff7ed;
-        } */
 
         /* ================= MODAL ================= */
 
@@ -460,6 +438,119 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
         .btn{
             font-family: 'Inter', Arial, sans-serif;
         }
+
+        .card{
+            max-width:750px;
+            padding:30px;
+        }
+
+        .lancamento-grid{
+            display:grid;
+            gap:20px;
+        }
+
+        .campo-full{
+            width:100%;
+        }
+
+        .campo-full label,
+        .campo-valor label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:600;
+            color:#444;
+        }
+
+        .campo-full input,
+        .campo-valor input{
+            width:100%;
+            padding:14px;
+            border:1px solid #e5e7eb;
+            border-radius:10px;
+            font-size:15px;
+            box-sizing:border-box;
+        }
+
+        .campo-click{
+            cursor:pointer;
+        }
+
+        .campo-click:hover{
+            border-color:#f97316;
+        }
+
+        .campo-valor input{
+            font-size:34px;
+            font-weight:bold;
+            color:#f97316;
+            background:#fff7ed;
+            border:2px solid #fed7aa;
+            text-align:center;
+            padding:20px;
+        }
+
+        .actions{
+            margin-top:30px;
+            display:flex;
+            gap:12px;
+        }
+
+        .btn{
+            background:#f97316;
+            color:white;
+            border:none;
+            padding:14px 22px;
+            border-radius:10px;
+            font-weight:600;
+            cursor:pointer;
+        }
+
+        .btn:hover{
+            opacity:.95;
+        }
+
+        .btn-secondary{
+            background:white;
+            color:#f97316;
+            border:1px solid #f97316;
+            padding:14px 22px;
+            border-radius:10px;
+            text-decoration:none;
+            font-weight:600;
+            cursor:pointer;
+        }
+
+        .btn-secondary:hover{
+            background:#fff7ed;
+        }
+
+
+        .modal-box h3{
+            margin-bottom:15px;
+        }
+
+        #modalBuscaDespesa,
+        #modalBuscaForcli{
+            margin-bottom:15px;
+        }
+
+
+        @media(max-width:768px){
+
+            .card{
+                padding:20px;
+            }
+
+            .campo-valor input{
+                font-size:28px;
+            }
+
+            .actions{
+                flex-direction:column;
+            }
+
+        }
+
     </style>
 </head>
 
@@ -481,154 +572,185 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
                 $_POST = [];
             }
         ?>
-        <div class="card">
-
-            <div class="alert">
-                Informe corretamente os dados do lançamento.  
-                Entradas e saídas impactam o caixa.
-            </div>
+    <div class="card">
 
         <form method="post">
 
-            <div class="form-grid">
+            <div class="lancamento-grid">
 
-                <button type="button" class="btn-secondary" onclick="abrirModalDespesas()">
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
-                    Selecionar Despesa / Conta
-                </button>
+                <div class="campo-full">
+                    <label>Conta / Tipo de Despesa *</label>
 
-                <button type="button" class="btn-secondary" onclick="abrirModalForcli()">
-                    <i class="fa-solid fa-user"></i>
-                    Selecionar Cliente
-                </button>
+                    <input
+                        type="text"
+                        id="nomeDespesa"
+                        placeholder="Clique para selecionar a conta"
+                        readonly
+                        onclick="abrirModalDespesas()"
+                        class="campo-click"
+                    >
 
-                <div>
-                    <label>Data</label>
-                    <input 
-                        type="date" 
-                        name="data"
-                        value="<?= $Alterando 
-                            ? date('Y-m-d', strtotime($dados['Data'])) 
-                            : date('Y-m-d') 
-                        ?>"
+                    <input type="hidden" id="tipodespesa" name="tipodespesa">
+                </div>
+
+
+                <div class="campo-valor">
+                    <label>Valor *</label>
+
+                    <input
+                        type="text"
+                        id="valor"
+                        name="valor"
+                        placeholder="0,00"
+                        autocomplete="off"
                     >
                 </div>
 
-                <!-- <div>
-                    <label>Código</label>
-                    <input type="text" id="codigo" name="codigo" readonly>
-                </div> -->
 
-                <div>
-                    <label>Descrição</label>
-                    <input type="text" id="descricao" name="descricao">
-                </div>
+                <div class="campo-full">
+                    <label>Cliente (Opcional)</label>
 
-                <div>
-                    <label>Valor</label>
-                    <input type="text" id="valor" name="valor">
-                </div>
+                    <input
+                        type="text"
+                        id="nomeForcli"
+                        placeholder="Clique para selecionar o cliente"
+                        readonly
+                        onclick="abrirModalForcli()"
+                        class="campo-click"
+                    >
 
-                <div>
-                    <label>Cliente</label>
-                    <input type="text" id="nomeForcli" name="nomeForcli" readonly>
-                </div>
-
-                <div>
-                  <!--  <label>CodCliente</label> -->
                     <input type="hidden" id="forcli" name="forcli">
                 </div>
 
+
+                <div class="campo-full">
+                    <label>Descrição</label>
+
+                    <input
+                        type="text"
+                        id="descricao"
+                        name="descricao"
+                        placeholder="Descrição do lançamento"
+                    >
+                </div>
+
+
+                <div>
+                    <label>Data</label>
+
+                    <input
+                        type="date"
+                        name="data"
+                        value="<?= date('Y-m-d') ?>"
+                    >
+                </div>
+
             </div>
+
+
+            <!-- MODAL DESPESAS -->
 
             <div id="modalDespesas" class="modal">
+
                 <div class="modal-box">
 
-                    <h3>Selecionar Despesa</h3>
+                    <h3>Selecionar Conta</h3>
 
-                    <input type="text" id="modalBuscaDespesa" placeholder="Buscar despesa..." style="margin-bottom:10px;">
+                    <input
+                        type="text"
+                        id="modalBuscaDespesa"
+                        placeholder="Pesquisar conta..."
+                    >
 
-                <div class="modal-table-wrapper">
-                   <table id="tabelaDespesas">
-                        <thead>
-                            <tr>
-                                <!-- <th>Código</th> -->
-                                <th>Despesa</th>
-                                <th>Valor</th>
-                            </tr>
-                        </thead>
+                    <div class="modal-table-wrapper">
 
-                        <!--<tbody>-->
-                        <!--<?php foreach ($despesas as $d): ?>-->
-                        <!--    <tr onclick="selecionarDespesa(-->
-                        <!--         '<?= $d['id'] ?>',-->
-                        <!--        '<?= htmlspecialchars($d['Descricao'], ENT_QUOTES) ?>',-->
-                        <!--        '<?= $d['ValorBase'] ?>',-->
-                        <!--        '<?= $d['id'] ?>'-->
-                        <!--    )">-->
-                        <!--        <td><?= $d['id'] ?></td>-->
-                        <!--        <td><?= $d['Descricao'] ?></td>-->
-                        <!--        <td>R$ <?= number_format($d['ValorBase'], 2, ',', '.') ?></td>-->
-                        <!--    </tr>-->
-                        <!--<?php endforeach; ?>-->
-                        <!--</tbody>-->
-                        
-                        <tbody id="modalBodyDespesa"></tbody>
-                        
-                    </table>
+                        <table id="tabelaDespesas">
+
+                            <thead>
+                                <tr>
+                                    <th>Conta</th>
+                                    <th>Valor Base</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="modalBodyDespesa"></tbody>
+
+                        </table>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        onclick="fecharModalDespesas()"
+                    >
+                        Fechar
+                    </button>
+
                 </div>
-    
-                    <button class="btn-secondary" onclick="fecharModalDespesas()">Fechar</button>
-                </div>
+
             </div>
-            
+
+
+
+            <!-- MODAL CLIENTE -->
+
             <div id="modalForcli" class="modal">
+
                 <div class="modal-box">
 
                     <h3>Selecionar Cliente</h3>
-                    
-                    <input type="text" id="modalBuscaForcli" placeholder="Buscar cliente..." style="margin-bottom:10px;">
-                    
-                <div class="modal-table-wrapper">
-                    <table id="tabelaForcli">
-                        <thead>
-                            <tr>
-                                <!-- <th>Código</th> -->
-                                <th>Nome</th>
-                                <th>RazaoSocial</th>
-                                <th>Documento</th>
-                            </tr>
-                        </thead>
 
-                        <!--<tbody>-->
-                        <!--<?php foreach ($forcli as $f): ?>-->
-                        <!--    <tr onclick="selecionarForcli(-->
-                        <!--        '<?= $f['Codigo'] ?>',-->
-                        <!--        '<?= htmlspecialchars($f['Nome'], ENT_QUOTES) ?>',-->
-                        <!--        '<?= htmlspecialchars($f['RazaoSocial'], ENT_QUOTES) ?>',-->
-                        <!--        '<?= htmlspecialchars($f['Documento'], ENT_QUOTES) ?>'-->
-                        <!--    )">-->
-                                <!-- <td><?= $f['Codigo'] ?></td> -->
-                        <!--        <td><?= $f['Nome'] ?></td>-->
-                        <!--        <td><?= $f['RazaoSocial'] ?></td>-->
-                        <!--        <td><?= $f['Documento'] ?></td>-->
-                        <!--    </tr>-->
-                        <!--<?php endforeach; ?>-->
-                        <!--</tbody>-->
-                        
-                        <tbody id="modalBodyForcli"></tbody>
-                        
-                    </table>
+                    <input
+                        type="text"
+                        id="modalBuscaForcli"
+                        placeholder="Pesquisar cliente..."
+                    >
+
+                    <div class="modal-table-wrapper">
+
+                        <table id="tabelaForcli">
+
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Razão Social</th>
+                                    <th>Documento</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="modalBodyForcli"></tbody>
+
+                        </table>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        onclick="fecharModalForcli()"
+                    >
+                        Fechar
+                    </button>
+
                 </div>
-                    
-                    <button class="btn-secondary" onclick="fecharModalForcli()">Fechar</button>
-                </div>
+
             </div>
 
-            <input type="hidden" id="tipodespesa" name="tipodespesa">
+
             <div class="actions">
-                <button class="btn" name="salvar" id="salvar">Salvar Lançamento</button>
-               <a href= "/gerencial/BoletimCaixa" class="btn-secondary">Voltar</a>
+
+                <button class="btn" name="salvar">
+                    Salvar Lançamento
+                </button>
+
+                <a href="/gerencial/BoletimCaixa"
+                    class="btn-secondary">
+
+                    Voltar
+
+                </a>
+
             </div>
 
         </form>
@@ -688,14 +810,6 @@ function fecharModalForcli() {
 }
 
 
-//=====================================================================
-document.getElementById('valor').addEventListener('blur', function () {
-    const valorPago = document.getElementById('valorPago');
-    if (valorPago.value === '') {
-        valorPago.value = this.value;
-    }
-});
-
 function filtrarTabela(inputId, tabelaId) {
 
     let input = document.getElementById(inputId);
@@ -718,20 +832,6 @@ function filtrarTabela(inputId, tabelaId) {
 
 }
 
-// window.addEventListener('click', function(e){
-
-//     let modalDespesas = document.getElementById('modalDespesas');
-//     let modalForcli = document.getElementById('modalForcli');
-
-//     if (e.target === modalDespesas) {
-//         fecharModalDespesas();
-//     }
-
-//     if (e.target === modalForcli) {
-//         fecharModalForcli();
-//     }
-
-// });
 
 document.getElementById("modalBuscaForcli").addEventListener("input", function () {
     carregarClientes(this.value.toLowerCase());
@@ -747,7 +847,7 @@ function carregarClientes(filtro = "") {
         .forEach(c => {
 
             body.innerHTML += `
-                <tr onclick="selecionarForcli(${c.Id}, '${c.Nome.replace(/'/g,"\\'")}')">
+                <tr onclick="selecionarForcli(${c.id}, '${c.Nome.replace(/'/g,"\\'")}')">
                     <td>${c.Nome}</td>
                     <td>${c.RazaoSocial ?? ''}</td>
                     <td>${c.Documento ?? ''}</td>
@@ -815,17 +915,29 @@ function abrirModalDespesas() {
     document.getElementById('modalBuscaDespesa').focus();
 }
 
+let ultimoValorAutomatico = 0;
+
 function selecionarDespesa(codigo, descricao, valor) {
 
-    document.getElementById('tipodespesa').value = codigo;
-    document.getElementById('descricao').value = descricao;
+    document.getElementById("tipodespesa").value = codigo;
+    document.getElementById("descricao").value = descricao;
 
-    let v = parseFloat(valor)
-        .toFixed(2)
-        .replace('.', ',')
-        .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const campoValor = document.getElementById("valor");
 
-    document.getElementById('valor').value = v;
+    const valorTela = parseFloat(
+        campoValor.value.replace(/\./g, "").replace(",", ".")
+    ) || 0;
+
+    // Só altera se estiver vazio, zero ou ainda com o último valor automático
+    if (valorTela === 0 || valorTela === ultimoValorAutomatico) {
+
+        campoValor.value = Number(valor).toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+        ultimoValorAutomatico = Number(valor);
+    }
 
     fecharModalDespesas();
 }
@@ -889,5 +1001,11 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-
+window.addEventListener('load', function () {
+    setTimeout(() => {
+        const campoValor = document.getElementById('valor');
+        campoValor.focus();
+        campoValor.select();
+    }, 50);
+});
 </script>

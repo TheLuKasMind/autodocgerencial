@@ -131,7 +131,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
                                 empresa.Nome as nome,
                                 empresa.Documento as documento,
                                 empresa.Email as email,
-                                empresa.LimiteUsuarios
+                                empresa.LimiteUsuarios,
+                                empresa.id_Asaas
                             FROM empresa
                             LEFT JOIN planos on planos.id = empresa.Plano
                             WHERE empresa.id = ?
@@ -187,6 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
                         }
                         
                         $_SESSION['empresa_limiteUsuarios'] = $usuario['LimiteUsuarios'];
+                        $_SESSION['id_Asaas'] = $usuario['id_Asaas'];
 
                         /* ===== PERMISSÕES DE ACESSO A TELAS ===== */
                         $sql = "SELECT pagina FROM userpermissoes WHERE idEmpresa = ? AND idUsuario = ?";

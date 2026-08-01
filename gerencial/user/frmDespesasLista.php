@@ -126,9 +126,9 @@ $listaDespesa = ExSqlNET("
 
                         <?php
                             // Impacto no caixa
-                            if ($despesa['Acao'] === 1) {
+                            if ($despesa['Acao'] == 1) {
                                 $impactoHtml = '<span class="badge badge-entrada">Entrada</span>';
-                            } elseif ($despesa['Acao'] === -1) {
+                            } elseif ($despesa['Acao'] == -1) {
                                 $impactoHtml = '<span class="badge badge-saida">Saída</span>';
                             } else {
                                 $impactoHtml = '<span class="badge badge-neutro">Sem impacto</span>';
