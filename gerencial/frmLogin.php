@@ -188,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
                         }
                         
                         $_SESSION['empresa_limiteUsuarios'] = $usuario['LimiteUsuarios'];
-                        $_SESSION['id_Asaas'] = $usuario['id_Asaas'];
+                        $_SESSION['id_Asaas'] = $empresa['id_Asaas'];
 
                         /* ===== PERMISSÕES DE ACESSO A TELAS ===== */
                         $sql = "SELECT pagina FROM userpermissoes WHERE idEmpresa = ? AND idUsuario = ?";
