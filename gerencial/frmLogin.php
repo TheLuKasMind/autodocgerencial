@@ -109,37 +109,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$modoCadastro) {
                     // } else {
                     $planoVencido = false;
 
+                    $sqlEmpresa = "
+                        SELECT 
+                            empresa.Nome,
+                            Documento,
+                            planos.Nome As Plano,
+                            ValidadePlano,
+                            empresa.MetaMensal,
+                            empresa.MetaDiaria,
+                            planos.Valor As ValorPlano,
+                            id_Asaas,
+                            Email,
+                            empresa.Plano As idPlano,
+                            empresa.Nome as nome,
+                            empresa.Documento as documento,
+                            empresa.Email as email,
+                            empresa.LimiteUsuarios,
+                            empresa.id_Asaas
+                        FROM empresa
+                        LEFT JOIN planos on planos.id = empresa.Plano
+                        WHERE empresa.id = ?
+                    ";
+                    
+                    $resultado = ExSqlNET($sqlEmpresa, null, [$usuario['idEmpresa']])[0] ?? null;
+                    $empresa = $resultado;
+
                     if (!empty($usuario['ValidadePlano']) &&
                         $usuario['ValidadePlano'] != '0000-00-00' &&
                         strtotime($usuario['ValidadePlano']) < strtotime($dataHoje)) {
 
                         $planoVencido = true;
                         $erro = "Seu plano está vencido. Realize o pagamento via PIX para reativar seu acesso.";
-
-                        $sqlEmpresa = "
-                            SELECT 
-                                empresa.Nome,
-                                Documento,
-                                planos.Nome As Plano,
-                                ValidadePlano,
-                                empresa.MetaMensal,
-                                empresa.MetaDiaria,
-                                planos.Valor As ValorPlano,
-                                id_Asaas,
-                                Email,
-                                empresa.Plano As idPlano,
-                                empresa.Nome as nome,
-                                empresa.Documento as documento,
-                                empresa.Email as email,
-                                empresa.LimiteUsuarios,
-                                empresa.id_Asaas
-                            FROM empresa
-                            LEFT JOIN planos on planos.id = empresa.Plano
-                            WHERE empresa.id = ?
-                        ";
-                        
-                        $resultado = ExSqlNET($sqlEmpresa, null, [$usuario['idEmpresa']])[0] ?? null;
-                        $empresa = $resultado;
 
                         if (!empty($usuario['idEmpresa'])) {
                             $_SESSION['idEmpresa'] = $usuario['idEmpresa'];
