@@ -271,10 +271,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
         $_SESSION['usuario_id']
     ]);
 
-    $retorno= ExSqlNET("SELECT id_Asaas FROM empresa WHERE id  = ?", null, [$_POST['idEmpresa']]);
+    $retorno = ExSqlNET("SELECT id_Asaas FROM empresa WHERE id  = ?", null, [$_POST['idEmpresa']]);
 
     $_SESSION['idEmpresa'] = $_POST['idEmpresa'];
-    $_SESSION['id_Asaas']  = $retorno['id_Asaas'];
+    $_SESSION['id_Asaas']  = $retorno[0]['id_Asaas'];
 
     $_SESSION['mensagem_sucesso'] = "Empresa de acesso alterada com sucesso.";
 
