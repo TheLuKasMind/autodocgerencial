@@ -593,20 +593,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
                     <input type="hidden" id="tipodespesa" name="tipodespesa">
                 </div>
 
-
-                <div class="campo-valor">
-                    <label>Valor *</label>
+                <div class="campo-full">
+                    <label>Descrição</label>
 
                     <input
                         type="text"
-                        id="valor"
-                        name="valor"
-                        placeholder="0,00"
-                        autocomplete="off"
+                        id="descricao"
+                        name="descricao"
+                        placeholder="Descrição do lançamento"
                     >
                 </div>
-
-
+                
                 <div class="campo-full">
                     <label>Cliente (Opcional)</label>
 
@@ -622,18 +619,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
                     <input type="hidden" id="forcli" name="forcli">
                 </div>
 
-
-                <div class="campo-full">
-                    <label>Descrição</label>
+                <div class="campo-valor">
+                    <label>Valor *</label>
 
                     <input
                         type="text"
-                        id="descricao"
-                        name="descricao"
-                        placeholder="Descrição do lançamento"
+                        id="valor"
+                        name="valor"
+                        placeholder="0,00"
+                        autocomplete="off"
                     >
                 </div>
-
 
                 <div>
                     <label>Data</label>

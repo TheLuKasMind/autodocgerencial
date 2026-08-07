@@ -1383,7 +1383,7 @@ $valorUsuarioAdicional = $config['valor_usuario_adicional'];
 
             </div>
 
-            <h3>Usuários Adicionais</h3>
+            <h3>Usuários</h3>
             <p class="usuarios-info">
                 Cada usuário adicional custa
                 <strong>
