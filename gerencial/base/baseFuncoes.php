@@ -990,7 +990,7 @@ function enviaEmailBoasVindas($emailRecebe) {
         $mail->addAddress($emailRecebe);
 
         // Anexa o manual (altere o caminho conforme necessário)
-        $caminhoManual = __DIR__ . '/manuais/Manual_AutoDoc.pdf';
+        $caminhoManual = __DIR__ . '/Manual_AutoDoc.pdf';
         if (file_exists($caminhoManual)) {
             $mail->addAttachment($caminhoManual, 'Manual_AutoDoc.pdf');
         }
@@ -1968,7 +1968,7 @@ function Asaas_PagamentoStatus($id_cobranca)
     $url = $baseUrl . "/v3/payments/".$id_cobranca;
 
     $headers = [
-        "accept: application/json",
+        "accept: applic ation/json",
         "content-type: application/json",
         "access_token: ".$chaveAPI,
         "User-Agent: AutodocBrasil/1.0"
