@@ -65,7 +65,6 @@ if (isset($_POST['id_Asaas']) && $_POST['id_Asaas'] <> '' ) {
         $documento,
         $email
     );
-
     $_SESSION['id_Asaas'] = $cliente['body']['id'] ;
     if (isset($_SESSION['idEmpresa']) && $_SESSION['idEmpresa'] <> '' ){
         atualizaIdAsaas();

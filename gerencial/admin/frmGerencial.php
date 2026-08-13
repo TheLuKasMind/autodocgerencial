@@ -52,6 +52,26 @@ $planosLista = ExSqlNET("
 ");
 
 /* ================= AÇÕES ================= */
+function salvarAsaasApiKey($apiKey)
+{
+    ExSqlNET("
+        UPDATE config
+        SET AsaasApiKey = ?
+    ", null, [$apiKey]);
+}
+
+function obterAsaasApiKey()
+{
+    $config = ExSqlNET("
+        SELECT AsaasApiKey
+        FROM config
+        LIMIT 1
+    ");
+
+    return $config[0]['AsaasApiKey'] ?? '';
+}
+
+$asaasApiKey = obterAsaasApiKey();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -116,6 +136,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    if ($acao == 'salvar_asaas') {
+
+        $apiKey = trim($_POST['AsaasApiKey'] ?? '');
+
+        salvarAsaasApiKey($apiKey);
+
+        $_SESSION['mensagem_sucesso'] = "API Key do Asaas salva com sucesso.";
+
+        header("Location: Gerencial");
+        exit;
+    }
 }
 
 /* ================= LISTA ================= */
@@ -868,6 +899,26 @@ body{
 
         </div>
 
+        <div class="card">
+            <h3 style="color: #475569;">Configurações do Sistema</h3>
+            <form method="post">
+                <input type="hidden" name="acao" value="salvar_asaas">
+                <label>API Key Asaas</label>
+                <input
+                    type="password"
+                    name="AsaasApiKey"
+                    value="<?= htmlspecialchars($asaasApiKey) ?>"
+                    placeholder="$aact_..."
+                    autocomplete="off"
+                >
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-gerenciar">
+                        💾 Salvar API Key
+                    </button>
+                </div>
+            </form>
+        </div>
+
         <!-- TABELA DESKTOP -->
 
         <div class="card">
@@ -1127,6 +1178,7 @@ body{
         </div>
     </div>
 
+    
     <div id="modalMetricas" class="modal">
 
         <div class="modal-box">
