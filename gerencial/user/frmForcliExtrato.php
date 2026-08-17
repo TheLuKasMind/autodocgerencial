@@ -262,6 +262,7 @@ foreach ($lista as $item) {
         .table-wrapper {
             background: #fff;
             box-shadow: 0 6px 16px rgba(0, 0, 0, .05);
+            border-radius: 12px;
         }
 
         .filters {
@@ -293,10 +294,12 @@ foreach ($lista as $item) {
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
             margin-bottom: 20px;
+            border-radius: 12px;
         }
 
         .summary-box {
             border-left: 5px solid #f97316;
+            border-radius: 12px;
         }
 
         .summary-box h4 {

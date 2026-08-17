@@ -96,8 +96,18 @@ th {
     color: #9a3412;
 }
 
-tr:hover {
+/* tr:hover {
     background-color: #fff7ed;
+    cursor: pointer;
+} */
+
+
+tbody tr:nth-child(even) {
+    background-color: #fff7ed;
+}
+
+tbody tr:hover {
+    background-color: #ffedd5;
     cursor: pointer;
 }
 
