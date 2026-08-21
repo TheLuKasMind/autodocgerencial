@@ -136,7 +136,13 @@ $statusTexto = [
     2 => 'Em Recurso',
     3 => 'Deferida',
     4 => 'Indeferida',
-    5 => 'Finalizada'
+    5 => 'Finalizada',
+    6 => 'Elaboração de defesa',
+    7 => 'Defesa Enviada',
+    8 => 'Elaboração de recurso',
+    9 => 'Recurso 1º instância enviado',
+    10 => 'Recurso 2º instância enviado',
+    11 => 'Suspenso'
 ];
 
 $status = $statusTexto[$dados['StatusMulta']] ?? 'Não definido';

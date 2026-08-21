@@ -140,6 +140,12 @@ $listaMultas = ExSqlNET("
             WHEN 3 THEN 'Deferida'
             WHEN 4 THEN 'Indeferida'
             WHEN 5 THEN 'Finalizada'
+            WHEN 6 THEN 'Elaboração de defesa'
+            WHEN 7 THEN 'Defesa Enviada'
+            WHEN 8 THEN 'Elaboração de recurso'
+            WHEN 9 THEN 'Recurso 1º instância enviado'
+            WHEN 10 THEN 'Recurso 2º instância enviado'
+            WHEN 11 THEN 'Suspenso'
         ELSE 'Não Definido'
         END AS StatusLiteral
     FROM multa m
@@ -491,7 +497,13 @@ foreach ($listaMultas as $multa) {
                         <option value="2" <?=($statusFiltro==='2')?'selected':''?>>Em Recurso</option>
                         <option value="3" <?=($statusFiltro==='3')?'selected':''?>>Deferida</option>
                         <option value="4" <?=($statusFiltro==='4')?'selected':''?>>Indeferida</option>
-                        <option value="4" <?=($statusFiltro==='5')?'selected':''?>>Finalizada</option>
+                        <option value="5" <?=($statusFiltro==='5')?'selected':''?>>Finalizada</option>
+                        <option value="6" <?=($statusFiltro==='6')?'selected':''?>>Elaboração de defesa</option>
+                        <option value="7" <?=($statusFiltro==='7')?'selected':''?>>Defesa Enviada</option>
+                        <option value="8" <?=($statusFiltro==='8')?'selected':''?>>Elaboração de recurso</option>
+                        <option value="9" <?=($statusFiltro==='9')?'selected':''?>>Recurso 1º instância enviado</option>
+                        <option value="10" <?=($statusFiltro==='10')?'selected':''?>>Recurso 2º instância enviado</option>
+                        <option value="11" <?=($statusFiltro==='11')?'selected':''?>>Suspenso</option>''
                     </select>
                 </div>
 
@@ -525,6 +537,10 @@ foreach ($listaMultas as $multa) {
                         <option value="PRF" <?=($orgaoFiltro==='PRF')?'selected':''?>>PRF</option>
                         <option value="DETRAN" <?=($orgaoFiltro==='DETRAN')?'selected':''?>>DETRAN</option>
                         <option value="DNIT" <?=($orgaoFiltro==='DNIT')?'selected':''?>>DNIT</option>
+                        <option value="EPTC" <?=($orgaoFiltro==='EPTC')?'selected':''?>>EPTC</option>
+                        <option value="Prefeitura" <?=($orgaoFiltro==='Prefeitura')?'selected':''?>>Prefeitura</option>
+                        <option value="Outros" <?=($orgaoFiltro==='Outros')?'selected':''?>>Outros</option>
+                        <option value="DAER" <?=($orgaoFiltro==='DAER')?'selected':''?>>DAER</option>
                     </select>
                 </div>
 

@@ -97,8 +97,16 @@ $listaMultas = ExSqlNET("
             WHEN 3 THEN 'Deferida'
             WHEN 4 THEN 'Indeferida'
             WHEN 5 THEN 'Finalizada'
+            WHEN 6 THEN 'Elaboração de defesa'
+            WHEN 7 THEN 'Defesa Enviada'
+            WHEN 8 THEN 'Elaboração de recurso'
+            WHEN 9 THEN 'Recurso 1º instância enviado'
+            WHEN 10 THEN 'Recurso 2º instância enviado'
+            WHEN 11 THEN 'Suspenso'
         ELSE 'Não Definido'
-        END AS StatusLiteral
+        END AS StatusLiteral,
+        m.RegistroCNH,
+        m.Observacao
     FROM multa m
     LEFT JOIN forcli c ON c.Id = m.Forcli
     $where
@@ -295,6 +303,16 @@ foreach ($listaMultas as $multa) {
         0
     );
 
+    $registroCNH = $multa['RegistroCNH'];
+
+    $pdf->Cell(
+        95,
+        5,
+        pdf('Registro CNH: '.$registroCNH),
+        0,
+        1
+    );
+
     $pdf->Cell(
         95,
         5,
@@ -306,6 +324,16 @@ foreach ($listaMultas as $multa) {
         1
     );
 
+    $observacao = $multa['Observacao'];
+
+    $pdf->Cell(
+        95,
+        5,
+        pdf('Observação: '.$observacao),
+        0,
+        1
+    );
+    
     /* OBS */
     if (!empty($multa['Obs'])) {
 
