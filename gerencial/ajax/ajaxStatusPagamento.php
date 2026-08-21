@@ -1,7 +1,7 @@
 <?php
 
 include '../base/baseFuncoes.php';
-
+include '../base/ambiente.php';
 header('Content-Type: application/json');
 
 $id = $_POST['id'] ?? null;
@@ -23,7 +23,10 @@ if ($liberarSistema == '1'){
     $status = $retorno['body']['status'] ?? null;
 }
 
-// $status = "RECEIVED";
+if ($DEBUG_LOCAL == 1){
+    $status = "RECEIVED";
+}
+
 echo json_encode([
     "status" => $status
 ]);

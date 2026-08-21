@@ -313,7 +313,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $modoCadastro) {
                 $stmt = $dbGeralNET->prepare("
                     INSERT INTO user 
                     (nome, email, senha, tipo, idEmpresa, inativo)
-                    VALUES (?, ?, ?, 2, ?, 1)
+                    VALUES (?, ?, ?, 2, ?, 0)
                 ");
 
                 $stmt->execute([
@@ -1616,6 +1616,7 @@ $valorUsuarioAdicional = $config['valor_usuario_adicional'];
 
         return true;
     }
+
 
     document.querySelectorAll('.plano').forEach(p => {
         p.addEventListener('click', () => {
