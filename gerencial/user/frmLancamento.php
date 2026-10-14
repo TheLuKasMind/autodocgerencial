@@ -5,8 +5,61 @@ require_once  __DIR__ .'/../base/verificaPlano.php';
 
 $idEmpresa = $_SESSION['idEmpresa'];
 
-$listaForcli = ExSqlNET("SELECT Id, Nome, Documento FROM forcli WHERE Inativo = 0 AND idEmpresa = " .$idEmpresa. " ORDER BY Nome ASC");
-$listaServProd = ExSqlNET("SELECT Id, Codigo, Nome, ValorCusto, ValorVenda, SolicitaVeiculo FROM servprod WHERE Inativo = 0 AND idEmpresa = ". $idEmpresa. " ORDER BY Nome ASC");
+$listaForcli = ExSqlNET("SELECT Id, Nome, Documento FROM forcli WHERE Inativo = 0 AND idEmpresa = " .$idEmpresa. " ORDER BY Nome ASC LIMIT 50");
+$listaServProd = ExSqlNET("SELECT Id, Codigo, Nome, ValorCusto, ValorVenda, SolicitaVeiculo FROM servprod WHERE Inativo = 0 AND idEmpresa = ". $idEmpresa. " ORDER BY Nome ASC LIMIT 50");
+
+$produtosEncontrados = [];
+$clientesEncontrados = [];
+
+if (isset($_GET['buscar_clientes']) && $_GET['buscar_clientes'] == 1) {
+    header('Content-Type: application/json');
+    $termo = trim($_GET['q'] ?? '');
+    $idEmpresa = $_SESSION['idEmpresa'];
+
+    $sql = "SELECT Id, Nome, Documento 
+            FROM forcli 
+            WHERE idEmpresa = ? 
+            AND Inativo = 0";
+    
+    $params = [$idEmpresa];
+
+    if ($termo !== '') {
+        $sql .= " AND (Nome LIKE ? OR Documento LIKE ?)";
+        $params[] = "%$termo%";
+        $params[] = "%$termo%";
+    }
+
+    $sql .= " ORDER BY Nome LIMIT 20";
+
+    $clientesEncontrados = ExSqlNET($sql, null, $params);
+    echo json_encode($clientesEncontrados ?: []);
+    exit;
+}
+
+if (isset($_GET['buscar_produtos']) && $_GET['buscar_produtos'] == 1) {
+    header('Content-Type: application/json');
+    $termo = trim($_GET['q'] ?? '');
+    $idEmpresa = $_SESSION['idEmpresa'];
+
+    $sql = "SELECT Id, Codigo, Nome, ValorCusto, ValorVenda, SolicitaVeiculo 
+            FROM servprod 
+            WHERE idEmpresa = ? 
+            AND Inativo = 0";
+    
+    $params = [$idEmpresa];
+
+    if ($termo !== '') {
+        $sql .= " AND (Nome LIKE ? OR Codigo LIKE ?)";
+        $params[] = "%$termo%";
+        $params[] = "%$termo%";
+    }
+
+    $sql .= " ORDER BY Nome LIMIT 20";
+
+    $produtosEncontrados = ExSqlNET($sql, null, $params);
+    echo json_encode($produtosEncontrados ?: []);
+    exit;
+}
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -693,6 +746,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         background: #bdbdbd;
     }
 
+    .modal-table-wrapper {
+        height: 320px;
+        max-height: 320px;
+        overflow-y: auto;
+        margin-top: 10px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+    }
 
     /* =========================================
     CARD VEÍCULO - PROFISSIONAL
@@ -1067,8 +1128,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
     </div>
 
 <script>
-        const clientes = <?= json_encode($listaForcli) ?>;
-        const produtos = <?= json_encode($listaServProd) ?>;
+        // const clientes = <?= json_encode($listaForcli) ?>;
+        // const produtos = <?= json_encode($listaServProd) ?>;
+        const clientes = <?= json_encode($clientesEncontrados) ?>;
+        const produtos = <?= json_encode($produtosEncontrados) ?>;
 
         let tipoModal = '';
 
@@ -1157,62 +1220,149 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
         }
     }
 
-    function carregarModal(filtro) {
+    // function carregarModal(filtro) {
 
+    //     let head = document.getElementById('modalHead');
+    //     let body = document.getElementById('modalBody');
+
+    //     head.innerHTML = '';
+    //     body.innerHTML = '';
+
+    //     if (tipoModal === 'cliente' || tipoModal === 'pagador') {
+
+    //         document.getElementById('modalTitulo').innerText = 'Selecionar Cliente';
+
+    //         head.innerHTML = '<th>Nome</th><th>Documento</th>';
+
+    //         clientes
+    //             .filter(c => c.Nome.toLowerCase().includes(filtro))
+    //             .forEach(c => {
+
+    //                 body.innerHTML += `
+    //         <tr onclick="selecionarCliente(${c.Id}, '${c.Nome.replace(/'/g,"\\'")}')">
+    //             <td>${c.Nome}</td>
+    //             <td>${c.Documento ?? ''}</td>
+    //         </tr>`;
+    //             });
+
+    //     }
+
+    //     if (tipoModal === 'produto') {
+
+    //         document.getElementById('modalTitulo').innerText = 'Selecionar Produto';
+
+    //         // head.innerHTML = '<th>Código</th><th>Nome</th><th>Valor</th>';
+    //         head.innerHTML = '<th>Nome</th><th>Valor</th>';
+    //         //   <td>${p.Codigo}</td>
+    //         produtos
+    //             .filter(p => p.Nome.toLowerCase().includes(filtro))
+    //             .forEach(p => {
+
+    //                 body.innerHTML += `
+    //                 <tr onclick="selecionarProduto(
+    //                     ${p.Id},
+    //                     '${p.Codigo}',
+    //                     '${p.Nome.replace(/'/g,"\\'")}',
+    //                      ${p.ValorCusto ?? 0},
+    //                     ${p.ValorVenda ?? 0},
+    //                     ${p.SolicitaVeiculo ?? 0}
+    //                 )">
+                      
+    //                     <td>${p.Nome}</td>
+    //                     <td>R$ ${parseFloat(p.ValorVenda ?? 0).toFixed(2)}</td>
+    //                 </tr>`;
+    //             });
+    //     }
+    // }
+
+    function carregarModal(filtro = '') {
         let head = document.getElementById('modalHead');
         let body = document.getElementById('modalBody');
 
         head.innerHTML = '';
-        body.innerHTML = '';
+        body.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#777; padding: 20px;">A carregar...</td></tr>';
+
+        filtro = filtro.toLowerCase();
 
         if (tipoModal === 'cliente' || tipoModal === 'pagador') {
-
             document.getElementById('modalTitulo').innerText = 'Selecionar Cliente';
-
             head.innerHTML = '<th>Nome</th><th>Documento</th>';
 
-            clientes
-                .filter(c => c.Nome.toLowerCase().includes(filtro))
-                .forEach(c => {
+            fetch(`Pedido?buscar_clientes=1&q=${encodeURIComponent(filtro)}`)
+                .then(response => response.json())
+                .then(clientes => {
+                    let html = '';
+                    
+                    if (!clientes || clientes.length === 0) {
+                        body.innerHTML = `<tr><td colspan="2" style="text-align:center; color:#777; padding: 20px;">Nenhum registo encontrado</td></tr>`;
+                        return;
+                    }
 
-                    body.innerHTML += `
-            <tr onclick="selecionarCliente(${c.Id}, '${c.Nome.replace(/'/g,"\\'")}')">
-                <td>${c.Nome}</td>
-                <td>${c.Documento ?? ''}</td>
-            </tr>`;
+                    clientes.forEach(c => {
+                        let nome = c.Nome || '';
+                        let doc = c.Documento || '';
+                        let nomeSeguro = nome.replace(/'/g, "\\'");
+                        
+                        html += `
+                            <tr onclick="selecionarCliente(${c.Id}, '${nomeSeguro}')">
+                                <td>${nome}</td>
+                                <td>${doc}</td>
+                            </tr>`;
+                    });
+
+                    body.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar clientes:', error);
+                    body.innerHTML = `<tr><td colspan="2" style="text-align:center; color:red; padding: 20px;">Erro ao carregar dados</td></tr>`;
                 });
-
         }
 
         if (tipoModal === 'produto') {
-
             document.getElementById('modalTitulo').innerText = 'Selecionar Produto';
-
-            // head.innerHTML = '<th>Código</th><th>Nome</th><th>Valor</th>';
             head.innerHTML = '<th>Nome</th><th>Valor</th>';
-            //   <td>${p.Codigo}</td>
-            produtos
-                .filter(p => p.Nome.toLowerCase().includes(filtro))
-                .forEach(p => {
 
-                    body.innerHTML += `
-                    <tr onclick="selecionarProduto(
-                        ${p.Id},
-                        '${p.Codigo}',
-                        '${p.Nome.replace(/'/g,"\\'")}',
-                         ${p.ValorCusto ?? 0},
-                        ${p.ValorVenda ?? 0},
-                        ${p.SolicitaVeiculo ?? 0}
-                    )">
-                      
-                        <td>${p.Nome}</td>
-                        <td>R$ ${parseFloat(p.ValorVenda ?? 0).toFixed(2)}</td>
-                    </tr>`;
+            fetch(`Pedido?buscar_produtos=1&q=${encodeURIComponent(filtro)}`)
+                .then(response => response.json())
+                .then(produtos => {
+                    let html = '';
+                    
+                    if (!produtos || produtos.length === 0) {
+                        body.innerHTML = `<tr><td colspan="2" style="text-align:center; color:#777; padding: 20px;">Nenhum produto encontrado</td></tr>`;
+                        return;
+                    }
+
+                    produtos.forEach(p => {
+                        let nome = p.Nome || '';
+                        let codigo = p.Codigo || '';
+                        let valorVenda = parseFloat(p.ValorVenda ?? 0);
+                        let valorCusto = parseFloat(p.ValorCusto ?? 0);
+                        let solicitaVeiculo = parseInt(p.SolicitaVeiculo ?? 0);
+                        let nomeSeguro = nome.replace(/'/g, "\\'");
+
+                        html += `
+                            <tr onclick="selecionarProduto(
+                                ${p.Id},
+                                '${codigo}',
+                                '${nomeSeguro}',
+                                ${valorCusto},
+                                ${valorVenda},
+                                ${solicitaVeiculo}
+                            )">
+                                <td>${nome}</td>
+                                <td>R$ ${valorVenda.toFixed(2)}</td>
+                            </tr>`;
+                    });
+
+                    body.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar produtos:', error);
+                    body.innerHTML = `<tr><td colspan="2" style="text-align:center; color:red; padding: 20px;">Erro ao carregar dados</td></tr>`;
                 });
         }
-
     }
-
+    
     function selecionarCliente(id, nome) {
         if (tipoModal === 'cliente') {
             document.getElementById('clienteId').value = id;
