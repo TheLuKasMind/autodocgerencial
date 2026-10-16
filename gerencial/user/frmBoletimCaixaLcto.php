@@ -34,7 +34,36 @@ $forcli = ExSqlNET("
     WHERE inativo = 0
     AND idEmpresa = ". $idEmpresa ."
     ORDER BY Nome ASC
+    LIMIT 50
 ");
+
+$clientesEncontrados = [];
+
+if (isset($_GET['buscar_clientes']) && $_GET['buscar_clientes'] == 1) {
+    header('Content-Type: application/json');
+    $termo = trim($_GET['q'] ?? '');
+    $idEmpresa = $_SESSION['idEmpresa'];
+
+    $sql = "SELECT id, Nome, RazaoSocial, Documento 
+            FROM forcli 
+            WHERE idEmpresa = ? 
+            AND Inativo = 0";
+    
+    $params = [$idEmpresa];
+
+    if ($termo !== '') {
+        $sql .= " AND (Nome LIKE ? OR RazaoSocial LIKE ? OR Documento LIKE ?)";
+        $params[] = "%$termo%";
+        $params[] = "%$termo%";
+        $params[] = "%$termo%";
+    }
+
+    $sql .= " ORDER BY Nome LIMIT 20";
+
+    $clientesEncontrados = ExSqlNET($sql, null, $params);
+    echo json_encode($clientesEncontrados ?: []);
+    exit;
+}
 
 $Alterando = false;
 
@@ -373,6 +402,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar'])) {
             overflow-y:auto;
             border:1px solid #e5e7eb;
             border-radius:8px;
+        }
+
+        .modal-table-wrapper {
+            height: 320px; 
+            max-height: 320px;
+            overflow-y: auto;
+            margin-top: 10px;
+            border: 1px solid #eee;
+            border-radius: 8px;
         }
 
         /* ================= RESPONSIVO ================= */
@@ -798,6 +836,10 @@ function fecharModalDespesas() {
 //====================================================================
 function abrirModalForcli() {
     document.getElementById('modalForcli').style.display = 'flex';
+    carregarClientes("");
+    setTimeout(() => {
+        document.getElementById('modalBuscaForcli').focus();
+    }, 50);
 }
 
 function fecharModalForcli() {
@@ -805,9 +847,7 @@ function fecharModalForcli() {
     document.getElementById('modalBuscaForcli').value = '';
 }
 
-
 function filtrarTabela(inputId, tabelaId) {
-
     let input = document.getElementById(inputId);
     let filtro = input.value.toLowerCase();
 
@@ -815,7 +855,6 @@ function filtrarTabela(inputId, tabelaId) {
     let linhas = tabela.querySelectorAll("tbody tr");
 
     linhas.forEach(function(linha){
-
         let textoLinha = linha.textContent.toLowerCase();
 
         if (textoLinha.includes(filtro)) {
@@ -823,43 +862,54 @@ function filtrarTabela(inputId, tabelaId) {
         } else {
             linha.style.display = "none";
         }
-
     });
-
 }
 
-
 document.getElementById("modalBuscaForcli").addEventListener("input", function () {
-    carregarClientes(this.value.toLowerCase());
+    carregarClientes(this.value);
 });
 
 function carregarClientes(filtro = "") {
-
     let body = document.getElementById("modalBodyForcli");
-    body.innerHTML = "";
+    body.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#777; padding: 20px;">A carregar...</td></tr>';
 
-    clientes
-        .filter(c => c.Nome.toLowerCase().includes(filtro))
-        .forEach(c => {
+    // Faz a requisição AJAX ao PHP
+    fetch(`?buscar_clientes=1&q=${encodeURIComponent(filtro)}`)
+        .then(response => response.json())
+        .then(clientes => {
+            let html = '';
 
-            body.innerHTML += `
-                <tr onclick="selecionarForcli(${c.id}, '${c.Nome.replace(/'/g,"\\'")}')">
-                    <td>${c.Nome}</td>
-                    <td>${c.RazaoSocial ?? ''}</td>
-                    <td>${c.Documento ?? ''}</td>
-                </tr>
-            `;
+            if (!clientes || clientes.length === 0) {
+                body.innerHTML = `<tr><td colspan="3" style="text-align:center; color:#777; padding: 20px;">Nenhum registo encontrado</td></tr>`;
+                return;
+            }
 
+            clientes.forEach(c => {
+                let nome = c.Nome || '';
+                let razao = c.RazaoSocial || '';
+                let documento = c.Documento || '';
+                let nomeSeguro = nome.replace(/'/g, "\\'");
+
+                html += `
+                    <tr onclick="selecionarForcli(${c.id}, '${nomeSeguro}')">
+                        <td>${nome}</td>
+                        <td>${razao}</td>
+                        <td>${documento}</td>
+                    </tr>
+                `;
+            });
+
+            body.innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Erro ao buscar clientes:', error);
+            body.innerHTML = `<tr><td colspan="3" style="text-align:center; color:red; padding: 20px;">Erro ao carregar dados</td></tr>`;
         });
-
 }
 
-
 function selecionarForcli(id, nome) {
-
     document.getElementById("forcli").value = id;
     document.getElementById("nomeForcli").value = nome;
-
     fecharModalForcli();
 }
 

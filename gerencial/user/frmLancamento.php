@@ -834,6 +834,550 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
     .grupo-campo input::placeholder{
         color:#9ca3af;
     }
+
+
+    /* =========================================================
+       AUTODOC — ACABAMENTO VISUAL E RESPONSIVIDADE
+       Mantém o PHP e o JavaScript existentes; altera apenas o visual.
+       ========================================================= */
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    body {
+        background: #f8fafc;
+        color: #1f2937;
+    }
+
+    .content {
+        width: min(100% - 32px, 1440px);
+        margin: 0 auto;
+        padding: 28px 0 40px;
+    }
+
+    .page-title {
+        display: block;
+        position: static;
+        width: 100%;
+        margin: 0 0 22px;
+        padding: 0 0 16px;
+        color: #111827;
+        font-size: clamp(1.45rem, 2.2vw, 1.9rem);
+        font-weight: 750;
+        line-height: 1.25;
+        letter-spacing: -0.035em;
+        overflow-wrap: anywhere;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .topo-pagina {
+        justify-content: flex-start;
+        margin: 0 0 16px;
+    }
+
+    .btn-voltar {
+        min-height: 42px;
+    }
+
+    .card {
+        min-width: 0;
+        margin: 0 0 18px;
+        padding: 22px;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(15, 23, 42, .045);
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .form-grid > div,
+    form > .card > div {
+        min-width: 0;
+    }
+
+    form label,
+    .card > label {
+        display: block;
+        margin: 0 0 7px;
+        color: #374151;
+        font-size: 13px;
+        font-weight: 650;
+        line-height: 1.4;
+    }
+
+    form input:not([type="hidden"]):not([type="checkbox"]),
+    form select,
+    form textarea {
+        max-width: 100%;
+        min-width: 0;
+        color: #1f2937;
+        background-color: #fff;
+        border: 1px solid #d1d5db;
+        border-radius: 9px;
+        font: inherit;
+        font-size: 14px;
+        transition: border-color .18s ease, box-shadow .18s ease;
+    }
+
+    form input:not([type="hidden"]):not([type="checkbox"]),
+    form select {
+        min-height: 44px;
+        padding: 9px 12px;
+    }
+
+    form textarea {
+        padding: 11px 12px !important;
+        line-height: 1.5;
+    }
+
+    form input:focus,
+    form select:focus,
+    form textarea:focus {
+        outline: none;
+        border-color: #f97316;
+        box-shadow: 0 0 0 3px rgba(249, 115, 22, .13);
+    }
+
+    form input[readonly] {
+        background: #f9fafb;
+        color: #4b5563;
+    }
+
+    form .btn,
+    form .btn-imprimir,
+    form .btn-excluir,
+    .modal .btn {
+        min-height: 42px;
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 650;
+        line-height: 1.25;
+        cursor: pointer;
+        transition: background .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    form .btn,
+    .modal .btn {
+        color: #fff;
+        background: #f97316;
+        border: 1px solid #f97316;
+        box-shadow: 0 2px 5px rgba(249, 115, 22, .14);
+    }
+
+    form .btn:hover,
+    .modal .btn:hover {
+        background: #ea580c;
+        border-color: #ea580c;
+        box-shadow: 0 4px 10px rgba(249, 115, 22, .2);
+    }
+
+    form .btn-imprimir {
+        color: #9a3412;
+        background: #fff7ed;
+        border: 1px solid #fed7aa;
+    }
+
+    form .btn-imprimir:hover {
+        background: #ffedd5;
+    }
+
+    form .btn-excluir {
+        color: #b91c1c;
+        background: #fff;
+        border: 1px solid #fecaca;
+    }
+
+    form .btn-excluir:hover {
+        background: #fef2f2;
+    }
+
+    #clienteNome,
+    #pagadorNome {
+        flex: 1 1 220px;
+        width: 100%;
+    }
+
+    #clienteNome + input,
+    #pagadorNome + input {
+        flex: 0 0 auto;
+    }
+
+    /* A rolagem horizontal fica no contêiner; a tabela mantém o layout nativo. */
+    .tabela-itens-wrapper {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 15px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        border-radius: 8px;
+    }
+
+    #tabelaItens {
+        width: 100%;
+        min-width: 680px;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-top: 0;
+        font-size: 13px;
+    }
+
+    #tabelaItens th {
+        padding: 12px 10px;
+        text-align: left;
+        color: #9a3412;
+        background: #fff7ed;
+        border-bottom: 1px solid #fed7aa;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    #tabelaItens td {
+        padding: 10px;
+        background: #fff;
+        border-bottom: 1px solid #f1f5f9;
+        vertical-align: middle;
+    }
+
+    #tabelaItens tbody tr:hover td {
+        background: #fffaf5;
+    }
+
+    #tabelaItens input {
+        width: 100%;
+        min-width: 74px;
+        min-height: 40px;
+        padding: 7px 8px;
+        border-radius: 8px;
+    }
+
+    #tabelaItens td:first-child {
+        min-width: 170px;
+        overflow-wrap: anywhere;
+    }
+
+    .total-geral {
+        margin-top: 18px;
+        padding-top: 16px;
+        color: #111827;
+        border-top: 1px solid #e5e7eb;
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    #totalGeral {
+        color: #c2410c;
+        font-size: 1.2em;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .card-veiculo {
+        margin-top: 18px !important;
+    }
+
+    .modal-bg {
+        padding: 16px;
+        overscroll-behavior: contain;
+    }
+
+    .modal {
+        width: min(650px, 100%);
+        max-width: 100%;
+        padding: 22px;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        box-shadow: 0 24px 70px rgba(15, 23, 42, .24);
+    }
+
+    .modal h3 {
+        color: #111827;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+    }
+
+    .modal-search {
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 44px;
+        margin-bottom: 8px;
+    }
+
+    .modal-table-wrapper {
+        width: 100%;
+        max-width: 100%;
+        height: min(320px, 42vh);
+        max-height: 42vh;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .modal table {
+        min-width: 100%;
+        width: max-content;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .modal th,
+    .modal td {
+        overflow-wrap: anywhere;
+    }
+
+    .modal td {
+        min-height: 42px;
+    }
+
+    .btn-remover {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        line-height: 1;
+        background: #fef2f2;
+        color: #b91c1c;
+        border: 1px solid #fecaca;
+    }
+
+    .btn-remover:hover {
+        background: #fee2e2;
+    }
+
+    .alert {
+        margin: 0 0 18px;
+        padding: 13px 16px;
+        border-radius: 10px;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 900px) {
+        .content {
+            width: min(100% - 28px, 760px);
+            padding-top: 22px;
+        }
+
+        .form-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            padding: 18px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .content {
+            width: calc(100% - 24px);
+            padding: 18px 0 28px;
+        }
+
+        .page-title {
+            margin-bottom: 16px;
+            padding-bottom: 13px;
+            font-size: 1.4rem;
+            line-height: 1.3;
+            letter-spacing: -0.025em;
+        }
+
+        .topo-pagina {
+            margin-bottom: 12px;
+        }
+
+        .btn-voltar {
+            min-height: 44px;
+            padding: 10px 13px;
+        }
+
+        .card {
+            padding: 15px;
+            margin-bottom: 14px;
+            border-radius: 12px;
+        }
+
+        .form-grid {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 15px;
+        }
+
+        form label,
+        .card > label {
+            font-size: 13px;
+        }
+
+        form input:not([type="hidden"]):not([type="checkbox"]),
+        form select {
+            width: 100%;
+            min-height: 46px;
+            font-size: 16px;
+        }
+
+        form textarea {
+            width: 100% !important;
+            min-height: 100px;
+            font-size: 16px;
+        }
+
+        /* Cliente e responsável: campo e botão não ficam espremidos. */
+        #clienteNome,
+        #pagadorNome {
+            flex: 1 1 100%;
+            width: 100%;
+        }
+
+        #clienteNome + input,
+        #pagadorNome + input {
+            display: none;
+        }
+
+        form .card > div[style*="display:flex"] {
+            display: flex !important;
+            flex-wrap: wrap;
+            gap: 9px !important;
+        }
+
+        form .card > div[style*="display:flex"] .btn {
+            flex: 0 0 auto;
+            min-height: 44px;
+        }
+
+        /* A tabela rola dentro do contêiner sem deformar as colunas/linhas. */
+        .tabela-itens-wrapper {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #tabelaItens {
+            display: table;
+            width: 680px;
+            min-width: 680px;
+            max-width: none;
+        }
+
+        #tabelaItens th,
+        #tabelaItens td {
+            padding: 10px 8px;
+        }
+
+        #tabelaItens input {
+            min-width: 82px;
+            min-height: 44px;
+            font-size: 16px;
+        }
+
+        .total-geral {
+            font-size: 16px;
+            text-align: right;
+        }
+
+        .total-geral #totalGeral {
+            display: inline-block;
+            margin-top: 4px;
+            font-size: 1.15em;
+        }
+
+        .grid-veiculo {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 15px;
+        }
+
+        .card-veiculo {
+            padding: 16px;
+        }
+
+        .header-veiculo h3 {
+            font-size: 17px;
+        }
+
+        /* Ações em largura total e fáceis de tocar. */
+        form > button[type="submit"],
+        form > .btn-imprimir,
+        form > .btn-excluir {
+            width: 100%;
+            min-height: 46px;
+            margin: 5px 0;
+        }
+
+        .modal-bg {
+            align-items: center;
+            padding: 12px;
+        }
+
+        .modal {
+            width: 100%;
+            max-width: 100%;
+            max-height: 88dvh;
+            padding: 16px;
+            border-radius: 14px;
+        }
+
+        .modal h3 {
+            font-size: 17px;
+        }
+
+        .modal-table-wrapper {
+            height: min(48dvh, 360px);
+            max-height: 48dvh;
+        }
+
+        .modal table {
+            font-size: 13px;
+        }
+
+        .modal th,
+        .modal td {
+            padding: 10px 8px;
+        }
+
+        .modal .btn {
+            min-height: 44px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .content {
+            width: calc(100% - 18px);
+        }
+
+        .card {
+            padding: 12px;
+        }
+
+        .page-title {
+            font-size: 1.25rem;
+        }
+
+        .modal {
+            padding: 12px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            scroll-behavior: auto !important;
+            animation-duration: .01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: .01ms !important;
+        }
+    }
+
 </style>
 
 </head>
@@ -987,20 +1531,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar']) || isset($_
                     Adicionar Produto
                 </button>
 
-                <table id="tabelaItens" name="tabelaItens" style="margin-top:15px;">
-                    <thead>
-                        <tr>
-                            <!-- <th>Código</th> -->
-                            <th>Descrição</th>
-                            <th>Qtd</th>
-                            <th>Valor Custo</th>
-                            <th>Valor Venda</th>
-                            <th>Total</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <div class="tabela-itens-wrapper">
+                    <table id="tabelaItens" name="tabelaItens">
+                        <thead>
+                            <tr>
+                                <!-- <th>Código</th> -->
+                                <th>Descrição</th>
+                                <th>Qtd</th>
+                                <th>Valor Custo</th>
+                                <th>Valor Venda</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
 
                 <div class="total-geral">
                     Total Geral: <span id="totalGeral">R$ 0,00</span>

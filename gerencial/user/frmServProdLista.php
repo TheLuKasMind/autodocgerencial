@@ -1,10 +1,12 @@
 <?php
 require_once __DIR__ . '/../base/connection.php';
-require_once  __DIR__ .'/../base/baseFuncoes.php';
-require_once  __DIR__ .'/../base/verificaPlano.php';
+require_once __DIR__ . '/../base/baseFuncoes.php';
+require_once __DIR__ . '/../base/verificaPlano.php';
 
 $msgRetorno = "";
 $tipoMsg = "";
+$registrosPorPagina = 30;
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -14,58 +16,513 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
-$idEmpresa = $_SESSION['idEmpresa'];
+$idEmpresa = (int)($_SESSION['idEmpresa'] ?? 0);
+
+if (isset($_SESSION['mensagem_sucesso'])) {
+    $msgRetorno = $_SESSION['mensagem_sucesso'];
+    $tipoMsg = "success";
+    unset($_SESSION['mensagem_sucesso']);
+}
+
+if (isset($_SESSION['mensagem_erro'])) {
+    $msgRetorno = $_SESSION['mensagem_erro'];
+    $tipoMsg = "error";
+    unset($_SESSION['mensagem_erro']);
+}
+
+$busca = trim((string)($_GET['busca'] ?? ''));
+$pagina = max(1, (int)($_GET['pagina'] ?? 1));
+$buscaSQL = addslashes($busca);
+
+$filtroSQL = " WHERE servprod.idEmpresa = $idEmpresa ";
+
+if ($busca !== '') {
+    $filtroSQL .= " AND servprod.Nome LIKE '%$buscaSQL%' ";
+}
+
+$resultadoContagem = ExSqlNET("
+    SELECT COUNT(*) AS total
+    FROM servprod
+    $filtroSQL
+");
+
+$totalRegistros = (int)($resultadoContagem[0]['total'] ?? 0);
+$totalPaginas = max(1, (int)ceil($totalRegistros / $registrosPorPagina));
+$pagina = min($pagina, $totalPaginas);
+$offset = ($pagina - 1) * $registrosPorPagina;
 
 $listaServProd = ExSqlNET("
-    SELECT *, 
-    CASE TIPO 
-        WHEN 1 THEN 'Serviço' 
-        WHEN 2 THEN 'Produto' 
-    END AS TipoLiteral
+    SELECT
+        servprod.*,
+        CASE servprod.TIPO
+            WHEN 1 THEN 'Serviço'
+            WHEN 2 THEN 'Produto'
+        END AS TipoLiteral,
+        (
+            SELECT IFNULL(SUM(mi.Qtd), 0)
+            FROM movimentoitem mi
+            INNER JOIN movimento m
+                ON m.id = mi.ControleMovimento
+            WHERE mi.ServProd = servprod.id
+              AND m.idEmpresa = $idEmpresa
+              AND MONTH(m.Data) = MONTH(CURDATE())
+              AND YEAR(m.Data) = YEAR(CURDATE())
+        ) AS QtdVendida
     FROM servprod
-    WHERE idEmpresa = ". $idEmpresa ."
-    ORDER BY nome asc
+    $filtroSQL
+    ORDER BY servprod.Nome ASC, servprod.id ASC
+    LIMIT $registrosPorPagina OFFSET $offset
 ");
-?>
 
+$parametrosBase = [];
+if ($busca !== '') {
+    $parametrosBase['busca'] = $busca;
+}
+
+$urlPagina = function (int $numeroPagina) use ($parametrosBase): string {
+    return '?' . http_build_query(
+        array_merge($parametrosBase, ['pagina' => $numeroPagina])
+    );
+};
+
+$urlPrimeira = $urlPagina(1);
+$urlAnterior = $urlPagina(max(1, $pagina - 1));
+$urlProxima = $urlPagina(min($totalPaginas, $pagina + 1));
+$urlUltima = $urlPagina($totalPaginas);
+
+$inicioExibicao = $totalRegistros > 0 ? $offset + 1 : 0;
+$fimExibicao = min($offset + $registrosPorPagina, $totalRegistros);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Produtos / Serviços</title>
+    <meta charset="UTF-8">
+    <title>Produtos e Serviços | Autodoc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/gerencial/css/base.css?v=15">
+    <link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
 
-<link rel="stylesheet" href="/gerencial/css/base.css?v=15">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="/gerencial/img/favicon.png">
-<style>
+    <style>
+        :root {
+            --pd-orange: #f97316;
+            --pd-orange-dark: #ea580c;
+            --pd-orange-soft: #fff7ed;
+            --pd-text: #1f2937;
+            --pd-muted: #6b7280;
+            --pd-border: #e5e7eb;
+            --pd-bg: #f8fafc;
+            --pd-green: #15803d;
+            --pd-red: #b91c1c;
+        }
 
-    .progress-bar {
-        background: #e5e7eb;
-        border-radius: 6px;
-        height: 10px;
-        width: 100%;
-        overflow: hidden;
-    }
+        body {
+            background: var(--pd-bg);
+            color: var(--pd-text);
+        }
 
-    .progress-fill {
-        height: 100%;
-        border-radius: 6px;
-        transition: 0.3s;
-    }
+        .content {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 28px 24px 40px;
+        }
 
-    .meta-text {
-        font-size: 12px;
-        margin-top: 4px;
-        font-weight: 600;
-    }
+        .produtos-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
 
-    .meta-low { background: #dc2626; }      /* vermelho */
-    .meta-medium { background: #f59e0b; }   /* amarelo */
-    .meta-good { background: #16a34a; }     /* verde */
-    .meta-excel { background: #7c3aed; }    /* roxo */
+        .produtos-titulo {
+            margin: 0;
+            color: #111827;
+            font-size: clamp(23px, 3vw, 29px);
+            font-weight: 750;
+            letter-spacing: -0.7px;
+            line-height: 1.2;
+        }
 
-</style>
+        .produtos-subtitulo {
+            margin: 8px 0 0;
+            color: var(--pd-muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
 
+        .btn-novo-produto {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-shrink: 0;
+            padding: 11px 16px;
+            border: 1px solid var(--pd-orange);
+            border-radius: 9px;
+            background: var(--pd-orange);
+            color: #fff !important;
+            font-size: 14px;
+            font-weight: 650;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(234, 88, 12, .12);
+            transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+        }
+
+        .btn-novo-produto:hover {
+            background: var(--pd-orange-dark);
+            box-shadow: 0 4px 10px rgba(234, 88, 12, .18);
+            transform: translateY(-1px);
+        }
+
+        .mensagem-produto {
+            margin: 0 0 18px;
+            padding: 12px 15px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            font-size: 14px;
+        }
+
+        .mensagem-produto.success {
+            color: #166534;
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+        }
+
+        .mensagem-produto.error {
+            color: #991b1b;
+            background: #fef2f2;
+            border-color: #fecaca;
+        }
+
+        .produtos-card {
+            overflow: hidden;
+            border: 1px solid var(--pd-border);
+            border-radius: 13px;
+            background: #fff;
+            box-shadow: 0 3px 12px rgba(15, 23, 42, .035);
+        }
+
+        .produtos-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 18px 20px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .produtos-toolbar-titulo {
+            margin: 0;
+            color: #111827;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .produtos-toolbar-descricao {
+            margin: 4px 0 0;
+            color: var(--pd-muted);
+            font-size: 12px;
+        }
+
+        .pesquisa-produtos {
+            position: relative;
+            width: min(100%, 340px);
+        }
+
+        .pesquisa-produtos svg {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            width: 17px;
+            height: 17px;
+            color: #9ca3af;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .pesquisa-produtos input {
+            display: block;
+            width: 100%;
+            height: 40px;
+            box-sizing: border-box;
+            padding: 9px 12px 9px 38px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            outline: none;
+            background: #fff;
+            color: var(--pd-text);
+            font-family: inherit;
+            font-size: 13px;
+            transition: border-color .18s ease, box-shadow .18s ease;
+        }
+
+        .pesquisa-produtos input:focus {
+            border-color: var(--pd-orange);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, .13);
+        }
+
+        .tabela-produtos-wrap {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .tabela-produtos {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: left;
+        }
+
+        .tabela-produtos thead th {
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--pd-border);
+            background: #f9fafb;
+            color: #6b7280;
+            font-size: 11px;
+            font-weight: 750;
+            letter-spacing: .055em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .tabela-produtos tbody td {
+            padding: 15px 18px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #374151;
+            font-size: 13px;
+            vertical-align: middle;
+        }
+
+        .tabela-produtos tbody tr {
+            transition: background .15s ease;
+        }
+
+        .tabela-produtos tbody tr:hover {
+            background: #fffaf5;
+        }
+
+        .tabela-produtos tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .nome-produto {
+            color: #111827 !important;
+            font-weight: 650;
+            min-width: 180px;
+        }
+
+        .tipo-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 9px;
+            border: 1px solid #fed7aa;
+            border-radius: 999px;
+            background: var(--pd-orange-soft);
+            color: #c2410c;
+            font-size: 11px;
+            font-weight: 650;
+            white-space: nowrap;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 9px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 650;
+            white-space: nowrap;
+        }
+
+        .status-badge::before {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            content: "";
+        }
+
+        .status-badge.ativo {
+            background: #f0fdf4;
+            color: var(--pd-green);
+        }
+
+        .status-badge.ativo::before {
+            background: #22c55e;
+        }
+
+        .status-badge.inativo {
+            background: #fef2f2;
+            color: var(--pd-red);
+        }
+
+        .status-badge.inativo::before {
+            background: #ef4444;
+        }
+
+        .meta-coluna {
+            min-width: 160px;
+            width: 220px;
+        }
+
+        .meta-cabecalho {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 7px;
+        }
+
+        .meta-percentual {
+            color: #374151;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .progress-bar {
+            height: 6px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 999px;
+            background: #e5e7eb;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 999px;
+            transition: width .25s ease;
+        }
+
+        .meta-low { background: #ef4444; }
+        .meta-medium { background: #f59e0b; }
+        .meta-good { background: #22c55e; }
+        .meta-excel { background: #8b5cf6; }
+
+        .meta-legenda {
+            margin-top: 5px;
+            color: #9ca3af;
+            font-size: 10px;
+        }
+
+        .sem-registros {
+            padding: 38px 20px !important;
+            color: var(--pd-muted) !important;
+            text-align: center;
+        }
+
+        .paginacao-produtos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 15px 20px;
+            border-top: 1px solid var(--pd-border);
+            background: #fff;
+        }
+
+        .paginacao-info {
+            color: var(--pd-muted);
+            font-size: 12px;
+        }
+
+        .paginacao-info strong {
+            color: #374151;
+            font-weight: 700;
+        }
+
+        .paginacao-controles {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .paginacao-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 33px;
+            height: 33px;
+            box-sizing: border-box;
+            padding: 0 9px;
+            border: 1px solid #e5e7eb;
+            border-radius: 7px;
+            background: #fff;
+            color: #4b5563;
+            text-decoration: none;
+            font-size: 15px;
+            transition: .15s ease;
+        }
+
+        .paginacao-link:hover:not(.desabilitado) {
+            border-color: #fdba74;
+            background: var(--pd-orange-soft);
+            color: var(--pd-orange-dark);
+        }
+
+        .paginacao-link.desabilitado {
+            pointer-events: none;
+            color: #cbd5e1;
+            background: #f9fafb;
+        }
+
+        .paginacao-pagina {
+            padding: 0 9px;
+            color: #6b7280;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .paginacao-pagina strong {
+            color: #111827;
+        }
+
+        @media (max-width: 700px) {
+            .content {
+                padding: 20px 12px 30px;
+            }
+
+            .produtos-header {
+                align-items: stretch;
+                flex-direction: column;
+                gap: 15px;
+                margin-bottom: 18px;
+            }
+
+            .btn-novo-produto {
+                align-self: flex-start;
+            }
+
+            .produtos-toolbar {
+                align-items: stretch;
+                flex-direction: column;
+                padding: 16px;
+            }
+
+            .pesquisa-produtos {
+                width: 100%;
+            }
+
+            .tabela-produtos thead th,
+            .tabela-produtos tbody td {
+                padding: 12px;
+            }
+
+            .paginacao-produtos {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 14px 16px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -73,168 +530,227 @@ $listaServProd = ExSqlNET("
 
 <div class="content">
 
-    <div class="page-title">Produtos / Serviços</div>
-    <div class="subtitle">Cadastro de produtos e serviços.</div>
-
-    <div class="actions">
-        <a href="Produto" class="btn">Novo Cadastro</a>
-    </div>
-    <?php
-
-        if (isset($_SESSION['mensagem_sucesso'])) {
-            $msgRetorno = $_SESSION['mensagem_sucesso'];
-            $tipoMsg = "success";
-            unset($_SESSION['mensagem_sucesso']);
-        }
-        if (isset($_SESSION['mensagem_erro'])) {
-            $msgRetorno = $_SESSION['mensagem_erro'];
-            unset($_SESSION['mensagem_erro']);
-        }
-
-        if ($msgRetorno): ?>
-        <div class="alert <?= $tipoMsg ?>">
-            <?= htmlspecialchars($msgRetorno) ?>
+    <header class="produtos-header">
+        <div>
+            <h1 class="produtos-titulo">Produtos e serviços</h1>
+            <p class="produtos-subtitulo">
+                Gerencie seu catálogo, acompanhe as metas e consulte o desempenho mensal.
+            </p>
         </div>
-        <?php endif;
 
-        if ($tipoMsg === 'success') {
-            $_POST = [];
-        }
-    ?>
+        <a href="Produto" class="btn-novo-produto">
+            <span aria-hidden="true">+</span>
+            Novo cadastro
+        </a>
+    </header>
 
-    <div class="card">
+    <?php if ($msgRetorno): ?>
+        <div class="mensagem-produto <?= htmlspecialchars($tipoMsg, ENT_QUOTES, 'UTF-8') ?>" role="status">
+            <?= htmlspecialchars((string)$msgRetorno, ENT_QUOTES, 'UTF-8') ?>
+        </div>
+    <?php endif; ?>
 
-        <input 
-            type="text" 
-            id="filtroNome" 
-            placeholder="🔎 Buscar produto ou serviço..."
-            class="input"
-            onkeyup="filtrarTabela()"
-            autofocus
-        >
+    <section class="produtos-card">
+        <div class="produtos-toolbar">
+            <div>
+                <h2 class="produtos-toolbar-titulo">Catálogo</h2>
+                <p class="produtos-toolbar-descricao">
+                    <?= number_format($totalRegistros, 0, ',', '.') ?>
+                    <?= $totalRegistros === 1 ? 'cadastro encontrado' : 'cadastros encontrados' ?>
+                </p>
+            </div>
 
-        <table>
+            <form method="GET" id="formPesquisa" class="pesquisa-produtos" role="search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <path d="m20 20-4-4"></path>
+                </svg>
 
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Tipo</th>
-                    <th>Meta Mensal</th>
-                    <th>Qtd Vendida</th>
-                    <th>Progresso</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
+                <input
+                    type="search"
+                    name="busca"
+                    id="filtroNome"
+                    value="<?= htmlspecialchars($busca, ENT_QUOTES, 'UTF-8') ?>"
+                    placeholder="Buscar produto ou serviço..."
+                    autocomplete="off"
+                    aria-label="Buscar produto ou serviço pelo nome"
+                >
+                <input type="hidden" name="pagina" value="1">
+            </form>
+        </div>
 
-            <tbody>
+        <div class="tabela-produtos-wrap">
+            <table class="tabela-produtos">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Meta mensal</th>
+                        <th>Qtd. vendida</th>
+                        <th>Progresso da meta</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
 
-            <?php foreach ($listaServProd as $item): ?>
+                <tbody>
+                <?php if (!empty($listaServProd)): ?>
+                    <?php foreach ($listaServProd as $item): ?>
+                        <?php
+                        $meta = !empty($item['MetaMensal']) ? (float)$item['MetaMensal'] : 0;
+                        $qtdVendida = (float)($item['QtdVendida'] ?? 0);
 
-                <?php
-                $id = $item['id'];
-                $meta = !empty($item['MetaMensal']) ? (int)$item['MetaMensal']: 0;
-                
-                $dadosMeta = ExSqlNET("
-                    SELECT SUM(Qtd) AS Total
-                    FROM movimentoitem
-                    LEFT JOIN movimento 
-                        ON movimento.id = movimentoitem.ControleMovimento
-                    WHERE ServProd = ?
-                    AND movimento.idEmpresa = ?
-                    AND MONTH(Data) = MONTH(CURDATE())
-                    AND YEAR(Data) = YEAR(CURDATE())
-                ", null, [$id, $idEmpresa]);
+                        $percentual = 0;
+                        if ($meta > 0) {
+                            $percentual = ($qtdVendida / $meta) * 100;
+                        }
 
-                $qtdVendida = $dadosMeta[0]['Total'] ?? 0;
+                        $percentualBarra = min(100, max(0, $percentual));
 
-                $percentual = 0;
-                if ($meta > 0) {
-                    $percentual = ($qtdVendida / $meta) * 100;
-                }
+                        $classeCor = 'meta-low';
+                        if ($percentual >= 150) {
+                            $classeCor = 'meta-excel';
+                        } elseif ($percentual >= 100) {
+                            $classeCor = 'meta-good';
+                        } elseif ($percentual >= 50) {
+                            $classeCor = 'meta-medium';
+                        }
 
-                $percentualBarra = min(100, $percentual);
+                        $inativo = !empty($item['Inativo']);
+                        ?>
+                        <tr onclick="abrirProduto(<?= (int)$item['id'] ?>)"
+                            style="cursor:pointer;">
 
-                // COR DA META
-                $classeCor = 'meta-low';
+                            <td class="nome-produto">
+                                <?= htmlspecialchars((string)($item['Nome'] ?? ''), ENT_QUOTES, 'UTF-8') ?>
+                            </td>
 
-                if ($percentual >= 150) {
-                    $classeCor = 'meta-excel';
-                } elseif ($percentual >= 100) {
-                    $classeCor = 'meta-good';
-                } elseif ($percentual >= 50) {
-                    $classeCor = 'meta-medium';
-                }
-                ?>
+                            <td>
+                                <span class="tipo-badge">
+                                    <?= htmlspecialchars((string)($item['TipoLiteral'] ?? ''), ENT_QUOTES, 'UTF-8') ?>
+                                </span>
+                            </td>
 
-                <tr onclick="abrirProduto(<?= (int)$item['id'] ?>)">
+                            <td><?= number_format($meta, 0, ',', '.') ?></td>
 
-                    <td><?= htmlspecialchars($item['Nome']) ?></td>
+                            <td><strong><?= number_format($qtdVendida, 0, ',', '.') ?></strong></td>
 
-                    <td><?= htmlspecialchars($item['TipoLiteral']) ?></td>
+                            <td class="meta-coluna">
+                                <div class="meta-cabecalho">
+                                    <span class="meta-percentual">
+                                        <?= number_format($percentual, 1, ',', '.') ?>%
+                                    </span>
+                                    <?php if ($meta <= 0): ?>
+                                        <span class="meta-legenda">Sem meta definida</span>
+                                    <?php endif; ?>
+                                </div>
 
-                    <td><?= number_format($meta, 0, ',', '.') ?></td>
+                                <div class="progress-bar"
+                                     role="progressbar"
+                                     aria-valuenow="<?= (int)round($percentualBarra) ?>"
+                                     aria-valuemin="0"
+                                     aria-valuemax="100"
+                                     aria-label="Progresso da meta mensal">
+                                    <div
+                                        class="progress-fill <?= $classeCor ?>"
+                                        style="width: <?= $percentualBarra ?>%">
+                                    </div>
+                                </div>
+                            </td>
 
-                    <td><?= number_format($qtdVendida, 0, ',', '.') ?></td>
+                            <td>
+                                <span class="status-badge <?= $inativo ? 'inativo' : 'ativo' ?>">
+                                    <?= $inativo ? 'Inativo' : 'Ativo' ?>
+                                </span>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="6" class="sem-registros">
+                            <?= $busca !== ''
+                                ? 'Nenhum produto ou serviço encontrado para essa pesquisa.'
+                                : 'Nenhum produto ou serviço cadastrado ainda.' ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
 
-                    <td style="width:220px">
+        <footer class="paginacao-produtos">
+            <div class="paginacao-info">
+                <?php if ($totalRegistros > 0): ?>
+                    Exibindo <strong><?= number_format($inicioExibicao, 0, ',', '.') ?></strong>
+                    a <strong><?= number_format($fimExibicao, 0, ',', '.') ?></strong>
+                    de <strong><?= number_format($totalRegistros, 0, ',', '.') ?></strong> registros
+                <?php else: ?>
+                    Nenhum registro para exibir
+                <?php endif; ?>
+            </div>
 
-                        <div class="progress-bar">
-                            <div class="progress-fill <?= $classeCor ?>"
-                                 style="width: <?= $percentualBarra ?>%">
-                            </div>
-                        </div>
+            <nav class="paginacao-controles" aria-label="Paginação dos produtos e serviços">
+                <a
+                    href="<?= htmlspecialchars($urlPrimeira, ENT_QUOTES, 'UTF-8') ?>"
+                    class="paginacao-link <?= $pagina <= 1 ? 'desabilitado' : '' ?>"
+                    aria-label="Primeira página"
+                    title="Primeira página"
+                >«</a>
 
-                        <div class="meta-text">
-                            <?= number_format($percentual, 1, ',', '.') ?>%
-                        </div>
+                <a
+                    href="<?= htmlspecialchars($urlAnterior, ENT_QUOTES, 'UTF-8') ?>"
+                    class="paginacao-link <?= $pagina <= 1 ? 'desabilitado' : '' ?>"
+                    aria-label="Página anterior"
+                    title="Página anterior"
+                >‹</a>
 
-                    </td>
+                <span class="paginacao-pagina">
+                    Página <strong><?= $pagina ?></strong> de <strong><?= $totalPaginas ?></strong>
+                </span>
 
-                    <td class="<?= $item['Inativo'] ? 'status-inativo' : 'status-ativo' ?>">
-                        <?= $item['Inativo'] ? 'Inativo' : 'Ativo' ?>
-                    </td>
+                <a
+                    href="<?= htmlspecialchars($urlProxima, ENT_QUOTES, 'UTF-8') ?>"
+                    class="paginacao-link <?= $pagina >= $totalPaginas ? 'desabilitado' : '' ?>"
+                    aria-label="Próxima página"
+                    title="Próxima página"
+                >›</a>
 
-                </tr>
-
-            <?php endforeach; ?>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
+                <a
+                    href="<?= htmlspecialchars($urlUltima, ENT_QUOTES, 'UTF-8') ?>"
+                    class="paginacao-link <?= $pagina >= $totalPaginas ? 'desabilitado' : '' ?>"
+                    aria-label="Última página"
+                    title="Última página"
+                >»</a>
+            </nav>
+        </footer>
+    </section>
 </div>
 
 <script>
 function abrirProduto(id) {
-    window.location.href = 'Produto?id=' + id;
+    window.location.href = 'Produto?id=' + encodeURIComponent(id);
 }
 
+const campoPesquisa = document.getElementById('filtroNome');
+const formularioPesquisa = document.getElementById('formPesquisa');
+let temporizadorPesquisa;
 
-function filtrarTabela(){
+<?php if ($busca !== ''): ?>
+window.addEventListener('DOMContentLoaded', function () {
+    campoPesquisa.focus();
+    const tamanhoTexto = campoPesquisa.value.length;
+    campoPesquisa.setSelectionRange(tamanhoTexto, tamanhoTexto);
+});
+<?php endif; ?>
 
-    let input = document.getElementById("filtroNome");
-    let filtro = input.value.toLowerCase();
+campoPesquisa.addEventListener('input', function () {
+    clearTimeout(temporizadorPesquisa);
 
-    let tabela = document.querySelector("table tbody");
-    let linhas = tabela.querySelectorAll("tr");
-
-    linhas.forEach(function(linha){
-
-        let nome = linha.cells[0].textContent.toLowerCase();
-
-        if(nome.includes(filtro)){
-            linha.style.display = "";
-        }else{
-            linha.style.display = "none";
-        }
-
-    });
-
-}
-
-
+    temporizadorPesquisa = setTimeout(function () {
+        formularioPesquisa.requestSubmit();
+    }, 400);
+});
 </script>
 
 </body>

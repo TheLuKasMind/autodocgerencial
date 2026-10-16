@@ -285,6 +285,25 @@ footer{background:#fff;border-top:1px solid var(--line);color:var(--slate);paddi
   .hero-cta .btn{flex:1}
 }
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1632726005237722');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1632726005237722&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 </head>
 <body>
 
@@ -300,7 +319,7 @@ footer{background:#fff;border-top:1px solid var(--line);color:var(--slate);paddi
       <a class="link" href="#metas">Metas</a>
       <a class="link" href="#precos">Preços</a>
       <a class="link" href="#depoimentos">Depoimentos</a>
-      <a class="btn btn-primary" href="https://autodocoficial.com/gerencial/Login">Acessar sistema</a>
+      <a class="btn btn-primary" href="https://autodocoficial.com/gerencial/Login#loaded">Acessar sistema</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
   </div>
@@ -316,7 +335,7 @@ footer{background:#fff;border-top:1px solid var(--line);color:var(--slate);paddi
         <h1>Seu escritório inteiro em <em>um único painel</em>.</h1>
         <p class="lede">Pedidos, multas, clientes, contas a receber e a meta do mês. O AutoDoc mostra tudo o que está acontecendo no escritório assim que você entra — sem planilha, sem caderno, sem procurar.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="https://autodocoficial.com/Login">Entrar no sistema</a>
+          <a class="btn btn-primary" href="https://autodocoficial.com/gerencial/Login#loaded">Entrar no sistema</a>
           <a class="btn btn-outline" href="https://wa.me/5551995392177">Falar no WhatsApp</a>
           <a class="btn btn-outline" href="mailto:autodocva@gmail.com">Enviar e-mail</a>
         </div>
@@ -339,7 +358,7 @@ footer{background:#fff;border-top:1px solid var(--line);color:var(--slate);paddi
               <span class="offer-per">/mês</span>
             </div>
             <p class="offer-sub">Todos os módulos, na nuvem, com suporte por WhatsApp. Sem taxa de instalação e sem fidelidade.</p>
-            <a class="btn offer-btn" href="https://autodocoficial.com/Login">Começar agora</a>
+            <a class="btn offer-btn" href="https://autodocoficial.com/gerencial/Login?cadastro=1#loaded">Começar agora</a>
             <ul class="offer-perks">
               <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Ativação imediata</li>
               <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Cancele quando quiser</li>
@@ -454,7 +473,7 @@ footer{background:#fff;border-top:1px solid var(--line);color:var(--slate);paddi
         <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Progresso da meta em tempo real</li>
       </ul>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="https://autodocoficial.com/gerencial/Login">Acessar sistema</a>
+        <a class="btn btn-primary" href="https://autodocoficial.com/gerencial/Login#loaded">Acessar sistema</a>
       </div>
     </div>
     <div class="shot reveal">
@@ -495,7 +514,7 @@ footer{background:#fff;border-top:1px solid var(--line);color:var(--slate);paddi
         <span class="add-r">R$ 16,90<span>/mês cada</span></span>
       </div>
       <div class="plan-cta">
-        <a class="btn btn-primary" href="https://autodocoficial.com/Login">Começar agora</a>
+        <a class="btn btn-primary" href="https://autodocoficial.com/gerencial/Login?cadastro=1#loaded">Começar agora</a>
       </div>
     </div>
     <p class="plan-foot reveal">Sem taxa de instalação. Sem fidelidade.</p>
@@ -552,7 +571,7 @@ footer{background:#fff;border-top:1px solid var(--line);color:var(--slate);paddi
       <p>Entre no sistema e registre o primeiro pedido agora. Se preferir conversar antes, chame no WhatsApp — a gente responde.</p>
     </div>
     <div class="cta-actions reveal">
-      <a class="btn btn-white" href="https://autodocoficial.com/Login">Entrar no sistema</a>
+      <a class="btn btn-white" href="https://autodocoficial.com/gerencial/Login#loaded">Entrar no sistema</a>
       <div class="cta-contact">
         <a class="btn btn-ghost-w" href="https://wa.me/5551995392177" aria-label="Falar no WhatsApp">WhatsApp</a>
         <a class="btn btn-ghost-w" href="mailto:autodocva@gmail.com" aria-label="Enviar e-mail">E-mail</a>
@@ -584,7 +603,7 @@ footer{background:#fff;border-top:1px solid var(--line);color:var(--slate);paddi
         </div>
         <div class="foot-col">
           <span class="foot-h">Contato</span>
-          <a href="https://autodocoficial.com/gerencial/Login">Acessar sistema</a>
+          <a href="https://autodocoficial.com/gerencial/Login#loaded">Acessar sistema</a>
           <a href="https://wa.me/5551995392177">WhatsApp (51) 99539-2177</a>
           <a href="mailto:autodocva@gmail.com">autodocva@gmail.com</a>
         </div>
