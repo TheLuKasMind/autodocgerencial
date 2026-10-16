@@ -1156,6 +1156,28 @@ $valorUsuarioAdicional = $config['valor_usuario_adicional'];
     }
 
     </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1632726005237722');
+// fbq('track', 'PageView');
+/* a 1a carga sem "#" e recarregada pelo window.onload, assim a visita conta uma vez so 
+* sem isso, cada visita que entra direto no login é contada duas vezes. */
+if (window.location.hash) { fbq('track', 'PageView'); }
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1632726005237722&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 </head>
 
 <body>
@@ -1450,6 +1472,36 @@ $valorUsuarioAdicional = $config['valor_usuario_adicional'];
     let segundosPagamento = 120;
     let idCobrancaPix = null;
     let estaCadastrandoEmpresa = false;
+    let valorCobrancaPix = null;
+    let pagamentoConfirmado = false;
+
+    // converte o valor do Asaas em numero pra poder armazenar e comparar
+    function valorParaNumero(valor) {
+        if (valor === null || valor === undefined) return null;
+        if (typeof valor === "number") return valor;
+        let limpo = String(valor).replace(/[^\d,.-]/g, "");
+        if (limpo.indexOf(",") > -1) {
+            limpo = limpo.replace(/\./g, "").replace(",", ".");
+        }
+        let n = parseFloat(limpo);
+        return isNaN(n) ? null : n;
+    }
+
+    function parametrosValor(valorBruto) {
+        let dados = { currency: "BRL" };
+        let valor = valorParaNumero(valorBruto);
+        if (valor !== null) { dados.value = valor; }
+        return dados;
+    }
+
+    function mostrarPagamentoConfirmado() {
+        let modal = document.getElementById("modalPix");
+        modal.querySelector(".modal-box").innerHTML =
+            '<div class="modal-icon" style="background:#dcfce7;color:#16a34a;box-shadow:inset 0 0 0 1px #86efac;">&#10003;</div>' +
+            '<h3>Pagamento confirmado</h3>' +
+            '<p class="modal-text">Estamos liberando seu acesso...</p>';
+        modal.style.display = "flex";
+    }    
 
     window.onclick = function(event) {
         let modal = document.getElementById("modalRecuperar");
@@ -1777,8 +1829,6 @@ $valorUsuarioAdicional = $config['valor_usuario_adicional'];
     });
 
 
-
-
     const formCadastro = document.getElementById("formCadastro");
 
 
@@ -1838,6 +1888,7 @@ $valorUsuarioAdicional = $config['valor_usuario_adicional'];
             }
 
             idCobrancaPix = retorno.idCobranca;
+            valorCobrancaPix = retorno.valor;
 
             document.getElementById("valorPlanoPix").innerHTML =
                 "R$ " + retorno.valor;
@@ -1848,6 +1899,11 @@ $valorUsuarioAdicional = $config['valor_usuario_adicional'];
             document.getElementById("modalPix").style.display = "flex";
 
             document.getElementById("id_Asaas").value = retorno.id_Asaas;
+
+            // qr code gerado
+            if (typeof fbq === "function") {
+                fbq("track", "InitiateCheckout", parametrosValor(retorno.valor));
+            }
 
             iniciarConsultaPagamento();
             iniciarContadorPagamento();
@@ -2029,13 +2085,30 @@ $valorUsuarioAdicional = $config['valor_usuario_adicional'];
                     retorno.status == "RECEIVED" ||
                     retorno.status == "CONFIRMED"
                 ){
+                    // clearInterval(intervaloPagamento);
+                    // clearInterval(contadorPagamento);
+                    // document.getElementById("modalPix").style.display = "none";
+                    // // alert("Pagamento aprovado!");
+                    // document.getElementById("formCadastro").submit();
+
+                    if(pagamentoConfirmado) {return;}
+                    pagamentoConfirmado = true;
+
                     clearInterval(intervaloPagamento);
                     clearInterval(contadorPagamento);
-                    document.getElementById("modalPix").style.display = "none";
-                    // alert("Pagamento aprovado!");
-                    document.getElementById("formCadastro").submit();
-                }
 
+                    mostrarPagamentoConfirmado();
+
+                    // pagamento concluido
+                    if (typeof fbq === "function") {
+                        fbq("track", "Purchase", parametrosValor(valorCobrancaPix));
+                    }
+
+                    // espera pro cliente ver confirmacao
+                    setTimeout(function() {
+                        document.getElementById("formCadastro").submit();
+                    }, 1800);
+                }
             })
 
             .catch(erro => {
