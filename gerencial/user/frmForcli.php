@@ -748,6 +748,324 @@ if (!empty($dados['Grupo'])) {
         .btn-excluir:active{
             transform: scale(.98);
         }
+
+        /* ===== DESIGN MODERNO: CADASTRO DE CLIENTES ===== */
+        .content {
+            max-width: 1180px;
+            margin: 28px auto 48px;
+            padding: 0 22px;
+            box-sizing: border-box;
+        }
+
+        .content > form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .page-title {
+            margin: 0;
+            color: #172033;
+            font-size: 27px;
+            font-weight: 750;
+            letter-spacing: -0.6px;
+            line-height: 1.25;
+        }
+
+        .page-subtitle {
+            margin: -12px 0 2px;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .content .card {
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0;
+            padding: 24px;
+            background: #fff;
+            border: 1px solid #e8edf3;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, .035);
+        }
+
+        .form-section-heading {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 20px;
+            padding-bottom: 13px;
+            border-bottom: 1px solid #eef2f6;
+            color: #1e293b;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -.2px;
+        }
+
+        .form-section-heading::before {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 19px;
+            flex: 0 0 4px;
+            border-radius: 4px;
+            background: #f97316;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 19px 22px;
+        }
+
+        .form-grid > div {
+            min-width: 0;
+        }
+
+        .content label {
+            display: block;
+            margin: 0 0 7px;
+            color: #374151;
+            font-size: 13px;
+            font-weight: 650;
+        }
+
+        .content input:not([type="checkbox"]):not([type="file"]),
+        .content select,
+        .content textarea {
+            width: 100%;
+            min-height: 42px;
+            box-sizing: border-box;
+            padding: 10px 12px;
+            border: 1px solid #dbe2ea;
+            border-radius: 8px;
+            background: #fff;
+            color: #1f2937;
+            font: 400 14px 'Inter', sans-serif;
+            outline: none;
+            transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+        }
+
+        .content textarea {
+            min-height: 96px;
+            resize: vertical;
+        }
+
+        .content input:not([type="checkbox"]):not([type="file"]):focus,
+        .content select:focus,
+        .content textarea:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, .12);
+        }
+
+        .content input[readonly] {
+            background: #f8fafc !important;
+            cursor: pointer;
+        }
+
+        .content input[type="checkbox"] {
+            accent-color: #f97316;
+            width: 16px;
+            height: 16px;
+        }
+
+        .content .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            align-self: end;
+            min-height: 42px;
+            padding-bottom: 2px;
+        }
+
+        .content .checkbox label {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .obrigatorio {
+            color: #dc2626;
+            margin-left: 3px;
+        }
+
+        .content .actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .content .btn,
+        .content .btn-secondary,
+        .content .btn-excluir {
+            min-height: 42px;
+            border-radius: 9px;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 650;
+        }
+
+        .content .btn {
+            background: #f97316;
+            box-shadow: 0 3px 8px rgba(249, 115, 22, .16);
+        }
+
+        .content .btn:hover {
+            background: #ea580c;
+            box-shadow: 0 5px 12px rgba(249, 115, 22, .22);
+            transform: translateY(-1px);
+        }
+
+        .content .btn-secondary {
+            border: 1px solid #e2e8f0;
+            background: #fff;
+            color: #475569;
+            box-shadow: none;
+        }
+
+        .content .btn-secondary:hover {
+            border-color: #fdba74;
+            background: #fff7ed;
+            color: #c2410c;
+            transform: translateY(-1px);
+        }
+
+        .content .btn-excluir {
+            box-shadow: none;
+        }
+
+        .content .total-devedor-box {
+            margin-bottom: 22px;
+            padding: 20px 22px;
+            border: 1px solid #fed7aa;
+            border-radius: 12px;
+            background: #fff7ed;
+            box-shadow: none;
+        }
+
+        .content .total-devedor-box:hover {
+            transform: none;
+            box-shadow: 0 5px 16px rgba(249, 115, 22, .08);
+        }
+
+        .content .total-label {
+            font-size: 11px;
+            letter-spacing: .07em;
+            color: #9a3412;
+        }
+
+        .content .total-value {
+            font-size: 30px;
+            color: #ea580c;
+            font-weight: 750;
+        }
+
+        .content .total-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 12px;
+            font-size: 26px;
+            box-shadow: none;
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 13px;
+        }
+
+        .content table thead th {
+            padding: 12px 13px;
+            background: #fff7ed;
+            color: #9a3412;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .045em;
+            text-align: left;
+            text-transform: uppercase;
+            border-bottom: 1px solid #fed7aa;
+        }
+
+        .content table tbody td {
+            padding: 12px 13px;
+            color: #475569;
+            border-bottom: 1px solid #eef2f6;
+            overflow-wrap: anywhere;
+        }
+
+        .content table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .content hr {
+            border: 0;
+            border-top: 1px solid #eef2f6;
+        }
+
+        .content .alert {
+            border-radius: 9px;
+            padding: 12px 15px;
+        }
+
+        .modal {
+            border: 1px solid #e8edf3;
+            border-radius: 14px;
+        }
+
+        .modal .btn {
+            min-height: 40px;
+        }
+
+        @media (max-width: 700px) {
+            .content {
+                margin-top: 20px;
+                padding: 0 13px;
+            }
+
+            .page-title {
+                font-size: 23px;
+            }
+
+            .content .card {
+                padding: 17px;
+                border-radius: 12px;
+            }
+
+            .form-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 15px;
+            }
+
+            .content .total-devedor-box {
+                padding: 17px;
+            }
+
+            .content .total-value {
+                font-size: 25px;
+            }
+
+            .content .actions {
+                align-items: stretch;
+            }
+
+            .content .actions .btn,
+            .content .actions .btn-secondary,
+            .content .actions .btn-excluir {
+                flex: 1 1 auto;
+            }
+
+            .content table {
+                font-size: 12px;
+            }
+
+            .content table thead th,
+            .content table tbody td {
+                padding: 10px 8px;
+            }
+        }
+
     </style>
 
 </head>
@@ -757,7 +1075,8 @@ if (!empty($dados['Grupo'])) {
 
 <div class="content">
     <form method="post">
-        <div class="page-title">Cadastro de Cliente</div>
+        <div class="page-title"><?= $Alterando ? "Editar Cliente / Fornecedor" : "Cadastro de Cliente" ?></div>
+        <div class="page-subtitle"><?= $Alterando ? "Atualize os dados cadastrais, endereço e documentos." : "Preencha os dados para cadastrar um cliente ou fornecedor." ?></div>
         <?php
             if ($msgRetorno): ?>
             <div class="alert <?= $tipoMsg ?>">
@@ -771,6 +1090,7 @@ if (!empty($dados['Grupo'])) {
         ?>
         <!-- DADOS PRINCIPAIS -->
         <div class="card">
+            <h3 class="form-section-heading">Classificação do cadastro</h3>
             <div class="form-grid">
 
                 <div>
@@ -823,6 +1143,7 @@ if (!empty($dados['Grupo'])) {
 
         <!-- DADOS DO CLIENTE -->
         <div class="card">
+            <h3 class="form-section-heading">Dados do cliente</h3>
             <div class="form-grid">
 
                 <div>
@@ -906,7 +1227,7 @@ if (!empty($dados['Grupo'])) {
 
         <!-- ENDEREÇO -->
         <div class="card">
-            <h3 style="margin-bottom:10px; color:#334155;">Endereço</h3>
+            <h3 class="form-section-heading">Endereço</h3>
             <div class="form-grid">
                 <div>
                     <label>CEP<span class="obrigatorio">*</span></label>
@@ -937,7 +1258,7 @@ if (!empty($dados['Grupo'])) {
         </div>
 
                     <div class="card">
-                <h3 style="margin-bottom:10px; color:#334155;">Documentos do Cliente</h3>
+                <h3 class="form-section-heading">Documentos do cliente</h3>
 
                 <div class="form-grid">
 
@@ -998,6 +1319,7 @@ if (!empty($dados['Grupo'])) {
 
         <!-- FINANCEIRO -->
         <div class="card">
+            <h3 class="form-section-heading">Resumo financeiro</h3>
             <!-- <div class="info-box">
                 Total Devedor:
                 <?= $Alterando

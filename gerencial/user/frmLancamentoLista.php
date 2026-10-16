@@ -609,6 +609,520 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
             text-align: center;
         }
 
+    
+
+        /* ==========================================================
+           AUTODOC — CAMADA VISUAL MODERNA
+           Mantém as rotas, filtros, consultas e ações existentes.
+           ========================================================== */
+        :root {
+            --pd-orange: #f97316;
+            --pd-orange-dark: #ea580c;
+            --pd-orange-soft: #fff7ed;
+            --pd-text: #1f2937;
+            --pd-muted: #6b7280;
+            --pd-border: #e5e7eb;
+            --pd-bg: #f8fafc;
+            --pd-green: #15803d;
+            --pd-red: #b91c1c;
+        }
+
+        body {
+            background: var(--pd-bg);
+            color: var(--pd-text);
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        .content {
+            width: min(100% - 48px, 1440px);
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 28px 0 42px;
+            box-sizing: border-box;
+        }
+
+        .page-heading {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 7px;
+            margin: 0 0 24px;
+            min-width: 0;
+        }
+
+        .page-title {
+            display: block;
+            position: static;
+            margin: 0;
+            padding: 0;
+            color: #111827;
+            font-size: clamp(24px, 3vw, 30px);
+            font-weight: 750;
+            letter-spacing: -.7px;
+            line-height: 1.25;
+            overflow-wrap: anywhere;
+        }
+
+        .page-description {
+            display: block;
+            position: static;
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+            color: var(--pd-muted);
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.55;
+            overflow-wrap: anywhere;
+        }
+
+        .card {
+            margin: 0 0 20px;
+            padding: 20px;
+            border: 1px solid var(--pd-border);
+            border-radius: 13px;
+            background: #fff;
+            box-shadow: 0 3px 12px rgba(15, 23, 42, .035);
+            box-sizing: border-box;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 18px 16px;
+            align-items: end;
+        }
+
+        .form-grid > div {
+            min-width: 0;
+        }
+
+        .form-grid label {
+            display: block;
+            margin: 0 0 7px;
+            color: #374151;
+            font-size: 12px;
+            font-weight: 650;
+        }
+
+        .form-grid input:not([type="hidden"]),
+        .form-grid select,
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            min-height: 41px;
+            box-sizing: border-box;
+            padding: 9px 11px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            outline: none;
+            background: #fff;
+            color: var(--pd-text);
+            font: inherit;
+            font-size: 13px;
+            transition: border-color .18s ease, box-shadow .18s ease;
+        }
+
+        .form-grid input:focus,
+        .form-grid select:focus,
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            border-color: var(--pd-orange);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, .13);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 9px;
+            padding-top: 17px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .btn,
+        .btn-secondary,
+        .actions a,
+        .actions button {
+            display: inline-flex;
+            min-height: 39px;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            box-sizing: border-box;
+            padding: 9px 15px;
+            border: 1px solid var(--pd-orange);
+            border-radius: 8px;
+            background: var(--pd-orange);
+            color: #fff !important;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 650;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(234, 88, 12, .10);
+            transition: background .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+        }
+
+        .btn:hover,
+        .actions a:hover,
+        .actions button:hover {
+            border-color: var(--pd-orange-dark);
+            background: var(--pd-orange-dark);
+            box-shadow: 0 4px 10px rgba(234, 88, 12, .16);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            border-color: #e5e7eb;
+            background: #fff;
+            color: #374151 !important;
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            border-color: #fdba74;
+            background: #fff7ed;
+            color: #374151 !important;
+            transform: translateY(-1px);
+        }
+
+        .content > form > div[style*="margin-bottom"] {
+            margin: 0 0 12px !important;
+        }
+
+        .content > form > div[style*="margin-bottom"] .btn {
+            background: #15803d;
+            border-color: #15803d;
+        }
+
+        .content > form > div[style*="margin-bottom"] .btn:hover {
+            background: #166534;
+            border-color: #166534;
+        }
+
+        .content .card:has(table) {
+            padding: 0;
+            overflow-x: auto;
+        }
+
+        .content table {
+            width: 100%;
+            min-width: 1050px;
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        .content table thead th {
+            padding: 13px 14px;
+            border-bottom: 1px solid var(--pd-border);
+            background: #f9fafb;
+            color: #6b7280;
+            font-size: 10px;
+            font-weight: 750;
+            letter-spacing: .055em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .content table tbody td {
+            padding: 13px 14px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #374151;
+            font-size: 12px;
+            line-height: 1.45;
+            vertical-align: middle;
+        }
+
+        .content table tbody tr {
+            background: #fff;
+            transition: background .15s ease;
+        }
+
+        .content table tbody tr[onclick] {
+            cursor: pointer;
+        }
+
+        .content table tbody tr[onclick]:hover {
+            background: #fffaf5;
+        }
+
+        .content table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .content table input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--pd-orange);
+            cursor: pointer;
+        }
+
+        .status-processo {
+            min-width: 0;
+            padding: 5px 9px;
+            border-radius: 999px;
+            box-shadow: none;
+            font-size: 11px;
+            font-weight: 650;
+            letter-spacing: 0;
+            white-space: nowrap;
+        }
+
+        .processo-andamento {
+            border: 1px solid #fde68a;
+            background: #fffbeb;
+            color: #92400e;
+            animation: none;
+        }
+
+        .processo-concluido {
+            border: 1px solid #bbf7d0;
+            background: #f0fdf4;
+            color: #166534;
+        }
+
+        .status-pago,
+        .status-aberto {
+            padding: 7px 9px;
+            border-radius: 7px;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .status-pago {
+            background: #f0fdf4;
+            color: #166534;
+        }
+
+        .status-aberto {
+            background: #fffbeb;
+            color: #92400e;
+        }
+
+        .totais-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(180px, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .totais-card {
+            width: auto;
+            min-width: 0;
+            padding: 18px 20px;
+            border: 1px solid var(--pd-border);
+            border-radius: 12px;
+            background: #fff;
+            text-align: left;
+            box-shadow: 0 3px 12px rgba(15, 23, 42, .035);
+            transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+        }
+
+        .totais-card:hover {
+            border-color: #fed7aa;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, .06);
+            transform: translateY(-1px);
+        }
+
+        .totais-label {
+            margin-bottom: 8px;
+            color: var(--pd-muted);
+            font-size: 12px;
+            font-weight: 550;
+        }
+
+        .totais-valor {
+            color: #111827;
+            font-size: clamp(20px, 2vw, 24px);
+            font-weight: 750;
+            letter-spacing: -.4px;
+            overflow-wrap: anywhere;
+        }
+
+        .modal-bg {
+            background: rgba(15, 23, 42, .48);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal {
+            width: min(680px, calc(100% - 28px));
+            max-width: 680px;
+            padding: 22px;
+            border: 1px solid rgba(229, 231, 235, .9);
+            border-radius: 14px;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, .22);
+        }
+
+        .modal h3 {
+            color: #111827;
+            font-size: 19px;
+            font-weight: 750;
+            letter-spacing: -.3px;
+        }
+
+        .modal-search {
+            min-height: 42px;
+            box-sizing: border-box;
+            border-color: #d1d5db;
+            border-radius: 8px;
+        }
+
+        .modal-table-wrapper {
+            border-color: var(--pd-border);
+            border-radius: 9px;
+        }
+
+        .modal table {
+            min-width: 0;
+            font-size: 13px;
+        }
+
+        .modal th {
+            background: #f9fafb;
+            color: #6b7280;
+            font-size: 10px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .modal td {
+            color: #374151;
+        }
+
+        .modal tbody tr:hover {
+            background: var(--pd-orange-soft);
+        }
+
+        .alert {
+            margin: 0 0 18px;
+            padding: 12px 15px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            font-size: 13px;
+        }
+
+        .alert.success {
+            border-color: #bbf7d0;
+            background: #f0fdf4;
+            color: #166534;
+        }
+
+        .alert.error {
+            border-color: #fecaca;
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        @media (max-width: 1100px) {
+            .form-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+            .content table {
+                min-width: 1050px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .content {
+                width: calc(100% - 24px);
+                padding: 20px 0 30px;
+            }
+            .page-heading {
+                gap: 6px;
+                margin-bottom: 20px;
+            }
+            .page-title {
+                font-size: clamp(23px, 6vw, 28px);
+                letter-spacing: -.45px;
+            }
+            .page-description {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+            .card {
+                padding: 15px;
+                border-radius: 11px;
+            }
+            .form-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px 11px;
+            }
+            .actions {
+                align-items: stretch;
+            }
+            .actions .btn,
+            .actions a,
+            .actions button {
+                flex: 1 1 auto;
+            }
+            .totais-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .totais-card {
+                padding: 15px 17px;
+            }
+            .modal {
+                padding: 17px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .content .card:has(table) {
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .content table {
+                min-width: 900px;
+            }
+            .totais-container {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .totais-card {
+                width: 100%;
+                min-width: 0;
+                box-sizing: border-box;
+                text-align: left;
+            }
+            .actions .btn,
+            .actions a,
+            .actions button {
+                width: 100%;
+                box-sizing: border-box;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .form-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .content {
+                width: calc(100% - 20px);
+            }
+            .card {
+                padding: 13px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+
     </style>
 </head>
 
@@ -618,7 +1132,10 @@ if(isset($_POST['marcar_pago']) && !empty($_POST['pedidos'])){
 
     <div class="content">
 
-        <div class="page-title">Lista de Pedidos</div>
+        <header class="page-heading">
+            <h1 class="page-title">Lista de Pedidos</h1>
+            <p class="page-description">Consulte, filtre e acompanhe os pedidos da sua empresa.</p>
+        </header>
         <?php
 
             $msgRetorno = "";

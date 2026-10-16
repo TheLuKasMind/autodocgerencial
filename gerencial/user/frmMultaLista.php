@@ -60,7 +60,36 @@ $clientes = ExSqlNET("
     WHERE idEmpresa = ?
     AND Inativo = 0
     ORDER BY Nome
+    LIMIT 50
 ", null, [$idEmpresa]);
+
+
+$clientesEncontrados = [];
+
+if (isset($_GET['buscar_clientes']) && $_GET['buscar_clientes'] == 1) {
+    header('Content-Type: application/json');
+    $termo = trim($_GET['q'] ?? '');
+    $idEmpresa = $_SESSION['idEmpresa'];
+
+    $sql = "SELECT Id, Nome, Documento 
+            FROM forcli 
+            WHERE idEmpresa = ? 
+            AND Inativo = 0";
+    
+    $params = [$idEmpresa];
+
+    if ($termo !== '') {
+        $sql .= " AND (Nome LIKE ? OR Documento LIKE ?)";
+        $params[] = "%$termo%";
+        $params[] = "%$termo%";
+    }
+
+    $sql .= " ORDER BY Nome LIMIT 20";
+
+    $clientesEncontrados = ExSqlNET($sql, null, $params);
+    echo json_encode($clientesEncontrados ?: []);
+    exit;
+}
 
 // $statusFiltro   = $_GET['status'] ?? '';
 // $clienteFiltro  = $_GET['cliente'] ?? '';
@@ -329,6 +358,15 @@ foreach ($listaMultas as $multa) {
         background: #bdbdbd;
     }
 
+
+    .modal-table-wrapper {
+        height: 320px; 
+        max-height: 320px;
+        overflow-y: auto;
+        margin-top: 10px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+    }
 
     .form-grid {
         display: grid;
@@ -647,55 +685,119 @@ foreach ($listaMultas as $multa) {
 </div>
 
 <script>
-// let clientes = <?= json_encode($clientes ?? []) ?>;
+
 let clientes = <?= json_encode($clientes ?? []) ?>;
 
-function abrirModal() {
-    document.getElementById('modalTitulo').innerText = 'Selecionar Cliente';
-    document.getElementById('modalBg').style.display = 'flex';
+    // function abrirModal() {
+    //     document.getElementById('modalTitulo').innerText = 'Selecionar Cliente';
+    //     document.getElementById('modalBg').style.display = 'flex';
 
-    document.getElementById('modalHead').innerHTML = `
-        <th>Nome</th>
-        <th>Documento</th>
-    `;
+    //     document.getElementById('modalHead').innerHTML = `
+    //         <th>Nome</th>
+    //         <th>Documento</th>
+    //     `;
 
-    carregarClientes('');
-    document.getElementById('modalBusca').value = '';
+    //     carregarClientes('');
+    //     document.getElementById('modalBusca').value = '';
 
-    setTimeout(() => {
-        document.getElementById('modalBusca').focus();
-    }, 50);
+    //     setTimeout(() => {
+    //         document.getElementById('modalBusca').focus();
+    //     }, 50);
 
-}
+    // }
 
-function fecharModal() {
-    document.getElementById('modalBg').style.display = 'none';
-}
+    // function fecharModal() {
+    //     document.getElementById('modalBg').style.display = 'none';
+    // }
 
-function carregarClientes(filtro = '') {
-    filtro = filtro.toLowerCase();
-    let html = '';
+    // function carregarClientes(filtro = '') {
+    //     filtro = filtro.toLowerCase();
+    //     let html = '';
 
-    clientes
-        .filter(c => (c.Nome || '').toLowerCase().includes(filtro))
-        .forEach(c => {
-            let nomeSeguro = (c.Nome || '').replace(/'/g, "\\'");
-            html += `
-                <tr onclick="selecionarCliente(${c.id}, '${nomeSeguro}')">
-                    <td>${c.Nome}</td>
-                    <td>${c.Documento || ''}</td>
-                </tr>
-            `;
-        });
+    //     clientes
+    //         .filter(c => (c.Nome || '').toLowerCase().includes(filtro))
+    //         .forEach(c => {
+    //             let nomeSeguro = (c.Nome || '').replace(/'/g, "\\'");
+    //             html += `
+    //                 <tr onclick="selecionarCliente(${c.id}, '${nomeSeguro}')">
+    //                     <td>${c.Nome}</td>
+    //                     <td>${c.Documento || ''}</td>
+    //                 </tr>
+    //             `;
+    //         });
 
-    document.getElementById('modalBody').innerHTML = html;
-}
+    //     document.getElementById('modalBody').innerHTML = html;
+    // }
 
-function selecionarCliente(id, nome) {
-    document.getElementById('cliente_id').value = id;
-    document.getElementById('cliente_nome').value = nome;
-    fecharModal();
-}
+    // function selecionarCliente(id, nome) {
+    //     document.getElementById('cliente_id').value = id;
+    //     document.getElementById('cliente_nome').value = nome;
+    //     fecharModal();
+    // }
+
+   function abrirModal() {
+        document.getElementById('modalTitulo').innerText = 'Selecionar Cliente';
+        document.getElementById('modalBg').style.display = 'flex';
+
+        document.getElementById('modalHead').innerHTML = `
+            <th>Nome</th>
+            <th>Documento</th>
+        `;
+
+        carregarClientes('');
+        document.getElementById('modalBusca').value = '';
+
+        setTimeout(() => {
+            document.getElementById('modalBusca').focus();
+        }, 50);
+    }
+
+    function fecharModal() {
+        document.getElementById('modalBg').style.display = 'none';
+    }
+
+    function carregarClientes(filtro = '') {
+        let body = document.getElementById('modalBody');
+        body.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#777; padding: 20px;">A carregar...</td></tr>';
+
+        fetch(`?buscar_clientes=1&q=${encodeURIComponent(filtro)}`)
+            .then(response => response.json())
+            .then(clientes => {
+                let html = '';
+
+                if (!clientes || clientes.length === 0) {
+                    body.innerHTML = `<tr><td colspan="2" style="text-align:center; color:#777; padding: 20px;">Nenhum registo encontrado</td></tr>`;
+                    return;
+                }
+
+                clientes.forEach(c => {
+                    let nome = c.Nome || '';
+                    let documento = c.Documento || '';
+                    let nomeSeguro = nome.replace(/'/g, "\\'");
+                    
+                    html += `
+                        <tr onclick="selecionarCliente(${c.Id}, '${nomeSeguro}')">
+                            <td>${nome}</td>
+                            <td>${documento}</td>
+                        </tr>
+                    `;
+                });
+
+                body.innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Erro ao buscar clientes:', error);
+                body.innerHTML = `<tr><td colspan="2" style="text-align:center; color:red; padding: 20px;">Erro ao carregar dados</td></tr>`;
+            });
+    }
+
+    function selecionarCliente(id, nome) {
+        // document.getElementById('clienteId').value = id;
+        // document.getElementById('clienteNome').value = nome;
+        document.getElementById('cliente_id').value = id;
+        document.getElementById('cliente_nome').value = nome;
+        fecharModal();
+    }
 
 function imprimirLista() {
     const form = document.getElementById('formFiltro');

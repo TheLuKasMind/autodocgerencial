@@ -21,10 +21,39 @@ $listaForcli = ExSqlNET(
      FROM forcli
      WHERE Inativo = 0
        AND idEmpresa = ?
-     ORDER BY Nome ASC",
+     ORDER BY Nome ASC
+     LIMIT 50
+     ",
     null,
     [$idEmpresa]
 );
+
+$clientesEncontrados = [];
+
+if (isset($_GET['buscar_clientes']) && $_GET['buscar_clientes'] == 1) {
+    header('Content-Type: application/json');
+    $termo = trim($_GET['q'] ?? '');
+    $idEmpresa = $_SESSION['idEmpresa'];
+
+    $sql = "SELECT Id, Nome, Documento 
+            FROM forcli 
+            WHERE idEmpresa = ? 
+            AND Inativo = 0";
+    
+    $params = [$idEmpresa];
+
+    if ($termo !== '') {
+        $sql .= " AND (Nome LIKE ? OR Documento LIKE ?)";
+        $params[] = "%$termo%";
+        $params[] = "%$termo%";
+    }
+
+    $sql .= " ORDER BY Nome LIMIT 20";
+
+    $clientesEncontrados = ExSqlNET($sql, null, $params);
+    echo json_encode($clientesEncontrados ?: []);
+    exit;
+}
 
 $id = $_GET['id'] ?? null;
 $Alterando = false;
@@ -318,8 +347,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir']) && $Altera
         }
 
         .modal-table-wrapper {
-            max-height: 380px;
+            height: 320px;
+            max-height: 320px;
             overflow-y: auto;
+            margin-top: 10px;
             border: 1px solid #eee;
             border-radius: 8px;
         }
@@ -606,24 +637,39 @@ function fecharModal() {
 }
 
 function carregarClientes(filtro = '') {
-    filtro = filtro.toLowerCase();
-    let html = '';
-    clientes
-        .filter(c =>
-            (c.Nome || '').toLowerCase().includes(filtro) ||
-            (c.Documento || '').includes(filtro)
-        )
-        .forEach(c => {
-            let nomeSeguro = (c.Nome || '').replace(/'/g, "\\'");
-            html += `
-                <tr onclick="selecionarCliente(${c.Id}, '${nomeSeguro}')">
-                    <td>${c.Nome}</td>
-                    <td>${c.Documento || ''}</td>
-                </tr>
-            `;
-        });
+    let body = document.getElementById('modalBody');
+    body.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#777; padding: 20px;">A carregar...</td></tr>';
 
-    document.getElementById('modalBody').innerHTML = html;
+    // Faz a requisição assíncrona ao PHP enviando o termo digitado
+    fetch(`?buscar_clientes=1&q=${encodeURIComponent(filtro)}`)
+        .then(response => response.json())
+        .then(clientes => {
+            let html = '';
+
+            if (!clientes || clientes.length === 0) {
+                body.innerHTML = `<tr><td colspan="2" style="text-align:center; color:#777; padding: 20px;">Nenhum registo encontrado</td></tr>`;
+                return;
+            }
+
+            clientes.forEach(c => {
+                let nome = c.Nome || '';
+                let documento = c.Documento || '';
+                let nomeSeguro = nome.replace(/'/g, "\\'");
+                
+                html += `
+                    <tr onclick="selecionarCliente(${c.Id}, '${nomeSeguro}')">
+                        <td>${nome}</td>
+                        <td>${documento}</td>
+                    </tr>
+                `;
+            });
+
+            body.innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Erro ao buscar clientes:', error);
+            body.innerHTML = `<tr><td colspan="2" style="text-align:center; color:red; padding: 20px;">Erro ao carregar dados</td></tr>`;
+        });
 }
 
 function selecionarCliente(id, nome) {
