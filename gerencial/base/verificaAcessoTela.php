@@ -74,9 +74,13 @@ $totalPermissoes = ExSqlNET($sqlTotal, null,
     ]
 );
 
+if ($currentPage == "index.php"){
+    $currentPage = 'frmHome.php';
+}
+
 if (($totalPermissoes[0]['total'] ?? 0) > 0) {
 
-    $sql = "SELECT 1 FROM userpermissoes WHERE idEmpresa = ? AND idUsuario = ? AND pagina = ?  LIMIT 1";
+    $sql = "SELECT 1 FROM userpermissoes WHERE idEmpresa = ? AND idUsuario = ? AND (pagina = ? OR pagina = 'index.php')  LIMIT 1";
     $permissao = ExSqlNET($sql,null,
         [
             $idEmpresa,
@@ -88,7 +92,7 @@ if (($totalPermissoes[0]['total'] ?? 0) > 0) {
     if (empty($permissao)) {
         echo "
         <script>
-            alert('Você não possui acesso a esta tela.');
+            alert('Você não possui acesso a esta tela!.');
             window.location.href='../user/frmHome.php';
         </script>
         ";
